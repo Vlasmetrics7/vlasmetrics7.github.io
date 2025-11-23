@@ -1,0 +1,17 @@
+# Simplified config for Vladimir's Academic Pages
+name: "Vladimir Rodríguez Caballero"
+title: "Vladimir Rodríguez Caballero"
+description: "Researcher in applied econometrics, time series, climate economics and financial econometrics."
+url: "https://vlasmetrics7.github.io"
+author:
+  name: "Vladimir Rodríguez Caballero"
+  avatar: "/assets/images/profile.jpg"
+  bio: "Assistant Professor of Economics. Research in econometrics, macro-finance, and climate impacts."
+collections:
+  publications:
+    output: true
+  teaching:
+    output: true
+  projects:
+    output: true
+markdown: kramdown
