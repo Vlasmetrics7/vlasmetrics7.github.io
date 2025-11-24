@@ -3,7 +3,7 @@ layout: single
 title: "Publications"
 permalink: /publications/
 ---
-<script>
+
 function toggleDiv(id) {
   var x = document.getElementById(id);
   if (x.style.display === "none" || x.style.display === "") {
@@ -12,7 +12,7 @@ function toggleDiv(id) {
     x.style.display = "none";
   }
 }
-</script>
+
 
 Below is a categorized and selected list of my research output.
 
