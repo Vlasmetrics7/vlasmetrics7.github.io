@@ -1,10 +1,15 @@
 ---
-layout: home
+layout: single
 author_profile: true
+title: "Vladimir Rodríguez Caballero"
 ---
 
-# Vladimir Rodríguez Caballero
+Welcome! I am an Assistant Professor of Economics.  
+My research focuses on applied econometrics, climate impacts on economic activity, and financial econometrics.
 
-Assistant Professor of Economics. My research focuses on applied econometrics, climate impacts on economic activity, and financial econometrics.
-
-[View my CV](/cv/) • [Research](/research/) • [Publications](/publications/)
+## Quick Links
+- [Curriculum Vitae](/cv/)
+- [Research](/research/)
+- [Publications](/publications/)
+- [Working Papers](/working-papers/)
+- [Teaching](/teaching/)
