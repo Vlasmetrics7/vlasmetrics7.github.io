@@ -4,7 +4,6 @@ title: "Publications"
 permalink: /publications/
 ---
 
-# Publications
 Below is a categorized and selected list of my research output.
 
 ---
