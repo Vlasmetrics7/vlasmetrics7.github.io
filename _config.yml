@@ -1,12 +1,27 @@
-# Simplified config for Vladimir's Academic Pages
-name: "Vladimir Rodríguez Caballero"
+# SITE SETTINGS
 title: "Vladimir Rodríguez Caballero"
+name: "Vladimir Rodríguez Caballero"
 description: "Researcher in applied econometrics, time series, climate economics and financial econometrics."
 url: "https://vlasmetrics7.github.io"
+
+# THEME
+theme: null
+remote_theme: "mmistakes/minimal-mistakes@4.24.0"
+
+# AUTHOR
 author:
   name: "Vladimir Rodríguez Caballero"
   avatar: "/assets/images/profile.jpg"
   bio: "Assistant Professor of Economics. Research in econometrics, macro-finance, and climate impacts."
+  links:
+    - label: "Google Scholar"
+      icon: "fas fa-graduation-cap"
+      url: "https://scholar.google.com/"
+    - label: "GitHub"
+      icon: "fab fa-github"
+      url: "https://github.com/vlasmetrics7"
+
+# COLLECTIONS
 collections:
   publications:
     output: true
@@ -14,4 +29,20 @@ collections:
     output: true
   projects:
     output: true
+
+# NAVIGATION
+include: ["_pages"]
+
+# MARKDOWN
 markdown: kramdown
+
+# PLUGINS
+plugins:
+  - jekyll-include-cache
+  - jekyll-paginate
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+
+
