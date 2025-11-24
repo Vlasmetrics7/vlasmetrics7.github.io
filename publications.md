@@ -71,12 +71,18 @@ phenomena.)</em>
 
   <!-- BibTeX -->
   <div id="bib-eco2025" style="display:none; margin-top:1rem;">
-<pre><code>@article{Eco2025,
-  title={Economic activity and climate change},
-  author={de Juan, A. and Poncela, P. and Rodríguez-Caballero, C.V. and Ruiz, E.},
-  journal={International Review of Environmental and Resource Economics},
-  year={2025},
-  note={Forthcoming}
+<pre><code>@article{de2025economic,
+url = {http://dx.doi.org/10.1561/101.00000176},
+year = {2025},
+volume = {19},
+journal = {International Review of Environmental and Resource Economics},
+title = {Economic Activity and Climate Change},
+doi = {10.1561/101.00000176},
+issn = {1932-1465},
+number = {2},
+pages = {159-226},
+author = {Aránzazu de Juan and Pilar Poncela and C. Vladimir Rodríguez-Caballero and Esther Ruiz}
+}
 }
 </code></pre>
   </div>
