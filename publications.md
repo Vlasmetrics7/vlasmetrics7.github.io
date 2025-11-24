@@ -209,7 +209,7 @@ author = {Aránzazu de Juan and Pilar Poncela and C. Vladimir Rodríguez-Caballe
   <!-- ===== ABSTRACT (DEBE IR FUERA DEL BLOQUE) ===== -->
   <div id="abs-ID2024" style="display:none; margin-top:1rem; width:100%; clear:both;">
     <strong>Abstract:</strong><br>
-    <em>We propose the construction of conditional growth densities under stressed factor scenarios...</em>
+    <em>We propose the construction of conditional growth densities under stressed factor scenarios to assess the level of exposure of an economy to small probability but potentially catastrophic economic and/or financial scenarios, which can be either domestic or international. The choice of severe yet plausible stress scenarios is based on the joint probability distribution of the underlying factors driving growth, which are extracted with a multilevel dynamic factor model (DFM) from a wide set of domestic/worldwide and/or macroeconomic/financial variables. All together, we provide a risk management tool that allows for a complete visualization of the dynamics of the growth densities under average scenarios and extreme scenarios. We calculate growth-in-stress (GiS) measures, defined as the 5% quantile of the stressed growth densities, and show that GiS is a useful and complementary tool to growth-at-risk (GaR) when policymakers wish to carry out a multidimensional scenario analysis. The unprecedented economic shock brought by the COVID-19 pandemic provides a natural environment to assess the vulnerability of US growth with the proposed methodology.</em>
   </div>
 
   <!-- ===== BIBTEX (FUERA TAMBIÉN) ===== -->
