@@ -37,6 +37,13 @@ function toggleDiv(id) {
   }
 </style>
 
+<style>
+.page__content {
+    overflow: visible !important;
+}
+</style>
+
+
 <script>
 function toggleDropdown(id) {
   var el = document.getElementById(id);
