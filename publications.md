@@ -139,6 +139,23 @@ author = {Aránzazu de Juan and Pilar Poncela and C. Vladimir Rodríguez-Caballe
   <!-- Published Version -->
   <a href="https://doi.org/10.1002/jae.3060" target="_blank" class="btn btn--success btn--sm">Published</a>
 
+  <!-- Media Dropdown -->
+<div style="display:inline-block; position:relative; margin-left:5px;">
+  <button class="btn btn--secondary btn--sm" onclick="toggleDiv('media-ID2024')">
+    Media ▼
+  </button>
+
+  <div id="media-ID2024" style="display:none; position:absolute; background:white; border:1px solid #ccc; padding:10px; z-index:999; min-width:180px;">
+    <!-- Añade todos los recursos que quieras -->
+    <a href="https://www.dropbox.com/scl/fi/7v2gcs5str3vd3yu00iga/ITAM-Seminar.pdf?rlkey=5o5fribeiuaoffypoh7as6zoy&st=ojrfjs57&dl=0" target="_blank">Slides (PDF)</a><br>
+    <a href="https://youtu.be/hWsSMfApqE8" target="_blank">Video presentation</a><br>
+    <a href="https://youtu.be/DGJhBLE6CpA" target="_blank">Seminar recording</a><br>
+    <a href="https://www.youtube.com/watch?v=BlunVdWfZOU" target="_blank">Seminar recording</a><br>
+    <!-- <a href="POSTER_LINK_HERE" target="_blank">Poster (PDF)</a><br> -->
+  </div>
+</div>
+
+
   <!-- BibTeX -->
   <a href="javascript:toggleDiv('bib-ID2024')" class="btn btn--warning btn--sm">BIB</a>
 
