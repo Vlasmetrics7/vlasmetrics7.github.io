@@ -24,7 +24,7 @@ Below is a categorized and selected list of my research output.
 <div class="pub-entry" style="margin-bottom: 2rem; display:flex; align-items:flex-start;">
 
   <!-- Imagen -->
-  <img src="/assets/images/paper_default.png" alt="Paper figure" style="width:150px; margin-right:20px;">
+  <img src="/assets/images/IRERE.png" alt="Paper figure" style="width:150px; margin-right:20px;">
 
   <div>
 
