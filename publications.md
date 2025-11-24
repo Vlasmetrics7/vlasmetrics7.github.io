@@ -203,7 +203,7 @@ author = {Aránzazu de Juan and Pilar Poncela and C. Vladimir Rodríguez-Caballe
   </div>
 
   <!-- BibTeX -->
-  <div id="bib-ID2024" style="display:none; ; margin-top:1rem; width:100%; clear:both;"
+  <div id="bib-ID2024" style="display:none; ; margin-top:1rem; width:100%; clear:both;">
 <pre><code>@article{gonzalez2024expecting,
   title={Expecting the unexpected: Stressed scenarios for economic growth},
   author={Gonz{\'a}lez-Rivera, Gloria and Rodr{\'\i}guez-Caballero, C Vladimir and Ruiz, Esther},
