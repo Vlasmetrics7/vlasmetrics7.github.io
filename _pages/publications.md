@@ -51,12 +51,11 @@ Below is a categorized and selected list of my research output.
   #### BibTeX
   ```bibtex
   % BibTeX entry coming soon.
-  </div> </div>
-
-  2024
+</div> </div>
+2024
 <div class="pub-entry"> <div class="pub-header"> ![Paper figure](/assets/images/paper_default.png){: .pubimg }
-
-
+csharp
+Copiar código
 <div class="pub-meta">
   **Expecting the unexpected: Stressed scenarios for economic growth**  
   *Gonzalez-Rivera, G., Rodríguez-Caballero, C. V., & Ruiz, E.*  
@@ -71,8 +70,10 @@ Below is a categorized and selected list of my research output.
 <div class="pub-year">
   2024
 </div>
-
-
+</div> <div id="abs-2024-stress-growth" style="display:none" markdown="1"> #### Abstract *(Abstract coming soon.)* </div> <div id="bib-2024-stress-growth" style="display:none" markdown="1"> ```bibtex % BibTeX entry coming soon. ``` </div> </div>
+<div class="pub-entry"> <div class="pub-header"> ![Paper figure](/assets/images/paper_default.png){: .pubimg }
+csharp
+Copiar código
 <div class="pub-meta">
   **The Factor Structure of Exchange Rates Volatility: Global and Intermittent Factors**  
   *Caporin, M., Rodríguez-Caballero, C. V., & Ruiz, E.*  
