@@ -35,13 +35,12 @@ function toggleDiv(id) {
     opacity: 1;
     transform: translateY(0px);
   }
+
+  .page__content {
+    overflow: visible !important;
+  }
 </style>
 
-<style>
-.page__content {
-    overflow: visible !important;
-}
-</style>
 
 
 <script>
