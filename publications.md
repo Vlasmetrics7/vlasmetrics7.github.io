@@ -43,7 +43,10 @@ Below is a categorized and selected list of my research output.
 
   <!-- Botones -->
   <a href="javascript:toggleDiv('abs-eco2025')" class="btn btn--info btn--sm">ABS</a>
-  <a href="/uploads/eco_activity_2025.pdf" class="btn btn--primary btn--sm">PDF</a>
+  <!-- PDF (preprint / arxiv / wp) -->
+  <a href="https://arxiv.org/pdf/2206.03187" class="btn btn--primary btn--sm">PDF</a>
+  <!-- Published version -->
+  <a href="https://doi.org/10.1561/101.00000176" class="btn btn--success btn--sm">Published</a>
   <a href="javascript:toggleDiv('bib-eco2025')" class="btn btn--warning btn--sm">BIB</a>
 
   <!-- Abstract -->
