@@ -21,38 +21,46 @@ Below is a categorized and selected list of my research output.
 
 ## 2025
 
-<div class="pub-entry">
-  <div class="pub-header">
+## Journal Publications
 
-![Paper figure](/assets/images/paper_default.png){: .pubimg }
+## 2025
 
-<div class="pub-meta">
-**Economic activity and climate change**  
-*de Juan, A., Poncela, P., Rodríguez-Caballero, V., & Ruiz, E.*  
-_International Review of Environmental and Resource Economics, 2025 (forthcoming)._  
+<div class="pub-entry" style="margin-bottom: 2rem; display:flex; align-items:flex-start;">
 
-[ABS](javascript:toggleDiv('abs-2025-eco-activity')){: .btn .btn--info .btn--sm }  
-[PDF](/uploads/eco_activity_2025.pdf){: .btn .btn--primary .btn--sm }  
-[BIB](javascript:toggleDiv('bib-2025-eco-activity')){: .btn .btn--warning .btn--sm }  
-</div>
+  <!-- Imagen -->
+  <img src="/assets/images/paper_default.png" alt="Paper figure" style="width:150px; margin-right:20px;">
 
-<div class="pub-year">
-2025
-</div>
+  <div>
 
+  <!-- Metadata -->
+  **Economic activity and climate change**  
+  *de Juan, A., Poncela, P., Rodríguez-Caballero, V., & Ruiz, E.*  
+  _International Review of Environmental and Resource Economics, 2025 (forthcoming)._
+
+  <br><br>
+
+  <!-- Botones -->
+  <a href="javascript:toggleDiv('abs-eco2025')" class="btn btn--info btn--sm">ABS</a>
+  <a href="/uploads/eco_activity_2025.pdf" class="btn btn--primary btn--sm">PDF</a>
+  <a href="javascript:toggleDiv('bib-eco2025')" class="btn btn--warning btn--sm">BIB</a>
+
+  <!-- Abstract -->
+  <div id="abs-eco2025" style="display:none; margin-top:1rem;">
+    <strong>Abstract:</strong><br>
+    <em>(Abstract coming soon.)</em>
   </div>
 
-<div id="abs-2025-eco-activity" style="display:none" markdown="1">
-#### Abstract
-*(Abstract coming soon.)*
-</div>
+  <!-- BibTeX -->
+  <div id="bib-eco2025" style="display:none; margin-top:1rem;">
+<pre><code>@article{Eco2025,
+  title={Economic activity and climate change},
+  author={de Juan, A. and Poncela, P. and Rodríguez-Caballero, V. and Ruiz, E.},
+  journal={International Review of Environmental and Resource Economics},
+  year={2025},
+  note={Forthcoming}
+}
+</code></pre>
+  </div>
 
-<div id="bib-2025-eco-activity" style="display:none" markdown="1">
-#### BibTeX
-```bibtex
-% BibTeX entry coming soon.
-```
+  </div>
 </div>
-
-</div>
-
