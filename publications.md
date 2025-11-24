@@ -34,7 +34,7 @@ Below is a categorized and selected list of my research output.
   <strong>Economic activity and climate change</strong><br>
 
   <!-- Autores -->
-  de Juan, A., Poncela, P., <u>Rodríguez-Caballero, V.<u>, & Ruiz, E.<br>
+  de Juan, A., Poncela, P., <u>Rodríguez-Caballero, C.V.<u>, & Ruiz, E.<br>
 
   <!-- Journal + Año -->
   <em>International Review of Environmental and Resource Economics</em>, 2025 (forthcoming).
@@ -56,7 +56,7 @@ Below is a categorized and selected list of my research output.
   <div id="bib-eco2025" style="display:none; margin-top:1rem;">
 <pre><code>@article{Eco2025,
   title={Economic activity and climate change},
-  author={de Juan, A. and Poncela, P. and Rodríguez-Caballero, V. and Ruiz, E.},
+  author={de Juan, A. and Poncela, P. and Rodríguez-Caballero, C.V. and Ruiz, E.},
   journal={International Review of Environmental and Resource Economics},
   year={2025},
   note={Forthcoming}
