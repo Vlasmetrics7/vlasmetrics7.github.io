@@ -37,7 +37,7 @@ Below is a categorized and selected list of my research output.
   de Juan, A., Poncela, P., <u>Rodríguez-Caballero, C.V.</u>, & Ruiz, E.<br>
 
   <!-- Journal + Año -->
-  <em>International Review of Environmental and Resource Economics</em>, 2025 (forthcoming).
+  <em>International Review of Environmental and Resource Economics</em>, 2025.
 
   <br><br>
 
