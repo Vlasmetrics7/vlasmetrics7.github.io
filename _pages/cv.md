@@ -3,10 +3,15 @@ layout: single
 title: "Curriculum Vitae"
 permalink: /cv/
 ---
+## Education
 
+- PhD in Econometrics, Aarhus University and CREATES, Denmark. 2016  
+- MSc in Econometrics, Universidad de Guanajuato, Mexico, 2011.  
+- BSc in Actuarial Science, Facultad de Ciencias, Universidad Nacional Autónoma de México, Mexico, 2005.
+  
 ## Current Positions
 
-- Visiting Researcher, Department of Economics, Duke University (August 2025 – June 2026).  
+- Visiting Professor, Department of Economics, Duke University (August 2025 – June 2026).  
 - Associate Professor (with tenure), Department of Statistics, Instituto Tecnológico Autónomo de México (ITAM), since August 2023.
 
 ## Previous Positions
@@ -17,18 +22,14 @@ permalink: /cv/
 
 ## Affiliations
 
-- International Research Fellow, CREATES, Aarhus University (since 11/2016).
+- International Research Fellow, CREATES, Aarhus University 2016-2023.
 
 ## Selected Honors and Awards
 
 - Member of the Mexican National System of Researchers (SNI), **Level II** from 2024.  
 - Member of the Mexican National System of Researchers (SNI), **Level I** 2017–2023.
 
-## Education
 
-- PhD in Economics and Business Economics (Econometrics), Aarhus University and CREATES, 2013–2016.  
-- MSc in Economics (Econometrics), Universidad de Guanajuato, 2009–2011.  
-- BSc in Actuarial Science, Facultad de Ciencias, Universidad Nacional Autónoma de México, 2001–2005.
 
 ---
 
