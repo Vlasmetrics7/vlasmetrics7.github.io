@@ -15,6 +15,41 @@ function toggleDiv(id) {
 }
 </script>
 
+<style>
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    background: rgba(255,255,255,0.95);
+    border: 1px solid #ddd;
+    padding: 10px 14px;
+    border-radius: 6px;
+    box-shadow: 0px 6px 14px rgba(0,0,0,0.20);
+    z-index: 20;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.25s ease-out, transform 0.25s ease-out;
+  }
+
+  .dropdown-menu.show {
+    display: block;
+    opacity: 1;
+    transform: translateY(0px);
+  }
+</style>
+
+<script>
+function toggleDropdown(id) {
+  var el = document.getElementById(id);
+  if (el.classList.contains("show")) {
+    el.classList.remove("show");
+  } else {
+    document.querySelectorAll('.dropdown-menu').forEach(m => m.classList.remove('show'));
+    el.classList.add("show");
+  }
+}
+</script>
+
+
 Below is a categorized and selected list of my research output.
 
 ## Journal Publications
