@@ -119,7 +119,7 @@ author = {Aránzazu de Juan and Pilar Poncela and C. Vladimir Rodríguez-Caballe
   <br><br>
 
   <!-- Botones -->
-
+<div class="btn-row" style="display:flex; gap:10px; flex-wrap:nowrap; align-items:center;">
   <!-- ABS -->
   <a href="javascript:toggleDiv('abs-ID2024')" class="btn btn--info btn--sm">ABS</a>
 
