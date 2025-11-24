@@ -128,7 +128,6 @@ author = {Aránzazu de Juan and Pilar Poncela and C. Vladimir Rodríguez-Caballe
 }
 </code></pre>
   </div>
-
   </div>
 </div>
 
