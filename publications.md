@@ -155,6 +155,9 @@ author = {Aránzazu de Juan and Pilar Poncela and C. Vladimir Rodríguez-Caballe
   </div>
 </div>
 
+ <!-- Reproducity -->
+<a href="https://doi.org/10.15456/jae.2024100.1525366766" target="_blank" class="btn btn--secondary btn--sm">Reproducity</a>
+
 
   <!-- BibTeX -->
   <a href="javascript:toggleDiv('bib-ID2024')" class="btn btn--warning btn--sm">BIB</a>
