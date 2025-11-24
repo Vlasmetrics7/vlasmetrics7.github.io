@@ -21,10 +21,6 @@ Below is a categorized and selected list of my research output.
 
 ## 2025
 
-## Journal Publications
-
-## 2025
-
 <div class="pub-entry" style="margin-bottom: 2rem; display:flex; align-items:flex-start;">
 
   <!-- Imagen -->
