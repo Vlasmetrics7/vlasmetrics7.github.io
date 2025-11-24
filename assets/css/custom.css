@@ -1,1 +1,34 @@
 /* Custom CSS placeholder */
+
+.pubimg {
+  width: 160px;
+  max-width: 100%;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  margin-right: 15px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.pub-entry {
+  margin-bottom: 2.0rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.pub-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.pub-meta {
+  flex: 1;
+}
+
+.pub-year {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #999999;
+  text-align: right;
+  min-width: 3rem;
+}
