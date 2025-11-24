@@ -46,13 +46,13 @@ Below is a categorized and selected list of my research output.
   <a href="javascript:toggleDiv('abs-eco2025')" class="btn btn--info btn--sm">ABS</a>
 
   <!-- PDF (preprint / arxiv / wp) -->
-  <a href="https://arxiv.org/pdf/2206.03187" class="btn btn--primary btn--sm">Working Paper</a>
+  <a href="https://arxiv.org/pdf/2206.03187" target="_blank"  class="btn btn--primary btn--sm">Working Paper</a>
 
   <!-- Published version -->
-  <a href="https://doi.org/10.1561/101.00000176" class="btn btn--success btn--sm">Published</a>
+  <a href="https://doi.org/10.1561/101.00000176" target="_blank"  class="btn btn--success btn--sm">Published</a>
 
   <!-- BibTeX -->
-  <a href="javascript:toggleDiv('bib-eco2025')" class="btn btn--warning btn--sm">BIB</a>
+  <a href="javascript:toggleDiv('bib-eco2025')" target="_blank"  class="btn btn--warning btn--sm">BIB</a>
 
   <!-- Abstract -->
   <div id="abs-eco2025" style="display:none; margin-top:1rem;">
