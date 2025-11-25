@@ -171,22 +171,22 @@ author = {Aránzazu de Juan and Pilar Poncela and C. Vladimir Rodríguez-Caballe
     <!-- ABS -->
     <a href="javascript:toggleDiv('abs-ID2024')" class="btn btn--info btn--sm">ABS</a>
 
-    <!-- Working Papers Dropdown -->
-    <div style="display:inline-block; position:relative;">
-      <button class="btn btn--primary btn--sm" onclick="toggleDropdown('wp-ID2024')">
-        Working Papers ▼
-      </button>
+   <!-- Working Papers Dropdown -->
+<div style="display:inline-block; position:relative;">
+  <button class="btn btn--primary btn--sm" onclick="toggleDropdown('wp-ID2024')">
+    Working Papers ▼
+  </button>
 
-      <div id="wp-ID2024" class="dropdown-menu">
-        <a href="https://econ.au.dk/fileadmin/site_files/filer_oekonomi/Working_Papers/CREATES/2021/rp21_06.pdf" target="_blank">
-          CREATES Working Paper 2021
-        </a><br>
+  <div id="wp-ID2024" class="dropdown-menu">
+    <a href="https://econ.au.dk/fileadmin/site_files/filer_oekonomi/Working_Papers/CREATES/2021/rp21_06.pdf" target="_blank">
+      CREATES Working Paper 2021
+    </a><br>
 
-        <a href="https://economics.ucr.edu/repec/ucr/wpaper/202314.pdf" target="_blank">
-          UCR Working Paper 2023
-        </a>
-      </div>
-    </div>
+    <a href="https://economics.ucr.edu/repec/ucr/wpaper/202314.pdf" target="_blank">
+      UCR Working Paper 2023
+    </a>
+  </div>
+</div>
 
     <!-- Published Version -->
     <a href="https://doi.org/10.1002/jae.3060" target="_blank" class="btn btn--success btn--sm">
@@ -194,17 +194,17 @@ author = {Aránzazu de Juan and Pilar Poncela and C. Vladimir Rodríguez-Caballe
     </a>
 
     <!-- Media Dropdown -->
-    <div style="display:inline-block; position:relative;">
-      <button class="btn btn--secondary btn--sm" onclick="toggleDropdown('media-ID2024')">
-        Media ▼
-      </button>
+<div style="display:inline-block; position:relative;">
+  <button class="btn btn--secondary btn--sm" onclick="toggleDropdown('media-ID2024')">
+    Media ▼
+  </button>
 
-      <div id="media-ID2024" class="dropdown-menu" style="min-width:180px;">
-        <a href="https://www.dropbox.com/scl/fi/7v2gcs5str3vd3yu00iga/ITAM-Seminar.pdf?rlkey=5o5fribeiuaoffypoh7as6zoy&st=ojrfjs57&dl=0" target="_blank">Slides (PDF)</a><br>
-        <a href="https://youtu.be/hWsSMfApqE8" target="_blank">Video presentation</a><br>
-        <a href="https://youtu.be/DGJhBLE6CpA" target="_blank">Seminar recording</a><br>
-      </div>
-    </div>
+  <div id="media-ID2024" class="dropdown-menu" style="min-width:180px;">
+    <a href="https://www.dropbox.com/scl/fi/7v2gcs5str3vd3yu00iga/ITAM-Seminar.pdf?rlkey=5o5fribeiuaoffypoh7as6zoy&st=ojrfjs57&dl=0" target="_blank">Slides (PDF)</a><br>
+    <a href="https://youtu.be/hWsSMfApqE8" target="_blank">Video presentation</a><br>
+    <a href="https://youtu.be/DGJhBLE6CpA" target="_blank">Seminar recording</a><br>
+  </div>
+</div>
 
     <!-- Reproducibility -->
     <a href="https://doi.org/10.15456/jae.2024100.1525366766" target="_blank" class="btn btn--secondary btn--sm">
