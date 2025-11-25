@@ -16,6 +16,7 @@ function toggleDiv(id) {
 </script>
 
 <style>
+  /* ===== Dropdown base ===== */
   .dropdown-menu {
     display: none;
     position: absolute;
@@ -23,8 +24,8 @@ function toggleDiv(id) {
     border: 1px solid #ddd;
     padding: 10px 14px;
     border-radius: 6px;
-    box-shadow: 0px 6px 14px rgba(0,0,0,0.20);
-    z-index: 20;
+    box-shadow: 0px 6px 14px rgba(0,0,0,0.20); /* SOMBRA */
+    z-index: 9999; /* MUCHO MÁS ALTO PARA GARANTIZAR VISIBILIDAD */
     opacity: 0;
     transform: translateY(8px);
     transition: opacity 0.25s ease-out, transform 0.25s ease-out;
@@ -36,10 +37,16 @@ function toggleDiv(id) {
     transform: translateY(0px);
   }
 
-  .page__content {
-    overflow: visible !important;
+  /* ===== FIX CRÍTICO PARA QUE SE VEA LA SOMBRA ===== */
+  .page__content,
+  .page,
+  .page__inner,
+  .mm-page,
+  .mm-page__inner {
+    overflow: visible !important;  /* PERMITE QUE LA SOMBRA SE EXPANDA FUERA DEL CONTENEDOR */
   }
 </style>
+
 
 
 
