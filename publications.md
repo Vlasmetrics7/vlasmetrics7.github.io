@@ -243,6 +243,8 @@ author = {Aránzazu de Juan and Pilar Poncela and C. Vladimir Rodríguez-Caballe
   </div>
 </div>
 
+##2023
+
 <div class="pub-entry" style="margin-bottom: 2rem; display:flex; align-items:flex-start;">
 
   <!-- Imagen -->
@@ -317,4 +319,19 @@ author = {Aránzazu de Juan and Pilar Poncela and C. Vladimir Rodríguez-Caballe
   </div>
 
   <!-- BibTeX -->
-  <div id="bib-ID2024" style="display:none; margin-top:1rem; width:100%; clear:both
+  <div id="bib-ID2024" style="display:none; margin-top:1rem; width:100%; clear:both;">
+<pre><code>@article{gonzalez2024expecting,
+  title={Expecting the unexpected: Stressed scenarios for economic growth},
+  author={Gonz{\'a}lez-Rivera, Gloria and Rodr{\'\i}guez-Caballero, C Vladimir and Ruiz, Esther},
+  journal={Journal of Applied Econometrics},
+  volume={39},
+  number={5},
+  pages={926--942},
+  year={2024},
+  publisher={Wiley Online Library}
+}
+</code></pre>
+  </div>
+
+  </div>
+</div>
