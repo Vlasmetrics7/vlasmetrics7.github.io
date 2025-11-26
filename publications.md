@@ -91,6 +91,16 @@ function toggleDiv(id) {
   overflow-wrap: break-word !important;
   max-width: 100% !important;          /* Nunca se sale de la tarjeta */
 }
+
+  /* Reducir tamaño del BibTeX */
+.pub-info pre code {
+  font-size: 12px !important;   /* tamaño más compacto */
+  line-height: 1.25 !important; /* más apretado pero legible */
+  white-space: pre-wrap !important;
+  word-break: break-word !important;
+  overflow-wrap: break-word !important;
+  max-width: 100% !important;
+}
   
 </style>
 
