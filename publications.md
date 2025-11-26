@@ -37,10 +37,14 @@ function toggleDiv(id) {
 /* IMAGEN 4:3 */
 .pub-img {
   width: 260px;
-  height: 195px;  /* 4:3 = 260 × 195 */
-  object-fit: cover;
+  height: 195px;  /* 4:3 */
+  object-fit: contain;
+  object-position: center;
+  background: #f8f8f8;  /* relleno elegante */
   border-radius: 8px;
   flex-shrink: 0;
+  padding: 4px; /* marco sutil, opcional */
+  box-shadow: 0px 4px 12px rgba(0,0,0,0.10);
 }
 
 /* DERECHA */
