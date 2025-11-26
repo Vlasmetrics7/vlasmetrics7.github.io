@@ -530,7 +530,7 @@ of modern economic growth and the Great Divergence in Eurasia.</em>
   2022 ▼
 </button>
 
-<div id="year2024" style="display:none;">
+<div id="year2022" style="display:none;">
 
 <!-- ===================================================== -->
 <!-- ==================== PAPER: Empirical economics === -->
