@@ -16,39 +16,45 @@ function toggleDiv(id) {
 </script>
 
 <style>
-  /* ===== Dropdown base ===== */
-  .dropdown-menu {
-    display: none;
-    position: absolute;
-    background: rgba(255,255,255,0.95);
-    border: 1px solid #ddd;
-    padding: 10px 14px;
-    border-radius: 6px;
-    box-shadow: 0px 6px 14px rgba(0,0,0,0.20); /* SOMBRA */
-    z-index: 9999; /* MUCHO MÁS ALTO PARA GARANTIZAR VISIBILIDAD */
-    opacity: 0;
-    transform: translateY(8px);
-    transition: opacity 0.25s ease-out, transform 0.25s ease-out;
-  }
+/* ===== Dropdown / sombra / animación ===== */
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background: rgba(255,255,255,0.97);
+  border: 1px solid #ddd;
+  padding: 12px 16px;
+  border-radius: 6px;
+  box-shadow: 0px 8px 22px rgba(0,0,0,0.25);
+  z-index: 9999;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.25s ease-out, transform 0.25s ease-out;
+}
 
-  .dropdown-menu.show {
-    display: block;
-    opacity: 1;
-    transform: translateY(0px);
-  }
+.dropdown-menu.show {
+  display: block;
+  opacity: 1;
+  transform: translateY(0px);
+}
 
-  /* ===== FIX CRÍTICO PARA QUE SE VEA LA SOMBRA ===== */
-  .page__content,
-  .page,
-  .page__inner,
-  .mm-page,
-  .mm-page__inner {
-    overflow: visible !important;  /* PERMITE QUE LA SOMBRA SE EXPANDA FUERA DEL CONTENEDOR */
-  }
+/* ====== FIJAMIENTE NECESARIO ====== */
+/* Evitar que cualquier contenedor recorte la sombra */
+.page__content,
+.page,
+.page__inner,
+.mm-page,
+.mm-page__inner,
+p {
+  overflow: visible !important;
+}
+
+/* ===== Contenedor de cada dropdown ===== */
+.dropdown-container {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+}
 </style>
-
-
-
 
 <script>
 function toggleDropdown(id) {
