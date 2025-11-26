@@ -108,7 +108,7 @@ Below is a categorized and selected list of my research output.
 
 ---
 
-# 2025 
+## 2025 
 
 <div class="pub-grid">
 
@@ -155,7 +155,9 @@ Below is a categorized and selected list of my research output.
 
 </div>
 
-# 2024 
+## 2024 
+
+<div class="pub-grid">
 
 <!-- ============================= -->
 <!-- ==== 2024 — PAPER 1 ======== -->
