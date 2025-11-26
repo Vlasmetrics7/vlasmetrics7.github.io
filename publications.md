@@ -1041,3 +1041,43 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
   </div>
 </div>
 
+<!-- ===================================================== -->
+<!-- ==================== PAPER: Energy Economics === -->
+<!-- ===================================================== -->
+
+<div class="pub-card">
+  <img src="/assets/images/ENECO16.png" class="pub-img">
+  <div class="pub-info">
+
+    <strong>Common long-range dependence in a panel of hourly Nord Pool electricity prices and loads. Energy Economics</strong><br>
+    Ergemen, Yunus & Haldrup, Niels & <u>Rodríguez-Caballero, C.V.</u> & Ventosa-Santaularia, D.<br>
+    <em>Energy Economics</em>, 2016.
+   
+    <div class="btn-row">
+      <a href="javascript:toggleDiv('abs-ENECO16')" class="btn btn--info btn--sm">ABS</a>
+
+        <a href="https://doi.org/10.1016/j.eneco.2016.09.008"
+         target="_blank" class="btn btn--success btn--sm">Published</a>
+
+         <a href="javascript:toggleDiv('bib-ENECO16')" class="btn btn--warning btn--sm">BIB</a>
+    </div>
+    
+    <div id="abs-ENECO16" class="abstract-block" style="display:none;">
+      <strong>Abstract:</strong><br>
+      <em>Equilibrium electricity spot prices and loads are often determined simultaneously in a day-ahead auction market for each hour of the subsequent day. Hence daily observations of hourly prices take the form of a periodic panel rather than a time series of hourly observations. We consider novel panel data approaches to analyse the time series and the cross-sectional dependence of hourly Nord Pool electricity spot prices and loads for the period 2000–2013. Hourly electricity prices and load data are characterized by strong serial long-range dependence in the time series dimension in addition to strong seasonal periodicity, and along the cross-sectional dimension, i.e. the hours of the day, there is a strong dependence which necessarily has to be accounted for in order to avoid spurious inference when focusing on the time series dependence alone. The long-range dependence is modelled in terms of a fractionally integrated panel data model and it is shown that both prices and loads consist of common factors with long memory and with loadings that vary considerably during the day. Due to the competitiveness of the Nordic power market the aggregate supply curve approximates well the marginal costs of the underlying production technology and because the demand is more volatile than the supply, equilibrium prices and loads are argued to identify the periodic power supply curve. The estimated supply elasticities are estimated from fractionally co-integrated relations and range between 0.5 and 1.17 with the largest elasticities being estimated during morning and evening peak hours.</em>
+    </div>
+
+    <div id="bib-ENECO16" class="bib-block" style="display:none;">
+<pre><code>@article{ergemen2016common,
+  title={Common long-range dependence in a panel of hourly Nord Pool electricity prices and loads},
+  author={Ergemen, Yunus Emre and Haldrup, Niels and Rodr{\'\i}guez-Caballero, Carlos Vladimir},
+  journal={Energy Economics},
+  volume={60},
+  pages={79--96},
+  year={2016},
+  publisher={Elsevier}
+}
+</code></pre>
+    </div>
+  </div>
+</div>
