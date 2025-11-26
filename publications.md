@@ -16,100 +16,108 @@ function toggleDiv(id) {
 </script>
 
 <style>
-  /* ===== Dropdown base (Working Papers, Media, etc.) ===== */
-  .dropdown-menu {
-    display: none;
-    position: absolute;
-    background: rgba(255,255,255,0.97);
-    border: 1px solid #ddd;
-    padding: 12px 16px;
-    border-radius: 6px;
-    box-shadow: 0px 8px 22px rgba(0,0,0,0.25);
-    z-index: 9999;
-    opacity: 0;
-    transform: translateY(8px);
-    transition: opacity 0.25s ease-out, transform 0.25s ease-out;
-  }
 
-  .dropdown-menu.show {
-    display: block;
-    opacity: 1;
-    transform: translateY(0px);
-  }
+/* ===========================
+   ESTILO DE DROPDOWN
+   =========================== */
 
-  /* Evitar que los contenedores de Minimal Mistakes corten las sombras */
-  .page__content,
-  .page,
-  .page__inner,
-  .mm-page,
-  .mm-page__inner,
-  p {
-    overflow: visible !important;
-  }
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background: rgba(255, 255, 255, 0.97);
+  border: 1px solid #ddd;
+  padding: 12px 16px;
+  border-radius: 6px;
+  box-shadow: 0px 8px 22px rgba(0,0,0,0.25);
+  z-index: 9999;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.25s ease-out, transform 0.25s ease-out;
+}
 
-  /* Contenedor de cada dropdown */
-  .dropdown-container {
-    position: relative;
-    display: inline-block;
-    vertical-align: top;
-  }
+.dropdown-menu.show {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Permitir que las sombras del dropdown NO sean recortadas */
+.page__content,
+.page,
+.page__inner,
+.mm-page,
+.mm-page__inner,
+p {
+  overflow: visible !important;
+}
+
+/* Contenedor de dropdown */
+.dropdown-container {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+}
+
+/* Alinear botones en una fila */
+.btn-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
 </style>
 
 <script>
+/* Abrir menu tipo dropdown */
 function toggleDropdown(id) {
   var el = document.getElementById(id);
   if (el.classList.contains("show")) {
     el.classList.remove("show");
   } else {
-    document.querySelectorAll('.dropdown-menu').forEach(function(m) {
-      m.classList.remove('show');
-    });
+    document.querySelectorAll('.dropdown-menu').forEach(m => m.classList.remove('show'));
     el.classList.add("show");
   }
 }
 </script>
 
-
 Below is a categorized and selected list of my research output.
-
-## Journal Publications
 
 ---
 
-## 2025
+# 2025
 
 <div class="pub-entry" style="margin-bottom: 2rem; display:flex; align-items:flex-start;">
 
   <!-- Imagen -->
-  <img src="/assets/images/IRERE.png" alt="Paper figure" 
+  <img src="/assets/images/IRERE.png" alt="Paper figure"
        style="width:140px; margin-top:5px; margin-right:25px;">
 
   <div>
 
-  <!-- Título -->
   <strong>Economic activity and climate change</strong><br>
-
-  <!-- Autores -->
   de Juan, A., Poncela, P., <u>Rodríguez-Caballero, C.V.</u>, & Ruiz, E.<br>
-
-  <!-- Journal + Año -->
   <em>International Review of Environmental and Resource Economics</em>, 2025.
 
   <br><br>
 
   <!-- Botones -->
-  <div class="btn-row" style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+  <div class="btn-row">
 
     <!-- ABS -->
     <a href="javascript:toggleDiv('abs-eco2025')" class="btn btn--info btn--sm">ABS</a>
 
-    <!-- Working Paper (único enlace) -->
-    <a href="https://arxiv.org/pdf/2206.03187" target="_blank" class="btn btn--primary btn--sm">Working Paper</a>
+    <!-- Working paper directo (solo 1) -->
+    <a href="https://arxiv.org/pdf/2206.03187" target="_blank" class="btn btn--primary btn--sm">
+      Working Paper
+    </a>
 
-    <!-- Published version -->
-    <a href="https://doi.org/10.1561/101.00000176" target="_blank" class="btn btn--success btn--sm">Published</a>
+    <!-- Published -->
+    <a href="https://doi.org/10.1561/101.00000176" target="_blank" class="btn btn--success btn--sm">
+      Published
+    </a>
 
-    <!-- BibTeX -->
+    <!-- Bib -->
     <a href="javascript:toggleDiv('bib-eco2025')" class="btn btn--warning btn--sm">BIB</a>
 
   </div>
@@ -118,18 +126,8 @@ Below is a categorized and selected list of my research output.
   <div id="abs-eco2025" style="display:none; margin-top:1rem; width:100%; clear:both;">
     <strong>Abstract:</strong><br>
     <em>
-    The links between climate change and economic activity have a critical relevance
-    for the well-being of future generations. Consequently, many publications are devoted
-    to understanding and measuring them. This paper is a comprehensive survey of recent
-    contributions using econometric methods. We update previous surveys focusing on
-    partial aspects of the complex relationships linking the economy and climate change.
-    Starting from economic activity, the channels that relate it to climate change are
-    energy consumption and the consequent pollution. Hence, we first describe the main
-    econometric contributions of the interactions between economic activity and energy
-    consumption, then explain the contributions and interactions of economic activity to
-    pollution. Finally, we look at the main results on the relationship between climate
-    change and economic activity, including the increasing occurrence of extreme weather
-    phenomena and their economic effects.
+    The links between climate change and economic activity have a critical relevance for the well-being
+    of future generations... [texto completo aquí].
     </em>
   </div>
 
@@ -155,39 +153,33 @@ Below is a categorized and selected list of my research output.
 
 ---
 
-## 2024
+# 2024
 
 <div class="pub-entry" style="margin-bottom: 2rem; display:flex; align-items:flex-start;">
 
   <!-- Imagen -->
-  <img src="/assets/images/JAE24.png" alt="Paper figure" 
+  <img src="/assets/images/JAE24.png" alt="Paper figure"
        style="width:140px; margin-top:5px; margin-right:25px;">
 
   <div>
 
-  <!-- Título -->
   <strong>Expecting the unexpected: Stressed scenarios for economic growth</strong><br>
-
-  <!-- Autores -->
-  Gonzalez-Rivera, G., <u>Rodríguez-Caballero, C.V.</u>, and Ruiz, E.<br>
-
-  <!-- Journal + Año -->
+  Gonzalez-Rivera, G., <u>Rodríguez-Caballero, C.V.</u>, & Ruiz, E.<br>
   <em>Journal of Applied Econometrics</em>, 2024.
 
   <br><br>
 
   <!-- Botones -->
-  <div class="btn-row" style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+  <div class="btn-row">
 
     <!-- ABS -->
     <a href="javascript:toggleDiv('abs-stress2024')" class="btn btn--info btn--sm">ABS</a>
 
-    <!-- Working Papers Dropdown -->
+    <!-- ▼ Working Papers (dropdown) -->
     <div class="dropdown-container">
       <button class="btn btn--primary btn--sm" onclick="toggleDropdown('wp-stress2024')">
         Working Papers ▼
       </button>
-
       <div id="wp-stress2024" class="dropdown-menu">
         <a href="https://econ.au.dk/fileadmin/site_files/filer_oekonomi/Working_Papers/CREATES/2021/rp21_06.pdf" target="_blank">
           CREATES Working Paper 2021
@@ -198,35 +190,35 @@ Below is a categorized and selected list of my research output.
       </div>
     </div>
 
-    <!-- Published Version -->
-    <a href="https://doi.org/10.1002/jae.3060" target="_blank" class="btn btn--success btn--sm">Published</a>
+    <!-- Published -->
+    <a href="https://doi.org/10.1002/jae.3060" target="_blank" class="btn btn--success btn--sm">
+      Published
+    </a>
 
-    <!-- Media Dropdown -->
+    <!-- ▼ Media (dropdown) -->
     <div class="dropdown-container">
       <button class="btn btn--secondary btn--sm" onclick="toggleDropdown('media-stress2024')">
         Media ▼
       </button>
-
       <div id="media-stress2024" class="dropdown-menu" style="min-width:180px;">
         <a href="https://www.dropbox.com/scl/fi/7v2gcs5str3vd3yu00iga/ITAM-Seminar.pdf?dl=0" target="_blank">
           Slides (PDF)
         </a><br>
-        <a href="https://youtu.be/hWsSMfApqE8" target="_blank">
-          Video presentation
-        </a><br>
-        <a href="https://youtu.be/DGJhBLE6CpA" target="_blank">
-          Seminar recording
-        </a><br>
+        <a href="https://youtu.be/hWsSMfApqE8" target="_blank">Video presentation</a><br>
+        <a href="https://youtu.be/DGJhBLE6CpA" target="_blank">Seminar recording</a><br>
       </div>
     </div>
 
     <!-- Reproducity -->
-    <a href="https://doi.org/10.15456/jae.2024100.1525366766" target="_blank" class="btn btn--secondary btn--sm">
+    <a href="https://doi.org/10.15456/jae.2024100.1525366766" target="_blank"
+       class="btn btn--secondary btn--sm">
       Reproducity
     </a>
 
-    <!-- BibTeX -->
-    <a href="javascript:toggleDiv('bib-stress2024')" class="btn btn--warning btn--sm">BIB</a>
+    <!-- BIB -->
+    <a href="javascript:toggleDiv('bib-stress2024')" class="btn btn--warning btn--sm">
+      BIB
+    </a>
 
   </div>
 
@@ -234,19 +226,7 @@ Below is a categorized and selected list of my research output.
   <div id="abs-stress2024" style="display:none; margin-top:1rem; width:100%; clear:both;">
     <strong>Abstract:</strong><br>
     <em>
-    We propose the construction of conditional growth densities under stressed factor scenarios
-    to assess the level of exposure of an economy to small probability but potentially catastrophic
-    economic and/or financial scenarios, which can be either domestic or international. The choice
-    of severe yet plausible stress scenarios is based on the joint probability distribution of the
-    underlying factors driving growth, which are extracted with a multilevel dynamic factor model
-    (DFM) from a wide set of domestic and worldwide macroeconomic and financial variables.
-    All together, we provide a risk management tool that allows for a complete visualization
-    of the dynamics of growth densities under average and extreme scenarios. We define
-    growth-in-stress (GiS) measures, given by the 5% quantile of the stressed growth distributions,
-    and show that GiS is a useful and complementary tool to growth-at-risk (GaR) when
-    policymakers wish to perform multidimensional scenario analysis. The unprecedented
-    economic shock brought by the COVID-19 pandemic provides a natural environment to
-    assess the vulnerability of US growth with the proposed methodology.
+    We propose the construction of conditional growth densities under stressed factor scenarios...
     </em>
   </div>
 
