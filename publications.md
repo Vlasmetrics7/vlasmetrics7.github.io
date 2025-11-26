@@ -85,6 +85,13 @@ function toggleDiv(id) {
   overflow: visible !important;
 }
 
+.pub-info pre {
+  white-space: pre-wrap !important;   /* Permite salto de línea */
+  word-break: break-word !important;   /* Rompe palabras largas */
+  overflow-wrap: break-word !important;
+  max-width: 100% !important;          /* Nunca se sale de la tarjeta */
+}
+  
 </style>
 
 <script>
@@ -205,7 +212,7 @@ author = {Aránzazu de Juan and Pilar Poncela and C. Vladimir Rodríguez-Caballe
                 onclick="toggleDropdown('wp-stress2024')">Working Papers ▼</button>
         <div id="wp-stress2024" class="dropdown-menu">
           <a href="https://econ.au.dk/.../rp21_06.pdf" target="_blank">CREATES WP 2021</a><br>
-          <a href="https://economics.ucr.edu/...202314.pdf" target="_blank">UCR WP 2023</a>
+          <a href="https://economics.ucr.edu/repec/ucr/wpaper/202314.pdf" target="_blank">UCR WP 2023</a>
         </div>
       </div>
 
