@@ -1049,8 +1049,8 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
   <img src="/assets/images/ENECO16.png" class="pub-img">
   <div class="pub-info">
 
-    <strong>Common long-range dependence in a panel of hourly Nord Pool electricity prices and loads. Energy Economics</strong><br>
-    Ergemen, Yunus & Haldrup, Niels & <u>Rodríguez-Caballero, C.V.</u> & Ventosa-Santaularia, D.<br>
+    <strong>Common long-range dependence in a panel of hourly Nord Pool electricity prices and loads. </strong><br>
+    Ergemen, Yunus & Haldrup, Niels & <u>Rodríguez-Caballero, C.V.</u> <br>
     <em>Energy Economics</em>, 2016.
    
     <div class="btn-row">
@@ -1076,6 +1076,174 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
   pages={79--96},
   year={2016},
   publisher={Elsevier}
+}
+</code></pre>
+    </div>
+  </div>
+</div>
+
+<!-- ===================================================== -->
+<!-- ==================== PAPER: bayesiana fisica === -->
+<!-- ===================================================== -->
+
+<div class="pub-card">
+  <img src="/assets/images/BAY2015.png" class="pub-img">
+  <div class="pub-info">
+
+    <strong>Bayesian log-periodic model for financial crashes.</strong><br>
+    <u>Rodríguez-Caballero, C.V.</u> <br>
+    <em>European Physical Journal B</em>, 2014.
+   
+    <div class="btn-row">
+      <a href="javascript:toggleDiv('abs-2014')" class="btn btn--info btn--sm">ABS</a>
+
+        <a href="https://doi.org/10.1140/epjb/e2014-41085-6"
+         target="_blank" class="btn btn--success btn--sm">Published</a>
+
+         <a href="javascript:toggleDiv('bib-2014')" class="btn btn--warning btn--sm">BIB</a>
+    </div>
+    
+    <div id="abs-2014" class="abstract-block" style="display:none;">
+      <strong>Abstract:</strong><br>
+      <em>This paper introduces a Bayesian approach in econophysics literature about financial bubbles in order to estimate the most probable time for a financial crash to occur. To this end, we propose using noninformative prior distributions to obtain posterior distributions. Since these distributions cannot be performed analytically, we develop a Markov Chain Monte Carlo algorithm to draw from posterior distributions. We consider three Bayesian models that involve normal and Student’s t-distributions in the disturbances and an AR(1)-GARCH(1,1) structure only within the first case. In the empirical part of the study, we analyze a well-known example of financial bubble – the S&P 500 1987 crash – to show the usefulness of the three methods under consideration and crashes of Merval-94, Bovespa-97, IPCMX-94, Hang Seng-97 using the simplest method. The novelty of this research is that the Bayesian models provide 95% credible intervals for the estimated crash time.</em>
+    </div>
+
+    <div id="bib-2014" class="bib-block" style="display:none;">
+<pre><code>@article{rodriguez2014bayesian,
+  title={Bayesian log-periodic model for financial crashes},
+  author={Rodr{\'\i}guez-Caballero, Carlos Vladimir and Knapik, Oskar},
+  journal={The European Physical Journal B},
+  volume={87},
+  number={10},
+  pages={228},
+  year={2014},
+  publisher={Springer}
+}
+</code></pre>
+    </div>
+  </div>
+</div>
+
+<!-- ===================================================== -->
+<!-- ==================== PAPER: Journal of Statistical and Econometric Methods, === -->
+<!-- ===================================================== -->
+
+<div class="pub-card">
+  <img src="/assets/images/daniel2014.png" class="pub-img">
+  <div class="pub-info">
+
+    <strong>Granger causality and unit roots.</strong><br>
+    <u>Rodríguez-Caballero, C.V.</u> & Ventosa-Santaularia, D. <br>
+    <em>Journal of Statistical and Econometric Methods</em>, 2014.
+   
+    <div class="btn-row">
+      <a href="javascript:toggleDiv('abs-2014')" class="btn btn--info btn--sm">ABS</a>
+
+        <a href="http://www.scienpress.com/Upload/JSEM/Vol%203_1_7.pdf"
+         target="_blank" class="btn btn--success btn--sm">Published</a>
+
+         <a href="javascript:toggleDiv('bib-2014')" class="btn btn--warning btn--sm">BIB</a>
+    </div>
+    
+    <div id="abs-2014" class="abstract-block" style="display:none;">
+      <strong>Abstract:</strong><br>
+      <em>The asymptotic behavior of the Granger-causality test under stochastic nonstationarity is studied. Our results confirm that the inference drawn from the test is not reliable when the series are integrated to the first order. In the presence of deterministic components, the test statistic diverges, eventually rejecting the null hypothesis, even when the series are independent of each other. Moreover, controlling for these deterministic elements (in the auxiliary regressions of the test) does not preclude the possibility of drawing erroneous inferences. Granger causality tests should not be used under stochastic nonstationarity, a property typically found in many macroeconomic variables.</em>
+    </div>
+
+    <div id="bib-2014" class="bib-block" style="display:none;">
+<pre><code>@article{rodriguez2014bayesian,
+  title={Bayesian log-periodic model for financial crashes},
+  author={Rodr{\'\i}guez-Caballero, Carlos Vladimir and Knapik, Oskar},
+  journal={The European Physical Journal B},
+  volume={87},
+  number={10},
+  pages={228},
+  year={2014},
+  publisher={Springer}
+}
+</code></pre>
+    </div>
+  </div>
+</div>
+
+<!-- ===================================================== -->
+<!-- ==================== PAPER: Journal of Statistical and Econometric Methods, === -->
+<!-- ===================================================== -->
+
+<div class="pub-card">
+  <img src="/assets/images/daniel2014.png" class="pub-img">
+  <div class="pub-info">
+
+    <strong>Polynomial regressions and nonsense inference.</strong><br>
+    <u>Rodríguez-Caballero, C.V.</u> & Ventosa-Santaularia, D. <br>
+    <em>Econometrics</em>, 2013.
+   
+    <div class="btn-row">
+      <a href="javascript:toggleDiv('abs-2014')" class="btn btn--info btn--sm">ABS</a>
+
+        <a href="https://doi.org/10.3390/econometrics1030236"
+         target="_blank" class="btn btn--success btn--sm">Published</a>
+
+         <a href="javascript:toggleDiv('bib-2014')" class="btn btn--warning btn--sm">BIB</a>
+    </div>
+    
+    <div id="abs-2014" class="abstract-block" style="display:none;">
+      <strong>Abstract:</strong><br>
+      <em>Polynomial specifications are widely used, not only in applied economics, but also in epidemiology, physics, political analysis and psychology, just to mention a few examples. In many cases, the data employed to estimate such specifications are time series that may exhibit stochastic nonstationary behavior. We extend Phillips’ results (Phillips, P. Understanding spurious regressions in econometrics. J. Econom. 1986, 33, 311–340.) by proving that an inference drawn from polynomial specifications, under stochastic nonstationarity, is misleading unless the variables cointegrate. We use a generalized polynomial specification as a vehicle to study its asymptotic and finite-sample properties. Our results, therefore, lead to a call to be cautious whenever practitioners estimate polynomial regressions.</em>
+    </div>
+
+    <div id="bib-2014" class="bib-block" style="display:none;">
+<pre><code>@article{ventosa2013polynomial,
+  title={Polynomial regressions and nonsense inference},
+  author={Ventosa-Santaularia, Daniel and Rodr{\'\i}guez-Caballero, Carlos Vladimir},
+  journal={Econometrics},
+  volume={1},
+  number={3},
+  pages={236--248},
+  year={2013},
+  publisher={MDPI}
+}
+</code></pre>
+    </div>
+  </div>
+</div>
+
+<!-- ===================================================== -->
+<!-- ==================== PAPER: Cuadernos de economía === -->
+<!-- ===================================================== -->
+
+<div class="pub-card">
+  <img src="/assets/images/cuadernos2013.png" class="pub-img">
+  <div class="pub-info">
+
+    <strong>Metodología para un scoring de clientes sin referencias crediticias</strong><br>
+    <u>Rodríguez-Caballero, C.V.</u> & Espin-García, O. <br>
+    <em>Cuadernos de economía</em>, 2013.
+   
+    <div class="btn-row">
+      <a href="javascript:toggleDiv('abs-2014')" class="btn btn--info btn--sm">ABS</a>
+
+        <a href="http://www.scielo.org.co/scielo.php?pid=S0121-47722013000100007&script=sci_arttext"
+         target="_blank" class="btn btn--success btn--sm">Published</a>
+
+         <a href="javascript:toggleDiv('bib-2014')" class="btn btn--warning btn--sm">BIB</a>
+    </div>
+    
+    <div id="abs-2014" class="abstract-block" style="display:none;">
+      <strong>Abstract:</strong><br>
+      <em>Las decisiones de otorgamiento de crédito son cruciales en la administración de riesgos. Las instituciones financieras han desarrollado y usado modelos de credit scoring para estandarizar y automatizar las decisiones de crédito, sin embargo, no es común encontrar metodologías para aplicarlos a clientes sin referencias crediticias, es decir clientes que carecen de información en los burós nacionales de crédito. En este trabajo se presenta una metodología general para construir un modelo sencillo de credit scoring enfocado justamente a esa población, la cual ha venido tomando una mayor importancia en el sector crediticio latinoamericano. Se usa la información sociodemográfica proveniente de las solicitudes de crédito de una pequeña institución bancaria mexicana para ejemplificar la metodología.</em>
+    </div>
+
+    <div id="bib-2014" class="bib-block" style="display:none;">
+<pre><code>@article{espin2013metodologia,
+  title={Metodolog{\'\i}a para un scoring de clientes sin referencias crediticias},
+  author={Espin-Garc{\'\i}a, Osvaldo and Rodr{\'\i}guez-Caballero, Carlos Vladimir},
+  journal={Cuadernos de econom{\'\i}a},
+  volume={32},
+  number={59},
+  pages={137--162},
+  year={2013},
+  publisher={Cuadernos de Econom{\'\i}a, Facultad de Ciencias Econ{\'o}micas, Universidad Nacional~…}
 }
 </code></pre>
     </div>
