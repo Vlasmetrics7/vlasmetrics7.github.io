@@ -694,5 +694,45 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
     </div>
   </div>
 </div>
+
+  <!-- ===================================================== -->
+<!-- ==================== PAPER: ATMOSFERA === -->
+<!-- ===================================================== -->
+
+<div class="pub-card">
+  <img src="/assets/images/AT21.png" class="pub-img">
+  <div class="pub-info">
+
+    <strong>Air pollution and mobility in the Mexico City Metropolitan Area in times of COVID-19</strong><br>
+   <u>Rodríguez-Caballero, C.V.</u> & Vera-Valdés, J. Eduardo .<br>
+    <em>Atmósfera</em>, 2021.
+   
+    <div class="btn-row">
+      <a href="javascript:toggleDiv('abs-AT2021')" class="btn btn--info btn--sm">ABS</a>
+
+      <a href="https://doi.org/10.20937/ATM.53052"
+         target="_blank" class="btn btn--success btn--sm">Published</a>
+
+      <a href="javascript:toggleDiv('bib-AT2021')" class="btn btn--warning btn--sm">BIB</a>
+    </div>
+    
+    <div id="abs-AT2021" class="abstract-block" style="display:none;">
+      <strong>Abstract:</strong><br>
+      <em>This paper analyzes the relation between COVID-19, air pollution, and public transport mobility in the Mexico City Metropolitan Area (MCMA). We test if the restrictions to economic activity introduced to mitigate the spread of COVID-19 are associated with a structural change in air pollution levels and public transport mobility. Our results show that mobility in public transportation was significantly reduced following the government’s recommendations. Nonetheless, we show that the reduction in mobility was not accompanied by a reduction in air pollution. Furthermore, Granger-causality tests show that the precedence relation between public transport mobility and air pollution disappeared as a product of the restrictions. Thus, our results suggest that air pollution in the MCMA seems primarily driven by industry and private car usage. In this regard, the government should redouble its efforts to develop policies to reduce industrial pollution and private car usage.</em>
+    </div>
+
+    <div id="bib-AT2021" class="bib-block" style="display:none;">
+<pre><code>@article{vera2023air,
+  title={Air pollution and mobility in the Mexico City Metropolitan Area in times of COVID-19},
+  author={Vera-Vald{\'e}s, J Eduardo and Rodr{\'\i}guez-Caballero, C Vladimir},
+  journal={Atm{\'o}sfera},
+  volume={36},
+  number={2},
+  pages={343--354},
+  year={2023},
+  publisher={Centro de Ciencias de la Atm{\'o}sfera, UNAM}
+}
+</code></pre>
+    </div>
+  </div>
 </div>
-  
