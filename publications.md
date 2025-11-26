@@ -531,8 +531,6 @@ the maximum price. Nine days after, the bitcoin price fell 45% from its peaks.</
   </div>
 </div>
 
-</div>
-
 <!-- ===================================================== -->
 <!-- ==================== PAPER: Explorations in Economic History === -->
 <!-- ===================================================== -->
@@ -661,6 +659,4 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
     </div>
   </div>
 </div>
-
-</div>
----
+  
