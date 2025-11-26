@@ -925,3 +925,69 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
     </div>
   </div>
 </div>
+</div>
+
+<button class="year-button" onclick="toggleYear('year2019')">
+  2019 ▼
+</button>
+
+<div id="year2019" style="display:none;">
+
+<!-- ===================================================== -->
+<!-- ==================== PAPER: Journal of International Financial Markets, Institutions and Money. === -->
+<!-- ===================================================== -->
+
+<div class="pub-card">
+  <img src="/assets/images/paper_default.png" class="pub-img">
+  <div class="pub-info">
+
+    <strong>A multilevel factor approach for the analysis of CDS commonality and risk contribution</strong><br>
+    <u>Rodríguez-Caballero, C.V.</u> & Caporin, M.<br>
+    <em>Journal of International Financial Markets, Institutions and Money</em>, 2019.
+
+   
+    <div class="btn-row">
+      <a href="javascript:toggleDiv('abs-FIN19')" class="btn btn--info btn--sm">ABS</a>
+
+      <div class="dropdown-container">
+        <button class="btn btn--primary btn--sm"
+                onclick="toggleDropdown('wp-FIN19')">Working Papers ▼</button>
+        <div id="wp-FIN19" class="dropdown-menu">
+          <a href="https://pure.au.dk/portal/en/publications/a-multilevel-factor-approach-for-the-analysis-of-cds-commonality--2/" target="_blank">CREATES WP 2019</a><br>
+        </div>
+      </div>
+
+      <a href="https://doi.org/10.1016/j.intfin.2019.101144"
+         target="_blank" class="btn btn--success btn--sm">Published</a>
+
+      <div class="dropdown-container">
+        <button class="btn btn--secondary btn--sm"
+                onclick="toggleDropdown('media-FIN19')">Media ▼</button>
+        <div id="media-FIN19" class="dropdown-menu">
+          <a href="https://www.dropbox.com/scl/fi/zwzy0xsbxghl9ddvqy6d1/Aalborg.pdf?rlkey=5m4eqzato4sqye91baxz3b2j9&st=htnt221f&dl=0" target="_blank">Slides (PDF)</a><br>
+        </div>
+      </div>
+
+      <a href="javascript:toggleDiv('bib-FIN19')" class="btn btn--warning btn--sm">BIB</a>
+
+    </div>
+    
+    <div id="abs-FIN19" class="abstract-block" style="display:none;">
+      <strong>Abstract:</strong><br>
+      <em>We introduce a novel multilevel factor model that allows for the presence of global and pervasive factors, local factors and semi-pervasive factors, and that captures common features across subsets of the variables of interest. We develop a model estimation procedure and provide a simulation experiment addressing the consistency of our proposal. We complete the analyses by showing how our multilevel model might explain on the commonality across CDS premiums at the global level. In this respect, we cluster countries by either the Debt/GDP ratio or by sovereign ratings. We show that multilevel models are easier to interpret compared with factor models based on principal component analysis. Finally, we experiment how the multilevel model might allow the recovery of the risk contribution due to the latent factors within a basket of country CDS.</em>
+    </div>
+
+    <div id="bib-FIN19" class="bib-block" style="display:none;">
+<pre><code>@article{rodriguez2019multilevel,
+  title={A multilevel factor approach for the analysis of CDS commonality and risk contribution},
+  author={Rodr{\'\i}guez-Caballero, Carlos Vladimir and Caporin, Massimiliano},
+  journal={Journal of International Financial Markets, Institutions and Money},
+  volume={63},
+  pages={101144},
+  year={2019},
+  publisher={Elsevier}
+}
+</code></pre>
+    </div>
+  </div>
+</div>
