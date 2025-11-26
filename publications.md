@@ -659,4 +659,47 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
     </div>
   </div>
 </div>
+
+<!-- ===================================================== -->
+<!-- ==================== PAPER: ECONOMICS BULLETIN === -->
+<!-- ===================================================== -->
+
+<div class="pub-card">
+  <img src="/assets/images/EB21.png" class="pub-img">
+  <div class="pub-info">
+
+    <strong>Remittances at record highs in Latin America: Time to revisit the Dutch disease</strong><br>
+    L{\'o}pez-Marmolejo, Arnoldo, <u>Rodríguez-Caballero, C.V.</u> & Ventosa-Santaularia, Daniel.<br>
+    <em>Econometrics</em>, 2021.
+   
+    <div class="btn-row">
+      <a href="javascript:toggleDiv('abs-EB2021')" class="btn btn--info btn--sm">ABS</a>
+
+      <a href="http://www.accessecon.com/Pubs/EB/2021/Volume41/EB-21-V41-I3-P184.pdf"
+         target="_blank" class="btn btn--success btn--sm">Published</a>
+
+      <a href="javascript:toggleDiv('bib-EB2021')" class="btn btn--warning btn--sm">BIB</a>
+    </div>
+    
+    <div id="abs-EB2021" class="abstract-block" style="display:none;">
+      <strong>Abstract:</strong><br>
+      <em>With remittances reaching historic highs in many Latin American countries, this paper evaluates the existence of Dutch disease in that region on a country-by-country basis. To do so, we employ heterogeneous panel data models with cross-sectional dependence to estimate the determinants of the real exchange rate and calculate the effect of net remittance flows in the region by country. In this context, various countries' future economic development must address this potential loss of competitiveness.</em>
+    </div>
+
+    <div id="bib-EB2021" class="bib-block" style="display:none;">
+<pre><code>@article{lopez2021remittances,
+  title={Remittances at record highs in Latin America: Time to revisit the Dutch disease},
+  author={L{\'o}pez-Marmolejo, Arnoldo and Rodr{\'\i}guez-Caballero, Carlos Vladimir and Ventosa-Santaul{\`a}ria, Daniel},
+  journal={Economics Bulletin},
+  volume={41},
+  number={3},
+  pages={2003--2011},
+  year={2021},
+  publisher={Economics Bulletin}
+}
+</code></pre>
+    </div>
+  </div>
+</div>
+</div>
   
