@@ -448,7 +448,7 @@ of modern economic growth and the Great Divergence in Eurasia.</em>
   <div class="pub-info">
 
     <strong>Predicting cryptocurrency crash dates</strong><br>
-     <u>Rodríguez-Caballero, C.V.</u> & Villanueva-Dom{\'\i}nguez, Mauricio<br>
+     <u>Rodríguez-Caballero, C.V.</u> & Villanueva-Domínguez, Mauricio<br>
     <em>Empirical Economics</em>, 2022.
 
     <div class="btn-row">
