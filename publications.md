@@ -682,7 +682,7 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
     <div id="bib-EB2021" class="bib-block" style="display:none;">
 <pre><code>@article{lopez2021remittances,
   title={Remittances at record highs in Latin America: Time to revisit the Dutch disease},
-  author={L{\'o}pez-Marmolejo, Arnoldo and Rodr{\'\i}guez-Caballero, Carlos Vladimir and Ventosa-Santaul{\`a}ria, Daniel},
+  author={López-Marmolejo, Arnoldo, <u>Rodríguez-Caballero, C.V.</u> & Ventosa-Santaularia, Daniel},
   journal={Economics Bulletin},
   volume={41},
   number={3},
