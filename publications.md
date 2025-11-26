@@ -101,6 +101,17 @@ function toggleDiv(id) {
   overflow-wrap: break-word !important;
   max-width: 100% !important;
 }
+
+  /* Abstract más compacto y elegante */
+.abstract-block {
+  font-size: 13px;
+  line-height: 1.45;
+  margin-top: 8px;
+  margin-bottom: 14px;
+  padding-left: 0px;
+  max-width: 95%;
+}
+
   
 </style>
 
@@ -136,21 +147,7 @@ Below is a categorized and selected list of my research output.
     de Juan, A., Poncela, P., <u>Rodríguez-Caballero, C.V.</u>, & Ruiz, E.<br>
     <em>International Review of Environmental and Resource Economics</em>, 2025.
 
-    <div class="btn-row">
-
-      <a href="javascript:toggleDiv('abs-eco2025')" class="btn btn--info btn--sm">ABS</a>
-
-      <a href="https://arxiv.org/pdf/2206.03187"
-         target="_blank" class="btn btn--primary btn--sm">Working Paper</a>
-
-      <a href="https://doi.org/10.1561/101.00000176"
-         target="_blank" class="btn btn--success btn--sm">Published</a>
-
-      <a href="javascript:toggleDiv('bib-eco2025')" class="btn btn--warning btn--sm">BIB</a>
-
-    </div>
-
-    <div id="abs-eco2025" style="display:none; margin-top:12px;">
+   <div id="abs-eco2025" class="abstract-block" style="display:none;">; margin-top:12px;">
       <strong>Abstract:</strong><br>
       <em>
       The links between climate change and economic activity
@@ -174,7 +171,21 @@ phenomena.
       </em>
     </div>
 
-    <div id="bib-eco2025" style="display:none; margin-top:12px;">
+    <div class="btn-row">
+
+      <a href="javascript:toggleDiv('abs-eco2025')" class="btn btn--info btn--sm">ABS</a>
+
+      <a href="https://arxiv.org/pdf/2206.03187"
+         target="_blank" class="btn btn--primary btn--sm">Working Paper</a>
+
+      <a href="https://doi.org/10.1561/101.00000176"
+         target="_blank" class="btn btn--success btn--sm">Published</a>
+
+      <a href="javascript:toggleDiv('bib-eco2025')" class="btn btn--warning btn--sm">BIB</a>
+
+    </div>
+
+     <div id="bib-eco2025" style="display:none; margin-top:12px;">
 <pre><code>@article{IRERE-176,
 url = {http://dx.doi.org/10.1561/101.00000176},
 year = {2025},
