@@ -197,9 +197,7 @@ doi = {10.1561/101.00000176},
 issn = {1932-1465},
 number = {2},
 pages = {159-226},
-author = {Aránzazu de Juan and Pilar Poncela and C. Vladimir Rodríguez-Caballero and Esther Ruiz}
-}
-}
+author = {Aránzazu de Juan and Pilar Poncela and C. Vladimir Rodríguez-Caballero and Esther Ruiz}}
 </code></pre>
     </div>
   </div>
@@ -267,9 +265,7 @@ author = {Aránzazu de Juan and Pilar Poncela and C. Vladimir Rodríguez-Caballe
   number={5},
   pages={926--942},
   year={2024},
-  publisher={Wiley Online Library}
-}
-}
+  publisher={Wiley Online Library}}
 </code></pre>
     </div>
 
@@ -319,9 +315,7 @@ author = {Aránzazu de Juan and Pilar Poncela and C. Vladimir Rodríguez-Caballe
   number={1},
   pages={31--45},
   year={2024},
-  publisher={Springer}
-}
-}
+  publisher={Springer}}
 </code></pre>
     </div>
 
@@ -372,10 +366,7 @@ author = {Aránzazu de Juan and Pilar Poncela and C. Vladimir Rodríguez-Caballe
   journal={Regional Statistics},
   volume={13},
   number={3},
-  year={2023}
-}
-}
-}
+  year={2023}}
 </code></pre>
     </div>
   </div>
@@ -427,11 +418,8 @@ of modern economic growth and the Great Divergence in Eurasia.</em>
   volume={86},
   pages={101467},
   year={2022},
-  publisher={Elsevier}
-}
-}
-}
-}
+  publisher={Elsevier}}
+
 </code></pre>
     </div>
   </div>
@@ -481,10 +469,6 @@ the maximum price. Nine days after, the bitcoin price fell 45% from its peaks.</
   pages={2855--2873},
   year={2022},
   publisher={Springer}
-}
-}
-}
-}
 }
 </code></pre>
     </div>
