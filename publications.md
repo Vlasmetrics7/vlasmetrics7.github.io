@@ -322,3 +322,54 @@ author = {Aránzazu de Juan and Pilar Poncela and C. Vladimir Rodríguez-Caballe
   </div>
 
 </div>
+
+<!-- ===================================================== -->
+<!-- ==================== PAPER: Regional Statistics === -->
+<!-- ===================================================== -->
+
+<div class="pub-card">
+
+  <img src="/assets/images/RS23.png" class="pub-img">
+
+  <div class="pub-info">
+
+    <strong>Assessing the effect of gender-related legal reforms on female labor participation and GDP per capita in the Central American region</strong><br>
+    López-Marmolejo, A, & <u>Rodríguez-Caballero, C.V.</u>.<br>
+    <em>Regional Statistics</em>, 2023.
+
+    <div class="btn-row">
+
+      <a href="javascript:toggleDiv('abs-regstat2023')" class="btn btn--info btn--sm">ABS</a>
+
+      <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4294479"
+         target="_blank" class="btn btn--primary btn--sm">Working Paper</a>
+
+      <a href="https://doi.org/10.1007/s00181-023-02542-3"
+         target="_blank" class="btn btn--success btn--sm">Published</a>
+
+      <a href="javascript:toggleDiv('bib-regstat2023')" class="btn btn--warning btn--sm">BIB</a>
+
+    </div>
+
+    <div id="abs-regstat2023" class="abstract-block" style="display:none;">
+      <strong>Abstract:</strong><br>
+      <em>Women's participation in the labour market in Central America, Panama, and the Dominican Republic (CAPADOM) is low by international standards. Increasing their participation is a goal of many policymakers who want to improve women's access to quality employment. This study uses data from CAPADOM to assess whether gender equality in the law increases women's participation in the labour force and, if that is the case, the extent to which this boosts GDP per capita. To do so, the authors use a panel VAR model. The results show that CAPADOM could increase female labour participation rate by 6 percentage points (pp) and GDP per capita by 1 pp by introducing gender-related legal changes such as equal pay for equal work, paid parental leave, and allowing women to do all the same jobs as men.</em>
+    </div>
+
+    <div id="bib-regstat2023" style="display:none; margin-top:12px;">
+<pre><code>
+  @article{lopez2023assessing,
+  title={Assessing the effect of gender-related legal reforms on female labour participation and GDP per capita in the Central American region.},
+  author={L{\'o}pez-Marmolejo, Arnoldo and Rodr{\'\i}guez-Caballero, C Vladimir},
+  journal={Regional Statistics},
+  volume={13},
+  number={3},
+  year={2023}
+}
+}
+}
+</code></pre>
+    </div>
+  </div>
+</div>
+
