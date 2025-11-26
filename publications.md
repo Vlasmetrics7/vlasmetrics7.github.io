@@ -15,6 +15,14 @@ function toggleDiv(id) {
 }
 </script>
 
+<script>
+function toggleYear(id) {
+  var el = document.getElementById(id);
+  el.style.display = (el.style.display === "none" || el.style.display === "") ? "block" : "none";
+}
+</script>
+
+
 <style>
 
 /* TARJETA HORIZONTAL */
@@ -133,8 +141,24 @@ function toggleDiv(id) {
   white-space: pre-wrap !important;
   word-break: break-word !important;
 }
+.year-button {
+  width: 100%;
+  background: #f2f2f2;
+  border: 1px solid #ccc;
+  padding: 12px 18px;
+  border-radius: 8px;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 25px;
+  margin-bottom: 10px;
+  text-align: left;
+  transition: background 0.2s ease;
+}
 
-  
+.year-button:hover {
+  background: #e6e6e6;
+} 
 </style>
 
 <script>
@@ -154,7 +178,11 @@ Below is a categorized and selected list of my research output.
 ---
 
 # **2025**
+<button class="year-button" onclick="toggleYear('year2025')">
+  2025 ▼
+</button>
 
+<div id="year2025" style="display:none;">
 <!-- ===================================================== -->
 <!-- ==================== PAPER 1 ========================= -->
 <!-- ===================================================== -->
@@ -203,6 +231,7 @@ author = {Aránzazu de Juan and Pilar Poncela and C. Vladimir Rodríguez-Caballe
   </div>
 </div>
 
+</div>
 ---
 
 # **2024**
