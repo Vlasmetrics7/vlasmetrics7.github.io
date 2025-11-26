@@ -1213,7 +1213,7 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
 <!-- ===================================================== -->
 
 <div class="pub-card">
-  <img src="/assets/images/cuadernos2013.png" class="pub-img">
+  <img src="/assets/images/cuadernos13.png" class="pub-img">
   <div class="pub-info">
 
     <strong>Metodología para un scoring de clientes sin referencias crediticias</strong><br>
