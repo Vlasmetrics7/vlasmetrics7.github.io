@@ -480,6 +480,7 @@ author = {Aránzazu de Juan and Pilar Poncela and C. Vladimir Rodríguez-Caballe
 
 <div id="year2022" style="display:none;">
 
+
 <!-- ===================================================== -->
 <!-- ==================== PAPER: Empirical economics === -->
 <!-- ===================================================== -->
@@ -583,6 +584,13 @@ of modern economic growth and the Great Divergence in Eurasia.</em>
   </div>
 </div>
 </div>
+
+
+<button class="year-button" onclick="toggleYear('year2021')">
+  2021 ▼
+</button>
+
+<div id="year2021" style="display:none;">
 
 <!-- ===================================================== -->
 <!-- ==================== PAPER: ECONOMETRICS === -->
