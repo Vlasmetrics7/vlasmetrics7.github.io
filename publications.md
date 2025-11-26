@@ -246,8 +246,8 @@ author = {Aránzazu de Juan and Pilar Poncela and C. Vladimir Rodríguez-Caballe
       <a href="javascript:toggleDiv('bib-stress2024')" class="btn btn--warning btn--sm">BIB</a>
 
     </div>
-
-    <div id="abs-stress2024" style="display:none; margin-top:12px;">
+    
+    <div id="abs-stress2024" class="abstract-block" style="display:none;">
       <strong>Abstract:</strong><br>
       <em>We propose the construction of conditional growth densities under stressed factor scenarios to assess the level of exposure of an economy to small probability but potentially catastrophic economic and/or financial scenarios, which can be either domestic or international. The choice of severe yet plausible stress scenarios is based on the joint probability distribution of the underlying factors driving growth, which are extracted with a multilevel dynamic factor model (DFM) from a wide set of domestic/worldwide and/or macroeconomic/financial variables. All together, we provide a risk management tool that allows for a complete visualization of the dynamics of the growth densities under average scenarios and extreme scenarios. We calculate growth-in-stress (GiS) measures, defined as the 5% quantile of the stressed growth densities, and show that GiS is a useful and complementary tool to growth-at-risk (GaR) when policymakers wish to carry out a multidimensional scenario analysis. The unprecedented economic shock brought by the COVID-19 pandemic provides a natural environment to assess the vulnerability of US growth with the proposed methodology.</em>
     </div>
@@ -299,7 +299,7 @@ author = {Aránzazu de Juan and Pilar Poncela and C. Vladimir Rodríguez-Caballe
 
     </div>
 
-    <div id="abs-exch2024" style="display:none; margin-top:12px;">
+    <div id="abs-exch2024" class="abstract-block" style="display:none;">
       <strong>Abstract:</strong><br>
       <em>In this paper, we consider a fractionally integrated multi-level dynamic factor model (FI-ML-DFM) to represent commonalities in the hourly evolution of realized volatilities of several international exchange rates. The FI-ML-DFM assumes common global factors active during the 24 h of the day, accompanied by intermittent factors, which are active at mutually exclusive times. We propose determining the number of global factors using a distance among the intermittent loadings. We show that although the bulk of common dynamics of exchange rates realized volatilities can be attributed to global factors, there are non-negligible effects of intermittent factors. The effect of the COVID-19 on the realized volatility comovements is stronger on the first global-in-time factor, which shows a permanent increase in the level. The effects on the second global factor and on the intermittent factors active when the EU, UK and US markets are operating are transitory lasting for approximately a year after the pandemic starts. Finally, there seems to be no effect of the pandemic neither on the third global factor nor on the intermittent factor active when the markets in Asia are operating.</em>
     </div>
