@@ -472,6 +472,8 @@ author = {Aránzazu de Juan and Pilar Poncela and C. Vladimir Rodríguez-Caballe
   </div>
 </div>
 
+</div>
+---
 
 
 <button class="year-button" onclick="toggleYear('year2022')">
@@ -659,3 +661,6 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
     </div>
   </div>
 </div>
+
+</div>
+---
