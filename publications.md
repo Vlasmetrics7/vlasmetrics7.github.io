@@ -736,3 +736,64 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
     </div>
   </div>
 </div>
+
+<!-- ===================================================== -->
+<!-- ==================== PAPER  WAVELETS ================== -->
+<!-- ===================================================== -->
+
+<div class="pub-card">
+
+  <img src="/assets/images/WAV21.png" class="pub-img">
+  <div class="pub-info">
+
+    <strong>Wavelet Estimation for Factor Models with Time-Varying</strong><br>
+    Cataño, Duván Humberto, <u>Rodríguez-Caballero, C.V.</u> , Peña, Daniel & Chiann, Chang.<br>
+    <em>International Journal of Wavelets, Multiresolution and Information Processing</em>, 2021.
+
+    <div class="btn-row">
+      <a href="javascript:toggleDiv('abs-WAV21')" class="btn btn--info btn--sm">ABS</a>
+
+      <div class="dropdown-container">
+        <button class="btn btn--primary btn--sm"
+                onclick="toggleDropdown('wp-WAV21')">Working Papers ▼</button>
+        <div id="wp-IJF2023" class="dropdown-menu">
+          <a href="https://arxiv.org/abs/2110.04416" target="_blank">Arxiv 2021</a><br>
+          <a href="https://repositorio.usp.br/bitstreams/6d4a500b-e34a-4616-a37d-99e4cb4ac9c8" target="_blank">USP WP 2021</a>
+        </div>
+      </div>
+
+      <a href="https://doi.org/10.1142/S0219691321500338"
+         target="_blank" class="btn btn--success btn--sm">Published</a>
+
+      <div class="dropdown-container">
+        <button class="btn btn--secondary btn--sm"
+                onclick="toggleDropdown('media-WAV21')">Media ▼</button>
+        <div id="media-IJF2023" class="dropdown-menu">
+          <a href="https://www.dropbox.com/scl/fi/zwzy0xsbxghl9ddvqy6d1/Aalborg.pdf?rlkey=5m4eqzato4sqye91baxz3b2j9&st=htnt221f&dl=0" target="_blank">Slides (PDF)</a><br>
+        </div>
+      </div>
+
+      <a href="javascript:toggleDiv('bib-WAV21')" class="btn btn--warning btn--sm">BIB</a>
+
+    </div>
+    
+    <div id="abs-WAV21" class="abstract-block" style="display:none;">
+      <strong>Abstract:</strong><br>
+      <em>We introduce a high-dimensional factor model with time-varying loadings. We cover both stationary and nonstationary factors to increase the possibilities of applications. We propose an estimation procedure based on two stages. First, we estimate common factors by principal components. In the second step, considering the estimated factors as observed, the time-varying loadings are estimated by an iterative generalized least squares procedure using wavelet functions. We investigate the finite sample features by some Monte Carlo simulations. Finally, we apply the model to study the Nord Pool power market’s electricity prices and loads.</em>
+    </div>
+
+    <div id="bib-WAV21" class="bib-block" style="display:none;">
+<pre><code>@article{catano2022wavelet,
+  title={Wavelet estimation for factor models with time-varying loadings},
+  author={Cata{\~n}o, Duv{\'a}n Humberto and Rodr{\'\i}guez-Caballero, C Vladimir and Pe{\~n}a, Daniel and Chiann, Chang},
+  journal={International Journal of Wavelets, Multiresolution and Information Processing},
+  volume={20},
+  number={01},
+  pages={2150033},
+  year={2022},
+  publisher={World Scientific}
+}
+</code></pre>
+    </div>
+  </div>
+</div>
