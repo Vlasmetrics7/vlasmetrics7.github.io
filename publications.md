@@ -181,24 +181,8 @@ Below is a categorized and selected list of my research output.
   <div id="abs-eco2025" class="abstract-block" style="display:none;">
       <strong>Abstract:</strong><br>
       <em>
-      The links between climate change and economic activity
-have a critical relevance for the well-being of future generations.
-Consequently, many publications are devoted to
-understanding and measuring them. This paper is a comprehensive
-survey of recent contributions using econometric
-methods. We update previous surveys focusing on partial
-aspects of the complex relationships linking the economy and
-climate change. Starting from economic activity, the channels
-that relate it to climate change are energy consumption
-and the consequent pollution. Hence, we first describe the
-main econometric contributions of the interactions between economic activity and energy consumption, then explain the
-contributions and interactions of economic activity to pollution.
-Finally, we look at the main results on the relationship
-between climate change and economic activity. A necessary
-consequence of climate change is the increasing occurrence
-of extreme weather phenomena. Therefore, we also survey
-contributions on the economic effects of catastrophic climate
-phenomena.
+      The links between climate change and economic activity have a critical relevance for the well-being of future generations. Consequently, many publications are devoted to understanding and measuring them. This paper is a comprehensive survey of recent contributions using econometric
+methods. We update previous surveys focusing on partial aspects of the complex relationships linking the economy and climate change. Starting from economic activity, the channels that relate it to climate change are energy consumption and the consequent pollution. Hence, we first describe the main econometric contributions of the interactions between economic activity and energy consumption, then explain the contributions and interactions of economic activity to pollution. Finally, we look at the main results on the relationship between climate change and economic activity. A necessary consequence of climate change is the increasing occurrence of extreme weather phenomena. Therefore, we also survey contributions on the economic effects of catastrophic climate phenomena.
       </em>
     </div>
  
