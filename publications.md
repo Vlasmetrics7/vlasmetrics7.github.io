@@ -381,3 +381,58 @@ author = {Aránzazu de Juan and Pilar Poncela and C. Vladimir Rodríguez-Caballe
   </div>
 </div>
 
+<!-- ===================================================== -->
+<!-- ==================== PAPER: Explorations in Economic History === -->
+<!-- ===================================================== -->
+
+<div class="pub-card">
+  <img src="/assets/images/EH23.png" class="pub-img">
+  <div class="pub-info">
+
+    <strong>War, pandemics, and modern economic growth in Europe</strong><br>
+    de la Escosura, Leandro Prados & <u>Rodríguez-Caballero, C.V.</u>.<br>
+    <em>Explorations in Economic History</em>, 2023.
+
+    <div class="btn-row">
+      <a href="javascript:toggleDiv('abs-EcEx2023')" class="btn btn--info btn--sm">ABS</a>
+
+      <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3612887"
+         target="_blank" class="btn btn--primary btn--sm">Working Paper</a>
+
+      <a href="https://doi.org/10.1016/j.eeh.2022.101467"
+         target="_blank" class="btn btn--success btn--sm">Published</a>
+
+      <a href="javascript:toggleDiv('bib-EcEx2023')" class="btn btn--warning btn--sm">BIB</a>
+    </div>
+
+    <div id="abs-EcEx2023" class="abstract-block" style="display:none;">
+      <strong>Abstract:</strong><br>
+      <em>This paper contributes to the debate on Europe’s modern economic growth using the statistical
+concept of long-range dependence. Different regimes, defined as periods between two successive
+endogenously estimated structural shocks, matched episodes of pandemics and war. The most
+persistent shocks occurred at the time of the Black Death and the twentieth century’s world wars.
+Our findings confirm that the Black Death often resulted in higher income levels but reject the
+view of a uniform long-term response to the Plague. In fact, we find a negative impact on incomes
+in non-Malthusian economies. In the North Sea Area (Britain and the Netherlands), the Plague
+was followed by positive trend growth in output per capita and population, heralding the onset
+of modern economic growth and the Great Divergence in Eurasia.</em>
+    </div>
+
+    <div id="bib-EcEx2023" class="bib-block" style="display:none;">
+<pre><code>
+  @article{de2022war,
+  title={War, pandemics, and modern economic growth in Europe},
+  author={de la Escosura, Leandro Prados and Rodr{\'\i}guez-Caballero, C Vladimir},
+  journal={Explorations in Economic History},
+  volume={86},
+  pages={101467},
+  year={2022},
+  publisher={Elsevier}
+}
+}
+}
+}
+</code></pre>
+    </div>
+  </div>
+</div>
