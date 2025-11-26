@@ -105,7 +105,7 @@ function toggleDiv(id) {
   /* Abstract más compacto y elegante */
 .abstract-block {
   font-size: 13px;
-  line-height: 1.45;
+  line-height: 1.25;
   margin-top: 8px;
   margin-bottom: 14px;
   padding-left: 0px;
