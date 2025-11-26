@@ -116,6 +116,24 @@ function toggleDiv(id) {
   max-width: 100% !important;
 }
 
+  .bib-block {
+  font-size: 13px;
+  line-height: 1.45;
+  margin-top: 8px;
+  margin-bottom: 14px;
+  padding-left: 0px;
+  max-width: 95%;
+  background: #f8f8f8;
+  border-radius: 6px;
+  padding: 10px 12px;
+  box-shadow: 0px 2px 6px rgba(0,0,0,0.08);
+}
+.bib-block pre code {
+  font-size: 12px !important;
+  white-space: pre-wrap !important;
+  word-break: break-word !important;
+}
+
   
 </style>
 
@@ -183,8 +201,8 @@ contributions on the economic effects of catastrophic climate
 phenomena.
       </em>
     </div>
-
-     <div id="bib-eco2025" style="display:none; margin-top:12px;">
+ 
+     <div id="bib-eco2025" class="bib-block" style="display:none;">
 <pre><code>@article{IRERE-176,
 url = {http://dx.doi.org/10.1561/101.00000176},
 year = {2025},
@@ -256,7 +274,7 @@ author = {Aránzazu de Juan and Pilar Poncela and C. Vladimir Rodríguez-Caballe
       <em>We propose the construction of conditional growth densities under stressed factor scenarios to assess the level of exposure of an economy to small probability but potentially catastrophic economic and/or financial scenarios, which can be either domestic or international. The choice of severe yet plausible stress scenarios is based on the joint probability distribution of the underlying factors driving growth, which are extracted with a multilevel dynamic factor model (DFM) from a wide set of domestic/worldwide and/or macroeconomic/financial variables. All together, we provide a risk management tool that allows for a complete visualization of the dynamics of the growth densities under average scenarios and extreme scenarios. We calculate growth-in-stress (GiS) measures, defined as the 5% quantile of the stressed growth densities, and show that GiS is a useful and complementary tool to growth-at-risk (GaR) when policymakers wish to carry out a multidimensional scenario analysis. The unprecedented economic shock brought by the COVID-19 pandemic provides a natural environment to assess the vulnerability of US growth with the proposed methodology.</em>
     </div>
 
-    <div id="bib-stress2024" style="display:none; margin-top:12px;">
+    <div id="bib-stress2024" class="bib-block" style="display:none;">
 <pre><code>@article{gonzalez2024expecting,
   title={Expecting the unexpected: Stressed scenarios for economic growth},
   author={Gonz{\'a}lez-Rivera, Gloria and Rodr{\'\i}guez-Caballero, C Vladimir and Ruiz, Esther},
@@ -307,8 +325,8 @@ author = {Aránzazu de Juan and Pilar Poncela and C. Vladimir Rodríguez-Caballe
       <strong>Abstract:</strong><br>
       <em>In this paper, we consider a fractionally integrated multi-level dynamic factor model (FI-ML-DFM) to represent commonalities in the hourly evolution of realized volatilities of several international exchange rates. The FI-ML-DFM assumes common global factors active during the 24 h of the day, accompanied by intermittent factors, which are active at mutually exclusive times. We propose determining the number of global factors using a distance among the intermittent loadings. We show that although the bulk of common dynamics of exchange rates realized volatilities can be attributed to global factors, there are non-negligible effects of intermittent factors. The effect of the COVID-19 on the realized volatility comovements is stronger on the first global-in-time factor, which shows a permanent increase in the level. The effects on the second global factor and on the intermittent factors active when the EU, UK and US markets are operating are transitory lasting for approximately a year after the pandemic starts. Finally, there seems to be no effect of the pandemic neither on the third global factor nor on the intermittent factor active when the markets in Asia are operating.</em>
     </div>
-
-    <div id="bib-exch2024" style="display:none; margin-top:12px;">
+    
+    <div id="bib-exch2024" class="bib-block" style="display:none;">
 <pre><code>@article{caporin2024factor,
   title={The factor structure of exchange rates volatility: global and intermittent factors},
   author={Caporin, Massimiliano and Rodr{\'\i}guez-Caballero, C Vladimir and Ruiz, Esther},
@@ -362,7 +380,7 @@ author = {Aránzazu de Juan and Pilar Poncela and C. Vladimir Rodríguez-Caballe
       <em>Women's participation in the labour market in Central America, Panama, and the Dominican Republic (CAPADOM) is low by international standards. Increasing their participation is a goal of many policymakers who want to improve women's access to quality employment. This study uses data from CAPADOM to assess whether gender equality in the law increases women's participation in the labour force and, if that is the case, the extent to which this boosts GDP per capita. To do so, the authors use a panel VAR model. The results show that CAPADOM could increase female labour participation rate by 6 percentage points (pp) and GDP per capita by 1 pp by introducing gender-related legal changes such as equal pay for equal work, paid parental leave, and allowing women to do all the same jobs as men.</em>
     </div>
 
-    <div id="bib-regstat2023" style="display:none; margin-top:12px;">
+    <div id="bib-regstat2023" class="bib-block" style="display:none;">
 <pre><code>
   @article{lopez2023assessing,
   title={Assessing the effect of gender-related legal reforms on female labour participation and GDP per capita in the Central American region.},
