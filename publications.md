@@ -326,6 +326,69 @@ author = {Aránzazu de Juan and Pilar Poncela and C. Vladimir Rodríguez-Caballe
 # **2023**
 
 <!-- ===================================================== -->
+<!-- ==================== PAPER  IJF ================== -->
+<!-- ===================================================== -->
+
+<div class="pub-card">
+
+  <img src="/assets/images/IJF23.png" class="pub-img">
+  <div class="pub-info">
+
+    <strong>Estimation of a dynamic multi-level factor model with possible long-range dependence</strong><br>
+    Ergemen, Yunus Emre & <u>Rodríguez-Caballero, C.V.</u>.<br>
+    <em>International Journal of Forecasting</em>, 2023.
+
+    <div class="btn-row">
+      <a href="javascript:toggleDiv('abs-IJF2023')" class="btn btn--info btn--sm">ABS</a>
+
+      <div class="dropdown-container">
+        <button class="btn btn--primary btn--sm"
+                onclick="toggleDropdown('wp-IJF2023')">Working Papers ▼</button>
+        <div id="wp-IJF2023" class="dropdown-menu">
+          <a href="https://e-archivo.uc3m.es/bitstream/handle/10016/24614/ws201708.pdf?sequence=1" target="_blank">UC3M WP 2017</a><br>
+          <a href="https://pure.au.dk/ws/portalfiles/portal/101846425/rp16_23.pdf" target="_blank">CREATES WP 2016</a>
+        </div>
+      </div>
+
+      <a href="https://doi.org/10.1016/j.ijforecast.2021.12.004"
+         target="_blank" class="btn btn--success btn--sm">Published</a>
+
+      <div class="dropdown-container">
+        <button class="btn btn--secondary btn--sm"
+                onclick="toggleDropdown('media-IJF2023')">Media ▼</button>
+        <div id="media-IJF2023" class="dropdown-menu">
+          <a href="https://www.dropbox.com/scl/fi/zwzy0xsbxghl9ddvqy6d1/Aalborg.pdf?rlkey=5m4eqzato4sqye91baxz3b2j9&st=htnt221f&dl=0" target="_blank">Slides (PDF)</a><br>
+        </div>
+      </div>
+
+      <a href="javascript:toggleDiv('bib-IJF2023')" class="btn btn--warning btn--sm">BIB</a>
+
+    </div>
+    
+    <div id="abs-IJF2023" class="abstract-block" style="display:none;">
+      <strong>Abstract:</strong><br>
+      <em>A dynamic multi-level factor model with possible stochastic time trends is proposed. In the model, long-range dependence and short memory dynamics are allowed in global and local common factors as well as model innovations. Estimation of global and local common factors is performed on the prewhitened series, for which the prewhitening parameter is estimated semiparametrically from the cross-sectional and local average of the observable series. Employing canonical correlation analysis and a sequential least-squares algorithm on the prewhitened series, the resulting multi-level factor estimates have centered asymptotic normal distributions under certain rate conditions depending on the bandwidth and cross-section size. Asymptotic results for common components are also established. The selection of the number of global and local factors is discussed. The methodology is shown to lead to good small-sample performance via Monte Carlo simulations. The method is then applied to the Nord Pool electricity market for the analysis of price comovements among different regions within the power grid. The global factor is identified to be the system price, and fractional cointegration relationships are found between local prices and the system price, motivating a long-run equilibrium relationship. Two forecasting exercises are then discussed.</em>
+    </div>
+
+    <div id="bib-IJF2023" class="bib-block" style="display:none;">
+<pre><code>@article{ergemen2023estimation,
+  title={Estimation of a dynamic multi-level factor model with possible long-range dependence},
+  author={Ergemen, Yunus Emre and Rodr{\'\i}guez-Caballero, C Vladimir},
+  journal={International Journal of Forecasting},
+  volume={39},
+  number={1},
+  pages={405--430},
+  year={2023},
+  publisher={Elsevier}
+}
+</code></pre>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- ===================================================== -->
 <!-- ==================== PAPER: Regional Statistics === -->
 <!-- ===================================================== -->
 
