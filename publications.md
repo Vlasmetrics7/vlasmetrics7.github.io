@@ -177,7 +177,6 @@ Below is a categorized and selected list of my research output.
 
 ---
 
-# **2025**
 <button class="year-button" onclick="toggleYear('year2025')">
   2025 ▼
 </button>
@@ -234,7 +233,11 @@ author = {Aránzazu de Juan and Pilar Poncela and C. Vladimir Rodríguez-Caballe
 </div>
 ---
 
-# **2024**
+<button class="year-button" onclick="toggleYear('year2024')">
+  2024 ▼
+</button>
+
+<div id="year2024" style="display:none;">
 
 <!-- ===================================================== -->
 <!-- ==================== PAPER 2 (JAE) ================== -->
@@ -351,8 +354,13 @@ author = {Aránzazu de Juan and Pilar Poncela and C. Vladimir Rodríguez-Caballe
   </div>
 
 </div>
+</div>
 
-# **2023**
+<button class="year-button" onclick="toggleYear('year2023')">
+  2023 ▼
+</button>
+
+<div id="year2023" style="display:none;">
 
 <!-- ===================================================== -->
 <!-- ==================== PAPER  IJF ================== -->
@@ -516,8 +524,13 @@ of modern economic growth and the Great Divergence in Eurasia.</em>
     </div>
   </div>
 </div>
+</div>
 
-# **2022**
+<button class="year-button" onclick="toggleYear('year2022')">
+  2022 ▼
+</button>
+
+<div id="year2024" style="display:none;">
 
 <!-- ===================================================== -->
 <!-- ==================== PAPER: Empirical economics === -->
@@ -567,3 +580,4 @@ the maximum price. Nine days after, the bitcoin price fell 45% from its peaks.</
   </div>
 </div>
 
+</div>
