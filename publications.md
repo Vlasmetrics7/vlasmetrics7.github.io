@@ -991,3 +991,53 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
     </div>
   </div>
 </div>
+
+</div>
+
+<button class="year-button" onclick="toggleYear('year2018')">
+  <2018 ▼
+</button>
+
+<div id="year2018" style="display:none;">
+
+<!-- ===================================================== -->
+<!-- ==================== PAPER: Energy Economics === -->
+<!-- ===================================================== -->
+
+<div class="pub-card">
+  <img src="/assets/images/ENECO17.png" class="pub-img">
+  <div class="pub-info">
+
+    <strong>Energy-growth long-term relationship under structural breaks. Evidence from Canada, 17 Latin American economies and the USA</strong><br>
+    <u>Rodríguez-Caballero, C.V.</u> & Ventosa-Santaularia, D.<br>
+    <em>Energy Economics</em>, 2017.
+   
+    <div class="btn-row">
+      <a href="javascript:toggleDiv('abs-ENECO17')" class="btn btn--info btn--sm">ABS</a>
+
+        <a href="https://doi.org/10.1016/j.eneco.2016.10.026"
+         target="_blank" class="btn btn--success btn--sm">Published</a>
+
+         <a href="javascript:toggleDiv('bib-ENECO17')" class="btn btn--warning btn--sm">BIB</a>
+    </div>
+    
+    <div id="abs-ENECO17" class="abstract-block" style="display:none;">
+      <strong>Abstract:</strong><br>
+      <em>We study the relationship and the causal link between Electric Power Consumption, EPC, and Gross Domestic Product, GDP (both per capita) for 17 countries in Latin America, Canada and the USA. Considering that many of these economies underwent important economic crises in the last three decades, we therefore model the EPC-GDP relationship through a VEC specification that allows for structural breaks, along with a robust testing methodology of causal links based on the concepts of weak and super exogeneity, rather than Granger causality. Evidence favorable to the growth hypothesis (EPC→GDP) is found for eight countries, while data of three countries support the conservation hypothesis (GDP→EPC). For three countries evidence is favorable to the neutrality hypothesis, but should be considered with caution. As for the remaining five countries the evidence is not conclusive.</em>
+    </div>
+
+    <div id="bib-ENECO17" class="bib-block" style="display:none;">
+<pre><code>@article{rodriguez2017energy,
+  title={Energy-growth long-term relationship under structural breaks. Evidence from Canada, 17 Latin American economies and the USA},
+  author={Rodr{\'\i}guez-Caballero, Carlos Vladimir and Ventosa-Santaul{\`a}ria, Daniel},
+  journal={Energy Economics},
+  volume={61},
+  pages={121--134},
+  year={2017},
+  publisher={Elsevier}
+}
+</code></pre>
+    </div>
+  </div>
+</div>
+
