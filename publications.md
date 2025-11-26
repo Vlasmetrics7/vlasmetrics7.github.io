@@ -211,7 +211,7 @@ author = {Aránzazu de Juan and Pilar Poncela and C. Vladimir Rodríguez-Caballe
         <button class="btn btn--primary btn--sm"
                 onclick="toggleDropdown('wp-stress2024')">Working Papers ▼</button>
         <div id="wp-stress2024" class="dropdown-menu">
-          <a href="https://econ.au.dk/.../rp21_06.pdf" target="_blank">CREATES WP 2021</a><br>
+          <a href="https://pure.au.dk/ws/files/213093676/rp21_06.pdf" target="_blank">CREATES WP 2021</a><br>
           <a href="https://economics.ucr.edu/repec/ucr/wpaper/202314.pdf" target="_blank">UCR WP 2023</a>
         </div>
       </div>
