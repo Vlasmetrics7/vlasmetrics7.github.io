@@ -110,6 +110,10 @@ function toggleDiv(id) {
   margin-bottom: 14px;
   padding-left: 0px;
   max-width: 95%;
+    white-space: pre-wrap !important;
+  word-break: break-word !important;
+  overflow-wrap: break-word !important;
+  max-width: 100% !important;
 }
 
   
@@ -322,6 +326,8 @@ author = {Aránzazu de Juan and Pilar Poncela and C. Vladimir Rodríguez-Caballe
   </div>
 
 </div>
+
+# **2023**
 
 <!-- ===================================================== -->
 <!-- ==================== PAPER: Regional Statistics === -->
