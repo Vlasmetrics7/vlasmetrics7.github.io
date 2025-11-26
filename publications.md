@@ -1005,7 +1005,7 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
 <!-- ===================================================== -->
 
 <div class="pub-card">
-  <img src="/assets/images/ENECO17.png" class="pub-img">
+  <img src="/assets/images/ENECO19.png" class="pub-img">
   <div class="pub-info">
 
     <strong>Energy-growth long-term relationship under structural breaks. Evidence from Canada, 17 Latin American economies and the USA</strong><br>
