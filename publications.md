@@ -756,7 +756,7 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
       <div class="dropdown-container">
         <button class="btn btn--primary btn--sm"
                 onclick="toggleDropdown('wp-WAV21')">Working Papers ▼</button>
-        <div id="wp-IJF2023" class="dropdown-menu">
+        <div id="wp-WAV21" class="dropdown-menu">
           <a href="https://arxiv.org/abs/2110.04416" target="_blank">Arxiv 2021</a><br>
           <a href="https://repositorio.usp.br/bitstreams/6d4a500b-e34a-4616-a37d-99e4cb4ac9c8" target="_blank">USP WP 2021</a>
         </div>
@@ -768,7 +768,7 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
       <div class="dropdown-container">
         <button class="btn btn--secondary btn--sm"
                 onclick="toggleDropdown('media-WAV21')">Media ▼</button>
-        <div id="media-IJF2023" class="dropdown-menu">
+        <div id="media-WAV21" class="dropdown-menu">
           <a href="https://www.dropbox.com/scl/fi/zwzy0xsbxghl9ddvqy6d1/Aalborg.pdf?rlkey=5m4eqzato4sqye91baxz3b2j9&st=htnt221f&dl=0" target="_blank">Slides (PDF)</a><br>
         </div>
       </div>
@@ -792,6 +792,65 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
   pages={2150033},
   year={2022},
   publisher={World Scientific}
+}
+</code></pre>
+    </div>
+  </div>
+</div>
+
+<!-- ===================================================== -->
+<!-- ==================== PAPER  ECOSTAT ================== -->
+<!-- ===================================================== -->
+
+<div class="pub-card">
+
+  <img src="/assets/images/ECOSTAT21.png" class="pub-img">
+  <div class="pub-info">
+
+    <strong>Energy consumption and GDP: a panel data analysis with multi-level cross-sectional dependence</strong><br>
+     <u>Rodríguez-Caballero, C.V.</u>.<br>
+    <em>Econometrics and Statistics</em>, 2021.
+
+    <div class="btn-row">
+      <a href="javascript:toggleDiv('abs-ECOSTAT21')" class="btn btn--info btn--sm">ABS</a>
+
+      <div class="dropdown-container">
+        <button class="btn btn--primary btn--sm"
+                onclick="toggleDropdown('wp-ECOSTAT21')">Working Papers ▼</button>
+        <div id="wp-ECOSTAT21" class="dropdown-menu">
+          <a href="https://pure.au.dk/ws/portalfiles/portal/104266163/rp16_31.pdf" target="_blank">CREATES WP 2016</a><br>
+        </div>
+      </div>
+
+      <a href="https://doi.org/10.1016/j.ecosta.2020.11.002"
+         target="_blank" class="btn btn--success btn--sm">Published</a>
+
+      <div class="dropdown-container">
+        <button class="btn btn--secondary btn--sm"
+                onclick="toggleDropdown('media-ECOSTAT21')">Media ▼</button>
+        <div id="media-ECOSTAT21" class="dropdown-menu">
+          <a href="https://www.dropbox.com/scl/fi/zwzy0xsbxghl9ddvqy6d1/Aalborg.pdf?rlkey=5m4eqzato4sqye91baxz3b2j9&st=htnt221f&dl=0" target="_blank">Slides (PDF)</a><br>
+        </div>
+      </div>
+
+      <a href="javascript:toggleDiv('bib-ECOSTAT21')" class="btn btn--warning btn--sm">BIB</a>
+
+    </div>
+    
+    <div id="abs-ECOSTAT21" class="abstract-block" style="display:none;">
+      <strong>Abstract:</strong><br>
+      <em>A fractionally integrated panel data model with a multi-level cross-sectional dependence is proposed. Such dependence is driven by a factor structure that captures comovements between blocks of variables through top-level factors, and within these blocks by non-pervasive factors. The model can include stationary and non-stationary variables, which makes it flexible enough to analyze relevant dynamics that are frequently found in macroeconomic and financial panels. The estimation methodology is based on fractionally differenced block-by-block cross-sectional averages. Monte Carlo simulations suggest that the procedure performs well in typical samples sizes. This methodology is applied to study the long-run relationship between energy consumption and economic growth. The main results suggest that estimates in some empirical studies may have some positive biases caused by neglecting the presence non-pervasive cross-sectional dependence and long-range dependence processes.</em>
+    </div>
+
+    <div id="bib-ECOSTAT21" class="bib-block" style="display:none;">
+<pre><code>@article{rodriguez2022energy,
+  title={Energy consumption and GDP: a panel data analysis with multi-level cross-sectional dependence},
+  author={Rodr{\'\i}guez-Caballero, Carlos Vladimir},
+  journal={Econometrics and Statistics},
+  volume={23},
+  pages={128--146},
+  year={2022},
+  publisher={Elsevier}
 }
 </code></pre>
     </div>
