@@ -237,7 +237,7 @@ author = {Aránzazu de Juan and Pilar Poncela and C. Vladimir Rodríguez-Caballe
         <button class="btn btn--secondary btn--sm"
                 onclick="toggleDropdown('media-stress2024')">Media ▼</button>
         <div id="media-stress2024" class="dropdown-menu">
-          <a href="https://www.dropbox.com/.../ITAM-Seminar.pdf?dl=0" target="_blank">Slides (PDF)</a><br>
+          <a href="https://www.dropbox.com/scl/fi/7v2gcs5str3vd3yu00iga/ITAM-Seminar.pdf?rlkey=5o5fribeiuaoffypoh7as6zoy&st=5vnzahhy&dl=0" target="_blank">Slides (PDF)</a><br>
           <a href="https://youtu.be/hWsSMfApqE8" target="_blank">Video presentation</a><br>
           <a href="https://youtu.be/DGJhBLE6CpA" target="_blank">Seminar recording</a>
         </div>
