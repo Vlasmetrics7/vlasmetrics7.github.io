@@ -41,10 +41,16 @@ function toggleDiv(id) {
 
 /* IMAGEN */
 .pub-img {
-  width: 100%;
+  width: 260px;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
   border-radius: 6px;
   margin-bottom: 12px;
+  box-shadow: 0px 4px 12px rgba(0,0,0,0.10);
 }
+
 
 /* BOTONES */
 .btn-row {
