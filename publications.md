@@ -436,3 +436,58 @@ of modern economic growth and the Great Divergence in Eurasia.</em>
     </div>
   </div>
 </div>
+
+# **2022**
+
+<!-- ===================================================== -->
+<!-- ==================== PAPER: Empirical economics === -->
+<!-- ===================================================== -->
+
+<div class="pub-card">
+  <img src="/assets/images/EE22.png" class="pub-img">
+  <div class="pub-info">
+
+    <strong>Predicting cryptocurrency crash dates</strong><br>
+     <u>Rodríguez-Caballero, C.V.</u> & Villanueva-Dom{\'\i}nguez, Mauricio<br>
+    <em>Empirical Economics</em>, 2022.
+
+    <div class="btn-row">
+      <a href="javascript:toggleDiv('abs-EmEc2022')" class="btn btn--info btn--sm">ABS</a>
+
+        <a href="https://doi.org/10.1007/s00181-022-02229-1"
+         target="_blank" class="btn btn--success btn--sm">Published</a>
+
+      <a href="javascript:toggleDiv('bib-EmEc2022')" class="btn btn--warning btn--sm">BIB</a>
+    </div>
+
+    <div id="abs-EmEc2022" class="abstract-block" style="display:none;">
+      <strong>Abstract:</strong><br>
+      <em>Financial history shows that there is a deep-rooted human urge to make
+quick profits. Speculative bubbles are intrinsically involved in bitcoins and may precede
+striking crashes as that occurred on December 22, 2017. In this paper, we propose
+an econometric methodology to estimate the most likely crash date of the bitcoin
+bubble of 2017.We date the crash on December 13, 2017, just four days before reaching
+the maximum price. Nine days after, the bitcoin price fell 45% from its peaks.</em>
+    </div>
+
+    <div id="bib-EmEc2022" class="bib-block" style="display:none;">
+<pre><code>
+  @article{rodriguez2022predicting,
+  title={Predicting cryptocurrency crash dates},
+  author={Rodr{\'\i}guez-Caballero, C Vladimir and Villanueva-Dom{\'\i}nguez, Mauricio},
+  journal={Empirical Economics},
+  volume={63},
+  number={6},
+  pages={2855--2873},
+  year={2022},
+  publisher={Springer}
+}
+}
+}
+}
+}
+</code></pre>
+    </div>
+  </div>
+</div>
+
