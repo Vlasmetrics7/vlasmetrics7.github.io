@@ -583,3 +583,71 @@ of modern economic growth and the Great Divergence in Eurasia.</em>
   </div>
 </div>
 </div>
+
+<!-- ===================================================== -->
+<!-- ==================== PAPER: ECONOMETRICS === -->
+<!-- ===================================================== -->
+
+<div class="pub-card">
+  <img src="/assets/images/ECN21.png" class="pub-img">
+  <div class="pub-info">
+
+    <strong>Air Pollution and Mobility, What Carries COVID-19?</strong><br>
+    <u>Rodríguez-Caballero, C.V.</u> & Vera-Valdés, J. Eduardo.<br>
+    <em>Econometrics</em>, 2021.
+
+   
+    <div class="btn-row">
+      <a href="javascript:toggleDiv('abs-ECO2021')" class="btn btn--info btn--sm">ABS</a>
+
+      <div class="dropdown-container">
+        <button class="btn btn--primary btn--sm"
+                onclick="toggleDropdown('wp-ECO2021')">Working Papers ▼</button>
+        <div id="wp-IJF2023" class="dropdown-menu">
+          <a href="https://vbn.aau.dk/en/publications/air-pollution-and-mobility-what-carries-the-covid-19-death-toll" target="_blank">Aalborg WP 2020</a><br>
+          <a href="https://pure.au.dk/ws/portalfiles/portal/202904282/rp20_15.pdf" target="_blank">CREATES WP 2020</a>
+        </div>
+      </div>
+
+      <a href="https://doi.org/10.3390/econometrics9040037"
+         target="_blank" class="btn btn--success btn--sm">Published</a>
+
+      <div class="dropdown-container">
+        <button class="btn btn--secondary btn--sm"
+                onclick="toggleDropdown('media-ECO2021')">Media ▼</button>
+        <div id="media-ECO2021" class="dropdown-menu">
+          <a href="https://www.dropbox.com/scl/fi/zwzy0xsbxghl9ddvqy6d1/Aalborg.pdf?rlkey=5m4eqzato4sqye91baxz3b2j9&st=htnt221f&dl=0" target="_blank">Slides (PDF)</a><br>
+        </div>
+      </div>
+
+      <a href="javascript:toggleDiv('bib-ECO2021')" class="btn btn--warning btn--sm">BIB</a>
+
+    </div>
+    
+    <div id="abs-ECO2021" class="abstract-block" style="display:none;">
+      <strong>Abstract:</strong><br>
+      <em>This paper tests if air pollution serves as a carrier for SARS-CoV-2 by measuring the effect
+of daily exposure to air pollution on its spread by panel data models that incorporates a possible
+commonality between municipalities. We show that the contemporary exposure to particle matter is
+not the main driver behind the increasing number of cases and deaths in the Mexico City Metropolitan
+Area. Remarkably, we also find that the cross-dependence between municipalities in the Mexican
+region is highly correlated to public mobility, which plays the leading role behind the rhythm of
+contagion. Our findings are particularly revealing given that the Mexico City Metropolitan Area did
+not experience a decrease in air pollution during COVID-19 induced lockdowns.</em>
+    </div>
+
+    <div id="bib-ECO2021" class="bib-block" style="display:none;">
+<pre><code>@article{rodriguez2021air,
+  title={Air pollution and mobility, what carries COVID-19?},
+  author={Rodr{\'\i}guez-Caballero, C Vladimir and Vera-Vald{\'e}s, J Eduardo},
+  journal={Econometrics},
+  volume={9},
+  number={4},
+  pages={37},
+  year={2021},
+  publisher={MDPI}
+}
+</code></pre>
+    </div>
+  </div>
+</div>
