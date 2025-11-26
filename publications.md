@@ -217,4 +217,83 @@ Below is a categorized and selected list of my research output.
 
 </div>
 
-</div> <!-- FIN GRID -->
+</div> 
+
+
+<!-- ============================= -->
+<!-- ==== 2024 — PAPER 2 ======== -->
+<!-- ============================= -->
+
+<div class="pub-card">
+
+  <img src="/assets/images/EE24.png" class="pub-img">
+
+  <strong>The Factor Structure of Exchange Rates Volatility: Global and Intermittent Factors</strong><br>
+  Caporin, M., <u>Rodríguez-Caballero, C.V.</u>, & Ruiz, E.<br>
+  <em>Empirical Economics</em>, 2024.
+
+  <div class="btn-row">
+
+    <!-- ABS -->
+    <a href="javascript:toggleDiv('abs-exch2024')" class="btn btn--info btn--sm">
+      ABS
+    </a>
+
+    <!-- Working Paper directo (si tienes solo 1, cámbialo aquí) -->
+    <a href="https://arxiv.org/pdf/2401.12345" target="_blank"
+       class="btn btn--primary btn--sm">
+      Working Paper
+    </a>
+
+    <!-- Published -->
+    <a href="https://doi.org/10.1007/s00181-023-02542-3" target="_blank"
+       class="btn btn--success btn--sm">
+      Published
+    </a>
+
+    <!-- Media Dropdown (opcional) -->
+    <div class="dropdown-container">
+      <button class="btn btn--secondary btn--sm"
+              onclick="toggleDropdown('media-exch2024')">
+        Media ▼
+      </button>
+      <div id="media-exch2024" class="dropdown-menu" style="min-width:180px;">
+        <!-- Puedes añadir más -->
+        <a href="SLIDES_LINK_HERE" target="_blank">Slides (PDF)</a><br>
+        <!-- <a href="VIDEO_LINK_HERE" target="_blank">Video presentation</a><br> -->
+      </div>
+    </div>
+
+    <!-- BIB -->
+    <a href="javascript:toggleDiv('bib-exch2024')" class="btn btn--warning btn--sm">
+      BIB
+    </a>
+
+  </div>
+
+  <!-- Abstract -->
+  <div id="abs-exch2024" style="display:none; margin-top:12px;">
+    <strong>Abstract:</strong><br>
+    <em>
+    This paper studies the factor structure driving exchange rate volatility across  
+    major world currencies. We identify global and intermittent factors using  
+    high-frequency realized measures and a novel methodological approach  
+    combining… *(continúa tu texto completo aquí)*.
+    </em>
+  </div>
+
+  <!-- BibTeX -->
+  <div id="bib-exch2024" style="display:none; margin-top:12px;">
+<pre><code>@article{caporin2024factor,
+  title={The Factor Structure of Exchange Rates Volatility: Global and Intermittent Factors},
+  author={Caporin, Massimiliano and Rodr{\'\i}guez-Caballero, C Vladimir and Ruiz, Esther},
+  journal={Empirical Economics},
+  year={2024},
+  publisher={Springer},
+  doi={10.1007/s00181-023-02542-3}
+}
+</code></pre>
+  </div>
+
+</div>
+
