@@ -1731,7 +1731,9 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
 
 <hr style="margin:40px 0;">
 
-<h2 style="margin-top:40px; font-size:28px;">📣 Pop-Science Articles</h2>
+<!-- ===================================================== -->
+<!--<h2 style="margin-top:40px; font-size:28px;">📣 Pop-Science Articles</h2>-->
+<h2 id="pop-science" style="margin-top:40px; font-size:28px;">📣 Pop-Science Articles</h2>
 
 <div class="pub-card">
   <div class="pub-info">
@@ -1744,7 +1746,8 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
 </div>
 
 
-<h2 style="margin-top:50px; font-size:28px;">🛠️ Technical Notes</h2>
+<!--<h2 style="margin-top:50px; font-size:28px;">🛠️ Technical Notes</h2>-->
+<h2 id="technical-notes" style="margin-top:50px; font-size:28px;">🛠️ Technical Notes</h2>
 
 <div class="pub-card">
   <div class="pub-info">
@@ -1769,8 +1772,8 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
 </div>
 
 
-<h2 style="margin-top:50px; font-size:28px;">📚 Articles in Books</h2>
-
+<!--<h2 style="margin-top:50px; font-size:28px;">📚 Articles in Books</h2>-->
+<h2 id="book-articles" style="margin-top:50px; font-size:28px;">📚 Articles in Books</h2>
 <div class="pub-card">
   <div class="pub-info">
     <p><strong>[1] Efectos del Modelo de Atención de la Fundación Camino a Casa.</strong><br>
