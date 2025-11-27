@@ -338,24 +338,7 @@ function toggleSelected() {
 
   updateToggleAllLabel();
 }
-</script>
 
-<script>
-function updateYearCounts() {
-  document.querySelectorAll('.year-tile').forEach(btn => {
-    const yearId = btn.getAttribute('data-year');
-    const block = document.getElementById(yearId);
-
-    if (block) {
-      const entries = block.querySelectorAll('.pub-entry').length;
-      btn.querySelector('.count').textContent = `(${entries})`;
-    }
-  });
-}
-
-// Ejecutar al cargar la página
-document.addEventListener("DOMContentLoaded", updateYearCounts);
-</script>
 
 
 
@@ -1819,3 +1802,21 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
   </div>
 </div>
 </div>
+
+<script>
+function updateYearCounts() {
+  document.querySelectorAll('.year-tile').forEach(btn => {
+    const yearId = btn.getAttribute('data-year');
+    const block = document.getElementById(yearId);
+
+    if (block) {
+      const entries = block.querySelectorAll('.pub-entry').length;
+      btn.querySelector('.count').textContent = `(${entries})`;
+    }
+  });
+}
+
+// Ejecutar al cargar la página
+document.addEventListener("DOMContentLoaded", updateYearCounts);
+</script>
+
