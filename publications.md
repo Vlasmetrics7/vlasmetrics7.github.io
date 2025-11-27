@@ -298,20 +298,16 @@ function toggleAllYears() {
 
   const allOpen = Array.from(blocks).every(b => isVisible(b));
 
-  // Siempre cerramos Selected cuando usamos Expand All/Collapse All
   hideSelected();
 
   if (allOpen) {
-    // Todos abiertos → cerramos todos
     blocks.forEach(b => b.style.display = 'none');
   } else {
-    // No todos abiertos → abrimos todos
     blocks.forEach(b => b.style.display = 'block');
   }
 
   updateToggleAllLabel();
 }
-</script>
 
 function toggleSelected() {
   const sel = document.getElementById('selectedSection');
@@ -320,7 +316,6 @@ function toggleSelected() {
 
   const willShow = !isVisible(sel);
 
-  // Siempre cerramos los años cuando tocamos Selected
   hideAllYears();
 
   if (willShow) {
@@ -343,7 +338,6 @@ function scrollToBlock(id) {
   }
 }
 </script>
-
 
 
 Below is a categorized and selected list of my research output.
