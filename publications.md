@@ -3,6 +3,28 @@ layout: single
 title: "Publications"
 permalink: /publications/
 ---
+<script>
+// ----- GENERADOR AUTOMÁTICO DE NÚMERO DE PUBLICACIONES POR AÑO -----
+
+function updateYearCounts() {
+  const buttons = document.querySelectorAll('.year-tile');
+
+  buttons.forEach(btn => {
+    const yearId = btn.getAttribute('data-year');
+    const block = document.getElementById(yearId);
+    const countSpan = btn.querySelector('.count');
+
+    if (block && countSpan) {
+      const nPapers = block.querySelectorAll('.pub-card').length;
+      countSpan.textContent = `(${nPapers})`;
+    }
+  });
+}
+
+document.addEventListener("DOMContentLoaded", updateYearCounts);
+</script>
+
+
 
 <script>
 function toggleDiv(id) {
@@ -1803,27 +1825,7 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
 </div>
 </div>
 
-<script>
-// ----- GENERADOR AUTOMÁTICO DE NÚMERO DE PUBLICACIONES POR AÑO -----
 
-function updateYearCounts() {
-  const buttons = document.querySelectorAll('.year-tile');
-
-  buttons.forEach(btn => {
-    const yearId = btn.getAttribute('data-year');
-    const block = document.getElementById(yearId);
-    const countSpan = btn.querySelector('.count');
-
-    if (block && countSpan) {
-      const nPapers = block.querySelectorAll('.pub-card').length;
-      countSpan.textContent = `(${nPapers})`;
-    }
-  });
-}
-
-// Ejecutar cuando cargue la página
-document.addEventListener("DOMContentLoaded", updateYearCounts);
-</script>
 
 
 
