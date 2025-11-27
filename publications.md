@@ -665,14 +665,14 @@ Below is a categorized and selected list of my research output.
 
 
 <div class="year-grid">
-  <button class="year-tile year-2025" onclick="toggleYear('year2025')">2025 ▼</button>
-  <button class="year-tile year-2024" onclick="toggleYear('year2024')">2024 ▼</button>
-  <button class="year-tile year-2023" onclick="toggleYear('year2023')">2023 ▼</button>
-  <button class="year-tile year-2022" onclick="toggleYear('year2022')">2022 ▼</button>
-   <button class="year-tile year-2021" onclick="toggleYear('year2021')">2021 ▼</button>
-   <button class="year-tile year-2020" onclick="toggleYear('year2020')">2020 ▼</button>
-   <button class="year-tile year-2019" onclick="toggleYear('year2019')">2019 ▼</button>
-   <button class="year-tile year-2018" onclick="toggleYear('year2018')"><2018 ▼</button>
+  <button class="year-tile year-2025" onclick="toggleYear('year2025')">2025 (1) ▼</button>
+  <button class="year-tile year-2024" onclick="toggleYear('year2024')">2024 (2) ▼</button>
+  <button class="year-tile year-2023" onclick="toggleYear('year2023')">2023 (2) ▼</button>
+  <button class="year-tile year-2022" onclick="toggleYear('year2022')">2022 (2) ▼</button>
+   <button class="year-tile year-2021" onclick="toggleYear('year2021')">2021 (5) ▼</button>
+   <button class="year-tile year-2020" onclick="toggleYear('year2020')">2020 (1) ▼</button>
+   <button class="year-tile year-2019" onclick="toggleYear('year2019')">2019 (1) ▼</button>
+   <button class="year-tile year-2018" onclick="toggleYear('year2018')"><2018 (6) ▼</button>
 </div>
 
 <!--
