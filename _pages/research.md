@@ -5,15 +5,17 @@ permalink: /research/
 ---
 
 ## Research Interests
-
+My research program develops a coherent econometric framework that links multilevel factor structures, fractional integration, long-memory dynamics, and stress-scenario propagation across macroeconomic, financial, energy, and climate-related systems. Across applications (from growth-in-stress densities to electricity markets, exchange-rate volatility, long economic histories, labour participation, pollution, and credit dynamics), most of my research papers uncover persistent common components, heterogeneous cross-sectional structures, and non-negligible tail risks that shape macroeconomic adjustment and policy design.
+<br><br><br>
+My research fields are:
+<br>
 - Non-stationary time series analysis  
 - Modelling of persistence (long memory models)  
 - Panel data models and dynamic factor models  
 - Forecasting  
-- Energy economics  
-- Financial econometrics  
-
 ---
+You can find related publications in the [Publications](/publications/) and [Working Papers](/working-papers/) sections.
+<br><br>
 
 ## Research Areas
 
@@ -29,4 +31,4 @@ I analyze the effects of climate and energy variables (temperature, emissions, e
 
 My research includes volatility modeling, credit risk and CDS commonality, scenario analysis for economic growth under stress, and systemic risk quantification using multilevel factor structures.
 
-You can find related publications in the [Publications](/publications/) and [Working Papers](/working-papers/) sections.
+
