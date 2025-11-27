@@ -216,9 +216,7 @@ function toggleYear(id) {
 .toggle-all-button:hover {
   background: #c8d6ff;
   transform: translateY(-2px);
-}
-
-  
+} 
 </style>
 
 <script>
@@ -288,7 +286,6 @@ function toggleYear(id) {
 }
 </script>
 
-</script>
 
 <script>
 function toggleAllYears() {
