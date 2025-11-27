@@ -17,8 +17,24 @@ function toggleDiv(id) {
 
 <script>
 function toggleYear(id) {
-  var el = document.getElementById(id);
-  el.style.display = (el.style.display === "none" || el.style.display === "") ? "block" : "none";
+  const el = document.getElementById(id);
+  if (el.style.display === "none" || el.style.display === "") {
+    el.style.display = "block";
+    scrollToBlock(id);
+  } 
+  else {
+    el.style.display = "none";
+  }
+}
+</script>
+
+
+<script>
+function scrollToBlock(id) {
+  const el = document.getElementById(id);
+  if (el) {
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
 }
 </script>
 
