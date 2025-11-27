@@ -277,12 +277,16 @@ function toggleYear(id) {
   hideAllYears();
 
   // Si el año estaba cerrado, lo abrimos
-  if (willShow) {
+ if (willShow) {
     block.style.display = 'block';
+    scrollToBlock(id);  // ⭐ desplazamiento suave
+  } else {
+    block.style.display = 'none';
   }
 
   updateToggleAllLabel();
 }
+</script>
 
 function toggleAllYears() {
   const blocks = document.querySelectorAll('.year-block');
@@ -326,6 +330,16 @@ function toggleSelected() {
   updateToggleAllLabel();
 }
 </script>
+
+<script>
+function scrollToBlock(id) {
+  const el = document.getElementById(id);
+  if (el) {
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}
+</script>
+
 
 
 Below is a categorized and selected list of my research output.
