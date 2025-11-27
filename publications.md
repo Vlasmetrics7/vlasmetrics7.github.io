@@ -1763,6 +1763,7 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
     <em>Inter-American Development Bank Technical Notes, IDB-TN-2128.</em>  
     With Arnoldo López.  
     <br>Published in <strong>Regional Statistics</strong>.
+ <br>LINK: <a href="https://publications.iadb.org/publications/english/document/Assessing-the-Effect-of-Gender-Equality-before-the-Law-on-Female-Labor-Participation-and-GDP-per-capita-in-Central-America-Panama-and-the-Dominican-Republic.pdf" target="_blank">IDB Technical Note Series</a>
     </p>
   </div>
 </div>
@@ -1776,18 +1777,22 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
     En <em>Modelo de atención para recuperar y empoderar vidas: quince años uniendo esfuerzos.</em><br>
     Inter-American Development Bank (2023).  
     <br>With Arnoldo López Marmolejo & Emmanuel Mendez Rolón.
+    <br>LINK: <a href="https://policycommons.net/artifacts/3834781/modelo-de-atencion-para-recuperar-y-empoderar-vidas/4640619/" target="_blank">IDB Book</a>
     </p>
   </div>
 </div>
+
 
 <div class="pub-card">
   <div class="pub-info">
     <p><strong>[2] Approximation of Hate Detection Processes in Spanish and Other Non-Anglo-Saxon Languages.</strong><br>
     En <em>News Media and Hate Speech Promotion in Mediterranean Countries.</em><br>
     IGI Global (2023), 65–80.
+   <br>LINK: <a href="[https://policycommons.net/artifacts/3834781/modelo-de-atencion-para-recuperar-y-empoderar-vidas/4640619/](https://www.igi-global.com/chapter/approximation-of-hate-detection-processes-in-spanish-and-other-non-anglo-saxon-languages/326105)" target="_blank">Book</a>
     </p>
   </div>
 </div>
+
 
 <div class="pub-card">
   <div class="pub-info">
@@ -1796,6 +1801,7 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
     </p>
   </div>
 </div>
+
 
 <div class="pub-card">
   <div class="pub-info">
