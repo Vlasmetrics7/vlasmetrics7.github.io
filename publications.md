@@ -191,14 +191,33 @@ function toggleYear(id) {
 
 /* Colores suaves distintos por año (puedes cambiar) */
 .year-2025 { background: #e4ecff; }  /* azul pastel */
-.year-2024 { background: #e6f7e6; }  /* verde pastel */
-.year-2023 { background: #fff3cd; }  /* amarillo pastel */
-.year-2022 { background: #fce4ec; }  /* rosa pastel */
+.year-2024 { background: #e4ecff; }  
+.year-2023 { background: #e4ecff; }  
+.year-2022 { background: #e4ecff; }  
 
 /* Que el contenido desplegable no quede pegado a los bloques */
 .year-block {
   margin-bottom: 25px;
 }
+
+  .toggle-all-button {
+  display: inline-block;
+  padding: 10px 18px;
+  font-size: 16px;
+  font-weight: 600;
+  background: #dce4ff;
+  border: 1px solid #b0c2ff;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.toggle-all-button:hover {
+  background: #c8d6ff;
+  transform: translateY(-2px);
+}
+
   
 </style>
 
@@ -212,10 +231,32 @@ function toggleDropdown(id) {
     el.classList.add("show");
   }
 }
+
+function toggleAllYears() {
+  const blocks = document.querySelectorAll('.year-block');
+  const btn = document.getElementById('toggleAllBtn');
+
+  // ¿Están todos abiertos?
+  const allOpen = Array.from(blocks).every(block => block.style.display === "block");
+
+  if (allOpen) {
+    // Cerrar todos
+    blocks.forEach(block => block.style.display = "none");
+    btn.textContent = "Expand All";
+  } else {
+    // Abrir todos
+    blocks.forEach(block => block.style.display = "block");
+    btn.textContent = "Collapse All";
+  }
+}
 </script>
+
 
 Below is a categorized and selected list of my research output.
 ---
+<button id="toggleAllBtn" class="toggle-all-button" onclick="toggleAllYears()">
+  Expand All
+</button>
 
 <div class="year-grid">
   <button class="year-tile year-2025" onclick="toggleYear('year2025')">2025 ▼</button>
