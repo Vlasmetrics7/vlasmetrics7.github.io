@@ -232,45 +232,78 @@ function toggleDropdown(id) {
   }
 }
 
+function toggleYear(id) {
+  // Cerrar Selected si está abierto
+  const sel = document.getElementById('selectedSection');
+  if (sel) {
+    sel.style.display = "none";
+    const selBtn = document.getElementById('selectedBtn');
+    if (selBtn) selBtn.textContent = "Selected Publications ⭐";
+  }
+
+  // Cerrar otros años
+  document.querySelectorAll('.year-block').forEach(function(block) {
+    if (block.id !== id) {
+      block.style.display = "none";
+    }
+  });
+
+  // Alternar el seleccionado
+  var el = document.getElementById(id);
+  if (!el) return;
+
+  if (el.style.display === "none" || el.style.display === "") {
+    el.style.display = "block";
+  } else {
+    el.style.display = "none";
+  }
+
+  // Ajustar botón de Expand All
+  const blocks = document.querySelectorAll('.year-block');
+  const allOpen = Array.from(blocks).every(block => block.style.display === "block");
+  document.getElementById('toggleAllBtn').textContent = allOpen ? "Collapse All" : "Expand All";
+}
+
 function toggleAllYears() {
   const blocks = document.querySelectorAll('.year-block');
   const btn = document.getElementById('toggleAllBtn');
 
-  // ¿Están todos abiertos?
   const allOpen = Array.from(blocks).every(block => block.style.display === "block");
 
   if (allOpen) {
-    // Cerrar todos
     blocks.forEach(block => block.style.display = "none");
     btn.textContent = "Expand All";
   } else {
-    // Abrir todos
     blocks.forEach(block => block.style.display = "block");
     btn.textContent = "Collapse All";
   }
+
+  // También cerrar Selected
+  const sel = document.getElementById('selectedSection');
+  const selBtn = document.getElementById('selectedBtn');
+  if (sel && selBtn) {
+    sel.style.display = "none";
+    selBtn.textContent = "Selected Publications ⭐";
+  }
 }
-  function toggleSelected() {
+
+function toggleSelected() {
   const sel = document.getElementById('selectedSection');
   const btn = document.getElementById('selectedBtn');
 
-  // Alternar visibilidad
   if (sel.style.display === "none" || sel.style.display === "") {
     sel.style.display = "block";
     btn.textContent = "Hide Selected Publications";
+    // Cerrar los años
+    document.querySelectorAll('.year-block').forEach(block => block.style.display = "none");
+    document.getElementById('toggleAllBtn').textContent = "Expand All";
   } else {
     sel.style.display = "none";
     btn.textContent = "Selected Publications ⭐";
   }
-
-  // Al abrir Selected, se deben cerrar los años
-  if (sel.style.display === "block") {
-    document.querySelectorAll('.year-block').forEach(block => {
-      block.style.display = "none";
-    });
-    document.getElementById('toggleAllBtn').textContent = "Expand All";
-  }
 }
 </script>
+
 
 
 Below is a categorized and selected list of my research output.
