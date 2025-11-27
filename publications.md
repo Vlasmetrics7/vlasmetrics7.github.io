@@ -340,6 +340,24 @@ function toggleSelected() {
 }
 </script>
 
+<script>
+function updateYearCounts() {
+  document.querySelectorAll('.year-tile').forEach(btn => {
+    const yearId = btn.getAttribute('data-year');
+    const block = document.getElementById(yearId);
+
+    if (block) {
+      const entries = block.querySelectorAll('.pub-entry').length;
+      btn.querySelector('.count').textContent = `(${entries})`;
+    }
+  });
+}
+
+// Ejecutar al cargar la página
+document.addEventListener("DOMContentLoaded", updateYearCounts);
+</script>
+
+
 
 Below is a categorized and selected list of my research output.
 ---
@@ -677,15 +695,39 @@ Below is a categorized and selected list of my research output.
 </div>
 
 <div class="year-grid">
-  <button class="year-tile year-2025" onclick="toggleYear('year2025')">2025 <span class="count">(1)</span> ▼ </button>
-  <button class="year-tile year-2024" onclick="toggleYear('year2024')">2024 <span class="count">(1)</span> ▼</button>
-  <button class="year-tile year-2023" onclick="toggleYear('year2023')">2023 <span class="count">(1)</span> ▼</button>
-  <button class="year-tile year-2022" onclick="toggleYear('year2022')">2022 <span class="count">(1)</span> ▼</button>
-   <button class="year-tile year-2021" onclick="toggleYear('year2021')">2021 <span class="count">(1)</span> ▼</button>
-   <button class="year-tile year-2020" onclick="toggleYear('year2020')">2020 <span class="count">(1)</span> ▼</button>
-   <button class="year-tile year-2019" onclick="toggleYear('year2019')">2019 <span class="count">(1)</span> ▼</button>
-   <button class="year-tile year-2018" onclick="toggleYear('year2018')"><2018 <span class="count">(1)</span> ▼</button>
+  <button class="year-tile" data-year="year2025" onclick="toggleYear('year2025')">
+    2025 <span class="count"></span> ▼
+  </button>
+
+  <button class="year-tile" data-year="year2024" onclick="toggleYear('year2024')">
+    2024 <span class="count"></span> ▼
+  </button>
+
+  <button class="year-tile" data-year="year2023" onclick="toggleYear('year2023')">
+    2023 <span class="count"></span> ▼
+  </button>
+
+  <button class="year-tile" data-year="year2022" onclick="toggleYear('year2022')">
+    2022 <span class="count"></span> ▼
+  </button>
+
+  <button class="year-tile" data-year="year2021" onclick="toggleYear('year2021')">
+    2021 <span class="count"></span> ▼
+  </button>
+
+  <button class="year-tile" data-year="year2020" onclick="toggleYear('year2020')">
+    2020 <span class="count"></span> ▼
+  </button>
+
+  <button class="year-tile" data-year="year2019" onclick="toggleYear('year2019')">
+    2019 <span class="count"></span> ▼
+  </button>
+
+  <button class="year-tile" data-year="year2018" onclick="toggleYear('year2018')">
+    <2018 <span class="count"></span> ▼
+  </button>
 </div>
+
 
 <!--
 <div id="year2025" class="year-block" style="display:block;">
