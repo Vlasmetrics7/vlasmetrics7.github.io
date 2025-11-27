@@ -338,6 +338,8 @@ function scrollToBlock(id) {
 
 
 <p style="font-size: 20px; color:#444; margin-top:10px;">
+My research field is a unified econometric perspective on multilevel factor structures, long-memory dynamics, stress-testing frameworks, and macro-financial transmission mechanisms.
+  
   Explore my research output by year, or browse a curated selection of highlighted publications.
 </p>
 
