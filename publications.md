@@ -1752,6 +1752,7 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
     <em>Inter-American Development Bank Technical Notes, IDB-TN-1864.</em>  
     With Daniel Ventosa & Arnoldo López.  
     <br>Published in <strong>Economics Bulletin</strong>.
+      <br>LINK: <a href="https://publications.iadb.org/en/remittances-payments-through-central-banks-application-central-american-countries-exchange-rates" target="_blank">https://publications.iadb.org/en/remittances-payments-through-central-banks-application-central-american-countries-exchange-rates</a>
     </p>
   </div>
 </div>
