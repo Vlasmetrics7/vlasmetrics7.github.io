@@ -676,7 +676,6 @@ Below is a categorized and selected list of my research output.
 </div>
 </div>
 
-
 <div class="year-grid">
   <button class="year-tile year-2025" onclick="toggleYear('year2025')">2025 <span class="count">(1)</span> ▼ </button>
   <button class="year-tile year-2024" onclick="toggleYear('year2024')">2024 <span class="count">(1)</span> ▼</button>
