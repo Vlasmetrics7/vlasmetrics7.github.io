@@ -26,11 +26,8 @@ function toggleYear(id) {
     el.style.display = "none";
   }
 }
-</script>
 
-
-<script>
-function scrollToBlock(id) {
+  function scrollToBlock(id) {
   const el = document.getElementById(id);
   if (el) {
     el.scrollIntoView({ behavior: 'smooth', block: 'start' });
