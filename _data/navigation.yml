@@ -3,8 +3,21 @@ main:
     url: /about/
   - title: "Research"
     url: /research/
-  - title: "Publications"
-    url: /publications/
+- title: "Publications"
+  url: /publications/
+  children:
+    - title: "All Publications"
+      url: /publications/
+
+    - title: "Pop-Science Articles"
+      url: /publications/#pop-science
+
+    - title: "Technical Notes"
+      url: /publications/#technical-notes
+
+    - title: "Articles in Books"
+      url: /publications/#book-articles
+
   - title: "Working Papers"
     url: /working-papers/
   - title: "Teaching"
