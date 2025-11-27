@@ -505,57 +505,6 @@ function scrollToBlock(id) {
 </div>
 
 <!-- ===================================================== -->
-<!-- ==================== PAPER: ECONOMETRICS === -->
-<!-- ===================================================== -->
-
-<div class="pub-card">
-  <img src="/assets/images/ECN20.png" class="pub-img">
-  <div class="pub-info">
-    <strong>Long-lasting economic effects of pandemics: Evidence on growth and unemployment</strong><br>
-    <u>Rodríguez-Caballero, C.V.</u> & Vera-Valdés, J. Eduardo.<br>
-    <em>Econometrics</em>, 2020.
-    <div class="btn-row">
-      <a href="javascript:toggleDiv('abs-ECO2020')" class="btn btn--info btn--sm">ABS</a>
-      <div class="dropdown-container">
-        <button class="btn btn--primary btn--sm"
-                onclick="toggleDropdown('wp-ECO2020')">Working Papers ▼</button>
-        <div id="wp-ECO2020" class="dropdown-menu">
-          <a href="https://centrocovid.itam.mx/es/90/contenido/long-lasting-economic-effects-pandemics-evidence-united-kingdom" target="_blank">ITAM WP 2020</a><br>
-        </div>
-      </div>
-      <a href="https://doi.org/10.3390/econometrics8030037"
-         target="_blank" class="btn btn--success btn--sm">Published</a>
-      <div class="dropdown-container">
-        <button class="btn btn--secondary btn--sm"
-                onclick="toggleDropdown('media-ECO2020')">Media ▼</button>
-        <div id="media-ECO2020" class="dropdown-menu">
-          <a href="https://www.dropbox.com/scl/fi/zwzy0xsbxghl9ddvqy6d1/Aalborg.pdf?rlkey=5m4eqzato4sqye91baxz3b2j9&st=htnt221f&dl=0" target="_blank">Slides (PDF)</a><br>
-        </div>
-      </div>
-      <a href="javascript:toggleDiv('bib-ECO2020')" class="btn btn--warning btn--sm">BIB</a>
-    </div>
- <div id="abs-ECO2020" class="abstract-block" style="display:none;">
-      <strong>Abstract:</strong><br>
-      <em>This paper studies long economic series to assess the long-lasting effects of pandemics. We analyze if periods that cover pandemics have a change in trend and persistence in growth, and in level and persistence in unemployment. We find that there is an upward trend in the persistence level of growth across centuries. In particular, shocks originated by pandemics in recent times seem to have a permanent effect on growth. Moreover, our results show that the unemployment rate increases and becomes more persistent after a pandemic. In this regard, our findings support the design and implementation of timely counter-cyclical policies to soften the shock of the pandemic.
-.</em>
-    </div>
-    <div id="bib-ECO2020" class="bib-block" style="display:none;">
-<pre><code>@article{rodriguez2020long,
-  title={Long-lasting economic effects of pandemics: Evidence on growth and unemployment},
-  author={Rodr{\'\i}guez-Caballero, C Vladimir and Vera-Vald{\'e}s, J Eduardo},
-  journal={Econometrics},
-  volume={8},
-  number={3},
-  pages={37},
-  year={2020},
-  publisher={MDPI}
-}
-</code></pre>
-    </div>
-  </div>
-</div>
-
-<!-- ===================================================== -->
 <!-- ==================== PAPER: Journal of International Financial Markets, Institutions and Money. === -->
 <!-- ===================================================== -->
 
