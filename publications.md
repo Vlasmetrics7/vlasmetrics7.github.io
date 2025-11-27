@@ -288,6 +288,9 @@ function toggleYear(id) {
 }
 </script>
 
+</script>
+
+<script>
 function toggleAllYears() {
   const blocks = document.querySelectorAll('.year-block');
   const btn = document.getElementById('toggleAllBtn');
@@ -308,6 +311,7 @@ function toggleAllYears() {
 
   updateToggleAllLabel();
 }
+</script>
 
 function toggleSelected() {
   const sel = document.getElementById('selectedSection');
