@@ -159,6 +159,47 @@ function toggleYear(id) {
 .year-button:hover {
   background: #e6e6e6;
 } 
+
+  /* GRID DE AÑOS */
+.year-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 25px 0 20px 0;
+}
+
+/* BLOQUES DE AÑO (estilo D: bloques de color) */
+.year-tile {
+  min-width: 90px;
+  padding: 10px 16px;
+  border-radius: 10px;
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+  color: #222;
+  background: #e4ecff;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.10);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.year-tile:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 7px 16px rgba(0,0,0,0.18);
+}
+
+/* Colores suaves distintos por año (puedes cambiar) */
+.year-2025 { background: #e4ecff; }  /* azul pastel */
+.year-2024 { background: #e6f7e6; }  /* verde pastel */
+.year-2023 { background: #fff3cd; }  /* amarillo pastel */
+.year-2022 { background: #fce4ec; }  /* rosa pastel */
+
+/* Que el contenido desplegable no quede pegado a los bloques */
+.year-block {
+  margin-bottom: 25px;
+}
+  
 </style>
 
 <script>
@@ -174,14 +215,27 @@ function toggleDropdown(id) {
 </script>
 
 Below is a categorized and selected list of my research output.
-
 ---
 
+<div class="year-grid">
+  <button class="year-tile year-2025" onclick="toggleYear('year2025')">2025 ▼</button>
+  <button class="year-tile year-2024" onclick="toggleYear('year2024')">2024 ▼</button>
+  <button class="year-tile year-2023" onclick="toggleYear('year2023')">2023 ▼</button>
+  <button class="year-tile year-2022" onclick="toggleYear('year2022')">2022 ▼</button>
+   <button class="year-tile year-2021" onclick="toggleYear('year2021')">2021 ▼</button>
+   <button class="year-tile year-2020" onclick="toggleYear('year2020')">2020 ▼</button>
+   <button class="year-tile year-2019" onclick="toggleYear('year2019')">2019 ▼</button>
+   <button class="year-tile year-2018" onclick="toggleYear('year2018')"><2018 ▼</button>
+</div>
+
+<!--
+<div id="year2025" class="year-block" style="display:block;">
 <button class="year-button" onclick="toggleYear('year2025')">
   2025 ▼
 </button>
+<div id="year2025" style="display:none;"> -->
 
-<div id="year2025" style="display:none;">
+<div id="year2025" class="year-block" style="display:none;">
 <!-- ===================================================== -->
 <!-- ==================== PAPER 1 ========================= -->
 <!-- ===================================================== -->
@@ -232,12 +286,14 @@ author = {Aránzazu de Juan and Pilar Poncela and C. Vladimir Rodríguez-Caballe
 
 </div>
 
+<!--
 <button class="year-button" onclick="toggleYear('year2024')">
   2024 ▼
 </button>
 
-<div id="year2024" style="display:none;">
+<div id="year2024" style="display:none;">-->
 
+<div id="year2024" class="year-block" style="display:none;">
 <!-- ===================================================== -->
 <!-- ==================== PAPER 2 (JAE) ================== -->
 <!-- ===================================================== -->
@@ -355,12 +411,14 @@ author = {Aránzazu de Juan and Pilar Poncela and C. Vladimir Rodríguez-Caballe
 </div>
 </div>
 
+<!--
 <button class="year-button" onclick="toggleYear('year2023')">
   2023 ▼
 </button>
 
-<div id="year2023" style="display:none;">
+<div id="year2023" style="display:none;">-->
 
+<div id="year2023" class="year-block" style="display:none;">
 <!-- ===================================================== -->
 <!-- ==================== PAPER  IJF ================== -->
 <!-- ===================================================== -->
@@ -471,12 +529,14 @@ author = {Aránzazu de Juan and Pilar Poncela and C. Vladimir Rodríguez-Caballe
 
 </div>
 
+<!--
 <button class="year-button" onclick="toggleYear('year2022')">
   2022 ▼
 </button>
 
-<div id="year2022" style="display:none;">
+<div id="year2022" style="display:none;">-->
 
+<div id="year2022" class="year-block" style="display:none;">
 <!-- ===================================================== -->
 <!-- ==================== PAPER: Empirical economics === -->
 <!-- ===================================================== -->
@@ -579,12 +639,14 @@ of modern economic growth and the Great Divergence in Eurasia.</em>
 </div>
 </div>
 
+<!--
 <button class="year-button" onclick="toggleYear('year2021')">
   2021 ▼
 </button>
 
-<div id="year2021" style="display:none;">
+<div id="year2021" style="display:none;">-->
 
+<div id="year2021" class="year-block" style="display:none;">
 <!-- ===================================================== -->
 <!-- ==================== PAPER: ECONOMETRICS === -->
 <!-- ===================================================== -->
@@ -859,12 +921,14 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
 
 </div>
 
+<!--
 <button class="year-button" onclick="toggleYear('year2020')">
   2020 ▼
 </button>
 
-<div id="year2020" style="display:none;">
+<div id="year2020" style="display:none;">-->
 
+<div id="year2020" class="year-block" style="display:none;">
 <!-- ===================================================== -->
 <!-- ==================== PAPER: ECONOMETRICS === -->
 <!-- ===================================================== -->
@@ -927,12 +991,14 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
 </div>
 </div>
 
+<!--
 <button class="year-button" onclick="toggleYear('year2019')">
   2019 ▼
 </button>
 
-<div id="year2019" style="display:none;">
+<div id="year2019" style="display:none;">-->
 
+<div id="year2019" class="year-block" style="display:none;">
 <!-- ===================================================== -->
 <!-- ==================== PAPER: Journal of International Financial Markets, Institutions and Money. === -->
 <!-- ===================================================== -->
@@ -994,12 +1060,14 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
 
 </div>
 
+<!--
 <button class="year-button" onclick="toggleYear('year2018')">
   <2018 ▼
 </button>
 
-<div id="year2018" style="display:none;">
+<div id="year2018" style="display:none;">-->
 
+<div id="year2018" class="year-block" style="display:none;">
 <!-- ===================================================== -->
 <!-- ==================== PAPER: Energy Economics === -->
 <!-- ===================================================== -->
