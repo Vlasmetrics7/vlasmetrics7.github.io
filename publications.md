@@ -1801,7 +1801,7 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
     </div>
   </div>
 </div>
-</div>
+
 
 <script>
 function updateYearCounts() {
@@ -1819,4 +1819,4 @@ function updateYearCounts() {
 // Ejecutar al cargar la página
 document.addEventListener("DOMContentLoaded", updateYearCounts);
 </script>
-
+</div>
