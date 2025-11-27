@@ -337,7 +337,10 @@ function scrollToBlock(id) {
 </script>
 
 
-Below is a categorized and selected list of my research output.
+<p style="font-size: 20px; color:#444; margin-top:10px;">
+  Explore my research output by year, or browse a curated selection of highlighted publications.
+</p>
+
 ---
 <button id="toggleAllBtn" class="toggle-all-button" onclick="toggleAllYears()">
   Expand All
