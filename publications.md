@@ -1729,6 +1729,82 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
 </div>
 </div>
 
+<hr style="margin:40px 0;">
+
+<h2 style="margin-top:40px; font-size:28px;">📣 Pop-Science Articles</h2>
+
+<div class="pub-card">
+  <div class="pub-info">
+    <p><strong>[1] Rodríguez Caballero C.V. & Ventosa Santaulária, D. (2025).</strong>  
+    <em>El impacto indeleble de la regresión.</em>  
+    <strong>Miscelánea Matemática 81</strong>, 67–89.  
+    <br>DOI: <a href="https://doi.org/10.47234/MM.8104" target="_blank">https://doi.org/10.47234/MM.8104</a>
+    </p>
+  </div>
+</div>
+
+
+<h2 style="margin-top:50px; font-size:28px;">🛠️ Technical Notes</h2>
+
+<div class="pub-card">
+  <div class="pub-info">
+    <p><strong>[1] Remittances Payments through Central Banks: An Application to the Central American Countries Exchange Rates.</strong>  
+    <em>Inter-American Development Bank Technical Notes, IDB-TN-1864.</em>  
+    With Daniel Ventosa & Arnoldo López.  
+    <br>Published in <strong>Economics Bulletin</strong>.
+    </p>
+  </div>
+</div>
+
+<div class="pub-card">
+  <div class="pub-info">
+    <p><strong>[2] Assessing the Effect of Gender Equality before the Law on Female Labor Participation and GDP per capita in Central America, Panama, and the Dominican Republic.</strong>  
+    <em>Inter-American Development Bank Technical Notes, IDB-TN-2128.</em>  
+    With Arnoldo López.  
+    <br>Published in <strong>Regional Statistics</strong>.
+    </p>
+  </div>
+</div>
+
+
+<h2 style="margin-top:50px; font-size:28px;">📚 Articles in Books</h2>
+
+<div class="pub-card">
+  <div class="pub-info">
+    <p><strong>[1] Efectos del Modelo de Atención de la Fundación Camino a Casa.</strong><br>
+    En <em>Modelo de atención para recuperar y empoderar vidas: quince años uniendo esfuerzos.</em><br>
+    Inter-American Development Bank (2023).  
+    <br>With Arnoldo López Marmolejo & Emmanuel Mendez Rolón.
+    </p>
+  </div>
+</div>
+
+<div class="pub-card">
+  <div class="pub-info">
+    <p><strong>[2] Approximation of Hate Detection Processes in Spanish and Other Non-Anglo-Saxon Languages.</strong><br>
+    En <em>News Media and Hate Speech Promotion in Mediterranean Countries.</em><br>
+    IGI Global (2023), 65–80.
+    </p>
+  </div>
+</div>
+
+<div class="pub-card">
+  <div class="pub-info">
+    <p><strong>[3] Granger causalidad espuria en la relación de cartera total y vencida de créditos.</strong><br>
+    En <em>Administración de riesgos.</em> Volumen IV. 2013.
+    </p>
+  </div>
+</div>
+
+<div class="pub-card">
+  <div class="pub-info">
+    <p><strong>[4] La inferencia bayesiana en la administración de riesgos.</strong><br>
+    En <em>Administración de Riesgos.</em> Volumen II. 2010.
+    </p>
+  </div>
+</div>
+
+
 
 
 
