@@ -1789,7 +1789,7 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
   <!-- TECHNICAL NOTES (HIDDEN) -->
   <!-- ============================== -->
 
-  <button class="toggle-all-button" onclick="toggleExtra('techSection')" style="margin-top:10px;">
+  <button class="toggle-all-button" onclick="toggleExtra('techSection')" style="margin-top:5px;">
     Technical Notes ▼
   </button>
   <div id="techSection" style="display:none; margin-top:5px;">
@@ -1825,7 +1825,7 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
   <!-- ARTICLES IN BOOKS (HIDDEN) -->
   <!-- ============================== -->
 
-  <button class="toggle-all-button" onclick="toggleExtra('booksSection')" style="margin-top:10px;">
+  <button class="toggle-all-button" onclick="toggleExtra('booksSection')" style="margin-top:5px;">
    Articles in Books ▼
   </button>
   <div id="booksSection" style="display:none; margin-top:5px;">
@@ -1876,7 +1876,7 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
 <!-- BOOK (HIGH SCHOOL TEXTBOOK) -->
 <!-- ============================== -->
 
-<button class="toggle-all-button" onclick="toggleExtra('bookSection')" style="margin-top:10px;">
+<button class="toggle-all-button" onclick="toggleExtra('bookSection')" style="margin-top:5px;">
   Book ▼
 </button>
 
@@ -1905,7 +1905,7 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
 <!-- DISSERTATIONS -->
 <!-- ============================== -->
 
-<button class="toggle-all-button" onclick="toggleExtra('dissertationSection')" style="margin-top:10px;">
+<button class="toggle-all-button" onclick="toggleExtra('dissertationSection')" style="margin-top:5px;">
   🎓 Dissertations ▼
 </button>
 
