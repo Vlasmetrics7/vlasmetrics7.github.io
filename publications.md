@@ -446,11 +446,11 @@ Explore my research output by year, or browse a curated selection of highlighted
     Ergemen, Yunus Emre & <u>Rodríguez-Caballero, C.V.</u>.<br>
     <em>International Journal of Forecasting</em>, 2023.
     <div class="btn-row">
-      <a href="javascript:toggleDiv('abs-IJF2023')" class="btn btn--info btn--sm">ABS</a>
+      <a href="javascript:toggleDiv('abs-IJF2023B')" class="btn btn--info btn--sm">ABS</a>
       <div class="dropdown-container">
         <button class="btn btn--primary btn--sm"
-                onclick="toggleDropdown('wp-IJF2023')">Working Papers ▼</button>
-        <div id="wp-IJF2023" class="dropdown-menu">
+                onclick="toggleDropdown('wp-IJF2023B')">Working Papers ▼</button>
+        <div id="wp-IJF2023B" class="dropdown-menu">
           <a href="https://e-archivo.uc3m.es/bitstream/handle/10016/24614/ws201708.pdf?sequence=1" target="_blank">UC3M WP 2017</a><br>
           <a href="https://pure.au.dk/ws/portalfiles/portal/101846425/rp16_23.pdf" target="_blank">CREATES WP 2016</a>
         </div>
@@ -459,18 +459,18 @@ Explore my research output by year, or browse a curated selection of highlighted
          target="_blank" class="btn btn--success btn--sm">Published</a>
       <div class="dropdown-container">
         <button class="btn btn--secondary btn--sm"
-                onclick="toggleDropdown('media-IJF2023')">Media ▼</button>
-        <div id="media-IJF2023" class="dropdown-menu">
+                onclick="toggleDropdown('media-IJF2023B')">Media ▼</button>
+        <div id="media-IJF2023B" class="dropdown-menu">
           <a href="https://www.dropbox.com/scl/fi/zwzy0xsbxghl9ddvqy6d1/Aalborg.pdf?rlkey=5m4eqzato4sqye91baxz3b2j9&st=htnt221f&dl=0" target="_blank">Slides (PDF)</a><br>
         </div>
       </div>
-      <a href="javascript:toggleDiv('bib-IJF2023')" class="btn btn--warning btn--sm">BIB</a>
+      <a href="javascript:toggleDiv('bib-IJF2023B')" class="btn btn--warning btn--sm">BIB</a>
     </div>
-   <div id="abs-IJF2023" class="abstract-block" style="display:none;">
+   <div id="abs-IJF2023B" class="abstract-block" style="display:none;">
       <strong>Abstract:</strong><br>
       <em>A dynamic multi-level factor model with possible stochastic time trends is proposed. In the model, long-range dependence and short memory dynamics are allowed in global and local common factors as well as model innovations. Estimation of global and local common factors is performed on the prewhitened series, for which the prewhitening parameter is estimated semiparametrically from the cross-sectional and local average of the observable series. Employing canonical correlation analysis and a sequential least-squares algorithm on the prewhitened series, the resulting multi-level factor estimates have centered asymptotic normal distributions under certain rate conditions depending on the bandwidth and cross-section size. Asymptotic results for common components are also established. The selection of the number of global and local factors is discussed. The methodology is shown to lead to good small-sample performance via Monte Carlo simulations. The method is then applied to the Nord Pool electricity market for the analysis of price comovements among different regions within the power grid. The global factor is identified to be the system price, and fractional cointegration relationships are found between local prices and the system price, motivating a long-run equilibrium relationship. Two forecasting exercises are then discussed.</em>
     </div>
- <div id="bib-IJF2023" class="bib-block" style="display:none;">
+ <div id="bib-IJF2023B" class="bib-block" style="display:none;">
 <pre><code>@article{ergemen2023estimation,
   title={Estimation of a dynamic multi-level factor model with possible long-range dependence},
   author={Ergemen, Yunus Emre and Rodr{\'\i}guez-Caballero, C Vladimir},
@@ -497,10 +497,10 @@ Explore my research output by year, or browse a curated selection of highlighted
      <u>Rodríguez-Caballero, C.V.</u>.<br>
     <em>Econometrics and Statistics</em>, 2021.
     <div class="btn-row">
-      <a href="javascript:toggleDiv('abs-ECOSTAT21')" class="btn btn--info btn--sm">ABS</a>
+      <a href="javascript:toggleDiv('abs-ECOSTAT21B')" class="btn btn--info btn--sm">ABS</a>
       <div class="dropdown-container">
         <button class="btn btn--primary btn--sm"
-                onclick="toggleDropdown('wp-ECOSTAT21')">Working Papers ▼</button>
+                onclick="toggleDropdown('wp-ECOSTAT21B')">Working Papers ▼</button>
         <div id="wp-ECOSTAT21" class="dropdown-menu">
           <a href="https://pure.au.dk/ws/portalfiles/portal/104266163/rp16_31.pdf" target="_blank">CREATES WP 2016</a><br>
         </div>
@@ -509,18 +509,18 @@ Explore my research output by year, or browse a curated selection of highlighted
          target="_blank" class="btn btn--success btn--sm">Published</a>
       <div class="dropdown-container">
         <button class="btn btn--secondary btn--sm"
-                onclick="toggleDropdown('media-ECOSTAT21')">Media ▼</button>
-        <div id="media-ECOSTAT21" class="dropdown-menu">
+                onclick="toggleDropdown('media-ECOSTAT21B')">Media ▼</button>
+        <div id="media-ECOSTAT21B" class="dropdown-menu">
           <a href="https://www.dropbox.com/scl/fi/zwzy0xsbxghl9ddvqy6d1/Aalborg.pdf?rlkey=5m4eqzato4sqye91baxz3b2j9&st=htnt221f&dl=0" target="_blank">Slides (PDF)</a><br>
         </div>
       </div>
-      <a href="javascript:toggleDiv('bib-ECOSTAT21')" class="btn btn--warning btn--sm">BIB</a>
+      <a href="javascript:toggleDiv('bib-ECOSTAT21B')" class="btn btn--warning btn--sm">BIB</a>
     </div>
- <div id="abs-ECOSTAT21" class="abstract-block" style="display:none;">
+ <div id="abs-ECOSTAT21B" class="abstract-block" style="display:none;">
       <strong>Abstract:</strong><br>
       <em>A fractionally integrated panel data model with a multi-level cross-sectional dependence is proposed. Such dependence is driven by a factor structure that captures comovements between blocks of variables through top-level factors, and within these blocks by non-pervasive factors. The model can include stationary and non-stationary variables, which makes it flexible enough to analyze relevant dynamics that are frequently found in macroeconomic and financial panels. The estimation methodology is based on fractionally differenced block-by-block cross-sectional averages. Monte Carlo simulations suggest that the procedure performs well in typical samples sizes. This methodology is applied to study the long-run relationship between energy consumption and economic growth. The main results suggest that estimates in some empirical studies may have some positive biases caused by neglecting the presence non-pervasive cross-sectional dependence and long-range dependence processes.</em>
     </div>
-    <div id="bib-ECOSTAT21" class="bib-block" style="display:none;">
+    <div id="bib-ECOSTAT21B" class="bib-block" style="display:none;">
 <pre><code>@article{rodriguez2022energy,
   title={Energy consumption and GDP: a panel data analysis with multi-level cross-sectional dependence},
   author={Rodr{\'\i}guez-Caballero, Carlos Vladimir},
@@ -546,10 +546,10 @@ Explore my research output by year, or browse a curated selection of highlighted
     <u>Rodríguez-Caballero, C.V.</u> & Caporin, M.<br>
     <em>Journal of International Financial Markets, Institutions and Money</em>, 2019.
   <div class="btn-row">
-      <a href="javascript:toggleDiv('abs-FIN19')" class="btn btn--info btn--sm">ABS</a>
+      <a href="javascript:toggleDiv('abs-FIN19B')" class="btn btn--info btn--sm">ABS</a>
       <div class="dropdown-container">
         <button class="btn btn--primary btn--sm"
-                onclick="toggleDropdown('wp-FIN19')">Working Papers ▼</button>
+                onclick="toggleDropdown('wp-FIN19B')">Working Papers ▼</button>
         <div id="wp-FIN19" class="dropdown-menu">
           <a href="https://pure.au.dk/portal/en/publications/a-multilevel-factor-approach-for-the-analysis-of-cds-commonality--2/" target="_blank">CREATES WP 2019</a><br>
         </div>
@@ -558,18 +558,18 @@ Explore my research output by year, or browse a curated selection of highlighted
          target="_blank" class="btn btn--success btn--sm">Published</a>
       <div class="dropdown-container">
         <button class="btn btn--secondary btn--sm"
-                onclick="toggleDropdown('media-FIN19')">Media ▼</button>
-        <div id="media-FIN19" class="dropdown-menu">
+                onclick="toggleDropdown('media-FIN19B')">Media ▼</button>
+        <div id="media-FIN19B" class="dropdown-menu">
           <a href="https://www.dropbox.com/scl/fi/zwzy0xsbxghl9ddvqy6d1/Aalborg.pdf?rlkey=5m4eqzato4sqye91baxz3b2j9&st=htnt221f&dl=0" target="_blank">Slides (PDF)</a><br>
         </div>
       </div>
-      <a href="javascript:toggleDiv('bib-FIN19')" class="btn btn--warning btn--sm">BIB</a>
+      <a href="javascript:toggleDiv('bib-FIN19B')" class="btn btn--warning btn--sm">BIB</a>
     </div>
  <div id="abs-FIN19" class="abstract-block" style="display:none;">
       <strong>Abstract:</strong><br>
       <em>We introduce a novel multilevel factor model that allows for the presence of global and pervasive factors, local factors and semi-pervasive factors, and that captures common features across subsets of the variables of interest. We develop a model estimation procedure and provide a simulation experiment addressing the consistency of our proposal. We complete the analyses by showing how our multilevel model might explain on the commonality across CDS premiums at the global level. In this respect, we cluster countries by either the Debt/GDP ratio or by sovereign ratings. We show that multilevel models are easier to interpret compared with factor models based on principal component analysis. Finally, we experiment how the multilevel model might allow the recovery of the risk contribution due to the latent factors within a basket of country CDS.</em>
     </div>
-    <div id="bib-FIN19" class="bib-block" style="display:none;">
+    <div id="bib-FIN19B" class="bib-block" style="display:none;">
 <pre><code>@article{rodriguez2019multilevel,
   title={A multilevel factor approach for the analysis of CDS commonality and risk contribution},
   author={Rodr{\'\i}guez-Caballero, Carlos Vladimir and Caporin, Massimiliano},
@@ -595,16 +595,16 @@ Explore my research output by year, or browse a curated selection of highlighted
     <u>Rodríguez-Caballero, C.V.</u> & Ventosa-Santaularia, D.<br>
     <em>Energy Economics</em>, 2017.
   <div class="btn-row">
-      <a href="javascript:toggleDiv('abs-ENECO17')" class="btn btn--info btn--sm">ABS</a>
+      <a href="javascript:toggleDiv('abs-ENECO17B')" class="btn btn--info btn--sm">ABS</a>
         <a href="https://doi.org/10.1016/j.eneco.2016.10.026"
          target="_blank" class="btn btn--success btn--sm">Published</a>
-         <a href="javascript:toggleDiv('bib-ENECO17')" class="btn btn--warning btn--sm">BIB</a>
+         <a href="javascript:toggleDiv('bib-ENECO17B')" class="btn btn--warning btn--sm">BIB</a>
     </div>
-   <div id="abs-ENECO17" class="abstract-block" style="display:none;">
+   <div id="abs-ENECO17B" class="abstract-block" style="display:none;">
       <strong>Abstract:</strong><br>
       <em>We study the relationship and the causal link between Electric Power Consumption, EPC, and Gross Domestic Product, GDP (both per capita) for 17 countries in Latin America, Canada and the USA. Considering that many of these economies underwent important economic crises in the last three decades, we therefore model the EPC-GDP relationship through a VEC specification that allows for structural breaks, along with a robust testing methodology of causal links based on the concepts of weak and super exogeneity, rather than Granger causality. Evidence favorable to the growth hypothesis (EPC→GDP) is found for eight countries, while data of three countries support the conservation hypothesis (GDP→EPC). For three countries evidence is favorable to the neutrality hypothesis, but should be considered with caution. As for the remaining five countries the evidence is not conclusive.</em>
     </div>
-    <div id="bib-ENECO17" class="bib-block" style="display:none;">
+    <div id="bib-ENECO17B" class="bib-block" style="display:none;">
 <pre><code>@article{rodriguez2017energy,
   title={Energy-growth long-term relationship under structural breaks. Evidence from Canada, 17 Latin American economies and the USA},
   author={Rodr{\'\i}guez-Caballero, Carlos Vladimir and Ventosa-Santaul{\`a}ria, Daniel},
@@ -630,16 +630,16 @@ Explore my research output by year, or browse a curated selection of highlighted
     Ergemen, Yunus & Haldrup, Niels & <u>Rodríguez-Caballero, C.V.</u> <br>
     <em>Energy Economics</em>, 2016.
   <div class="btn-row">
-      <a href="javascript:toggleDiv('abs-ENECO16')" class="btn btn--info btn--sm">ABS</a>
+      <a href="javascript:toggleDiv('abs-ENECO16B')" class="btn btn--info btn--sm">ABS</a>
         <a href="https://doi.org/10.1016/j.eneco.2016.09.008"
          target="_blank" class="btn btn--success btn--sm">Published</a>
-         <a href="javascript:toggleDiv('bib-ENECO16')" class="btn btn--warning btn--sm">BIB</a>
+         <a href="javascript:toggleDiv('bib-ENECO16B')" class="btn btn--warning btn--sm">BIB</a>
     </div>
-  <div id="abs-ENECO16" class="abstract-block" style="display:none;">
+  <div id="abs-ENECO16B" class="abstract-block" style="display:none;">
       <strong>Abstract:</strong><br>
       <em>Equilibrium electricity spot prices and loads are often determined simultaneously in a day-ahead auction market for each hour of the subsequent day. Hence daily observations of hourly prices take the form of a periodic panel rather than a time series of hourly observations. We consider novel panel data approaches to analyse the time series and the cross-sectional dependence of hourly Nord Pool electricity spot prices and loads for the period 2000–2013. Hourly electricity prices and load data are characterized by strong serial long-range dependence in the time series dimension in addition to strong seasonal periodicity, and along the cross-sectional dimension, i.e. the hours of the day, there is a strong dependence which necessarily has to be accounted for in order to avoid spurious inference when focusing on the time series dependence alone. The long-range dependence is modelled in terms of a fractionally integrated panel data model and it is shown that both prices and loads consist of common factors with long memory and with loadings that vary considerably during the day. Due to the competitiveness of the Nordic power market the aggregate supply curve approximates well the marginal costs of the underlying production technology and because the demand is more volatile than the supply, equilibrium prices and loads are argued to identify the periodic power supply curve. The estimated supply elasticities are estimated from fractionally co-integrated relations and range between 0.5 and 1.17 with the largest elasticities being estimated during morning and evening peak hours.</em>
     </div>
- <div id="bib-ENECO16" class="bib-block" style="display:none;">
+ <div id="bib-ENECO16B" class="bib-block" style="display:none;">
 <pre><code>@article{ergemen2016common,
   title={Common long-range dependence in a panel of hourly Nord Pool electricity prices and loads},
   author={Ergemen, Yunus Emre and Haldrup, Niels and Rodr{\'\i}guez-Caballero, Carlos Vladimir},
