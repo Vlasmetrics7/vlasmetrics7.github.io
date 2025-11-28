@@ -1098,7 +1098,6 @@ of modern economic growth and the Great Divergence in Eurasia.</em>
     <strong>Air Pollution and Mobility, What Carries COVID-19?</strong><br>
     <u>Rodríguez-Caballero, C.V.</u> & Vera-Valdés, J. Eduardo.<br>
     <em>Econometrics</em>, 2021.
-
    
     <div class="btn-row">
       <a href="javascript:toggleDiv('abs-ECO2021')" class="btn btn--info btn--sm">ABS</a>
@@ -1115,13 +1114,14 @@ of modern economic growth and the Great Divergence in Eurasia.</em>
       <a href="https://doi.org/10.3390/econometrics9040037"
          target="_blank" class="btn btn--success btn--sm">Published</a>
 
+  <!--
       <div class="dropdown-container">
         <button class="btn btn--secondary btn--sm"
                 onclick="toggleDropdown('media-ECO2021')">Media ▼</button>
         <div id="media-ECO2021" class="dropdown-menu">
           <a href="https://www.dropbox.com/scl/fi/zwzy0xsbxghl9ddvqy6d1/Aalborg.pdf?rlkey=5m4eqzato4sqye91baxz3b2j9&st=htnt221f&dl=0" target="_blank">Slides (PDF)</a><br>
         </div>
-      </div>
+      </div> BSc Thesis -->
 
       <a href="javascript:toggleDiv('bib-ECO2021')" class="btn btn--warning btn--sm">BIB</a>
 
