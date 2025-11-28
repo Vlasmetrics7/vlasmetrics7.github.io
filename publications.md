@@ -394,11 +394,11 @@ Explore my research output by year, or browse a curated selection of highlighted
     Gonzalez-Rivera, G., <u>Rodríguez-Caballero, C.V.</u>, & Ruiz, E.<br>
     <em>Journal of Applied Econometrics</em>, 2024.
     <div class="btn-row">
-      <a href="javascript:toggleDiv('abs-stress2024')" class="btn btn--info btn--sm">ABS</a>
+      <a href="javascript:toggleDiv('abs-stress2024A')" class="btn btn--info btn--sm">ABS</a>
       <div class="dropdown-container">
         <button class="btn btn--primary btn--sm"
-                onclick="toggleDropdown('wp-stress2024')">Working Papers ▼</button>
-        <div id="wp-stress2024" class="dropdown-menu">
+                onclick="toggleDropdown('wp-stress2024A')">Working Papers ▼</button>
+        <div id="wp-stress2024A" class="dropdown-menu">
           <a href="https://pure.au.dk/ws/files/213093676/rp21_06.pdf" target="_blank">CREATES WP 2021</a><br>
           <a href="https://economics.ucr.edu/repec/ucr/wpaper/202314.pdf" target="_blank">UCR WP 2023</a>
         </div>
@@ -407,20 +407,20 @@ Explore my research output by year, or browse a curated selection of highlighted
          target="_blank" class="btn btn--success btn--sm">Published</a>
       <div class="dropdown-container">
         <button class="btn btn--secondary btn--sm"
-                onclick="toggleDropdown('media-stress2024')">Media ▼</button>
-        <div id="media-stress2024" class="dropdown-menu">
+                onclick="toggleDropdown('media-stress2024A')">Media ▼</button>
+        <div id="media-stress2024A" class="dropdown-menu">
           <a href="https://www.dropbox.com/scl/fi/7v2gcs5str3vd3yu00iga/ITAM-Seminar.pdf?rlkey=5o5fribeiuaoffypoh7as6zoy&st=5vnzahhy&dl=0" target="_blank">Slides (PDF)</a><br>
           <a href="https://youtu.be/hWsSMfApqE8" target="_blank">Video presentation</a><br>
           <a href="https://youtu.be/DGJhBLE6CpA" target="_blank">Seminar recording</a>
         </div>
       </div>
-      <a href="javascript:toggleDiv('bib-stress2024')" class="btn btn--warning btn--sm">BIB</a>
+      <a href="javascript:toggleDiv('bib-stress2024A')" class="btn btn--warning btn--sm">BIB</a>
     </div>
- <div id="abs-stress2024" class="abstract-block" style="display:none;">
+ <div id="abs-stress2024A" class="abstract-block" style="display:none;">
       <strong>Abstract:</strong><br>
       <em>We propose the construction of conditional growth densities under stressed factor scenarios to assess the level of exposure of an economy to small probability but potentially catastrophic economic and/or financial scenarios, which can be either domestic or international. The choice of severe yet plausible stress scenarios is based on the joint probability distribution of the underlying factors driving growth, which are extracted with a multilevel dynamic factor model (DFM) from a wide set of domestic/worldwide and/or macroeconomic/financial variables. All together, we provide a risk management tool that allows for a complete visualization of the dynamics of the growth densities under average scenarios and extreme scenarios. We calculate growth-in-stress (GiS) measures, defined as the 5% quantile of the stressed growth densities, and show that GiS is a useful and complementary tool to growth-at-risk (GaR) when policymakers wish to carry out a multidimensional scenario analysis. The unprecedented economic shock brought by the COVID-19 pandemic provides a natural environment to assess the vulnerability of US growth with the proposed methodology.</em>
     </div>
-    <div id="bib-stress2024" class="bib-block" style="display:none;">
+    <div id="bib-stress2024A" class="bib-block" style="display:none;">
 <pre><code>@article{gonzalez2024expecting,
   title={Expecting the unexpected: Stressed scenarios for economic growth},
   author={Gonz{\'a}lez-Rivera, Gloria and Rodr{\'\i}guez-Caballero, C Vladimir and Ruiz, Esther},
