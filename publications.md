@@ -1789,7 +1789,7 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
   <!-- TECHNICAL NOTES (HIDDEN) -->
   <!-- ============================== -->
 
-  <button class="toggle-all-button" onclick="toggleExtra('techSection')" style="margin-top:25px;">
+  <button class="toggle-all-button" onclick="toggleExtra('techSection')" style="margin-top:10px;">
     📝 Technical Notes ▼
   </button>
   <div id="techSection" style="display:none; margin-top:10px;">
@@ -1825,7 +1825,7 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
   <!-- ARTICLES IN BOOKS (HIDDEN) -->
   <!-- ============================== -->
 
-  <button class="toggle-all-button" onclick="toggleExtra('booksSection')" style="margin-top:25px;">
+  <button class="toggle-all-button" onclick="toggleExtra('booksSection')" style="margin-top:10px;">
     📚 Articles in Books ▼
   </button>
   <div id="booksSection" style="display:none; margin-top:10px;">
