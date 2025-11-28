@@ -669,7 +669,7 @@ Explore my research output by year, or browse a curated selection of highlighted
 <hr style="margin-top:5px; margin-bottom:25px; opacity:0.25;">
 <hr style="margin-top:5px; margin-bottom:25px; opacity:0.25;">
 
-<h2 style="margin-top:40px; font-size:28px;">More Sections</h2>
+<h2 style="margin-top:15px; font-size:28px;">More Sections</h2>
 
 <!--
 <div id="year2025" class="year-block" style="display:block;">
@@ -1769,7 +1769,7 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
   <button class="toggle-all-button" onclick="toggleExtra('popSection')">
     📰 Pop-Science Articles ▼
   </button>
-  <div id="popSection" style="display:none; margin-top:20px;">
+  <div id="popSection" style="display:none; margin-top:10px;">
     <div class="pub-card">
       <div class="pub-info">
         <p>
@@ -1792,7 +1792,7 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
   <button class="toggle-all-button" onclick="toggleExtra('techSection')" style="margin-top:25px;">
     📝 Technical Notes ▼
   </button>
-  <div id="techSection" style="display:none; margin-top:20px;">
+  <div id="techSection" style="display:none; margin-top:10px;">
     <div class="pub-card">
       <div class="pub-info">
         <p>
@@ -1828,7 +1828,7 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
   <button class="toggle-all-button" onclick="toggleExtra('booksSection')" style="margin-top:25px;">
     📚 Articles in Books ▼
   </button>
-  <div id="booksSection" style="display:none; margin-top:20px;">
+  <div id="booksSection" style="display:none; margin-top:10px;">
     <div class="pub-card">
       <div class="pub-info">
         <p>
