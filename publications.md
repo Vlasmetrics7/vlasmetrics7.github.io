@@ -336,6 +336,24 @@ function scrollToBlock(id) {
 }
 </script>
 
+<script>
+function toggleExtra(id) {
+  const block = document.getElementById(id);
+  if (!block) return;
+
+  // Toggle simple
+  block.style.display = (block.style.display === "none" || block.style.display === "") 
+      ? "block" 
+      : "none";
+
+  // Scroll suave cuando se abre
+  if (block.style.display === "block") {
+    block.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+}
+</script>
+
+
 
 <p style="font-size: 20px; color:#444; margin-top:10px;">
 My research field is a unified econometric perspective on multilevel factor structures, long-memory dynamics, stress-testing frameworks, and macro-financial transmission mechanisms.
@@ -637,6 +655,18 @@ Explore my research output by year, or browse a curated selection of highlighted
    <button class="year-tile year-2019" onclick="toggleYear('year2019')">2019 (1) ▼</button>
    <button class="year-tile year-2018" onclick="toggleYear('year2018')"><2018 (6) ▼</button>
 </div>
+
+<h2 style="margin-top:40px;">More Sections</h2>
+<button class="toggle-all-button" onclick="toggleExtra('popSection')">
+  Pop-Science Articles ▼
+</button>
+<button class="toggle-all-button" onclick="toggleExtra('techSection')">
+  Technical Notes ▼
+</button>
+<button class="toggle-all-button" onclick="toggleExtra('booksSection')">
+  Articles in Books ▼
+</button>
+
 
 <!--
 <div id="year2025" class="year-block" style="display:block;">
@@ -1733,7 +1763,9 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
 
 <!-- ===================================================== -->
 <!--<h2 style="margin-top:40px; font-size:28px;">📣 Pop-Science Articles</h2>-->
-<h2 id="pop-science" style="margin-top:40px; font-size:28px;">📣 Pop-Science Articles</h2>
+
+<div id="popSection" style="display:none; margin-top:25px;">
+<h2 id="pop-science" style="font-size:28px;">📰 Pop-Science Articles</h2>
 
 <div class="pub-card">
   <div class="pub-info">
@@ -1744,10 +1776,12 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
     </p>
   </div>
 </div>
+  </div>
 
 
 <!--<h2 style="margin-top:50px; font-size:28px;">🛠️ Technical Notes</h2>-->
-<h2 id="technical-notes" style="margin-top:50px; font-size:28px;">🛠️ Technical Notes</h2>
+<div id="techSection" style="display:none; margin-top:25px;">
+<h2 id="technical-notes" style="font-size:28px;">📝 Technical Notes</h2>
 
 <div class="pub-card">
   <div class="pub-info">
@@ -1770,10 +1804,12 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
     </p>
   </div>
 </div>
+</div>
 
 
 <!--<h2 style="margin-top:50px; font-size:28px;">📚 Articles in Books</h2>-->
-<h2 id="book-articles" style="margin-top:50px; font-size:28px;">📚 Articles in Books</h2>
+<div id="booksSection" style="display:none; margin-top:25px;">
+<h2 id="book-articles" style="font-size:28px;">📚 Articles in Books</h2>
 <div class="pub-card">
   <div class="pub-info">
     <p><strong>[1] Efectos del Modelo de Atención de la Fundación Camino a Casa.</strong><br>
@@ -1812,6 +1848,7 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
     En <em>Administración de Riesgos.</em> Volumen II. 2010.
     </p>
   </div>
+</div>
 </div>
 
 
