@@ -669,10 +669,6 @@ Explore my research output by year, or browse a curated selection of highlighted
 
 <h2 style="margin-top:40px;">More Sections</h2>
 
-<div class="more-sections-box">
-</div>
-
-
 <!--
 <div id="year2025" class="year-block" style="display:block;">
 <button class="year-button" onclick="toggleYear('year2025')">
