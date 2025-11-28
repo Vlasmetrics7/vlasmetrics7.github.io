@@ -1872,6 +1872,104 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
     </div>
   </div>
 
+<!-- ============================== -->
+<!-- BOOK (HIGH SCHOOL TEXTBOOK) -->
+<!-- ============================== -->
+
+<button class="toggle-all-button" onclick="toggleExtra('bookSection')" style="margin-top:10px;">
+  📘 Book ▼
+</button>
+
+<div id="bookSection" style="display:none; margin-top:20px;">
+
+  <div class="pub-card">
+    <div class="pub-info">
+      <p>
+        <strong>Matemáticas Financieras II</strong><br>
+        Editorial GAFRA, 2012.<br>
+        Authors: C. Vladimir Rodríguez Caballero & 
+        <a href="#" target="_blank">Omar Espin García</a>.<br>
+        ISBN: 978-607-8224-42-5.<br><br>
+
+        This high-school textbook was written to share financial mathematics tools with young students across Mexico.  
+        It is used nationally as part of the 6th-semester curriculum in the Mexican SEP system.<br><br>
+
+        <strong>Download:</strong> <a href="#" target="_blank">Full Book (PDF)</a>
+      </p>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+<!-- ============================== -->
+<!-- DISSERTATIONS -->
+<!-- ============================== -->
+
+<button class="toggle-all-button" onclick="toggleExtra('dissertationSection')" style="margin-top:10px;">
+  🎓 Dissertations ▼
+</button>
+
+<div id="dissertationSection" style="display:none; margin-top:20px;">
+
+
+  <!-- PhD Dissertation -->
+  <div class="pub-card">
+    <div class="pub-info">
+      <p>
+        <strong>PhD Dissertation:</strong><br>
+        <em>On Factor Analysis with Long-Range Dependence</em><br>
+        PhD in Economics & Business Economics (Econometrics).<br>
+        Aarhus University & CREATES.<br>
+        Supervisor: 
+        <a href="https://econ.au.dk/about/people/vip-item/artikel/niels-haldrup" target="_blank">
+          Niels Haldrup
+        </a><br><br>
+
+        <strong>Download:</strong> <a href="#" target="_blank">PhD Dissertation (PDF)</a>
+      </p>
+    </div>
+  </div>
+
+
+  <!-- MSc Thesis -->
+  <div class="pub-card">
+    <div class="pub-info">
+      <p>
+        <strong>MSc Thesis:</strong><br>
+        <em>Ensayos sobre la Granger Causalidad</em><br>
+        MSc in Econometrics — Universidad de Guanajuato.<br>
+        Supervisor: 
+        <a href="https://www.researchgate.net/profile/Daniel-Ventosa-Santaularia" target="_blank">
+          Daniel Ventosa Santaulària
+        </a><br><br>
+
+        <strong>Download:</strong> <a href="#" target="_blank">MSc Thesis (PDF)</a>
+      </p>
+    </div>
+  </div>
+
+
+  <!-- BSc Thesis -->
+  <div class="pub-card">
+    <div class="pub-info">
+      <p>
+        <strong>BSc Thesis:</strong><br>
+        <em>Inferencia Bayesiana para la volatilidad en el modelo Black & Scholes</em><br>
+        BSc in Actuarial Science — Facultad de Ciencias, UNAM.<br>
+        Supervisors:  
+        <a href="https://fciencias.unam.mx/directorio/2" target="_blank">Alejandro Villagrán Hernández</a> &  
+        <a href="https://www.stats.ox.ac.uk/people/ramses-mena/" target="_blank">Ramsés Humberto Mena Chávez</a><br><br>
+
+        <strong>Download:</strong> <a href="#" target="_blank">BSc Thesis (PDF)</a>
+      </p>
+    </div>
+  </div>
+
+</div>
+
 
 
 
