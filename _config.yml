@@ -35,9 +35,6 @@ collections:
 
 # NAVIGATION
 include: ["_pages"]
-# ACTIVAR dropdowns en navegación principal
-navigation:
-  dropdown: true
   
 # MARKDOWN
 markdown: kramdown
