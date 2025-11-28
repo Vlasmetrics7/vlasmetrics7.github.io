@@ -941,10 +941,7 @@ author = {Aránzazu de Juan and Pilar Poncela and C. Vladimir Rodríguez-Caballe
 
       <a href="javascript:toggleDiv('abs-regstat2023')" class="btn btn--info btn--sm">ABS</a>
 
-      <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4294479"
-         target="_blank" class="btn btn--primary btn--sm">Working Paper</a>
-
-      <a href="https://doi.org/10.1007/s00181-023-02542-3"
+            <a href="https://doi.org/10.15196/RS130301"
          target="_blank" class="btn btn--success btn--sm">Published</a>
 
       <a href="javascript:toggleDiv('bib-regstat2023')" class="btn btn--warning btn--sm">BIB</a>
@@ -1109,7 +1106,7 @@ of modern economic growth and the Great Divergence in Eurasia.</em>
       <div class="dropdown-container">
         <button class="btn btn--primary btn--sm"
                 onclick="toggleDropdown('wp-ECO2021')">Working Papers ▼</button>
-        <div id="wp-IJF2023" class="dropdown-menu">
+        <div id="wp-ECO2021" class="dropdown-menu">
           <a href="https://vbn.aau.dk/en/publications/air-pollution-and-mobility-what-carries-the-covid-19-death-toll" target="_blank">Aalborg WP 2020</a><br>
           <a href="https://pure.au.dk/ws/portalfiles/portal/202904282/rp20_15.pdf" target="_blank">CREATES WP 2020</a>
         </div>
