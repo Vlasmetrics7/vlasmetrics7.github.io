@@ -655,7 +655,6 @@ Explore my research output by year, or browse a curated selection of highlighted
 </div>
 </div>
 
-
 <div class="year-grid">
   <button class="year-tile year-2025" onclick="toggleYear('year2025')">2025 (1) ▼</button>
   <button class="year-tile year-2024" onclick="toggleYear('year2024')">2024 (2) ▼</button>
@@ -1761,7 +1760,7 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
 </div>
 </div>
 
-<hr style="margin:40px 0;">
+<!-- <hr style="margin:40px 0;">-->
 
 <!-- ============================== -->
 <!-- POP-SCIENCE ARTICLES (HIDDEN) -->
