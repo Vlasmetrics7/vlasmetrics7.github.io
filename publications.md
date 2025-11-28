@@ -501,7 +501,7 @@ Explore my research output by year, or browse a curated selection of highlighted
       <div class="dropdown-container">
         <button class="btn btn--primary btn--sm"
                 onclick="toggleDropdown('wp-ECOSTAT21B')">Working Papers ▼</button>
-        <div id="wp-ECOSTAT21" class="dropdown-menu">
+        <div id="wp-ECOSTAT21B" class="dropdown-menu">
           <a href="https://pure.au.dk/ws/portalfiles/portal/104266163/rp16_31.pdf" target="_blank">CREATES WP 2016</a><br>
         </div>
       </div>
@@ -550,7 +550,7 @@ Explore my research output by year, or browse a curated selection of highlighted
       <div class="dropdown-container">
         <button class="btn btn--primary btn--sm"
                 onclick="toggleDropdown('wp-FIN19B')">Working Papers ▼</button>
-        <div id="wp-FIN19" class="dropdown-menu">
+        <div id="wp-FIN19B" class="dropdown-menu">
           <a href="https://pure.au.dk/portal/en/publications/a-multilevel-factor-approach-for-the-analysis-of-cds-commonality--2/" target="_blank">CREATES WP 2019</a><br>
         </div>
       </div>
@@ -565,7 +565,7 @@ Explore my research output by year, or browse a curated selection of highlighted
       </div>
       <a href="javascript:toggleDiv('bib-FIN19B')" class="btn btn--warning btn--sm">BIB</a>
     </div>
- <div id="abs-FIN19" class="abstract-block" style="display:none;">
+ <div id="abs-FIN19B" class="abstract-block" style="display:none;">
       <strong>Abstract:</strong><br>
       <em>We introduce a novel multilevel factor model that allows for the presence of global and pervasive factors, local factors and semi-pervasive factors, and that captures common features across subsets of the variables of interest. We develop a model estimation procedure and provide a simulation experiment addressing the consistency of our proposal. We complete the analyses by showing how our multilevel model might explain on the commonality across CDS premiums at the global level. In this respect, we cluster countries by either the Debt/GDP ratio or by sovereign ratings. We show that multilevel models are easier to interpret compared with factor models based on principal component analysis. Finally, we experiment how the multilevel model might allow the recovery of the risk contribution due to the latent factors within a basket of country CDS.</em>
     </div>
@@ -1164,8 +1164,8 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
   <div class="pub-info">
 
     <strong>Remittances at record highs in Latin America: Time to revisit the Dutch disease</strong><br>
-    L{\'o}pez-Marmolejo, Arnoldo, <u>Rodríguez-Caballero, C.V.</u> & Ventosa-Santaularia, Daniel.<br>
-    <em>Econometrics</em>, 2021.
+    López-Marmolejo, Arnoldo, <u>Rodríguez-Caballero, C.V.</u> & Ventosa-Santaularia, Daniel.<br>
+    <em>Economics Bulletin</em>, 2021.
    
     <div class="btn-row">
       <a href="javascript:toggleDiv('abs-EB2021')" class="btn btn--info btn--sm">ABS</a>
@@ -1267,13 +1267,14 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
       <a href="https://doi.org/10.1142/S0219691321500338"
          target="_blank" class="btn btn--success btn--sm">Published</a>
 
+  <!-- BSc 
       <div class="dropdown-container">
         <button class="btn btn--secondary btn--sm"
                 onclick="toggleDropdown('media-WAV21')">Media ▼</button>
         <div id="media-WAV21" class="dropdown-menu">
           <a href="https://www.dropbox.com/scl/fi/zwzy0xsbxghl9ddvqy6d1/Aalborg.pdf?rlkey=5m4eqzato4sqye91baxz3b2j9&st=htnt221f&dl=0" target="_blank">Slides (PDF)</a><br>
         </div>
-      </div>
+      </div>Thesis -->
 
       <a href="javascript:toggleDiv('bib-WAV21')" class="btn btn--warning btn--sm">BIB</a>
 
@@ -1396,13 +1397,14 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
       <a href="https://doi.org/10.3390/econometrics8030037"
          target="_blank" class="btn btn--success btn--sm">Published</a>
 
+  <!-- BSc Thesis 
       <div class="dropdown-container">
         <button class="btn btn--secondary btn--sm"
                 onclick="toggleDropdown('media-ECO2020')">Media ▼</button>
         <div id="media-ECO2020" class="dropdown-menu">
           <a href="https://www.dropbox.com/scl/fi/zwzy0xsbxghl9ddvqy6d1/Aalborg.pdf?rlkey=5m4eqzato4sqye91baxz3b2j9&st=htnt221f&dl=0" target="_blank">Slides (PDF)</a><br>
         </div>
-      </div>
+      </div>-->
 
       <a href="javascript:toggleDiv('bib-ECO2020')" class="btn btn--warning btn--sm">BIB</a>
 
@@ -1645,29 +1647,29 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
     <em>Journal of Statistical and Econometric Methods</em>, 2014.
    
     <div class="btn-row">
-      <a href="javascript:toggleDiv('abs-2014')" class="btn btn--info btn--sm">ABS</a>
+      <a href="javascript:toggleDiv('abs-2014b')" class="btn btn--info btn--sm">ABS</a>
 
         <a href="http://www.scienpress.com/Upload/JSEM/Vol%203_1_7.pdf"
          target="_blank" class="btn btn--success btn--sm">Published</a>
 
-         <a href="javascript:toggleDiv('bib-2014')" class="btn btn--warning btn--sm">BIB</a>
+         <a href="javascript:toggleDiv('bib-2014b')" class="btn btn--warning btn--sm">BIB</a>
     </div>
     
-    <div id="abs-2014" class="abstract-block" style="display:none;">
+    <div id="abs-2014b" class="abstract-block" style="display:none;">
       <strong>Abstract:</strong><br>
       <em>The asymptotic behavior of the Granger-causality test under stochastic nonstationarity is studied. Our results confirm that the inference drawn from the test is not reliable when the series are integrated to the first order. In the presence of deterministic components, the test statistic diverges, eventually rejecting the null hypothesis, even when the series are independent of each other. Moreover, controlling for these deterministic elements (in the auxiliary regressions of the test) does not preclude the possibility of drawing erroneous inferences. Granger causality tests should not be used under stochastic nonstationarity, a property typically found in many macroeconomic variables.</em>
     </div>
 
-    <div id="bib-2014" class="bib-block" style="display:none;">
-<pre><code>@article{rodriguez2014bayesian,
-  title={Bayesian log-periodic model for financial crashes},
-  author={Rodr{\'\i}guez-Caballero, Carlos Vladimir and Knapik, Oskar},
-  journal={The European Physical Journal B},
-  volume={87},
-  number={10},
-  pages={228},
+    <div id="bib-2014b" class="bib-block" style="display:none;">
+<pre><code>@article{rodriguez2014granger,
+  title={Granger causality and unit roots},
+  author={Rodr{\'\i}guez-Caballero, Carlos Vladimir and Ventosa-Santaul{\`a}ria, Daniel},
+  journal={Journal of Statistical and Econometric Methods},
+  volume={3},
+  number={1},
+  pages={97--114},
   year={2014},
-  publisher={Springer}
+  publisher={Scienpress Ltd}
 }
 </code></pre>
     </div>
@@ -1687,20 +1689,20 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
     <em>Econometrics</em>, 2013.
    
     <div class="btn-row">
-      <a href="javascript:toggleDiv('abs-2014')" class="btn btn--info btn--sm">ABS</a>
+      <a href="javascript:toggleDiv('abs-2014c')" class="btn btn--info btn--sm">ABS</a>
 
         <a href="https://doi.org/10.3390/econometrics1030236"
          target="_blank" class="btn btn--success btn--sm">Published</a>
 
-         <a href="javascript:toggleDiv('bib-2014')" class="btn btn--warning btn--sm">BIB</a>
+         <a href="javascript:toggleDiv('bib-2014c')" class="btn btn--warning btn--sm">BIB</a>
     </div>
     
-    <div id="abs-2014" class="abstract-block" style="display:none;">
+    <div id="abs-2014c" class="abstract-block" style="display:none;">
       <strong>Abstract:</strong><br>
       <em>Polynomial specifications are widely used, not only in applied economics, but also in epidemiology, physics, political analysis and psychology, just to mention a few examples. In many cases, the data employed to estimate such specifications are time series that may exhibit stochastic nonstationary behavior. We extend Phillips’ results (Phillips, P. Understanding spurious regressions in econometrics. J. Econom. 1986, 33, 311–340.) by proving that an inference drawn from polynomial specifications, under stochastic nonstationarity, is misleading unless the variables cointegrate. We use a generalized polynomial specification as a vehicle to study its asymptotic and finite-sample properties. Our results, therefore, lead to a call to be cautious whenever practitioners estimate polynomial regressions.</em>
     </div>
 
-    <div id="bib-2014" class="bib-block" style="display:none;">
+    <div id="bib-2014c" class="bib-block" style="display:none;">
 <pre><code>@article{ventosa2013polynomial,
   title={Polynomial regressions and nonsense inference},
   author={Ventosa-Santaularia, Daniel and Rodr{\'\i}guez-Caballero, Carlos Vladimir},
@@ -1729,20 +1731,20 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
     <em>Cuadernos de economía</em>, 2013.
    
     <div class="btn-row">
-      <a href="javascript:toggleDiv('abs-2014')" class="btn btn--info btn--sm">ABS</a>
+      <a href="javascript:toggleDiv('abs-2014d')" class="btn btn--info btn--sm">ABS</a>
 
         <a href="http://www.scielo.org.co/scielo.php?pid=S0121-47722013000100007&script=sci_arttext"
          target="_blank" class="btn btn--success btn--sm">Published</a>
 
-         <a href="javascript:toggleDiv('bib-2014')" class="btn btn--warning btn--sm">BIB</a>
+         <a href="javascript:toggleDiv('bib-2014d')" class="btn btn--warning btn--sm">BIB</a>
     </div>
     
-    <div id="abs-2014" class="abstract-block" style="display:none;">
+    <div id="abs-2014d" class="abstract-block" style="display:none;">
       <strong>Abstract:</strong><br>
       <em>Las decisiones de otorgamiento de crédito son cruciales en la administración de riesgos. Las instituciones financieras han desarrollado y usado modelos de credit scoring para estandarizar y automatizar las decisiones de crédito, sin embargo, no es común encontrar metodologías para aplicarlos a clientes sin referencias crediticias, es decir clientes que carecen de información en los burós nacionales de crédito. En este trabajo se presenta una metodología general para construir un modelo sencillo de credit scoring enfocado justamente a esa población, la cual ha venido tomando una mayor importancia en el sector crediticio latinoamericano. Se usa la información sociodemográfica proveniente de las solicitudes de crédito de una pequeña institución bancaria mexicana para ejemplificar la metodología.</em>
     </div>
 
-    <div id="bib-2014" class="bib-block" style="display:none;">
+    <div id="bib-2014d" class="bib-block" style="display:none;">
 <pre><code>@article{espin2013metodologia,
   title={Metodolog{\'\i}a para un scoring de clientes sin referencias crediticias},
   author={Espin-Garc{\'\i}a, Osvaldo and Rodr{\'\i}guez-Caballero, Carlos Vladimir},
