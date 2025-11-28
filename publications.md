@@ -666,6 +666,9 @@ Explore my research output by year, or browse a curated selection of highlighted
    <button class="year-tile year-2018" onclick="toggleYear('year2018')"><2018 (6) ▼</button>
 </div>
 
+<hr style="margin-top:5px; margin-bottom:25px; opacity:0.25;">
+<hr style="margin-top:5px; margin-bottom:25px; opacity:0.25;">
+
 <h2 style="margin-top:40px; font-size:28px;">More Sections</h2>
 <hr style="margin-top:5px; margin-bottom:25px; opacity:0.25;">
 
@@ -1895,10 +1898,8 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
         </p>
       </div>
     </div>
-
   </div>
 
-</div> <!-- END OF more sections -->
 
 
 
