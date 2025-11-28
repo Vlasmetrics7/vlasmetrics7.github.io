@@ -409,7 +409,7 @@ Explore my research output by year, or browse a curated selection of highlighted
         <button class="btn btn--secondary btn--sm"
                 onclick="toggleDropdown('media-stress2024A')">Media ▼</button>
         <div id="media-stress2024A" class="dropdown-menu">
-          <a href="https://www.dropbox.com/scl/fi/7v2gcs5str3vd3yu00iga/ITAM-Seminar.pdf?rlkey=5o5fribeiuaoffypoh7as6zoy&st=5vnzahhy&dl=0" target="_blank">Slides (PDF)</a><br>
+          <a href="https://www.dropbox.com/scl/fi/azc912c9p5d8kakai4jjn/Bank-of-England-Seminar.pdf?rlkey=n1m9scgmaucavte775oc333wn&st=cxkwi2i2&dl=0" target="_blank">Slides (PDF)</a><br>
           <a href="https://youtu.be/hWsSMfApqE8" target="_blank">Video presentation</a><br>
           <a href="https://youtu.be/DGJhBLE6CpA" target="_blank">Seminar recording</a>
         </div>
@@ -461,7 +461,7 @@ Explore my research output by year, or browse a curated selection of highlighted
         <button class="btn btn--secondary btn--sm"
                 onclick="toggleDropdown('media-IJF2023B')">Media ▼</button>
         <div id="media-IJF2023B" class="dropdown-menu">
-          <a href="https://www.dropbox.com/scl/fi/zwzy0xsbxghl9ddvqy6d1/Aalborg.pdf?rlkey=5m4eqzato4sqye91baxz3b2j9&st=htnt221f&dl=0" target="_blank">Slides (PDF)</a><br>
+          <a href="https://www.dropbox.com/scl/fi/gwbjjg720ekrbzszwl4hh/NAF-2022.pdf?rlkey=v4au7j6ci12b6qwe6c9lvwu5x&st=9e4qz3jg&dl=0" target="_blank">Slides (PDF)</a><br>
         </div>
       </div>
       <a href="javascript:toggleDiv('bib-IJF2023B')" class="btn btn--warning btn--sm">BIB</a>
@@ -771,7 +771,7 @@ author = {Aránzazu de Juan and Pilar Poncela and C. Vladimir Rodríguez-Caballe
         <button class="btn btn--secondary btn--sm"
                 onclick="toggleDropdown('media-stress2024')">Media ▼</button>
         <div id="media-stress2024" class="dropdown-menu">
-          <a href="https://www.dropbox.com/scl/fi/7v2gcs5str3vd3yu00iga/ITAM-Seminar.pdf?rlkey=5o5fribeiuaoffypoh7as6zoy&st=5vnzahhy&dl=0" target="_blank">Slides (PDF)</a><br>
+          <a href="https://www.dropbox.com/scl/fi/azc912c9p5d8kakai4jjn/Bank-of-England-Seminar.pdf?rlkey=n1m9scgmaucavte775oc333wn&st=cxkwi2i2&dl=0" target="_blank">Slides (PDF)</a><br>
           <a href="https://youtu.be/hWsSMfApqE8" target="_blank">Video presentation</a><br>
           <a href="https://youtu.be/DGJhBLE6CpA" target="_blank">Seminar recording</a>
         </div>
@@ -894,7 +894,7 @@ author = {Aránzazu de Juan and Pilar Poncela and C. Vladimir Rodríguez-Caballe
         <button class="btn btn--secondary btn--sm"
                 onclick="toggleDropdown('media-IJF2023')">Media ▼</button>
         <div id="media-IJF2023" class="dropdown-menu">
-          <a href="https://www.dropbox.com/scl/fi/zwzy0xsbxghl9ddvqy6d1/Aalborg.pdf?rlkey=5m4eqzato4sqye91baxz3b2j9&st=htnt221f&dl=0" target="_blank">Slides (PDF)</a><br>
+          <a href="https://www.dropbox.com/scl/fi/gwbjjg720ekrbzszwl4hh/NAF-2022.pdf?rlkey=v4au7j6ci12b6qwe6c9lvwu5x&st=9e4qz3jg&dl=0" target="_blank">Slides (PDF)</a><br>
         </div>
       </div>
 
@@ -994,6 +994,14 @@ author = {Aránzazu de Juan and Pilar Poncela and C. Vladimir Rodríguez-Caballe
 
         <a href="https://doi.org/10.1007/s00181-022-02229-1"
          target="_blank" class="btn btn--success btn--sm">Published</a>
+
+          <div class="dropdown-container">
+        <button class="btn btn--secondary btn--sm"
+                onclick="toggleDropdown('media-EmEc2022')">Media ▼</button>
+        <div id="media-EmEc2022" class="dropdown-menu">
+          <a href="https://www.dropbox.com/scl/fi/cm83ekdn1qqbjoielng3o/Business-Week.pdf?rlkey=d1z09z26twwrax0bp7h7hx0ig&st=sn1qejuj&dl=0" target="_blank">Slides (PDF)</a><br>
+        </div>
+      </div>
 
       <a href="javascript:toggleDiv('bib-EmEc2022')" class="btn btn--warning btn--sm">BIB</a>
     </div>
@@ -1114,14 +1122,13 @@ of modern economic growth and the Great Divergence in Eurasia.</em>
       <a href="https://doi.org/10.3390/econometrics9040037"
          target="_blank" class="btn btn--success btn--sm">Published</a>
 
-  <!--
       <div class="dropdown-container">
         <button class="btn btn--secondary btn--sm"
                 onclick="toggleDropdown('media-ECO2021')">Media ▼</button>
         <div id="media-ECO2021" class="dropdown-menu">
-          <a href="https://www.dropbox.com/scl/fi/zwzy0xsbxghl9ddvqy6d1/Aalborg.pdf?rlkey=5m4eqzato4sqye91baxz3b2j9&st=htnt221f&dl=0" target="_blank">Slides (PDF)</a><br>
+          <a href="https://www.dropbox.com/scl/fi/6p59nn6yidw272ibz1z1z/IPDC.pdf?rlkey=q026h1zl1qsysj76renew9bx4&st=hcep76t4&dl=0" target="_blank">Slides (PDF)</a><br>
         </div>
-      </div> BSc Thesis -->
+      </div> 
 
       <a href="javascript:toggleDiv('bib-ECO2021')" class="btn btn--warning btn--sm">BIB</a>
 
@@ -1267,14 +1274,13 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
       <a href="https://doi.org/10.1142/S0219691321500338"
          target="_blank" class="btn btn--success btn--sm">Published</a>
 
-  <!-- BSc 
       <div class="dropdown-container">
         <button class="btn btn--secondary btn--sm"
                 onclick="toggleDropdown('media-WAV21')">Media ▼</button>
         <div id="media-WAV21" class="dropdown-menu">
-          <a href="https://www.dropbox.com/scl/fi/zwzy0xsbxghl9ddvqy6d1/Aalborg.pdf?rlkey=5m4eqzato4sqye91baxz3b2j9&st=htnt221f&dl=0" target="_blank">Slides (PDF)</a><br>
+          <a href="https://www.dropbox.com/scl/fi/ycgx41xqn6d9d0cay1ta4/Symposium-on-Forecasting.pdf?rlkey=tf0vfnqmaktgs7nngb0a7xow8&st=mungl78r&dl=0" target="_blank">Slides (PDF)</a><br>
         </div>
-      </div>Thesis -->
+      </div>
 
       <a href="javascript:toggleDiv('bib-WAV21')" class="btn btn--warning btn--sm">BIB</a>
 
