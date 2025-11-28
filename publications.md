@@ -217,6 +217,15 @@ function toggleYear(id) {
   background: #c8d6ff;
   transform: translateY(-2px);
 } 
+
+  .more-sections-box {
+  background: #fafbff;
+  padding: 15px 20px;
+  border-radius: 10px;
+  box-shadow: 0px 2px 8px rgba(0,0,0,0.05);
+  margin-top: 40px;
+}
+  
 </style>
 
 <script>
@@ -656,16 +665,22 @@ Explore my research output by year, or browse a curated selection of highlighted
    <button class="year-tile year-2018" onclick="toggleYear('year2018')"><2018 (6) ▼</button>
 </div>
 
-<h2 style="margin-top:40px;">More Sections</h2>
-<button class="toggle-all-button" onclick="toggleExtra('popSection')">
-  Pop-Science Articles ▼
-</button>
-<button class="toggle-all-button" onclick="toggleExtra('techSection')">
-  Technical Notes ▼
-</button>
-<button class="toggle-all-button" onclick="toggleExtra('booksSection')">
-  Articles in Books ▼
-</button>
+<div class="more-sections-box">
+  <h2>More Sections</h2>
+
+  <button class="toggle-all-button" onclick="toggleExtra('popSection')">
+    Pop-Science Articles ▼
+  </button>
+
+  <button class="toggle-all-button" onclick="toggleExtra('techSection')">
+    Technical Notes ▼
+  </button>
+
+  <button class="toggle-all-button" onclick="toggleExtra('booksSection')">
+    Articles in Books ▼
+  </button>
+</div>
+
 
 
 <!--
@@ -1764,8 +1779,9 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
 <!-- ===================================================== -->
 <!--<h2 style="margin-top:40px; font-size:28px;">📣 Pop-Science Articles</h2>-->
 
-<div id="popSection" style="display:none; margin-top:25px;">
-<h2 id="pop-science" style="font-size:28px;">📰 Pop-Science Articles</h2>
+<button class="toggle-all-button" onclick="toggleExtra('popSection')">
+  📰 Pop-Science Articles ▼
+</button>
 
 <div class="pub-card">
   <div class="pub-info">
@@ -1780,8 +1796,9 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
 
 
 <!--<h2 style="margin-top:50px; font-size:28px;">🛠️ Technical Notes</h2>-->
-<div id="techSection" style="display:none; margin-top:25px;">
-<h2 id="technical-notes" style="font-size:28px;">📝 Technical Notes</h2>
+<button class="toggle-all-button" onclick="toggleExtra('techSection')">
+  📝 Technical Notes ▼
+</button>
 
 <div class="pub-card">
   <div class="pub-info">
@@ -1808,8 +1825,9 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
 
 
 <!--<h2 style="margin-top:50px; font-size:28px;">📚 Articles in Books</h2>-->
-<div id="booksSection" style="display:none; margin-top:25px;">
-<h2 id="book-articles" style="font-size:28px;">📚 Articles in Books</h2>
+<button class="toggle-all-button" onclick="toggleExtra('booksSection')">
+  📚 Articles in Books ▼
+</button>
 <div class="pub-card">
   <div class="pub-info">
     <p><strong>[1] Efectos del Modelo de Atención de la Fundación Camino a Casa.</strong><br>
