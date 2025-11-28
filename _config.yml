@@ -1,12 +1,15 @@
 # SITE SETTINGS
-title: "Vladimir Rodríguez Caballero"
-name: "Vladimir Rodríguez Caballero"
+title: "C. Vladimir Rodríguez Caballero"
+name: "C. Vladimir Rodríguez Caballero"
 description: "Researcher in applied econometrics, time series, climate economics and financial econometrics."
 url: "https://vlasmetrics7.github.io"
 
 # THEME
 theme: null
 remote_theme: "mmistakes/minimal-mistakes@4.24.0"
+# Enable dropdown menus in the top navigation
+minimal_mistakes_skin: default
+
 
 # AUTHOR
 author:
@@ -32,7 +35,10 @@ collections:
 
 # NAVIGATION
 include: ["_pages"]
-
+# ACTIVAR dropdowns en navegación principal
+navigation:
+  dropdown: true
+  
 # MARKDOWN
 markdown: kramdown
 
