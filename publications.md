@@ -1760,129 +1760,146 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
 </div>
 </div>
 
-<!-- <hr style="margin:40px 0;">-->
+<!-- ===================================== -->
+<!-- HORIZONTAL LINE BEFORE MORE SECTIONS -->
+<!-- ===================================== -->
 
-<!-- ============================== -->
-<!-- POP-SCIENCE ARTICLES (HIDDEN) -->
-<!-- ============================== -->
+<hr style="margin:40px 0;">
 
-<button class="toggle-all-button" onclick="toggleExtra('popSection')">
-  📰 Pop-Science Articles ▼
-</button>
 
-<div id="popSection" style="display:none; margin-top:20px;">
+<!-- ===================================== -->
+<!-- MORE SECTIONS CONTAINER -->
+<!-- ===================================== -->
+<div style="margin-top:20px;">
 
-  <div class="pub-card">
-    <div class="pub-info">
-      <p>
-        <strong>[1] Rodríguez Caballero C.V. & Ventosa Santaulária, D. (2025).</strong><br>
-        <em>El impacto indeleble de la regresión.</em><br>
-        <strong>Miscelánea Matemática 81</strong>, 67–89.<br>
-        DOI: <a href="https://doi.org/10.47234/MM.8104" target="_blank">https://doi.org/10.47234/MM.8104</a>
-      </p>
+
+  <!-- ============================== -->
+  <!-- POP-SCIENCE ARTICLES (HIDDEN) -->
+  <!-- ============================== -->
+
+  <button class="toggle-all-button" onclick="toggleExtra('popSection')">
+    📰 Pop-Science Articles ▼
+  </button>
+
+  <div id="popSection" style="display:none; margin-top:20px;">
+    <div class="pub-card">
+      <div class="pub-info">
+        <p>
+          <strong>[1] Rodríguez Caballero C.V. & Ventosa Santaulária, D. (2025).</strong><br>
+          <em>El impacto indeleble de la regresión.</em><br>
+          <strong>Miscelánea Matemática 81</strong>, 67–89.<br>
+          DOI:
+          <a href="https://doi.org/10.47234/MM.8104" target="_blank">
+            https://doi.org/10.47234/MM.8104
+          </a>
+        </p>
+      </div>
     </div>
   </div>
 
-</div>
 
 
-<!-- ============================== -->
-<!-- TECHNICAL NOTES (HIDDEN) -->
-<!-- ============================== -->
+  <!-- ============================== -->
+  <!-- TECHNICAL NOTES (HIDDEN) -->
+  <!-- ============================== -->
 
-<button class="toggle-all-button" onclick="toggleExtra('techSection')">
-  📝 Technical Notes ▼
-</button>
+  <button class="toggle-all-button" onclick="toggleExtra('techSection')" style="margin-top:25px;">
+    📝 Technical Notes ▼
+  </button>
 
-<div id="techSection" style="display:none; margin-top:20px;">
+  <div id="techSection" style="display:none; margin-top:20px;">
 
-  <div class="pub-card">
-    <div class="pub-info">
-      <p>
-        <strong>[1] Remittances Payments through Central Banks: An Application to the Central American Countries Exchange Rates.</strong><br>
-        <em>Inter-American Development Bank Technical Notes, IDB-TN-1864.</em><br>
-        With Daniel Ventosa & Arnoldo López.<br>
-        Published in <strong>Economics Bulletin</strong>.<br>
-        LINK:
-        <a href="https://publications.iadb.org/en/remittances-payments-through-central-banks-application-central-american-countries-exchange-rates"
-           target="_blank">IDB Technical Note Series</a>
-      </p>
+    <div class="pub-card">
+      <div class="pub-info">
+        <p>
+          <strong>[1] Remittances Payments through Central Banks: An Application to the Central American Countries Exchange Rates.</strong><br>
+          <em>Inter-American Development Bank Technical Notes, IDB-TN-1864.</em><br>
+          With Daniel Ventosa & Arnoldo López.<br>
+          Published in <strong>Economics Bulletin</strong>.<br>
+          LINK:
+          <a href="https://publications.iadb.org/en/remittances-payments-through-central-banks-application-central-american-countries-exchange-rates"
+             target="_blank">IDB Technical Note Series</a>
+        </p>
+      </div>
     </div>
+
+    <div class="pub-card">
+      <div class="pub-info">
+        <p>
+          <strong>[2] Assessing the Effect of Gender Equality before the Law on Female Labor Participation and GDP per capita in Central America, Panama, and the Dominican Republic.</strong><br>
+          <em>Inter-American Development Bank Technical Notes, IDB-TN-2128.</em><br>
+          With Arnoldo López.<br>
+          Published in <strong>Regional Statistics</strong>.<br>
+          LINK:
+          <a href="https://publications.iadb.org/publications/english/document/Assessing-the-Effect-of-Gender-Equality-before-the-Law-on-Female-Labor-Participation-and-GDP-per-capita-in-Central-America-Panama-and-the-Dominican-Republic.pdf"
+             target="_blank">IDB Technical Note Series</a>
+        </p>
+      </div>
+    </div>
+
   </div>
 
-  <div class="pub-card">
-    <div class="pub-info">
-      <p>
-        <strong>[2] Assessing the Effect of Gender Equality before the Law on Female Labor Participation and GDP per capita in Central America, Panama, and the Dominican Republic.</strong><br>
-        <em>Inter-American Development Bank Technical Notes, IDB-TN-2128.</em><br>
-        With Arnoldo López.<br>
-        Published in <strong>Regional Statistics</strong>.<br>
-        LINK:
-        <a href="https://publications.iadb.org/publications/english/document/Assessing-the-Effect-of-Gender-Equality-before-the-Law-on-Female-Labor-Participation-and-GDP-per-capita-in-Central-America-Panama-and-the-Dominican-Republic.pdf"
-           target="_blank">IDB Technical Note Series</a>
-      </p>
+
+
+  <!-- ============================== -->
+  <!-- ARTICLES IN BOOKS (HIDDEN) -->
+  <!-- ============================== -->
+
+  <button class="toggle-all-button" onclick="toggleExtra('booksSection')" style="margin-top:25px;">
+    📚 Articles in Books ▼
+  </button>
+
+  <div id="booksSection" style="display:none; margin-top:20px;">
+
+    <div class="pub-card">
+      <div class="pub-info">
+        <p>
+          <strong>[1] Efectos del Modelo de Atención de la Fundación Camino a Casa.</strong><br>
+          En <em>Modelo de atención para recuperar y empoderar vidas: quince años uniendo esfuerzos.</em><br>
+          Inter-American Development Bank (2023).<br>
+          With Arnoldo López Marmolejo & Emmanuel Mendez Rolón.<br>
+          LINK:
+          <a href="https://policycommons.net/artifacts/3834781/modelo-de-atencion-para-recuperar-y-empoderar-vidas/4640619/"
+             target="_blank">IDB Book</a>
+        </p>
+      </div>
     </div>
+
+    <div class="pub-card">
+      <div class="pub-info">
+        <p>
+          <strong>[2] Approximation of Hate Detection Processes in Spanish and Other Non-Anglo-Saxon Languages.</strong><br>
+          En <em>News Media and Hate Speech Promotion in Mediterranean Countries.</em><br>
+          IGI Global (2023), 65–80.<br>
+          LINK:
+          <a href="https://www.igi-global.com/chapter/approximation-of-hate-detection-processes-in-spanish-and-other-non-anglo-saxon-languages/326105"
+             target="_blank">Book Chapter</a>
+        </p>
+      </div>
+    </div>
+
+    <div class="pub-card">
+      <div class="pub-info">
+        <p>
+          <strong>[3] Granger causalidad espuria en la relación de cartera total y vencida de créditos.</strong><br>
+          En <em>Administración de riesgos</em>, Vol. IV, 2013.
+        </p>
+      </div>
+    </div>
+
+    <div class="pub-card">
+      <div class="pub-info">
+        <p>
+          <strong>[4] La inferencia bayesiana en la administración de riesgos.</strong><br>
+          En <em>Administración de riesgos</em>, Vol. II, 2010.
+        </p>
+      </div>
+    </div>
+
   </div>
 
-</div>
+</div> <!-- END OF more sections -->
 
-
-<!-- ============================== -->
-<!-- ARTICLES IN BOOKS (HIDDEN) -->
-<!-- ============================== -->
-
-<button class="toggle-all-button" onclick="toggleExtra('booksSection')">
-  📚 Articles in Books ▼
-</button>
-
-<div id="booksSection" style="display:none; margin-top:20px;">
-
-  <div class="pub-card">
-    <div class="pub-info">
-      <p>
-        <strong>[1] Efectos del Modelo de Atención de la Fundación Camino a Casa.</strong><br>
-        En <em>Modelo de atención para recuperar y empoderar vidas: quince años uniendo esfuerzos.</em><br>
-        Inter-American Development Bank (2023).<br>
-        With Arnoldo López Marmolejo & Emmanuel Mendez Rolón.<br>
-        LINK:
-        <a href="https://policycommons.net/artifacts/3834781/modelo-de-atencion-para-recuperar-y-empoderar-vidas/4640619/"
-           target="_blank">IDB Book</a>
-      </p>
-    </div>
-  </div>
-
-  <div class="pub-card">
-    <div class="pub-info">
-      <p>
-        <strong>[2] Approximation of Hate Detection Processes in Spanish and Other Non-Anglo-Saxon Languages.</strong><br>
-        En <em>News Media and Hate Speech Promotion in Mediterranean Countries.</em><br>
-        IGI Global (2023), 65–80.<br>
-        LINK:
-        <a href="https://www.igi-global.com/chapter/approximation-of-hate-detection-processes-in-spanish-and-other-non-anglo-saxon-languages/326105"
-           target="_blank">Book Chapter</a>
-      </p>
-    </div>
-  </div>
-
-  <div class="pub-card">
-    <div class="pub-info">
-      <p>
-        <strong>[3] Granger causalidad espuria en la relación de cartera total y vencida de créditos.</strong><br>
-        En <em>Administración de riesgos</em>, Vol. IV, 2013.
-      </p>
-    </div>
-  </div>
-
-  <div class="pub-card">
-    <div class="pub-info">
-      <p>
-        <strong>[4] La inferencia bayesiana en la administración de riesgos.</strong><br>
-        En <em>Administración de riesgos</em>, Vol. II, 2010.
-      </p>
-    </div>
-  </div>
-
-</div>
 
 
 
