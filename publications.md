@@ -1956,7 +1956,7 @@ This high school textbook was created to share financial mathematics tools with 
         <em>Inferencia Bayesiana para la volatilidad en el modelo Black & Scholes</em><br>
         BSc in Actuarial Science — Facultad de Ciencias, UNAM.<br>
         Supervisors:  
-        <a href="" target="_blank">Alejandro Villagrán Hernández</a> &  
+        <a href="https://www.linkedin.com/in/alejandrovillagran/" target="_blank">Alejandro Villagrán Hernández</a> &  
         <a href="https://www.dpye.iimas.unam.mx/ramses/" target="_blank">Ramsés Humberto Mena Chávez</a><br><br>
 
         <strong>Download:</strong> <a href="https://c-vladimir-rodriguez-caballero.weebly.com/uploads/6/6/5/9/66590417/bsc._dissertation.pdf" target="_blank">BSc Thesis (PDF)</a>
