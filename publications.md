@@ -1767,9 +1767,9 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
   <!-- ============================== -->
 
   <button class="toggle-all-button" onclick="toggleExtra('popSection')">
-    📰 Pop-Science Articles ▼
+    Pop-Science Articles ▼
   </button>
-  <div id="popSection" style="display:none; margin-top:10px;">
+  <div id="popSection" style="display:none; margin-top:5px;">
     <div class="pub-card">
       <div class="pub-info">
         <p>
@@ -1790,9 +1790,9 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
   <!-- ============================== -->
 
   <button class="toggle-all-button" onclick="toggleExtra('techSection')" style="margin-top:10px;">
-    📝 Technical Notes ▼
+    Technical Notes ▼
   </button>
-  <div id="techSection" style="display:none; margin-top:10px;">
+  <div id="techSection" style="display:none; margin-top:5px;">
     <div class="pub-card">
       <div class="pub-info">
         <p>
@@ -1826,9 +1826,9 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
   <!-- ============================== -->
 
   <button class="toggle-all-button" onclick="toggleExtra('booksSection')" style="margin-top:10px;">
-    📚 Articles in Books ▼
+   Articles in Books ▼
   </button>
-  <div id="booksSection" style="display:none; margin-top:10px;">
+  <div id="booksSection" style="display:none; margin-top:5px;">
     <div class="pub-card">
       <div class="pub-info">
         <p>
@@ -1877,10 +1877,10 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
 <!-- ============================== -->
 
 <button class="toggle-all-button" onclick="toggleExtra('bookSection')" style="margin-top:10px;">
-  📘 Book ▼
+  Book ▼
 </button>
 
-<div id="bookSection" style="display:none; margin-top:20px;">
+<div id="bookSection" style="display:none; margin-top:5px;">
 
   <div class="pub-card">
     <div class="pub-info">
@@ -1901,9 +1901,6 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
 
 </div>
 
-
-
-
 <!-- ============================== -->
 <!-- DISSERTATIONS -->
 <!-- ============================== -->
@@ -1912,7 +1909,7 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
   🎓 Dissertations ▼
 </button>
 
-<div id="dissertationSection" style="display:none; margin-top:20px;">
+<div id="dissertationSection" style="display:none; margin-top:5px;">
 
 
   <!-- PhD Dissertation -->
