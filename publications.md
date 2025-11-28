@@ -1888,11 +1888,10 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
         <strong>Matemáticas Financieras II</strong><br>
         Editorial GAFRA, 2012.<br>
         Authors: C. Vladimir Rodríguez Caballero & 
-        <a href="#" target="_blank">Omar Espin García</a>.<br>
+        <a href="#" target="_blank">Osvaldo Espin García</a>.<br>
         ISBN: 978-607-8224-42-5.<br><br>
 
-        This high-school textbook was written to share financial mathematics tools with young students across Mexico.  
-        It is used nationally as part of the 6th-semester curriculum in the Mexican SEP system.<br><br>
+This high school textbook was created to share financial mathematics tools with young students throughout Mexico. It is used nationally as part of the sixth-semester curriculum of the Mexican Education Secretary system.<br><br>
 
         <strong>Download:</strong> <a href="#" target="_blank">Full Book (PDF)</a>
       </p>
@@ -1921,11 +1920,11 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
         PhD in Economics & Business Economics (Econometrics).<br>
         Aarhus University & CREATES.<br>
         Supervisor: 
-        <a href="https://econ.au.dk/about/people/vip-item/artikel/niels-haldrup" target="_blank">
+        <a href="https://www.au.dk/en/nhaldrup@econ.au.dk/" target="_blank">
           Niels Haldrup
         </a><br><br>
 
-        <strong>Download:</strong> <a href="#" target="_blank">PhD Dissertation (PDF)</a>
+        <strong>Download:</strong> <a href="https://pure.au.dk/portal/files/104370677/PhDDissertation.CarlosVladimirRodriguezCaballero.pdf" target="_blank">PhD Dissertation (PDF)</a>
       </p>
     </div>
   </div>
@@ -1939,11 +1938,11 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
         <em>Ensayos sobre la Granger Causalidad</em><br>
         MSc in Econometrics — Universidad de Guanajuato.<br>
         Supervisor: 
-        <a href="https://www.researchgate.net/profile/Daniel-Ventosa-Santaularia" target="_blank">
+        <a href="https://www.ventosa-santaularia.com/" target="_blank">
           Daniel Ventosa Santaulària
         </a><br><br>
 
-        <strong>Download:</strong> <a href="#" target="_blank">MSc Thesis (PDF)</a>
+        <strong>Download:</strong> <a href="https://c-vladimir-rodriguez-caballero.weebly.com/uploads/6/6/5/9/66590417/master2.pdf" target="_blank">MSc Thesis (PDF)</a>
       </p>
     </div>
   </div>
@@ -1957,10 +1956,10 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
         <em>Inferencia Bayesiana para la volatilidad en el modelo Black & Scholes</em><br>
         BSc in Actuarial Science — Facultad de Ciencias, UNAM.<br>
         Supervisors:  
-        <a href="https://fciencias.unam.mx/directorio/2" target="_blank">Alejandro Villagrán Hernández</a> &  
-        <a href="https://www.stats.ox.ac.uk/people/ramses-mena/" target="_blank">Ramsés Humberto Mena Chávez</a><br><br>
+        <a href="" target="_blank">Alejandro Villagrán Hernández</a> &  
+        <a href="https://www.dpye.iimas.unam.mx/ramses/" target="_blank">Ramsés Humberto Mena Chávez</a><br><br>
 
-        <strong>Download:</strong> <a href="#" target="_blank">BSc Thesis (PDF)</a>
+        <strong>Download:</strong> <a href="https://c-vladimir-rodriguez-caballero.weebly.com/uploads/6/6/5/9/66590417/bsc._dissertation.pdf" target="_blank">BSc Thesis (PDF)</a>
       </p>
     </div>
   </div>
