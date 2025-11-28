@@ -670,17 +670,6 @@ Explore my research output by year, or browse a curated selection of highlighted
 <h2 style="margin-top:40px;">More Sections</h2>
 
 <div class="more-sections-box">
-  <button class="toggle-all-button" onclick="toggleExtra('popSection')">
-    📰 Pop-Science Articles ▼
-  </button>
-
-  <button class="toggle-all-button" onclick="toggleExtra('techSection')">
-    📝 Technical Notes ▼
-  </button>
-
-  <button class="toggle-all-button" onclick="toggleExtra('booksSection')">
-    📚 Articles in Books ▼
-  </button>
 </div>
 
 
