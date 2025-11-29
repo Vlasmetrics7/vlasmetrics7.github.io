@@ -409,6 +409,7 @@ Explore my research output by year, or browse a curated selection of highlighted
         <button class="btn btn--secondary btn--sm"
                 onclick="toggleDropdown('media-stress2024A')">Media ▼</button>
         <div id="media-stress2024A" class="dropdown-menu">
+          <a href="https://www.dropbox.com/scl/fi/7v2gcs5str3vd3yu00iga/ITAM-Seminar.pdf?rlkey=5o5fribeiuaoffypoh7as6zoy&st=5vnzahhy&dl=0" target="_blank">Slides (PDF)</a><br>
           <a href="https://www.dropbox.com/scl/fi/azc912c9p5d8kakai4jjn/Bank-of-England-Seminar.pdf?rlkey=n1m9scgmaucavte775oc333wn&st=cxkwi2i2&dl=0" target="_blank">Slides (PDF)</a><br>
           <a href="https://youtu.be/hWsSMfApqE8" target="_blank">Video presentation</a><br>
           <a href="https://youtu.be/DGJhBLE6CpA" target="_blank">Seminar recording</a>
@@ -461,6 +462,7 @@ Explore my research output by year, or browse a curated selection of highlighted
         <button class="btn btn--secondary btn--sm"
                 onclick="toggleDropdown('media-IJF2023B')">Media ▼</button>
         <div id="media-IJF2023B" class="dropdown-menu">
+          <a href="https://www.dropbox.com/scl/fi/zwzy0xsbxghl9ddvqy6d1/Aalborg.pdf?rlkey=5m4eqzato4sqye91baxz3b2j9&st=htnt221f&dl=0" target="_blank">Slides (PDF)</a><br>
           <a href="https://www.dropbox.com/scl/fi/gwbjjg720ekrbzszwl4hh/NAF-2022.pdf?rlkey=v4au7j6ci12b6qwe6c9lvwu5x&st=9e4qz3jg&dl=0" target="_blank">Slides (PDF)</a><br>
         </div>
       </div>
@@ -663,8 +665,7 @@ Explore my research output by year, or browse a curated selection of highlighted
    <button class="year-tile year-2021" onclick="toggleYear('year2021')">2021 (5) ▼</button>
    <button class="year-tile year-2020" onclick="toggleYear('year2020')">2020 (1) ▼</button>
    <button class="year-tile year-2019" onclick="toggleYear('year2019')">2019 (1) ▼</button>
-<!--<button class="year-tile year-2018" onclick="toggleYear('year2018')"><234322018 (6) ▼</button> -->
-    <button class="year-tile year-2018" onclick="toggleYear('year2018')">&lt;2018 (6) ▼</button>
+   <button class="year-tile year-2018" onclick="toggleYear('year2018')"><2018 (6) ▼</button>
 </div>
 
 <hr style="margin-top:5px; margin-bottom:25px; opacity:0.25;">
@@ -710,7 +711,7 @@ Explore my research output by year, or browse a curated selection of highlighted
 methods. We update previous surveys focusing on partial aspects of the complex relationships linking the economy and climate change. Starting from economic activity, the channels that relate it to climate change are energy consumption and the consequent pollution. Hence, we first describe the main econometric contributions of the interactions between economic activity and energy consumption, then explain the contributions and interactions of economic activity to pollution. Finally, we look at the main results on the relationship between climate change and economic activity. A necessary consequence of climate change is the increasing occurrence of extreme weather phenomena. Therefore, we also survey contributions on the economic effects of catastrophic climate phenomena.
       </em>
     </div>
- 
+
      <div id="bib-eco2025" class="bib-block" style="display:none;">
 <pre><code>@article{IRERE-176,
 url = {http://dx.doi.org/10.1561/101.00000176},
@@ -772,6 +773,7 @@ author = {Aránzazu de Juan and Pilar Poncela and C. Vladimir Rodríguez-Caballe
         <button class="btn btn--secondary btn--sm"
                 onclick="toggleDropdown('media-stress2024')">Media ▼</button>
         <div id="media-stress2024" class="dropdown-menu">
+          <a href="https://www.dropbox.com/scl/fi/7v2gcs5str3vd3yu00iga/ITAM-Seminar.pdf?rlkey=5o5fribeiuaoffypoh7as6zoy&st=5vnzahhy&dl=0" target="_blank">Slides (PDF)</a><br>
           <a href="https://www.dropbox.com/scl/fi/azc912c9p5d8kakai4jjn/Bank-of-England-Seminar.pdf?rlkey=n1m9scgmaucavte775oc333wn&st=cxkwi2i2&dl=0" target="_blank">Slides (PDF)</a><br>
           <a href="https://youtu.be/hWsSMfApqE8" target="_blank">Video presentation</a><br>
           <a href="https://youtu.be/DGJhBLE6CpA" target="_blank">Seminar recording</a>
@@ -781,7 +783,7 @@ author = {Aránzazu de Juan and Pilar Poncela and C. Vladimir Rodríguez-Caballe
       <a href="javascript:toggleDiv('bib-stress2024')" class="btn btn--warning btn--sm">BIB</a>
 
     </div>
-    
+
     <div id="abs-stress2024" class="abstract-block" style="display:none;">
       <strong>Abstract:</strong><br>
       <em>We propose the construction of conditional growth densities under stressed factor scenarios to assess the level of exposure of an economy to small probability but potentially catastrophic economic and/or financial scenarios, which can be either domestic or international. The choice of severe yet plausible stress scenarios is based on the joint probability distribution of the underlying factors driving growth, which are extracted with a multilevel dynamic factor model (DFM) from a wide set of domestic/worldwide and/or macroeconomic/financial variables. All together, we provide a risk management tool that allows for a complete visualization of the dynamics of the growth densities under average scenarios and extreme scenarios. We calculate growth-in-stress (GiS) measures, defined as the 5% quantile of the stressed growth densities, and show that GiS is a useful and complementary tool to growth-at-risk (GaR) when policymakers wish to carry out a multidimensional scenario analysis. The unprecedented economic shock brought by the COVID-19 pandemic provides a natural environment to assess the vulnerability of US growth with the proposed methodology.</em>
@@ -836,7 +838,7 @@ author = {Aránzazu de Juan and Pilar Poncela and C. Vladimir Rodríguez-Caballe
       <strong>Abstract:</strong><br>
       <em>In this paper, we consider a fractionally integrated multi-level dynamic factor model (FI-ML-DFM) to represent commonalities in the hourly evolution of realized volatilities of several international exchange rates. The FI-ML-DFM assumes common global factors active during the 24 h of the day, accompanied by intermittent factors, which are active at mutually exclusive times. We propose determining the number of global factors using a distance among the intermittent loadings. We show that although the bulk of common dynamics of exchange rates realized volatilities can be attributed to global factors, there are non-negligible effects of intermittent factors. The effect of the COVID-19 on the realized volatility comovements is stronger on the first global-in-time factor, which shows a permanent increase in the level. The effects on the second global factor and on the intermittent factors active when the EU, UK and US markets are operating are transitory lasting for approximately a year after the pandemic starts. Finally, there seems to be no effect of the pandemic neither on the third global factor nor on the intermittent factor active when the markets in Asia are operating.</em>
     </div>
-    
+
     <div id="bib-exch2024" class="bib-block" style="display:none;">
 <pre><code>@article{caporin2024factor,
   title={The factor structure of exchange rates volatility: global and intermittent factors},
@@ -895,6 +897,7 @@ author = {Aránzazu de Juan and Pilar Poncela and C. Vladimir Rodríguez-Caballe
         <button class="btn btn--secondary btn--sm"
                 onclick="toggleDropdown('media-IJF2023')">Media ▼</button>
         <div id="media-IJF2023" class="dropdown-menu">
+          <a href="https://www.dropbox.com/scl/fi/zwzy0xsbxghl9ddvqy6d1/Aalborg.pdf?rlkey=5m4eqzato4sqye91baxz3b2j9&st=htnt221f&dl=0" target="_blank">Slides (PDF)</a><br>
           <a href="https://www.dropbox.com/scl/fi/gwbjjg720ekrbzszwl4hh/NAF-2022.pdf?rlkey=v4au7j6ci12b6qwe6c9lvwu5x&st=9e4qz3jg&dl=0" target="_blank">Slides (PDF)</a><br>
         </div>
       </div>
@@ -902,7 +905,7 @@ author = {Aránzazu de Juan and Pilar Poncela and C. Vladimir Rodríguez-Caballe
       <a href="javascript:toggleDiv('bib-IJF2023')" class="btn btn--warning btn--sm">BIB</a>
 
     </div>
-    
+
     <div id="abs-IJF2023" class="abstract-block" style="display:none;">
       <strong>Abstract:</strong><br>
       <em>A dynamic multi-level factor model with possible stochastic time trends is proposed. In the model, long-range dependence and short memory dynamics are allowed in global and local common factors as well as model innovations. Estimation of global and local common factors is performed on the prewhitened series, for which the prewhitening parameter is estimated semiparametrically from the cross-sectional and local average of the observable series. Employing canonical correlation analysis and a sequential least-squares algorithm on the prewhitened series, the resulting multi-level factor estimates have centered asymptotic normal distributions under certain rate conditions depending on the bandwidth and cross-section size. Asymptotic results for common components are also established. The selection of the number of global and local factors is discussed. The methodology is shown to lead to good small-sample performance via Monte Carlo simulations. The method is then applied to the Nord Pool electricity market for the analysis of price comovements among different regions within the power grid. The global factor is identified to be the system price, and fractional cointegration relationships are found between local prices and the system price, motivating a long-run equilibrium relationship. Two forecasting exercises are then discussed.</em>
@@ -1107,7 +1110,7 @@ of modern economic growth and the Great Divergence in Eurasia.</em>
     <strong>Air Pollution and Mobility, What Carries COVID-19?</strong><br>
     <u>Rodríguez-Caballero, C.V.</u> & Vera-Valdés, J. Eduardo.<br>
     <em>Econometrics</em>, 2021.
-   
+
     <div class="btn-row">
       <a href="javascript:toggleDiv('abs-ECO2021')" class="btn btn--info btn--sm">ABS</a>
 
@@ -1123,18 +1126,21 @@ of modern economic growth and the Great Divergence in Eurasia.</em>
       <a href="https://doi.org/10.3390/econometrics9040037"
          target="_blank" class="btn btn--success btn--sm">Published</a>
 
+  <!--
       <div class="dropdown-container">
         <button class="btn btn--secondary btn--sm"
                 onclick="toggleDropdown('media-ECO2021')">Media ▼</button>
         <div id="media-ECO2021" class="dropdown-menu">
+          <a href="https://www.dropbox.com/scl/fi/zwzy0xsbxghl9ddvqy6d1/Aalborg.pdf?rlkey=5m4eqzato4sqye91baxz3b2j9&st=htnt221f&dl=0" target="_blank">Slides (PDF)</a><br>
           <a href="https://www.dropbox.com/scl/fi/6p59nn6yidw272ibz1z1z/IPDC.pdf?rlkey=q026h1zl1qsysj76renew9bx4&st=hcep76t4&dl=0" target="_blank">Slides (PDF)</a><br>
         </div>
+      </div> BSc Thesis -->
       </div> 
 
       <a href="javascript:toggleDiv('bib-ECO2021')" class="btn btn--warning btn--sm">BIB</a>
 
     </div>
-    
+
     <div id="abs-ECO2021" class="abstract-block" style="display:none;">
       <strong>Abstract:</strong><br>
       <em>This paper tests if air pollution serves as a carrier for SARS-CoV-2 by measuring the effect
@@ -1174,7 +1180,7 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
     <strong>Remittances at record highs in Latin America: Time to revisit the Dutch disease</strong><br>
     López-Marmolejo, Arnoldo, <u>Rodríguez-Caballero, C.V.</u> & Ventosa-Santaularia, Daniel.<br>
     <em>Economics Bulletin</em>, 2021.
-   
+
     <div class="btn-row">
       <a href="javascript:toggleDiv('abs-EB2021')" class="btn btn--info btn--sm">ABS</a>
 
@@ -1183,7 +1189,7 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
 
       <a href="javascript:toggleDiv('bib-EB2021')" class="btn btn--warning btn--sm">BIB</a>
     </div>
-    
+
     <div id="abs-EB2021" class="abstract-block" style="display:none;">
       <strong>Abstract:</strong><br>
       <em>With remittances reaching historic highs in many Latin American countries, this paper evaluates the existence of Dutch disease in that region on a country-by-country basis. To do so, we employ heterogeneous panel data models with cross-sectional dependence to estimate the determinants of the real exchange rate and calculate the effect of net remittance flows in the region by country. In this context, various countries' future economic development must address this potential loss of competitiveness.</em>
@@ -1216,7 +1222,7 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
     <strong>Air pollution and mobility in the Mexico City Metropolitan Area in times of COVID-19</strong><br>
    <u>Rodríguez-Caballero, C.V.</u> & Vera-Valdés, J. Eduardo .<br>
     <em>Atmósfera</em>, 2021.
-   
+
     <div class="btn-row">
       <a href="javascript:toggleDiv('abs-AT2021')" class="btn btn--info btn--sm">ABS</a>
 
@@ -1225,7 +1231,7 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
 
       <a href="javascript:toggleDiv('bib-AT2021')" class="btn btn--warning btn--sm">BIB</a>
     </div>
-    
+
     <div id="abs-AT2021" class="abstract-block" style="display:none;">
       <strong>Abstract:</strong><br>
       <em>This paper analyzes the relation between COVID-19, air pollution, and public transport mobility in the Mexico City Metropolitan Area (MCMA). We test if the restrictions to economic activity introduced to mitigate the spread of COVID-19 are associated with a structural change in air pollution levels and public transport mobility. Our results show that mobility in public transportation was significantly reduced following the government’s recommendations. Nonetheless, we show that the reduction in mobility was not accompanied by a reduction in air pollution. Furthermore, Granger-causality tests show that the precedence relation between public transport mobility and air pollution disappeared as a product of the restrictions. Thus, our results suggest that air pollution in the MCMA seems primarily driven by industry and private car usage. In this regard, the government should redouble its efforts to develop policies to reduce industrial pollution and private car usage.</em>
@@ -1275,18 +1281,21 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
       <a href="https://doi.org/10.1142/S0219691321500338"
          target="_blank" class="btn btn--success btn--sm">Published</a>
 
+  <!-- BSc 
       <div class="dropdown-container">
         <button class="btn btn--secondary btn--sm"
                 onclick="toggleDropdown('media-WAV21')">Media ▼</button>
         <div id="media-WAV21" class="dropdown-menu">
+          <a href="https://www.dropbox.com/scl/fi/zwzy0xsbxghl9ddvqy6d1/Aalborg.pdf?rlkey=5m4eqzato4sqye91baxz3b2j9&st=htnt221f&dl=0" target="_blank">Slides (PDF)</a><br>
           <a href="https://www.dropbox.com/scl/fi/ycgx41xqn6d9d0cay1ta4/Symposium-on-Forecasting.pdf?rlkey=tf0vfnqmaktgs7nngb0a7xow8&st=mungl78r&dl=0" target="_blank">Slides (PDF)</a><br>
         </div>
+      </div>Thesis -->
       </div>
 
       <a href="javascript:toggleDiv('bib-WAV21')" class="btn btn--warning btn--sm">BIB</a>
 
     </div>
-    
+
     <div id="abs-WAV21" class="abstract-block" style="display:none;">
       <strong>Abstract:</strong><br>
       <em>We introduce a high-dimensional factor model with time-varying loadings. We cover both stationary and nonstationary factors to increase the possibilities of applications. We propose an estimation procedure based on two stages. First, we estimate common factors by principal components. In the second step, considering the estimated factors as observed, the time-varying loadings are estimated by an iterative generalized least squares procedure using wavelet functions. We investigate the finite sample features by some Monte Carlo simulations. Finally, we apply the model to study the Nord Pool power market’s electricity prices and loads.</em>
@@ -1339,15 +1348,14 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
         <button class="btn btn--secondary btn--sm"
                 onclick="toggleDropdown('media-ECOSTAT21')">Media ▼</button>
         <div id="media-ECOSTAT21" class="dropdown-menu">
-          <a href="https://www.dropbox.com/scl/fi/sx9h5jc6x7hysqvkexcxb/job-market-seminar.pdf?rlkey=so3hyjaphyl1yizc7xc3b53y6&st=f4hty2ss&dl=0" target="_blank">JMS (UC3M)</a><br>
-           <a href="https://www.dropbox.com/scl/fi/dqzsfzyrj4k2lwurij2pq/job-market-seminar.pdf?rlkey=d1yhfx7wmipk7mqbwn82dgqka&st=asqy6pr9&dl=0" target="_blank">JMS (ITAM)</a><br>
+          <a href="https://www.dropbox.com/scl/fi/zwzy0xsbxghl9ddvqy6d1/Aalborg.pdf?rlkey=5m4eqzato4sqye91baxz3b2j9&st=htnt221f&dl=0" target="_blank">Slides (PDF)</a><br>
         </div>
       </div>
 
       <a href="javascript:toggleDiv('bib-ECOSTAT21')" class="btn btn--warning btn--sm">BIB</a>
 
     </div>
-    
+
     <div id="abs-ECOSTAT21" class="abstract-block" style="display:none;">
       <strong>Abstract:</strong><br>
       <em>A fractionally integrated panel data model with a multi-level cross-sectional dependence is proposed. Such dependence is driven by a factor structure that captures comovements between blocks of variables through top-level factors, and within these blocks by non-pervasive factors. The model can include stationary and non-stationary variables, which makes it flexible enough to analyze relevant dynamics that are frequently found in macroeconomic and financial panels. The estimation methodology is based on fractionally differenced block-by-block cross-sectional averages. Monte Carlo simulations suggest that the procedure performs well in typical samples sizes. This methodology is applied to study the long-run relationship between energy consumption and economic growth. The main results suggest that estimates in some empirical studies may have some positive biases caused by neglecting the presence non-pervasive cross-sectional dependence and long-range dependence processes.</em>
@@ -1390,7 +1398,7 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
     <u>Rodríguez-Caballero, C.V.</u> & Vera-Valdés, J. Eduardo.<br>
     <em>Econometrics</em>, 2020.
 
-   
+
     <div class="btn-row">
       <a href="javascript:toggleDiv('abs-ECO2020')" class="btn btn--info btn--sm">ABS</a>
 
@@ -1417,7 +1425,7 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
       <a href="javascript:toggleDiv('bib-ECO2020')" class="btn btn--warning btn--sm">BIB</a>
 
     </div>
-    
+
     <div id="abs-ECO2020" class="abstract-block" style="display:none;">
       <strong>Abstract:</strong><br>
       <em>This paper studies long economic series to assess the long-lasting effects of pandemics. We analyze if periods that cover pandemics have a change in trend and persistence in growth, and in level and persistence in unemployment. We find that there is an upward trend in the persistence level of growth across centuries. In particular, shocks originated by pandemics in recent times seem to have a permanent effect on growth. Moreover, our results show that the unemployment rate increases and becomes more persistent after a pandemic. In this regard, our findings support the design and implementation of timely counter-cyclical policies to soften the shock of the pandemic.
@@ -1461,7 +1469,7 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
     <u>Rodríguez-Caballero, C.V.</u> & Caporin, M.<br>
     <em>Journal of International Financial Markets, Institutions and Money</em>, 2019.
 
-   
+
     <div class="btn-row">
       <a href="javascript:toggleDiv('abs-FIN19')" class="btn btn--info btn--sm">ABS</a>
 
@@ -1476,17 +1484,19 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
       <a href="https://doi.org/10.1016/j.intfin.2019.101144"
          target="_blank" class="btn btn--success btn--sm">Published</a>
 
+<!-- =================================
       <div class="dropdown-container">
         <button class="btn btn--secondary btn--sm"
                 onclick="toggleDropdown('media-FIN19')">Media ▼</button>
         <div id="media-FIN19" class="dropdown-menu">
-          <a href="https://www.dropbox.com/scl/fi/79t9yw2mi7jvwjclqo02j/IAAE-2019-Annual-Conference-CVRC.pdf?rlkey=84u0i66la112fofluhth7x6s5&st=n3oyuywz&dl=0" target="_blank">Slides (PDF)</a><br>
+          <a href="https://www.dropbox.com/scl/fi/zwzy0xsbxghl9ddvqy6d1/Aalborg.pdf?rlkey=5m4eqzato4sqye91baxz3b2j9&st=htnt221f&dl=0" target="_blank">Slides (PDF)</a><br>
         </div>
- 
+      </div>==================== -->
+
       <a href="javascript:toggleDiv('bib-FIN19')" class="btn btn--warning btn--sm">BIB</a>
 
     </div>
-    
+
     <div id="abs-FIN19" class="abstract-block" style="display:none;">
       <strong>Abstract:</strong><br>
       <em>We introduce a novel multilevel factor model that allows for the presence of global and pervasive factors, local factors and semi-pervasive factors, and that captures common features across subsets of the variables of interest. We develop a model estimation procedure and provide a simulation experiment addressing the consistency of our proposal. We complete the analyses by showing how our multilevel model might explain on the commonality across CDS premiums at the global level. In this respect, we cluster countries by either the Debt/GDP ratio or by sovereign ratings. We show that multilevel models are easier to interpret compared with factor models based on principal component analysis. Finally, we experiment how the multilevel model might allow the recovery of the risk contribution due to the latent factors within a basket of country CDS.</em>
@@ -1506,18 +1516,17 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
     </div>
   </div>
 </div>
-</div>
 
+</div>
 
 <!--
 <button class="year-button" onclick="toggleYear('year2018')">
-  2018 ▼
+  <2018 ▼
 </button>
 
 <div id="year2018" style="display:none;">-->
 
 <div id="year2018" class="year-block" style="display:none;">
- 
 <!-- ===================================================== -->
 <!-- ==================== PAPER: Energy Economics === -->
 <!-- ===================================================== -->
@@ -1529,7 +1538,7 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
     <strong>Energy-growth long-term relationship under structural breaks. Evidence from Canada, 17 Latin American economies and the USA</strong><br>
     <u>Rodríguez-Caballero, C.V.</u> & Ventosa-Santaularia, D.<br>
     <em>Energy Economics</em>, 2017.
-   
+
     <div class="btn-row">
       <a href="javascript:toggleDiv('abs-ENECO17')" class="btn btn--info btn--sm">ABS</a>
 
@@ -1538,7 +1547,7 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
 
          <a href="javascript:toggleDiv('bib-ENECO17')" class="btn btn--warning btn--sm">BIB</a>
     </div>
-    
+
     <div id="abs-ENECO17" class="abstract-block" style="display:none;">
       <strong>Abstract:</strong><br>
       <em>We study the relationship and the causal link between Electric Power Consumption, EPC, and Gross Domestic Product, GDP (both per capita) for 17 countries in Latin America, Canada and the USA. Considering that many of these economies underwent important economic crises in the last three decades, we therefore model the EPC-GDP relationship through a VEC specification that allows for structural breaks, along with a robust testing methodology of causal links based on the concepts of weak and super exogeneity, rather than Granger causality. Evidence favorable to the growth hypothesis (EPC→GDP) is found for eight countries, while data of three countries support the conservation hypothesis (GDP→EPC). For three countries evidence is favorable to the neutrality hypothesis, but should be considered with caution. As for the remaining five countries the evidence is not conclusive.</em>
@@ -1570,7 +1579,7 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
     <strong>Common long-range dependence in a panel of hourly Nord Pool electricity prices and loads. </strong><br>
     Ergemen, Yunus & Haldrup, Niels & <u>Rodríguez-Caballero, C.V.</u> <br>
     <em>Energy Economics</em>, 2016.
-   
+
     <div class="btn-row">
       <a href="javascript:toggleDiv('abs-ENECO16')" class="btn btn--info btn--sm">ABS</a>
 
@@ -1579,7 +1588,7 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
 
          <a href="javascript:toggleDiv('bib-ENECO16')" class="btn btn--warning btn--sm">BIB</a>
     </div>
-    
+
     <div id="abs-ENECO16" class="abstract-block" style="display:none;">
       <strong>Abstract:</strong><br>
       <em>Equilibrium electricity spot prices and loads are often determined simultaneously in a day-ahead auction market for each hour of the subsequent day. Hence daily observations of hourly prices take the form of a periodic panel rather than a time series of hourly observations. We consider novel panel data approaches to analyse the time series and the cross-sectional dependence of hourly Nord Pool electricity spot prices and loads for the period 2000–2013. Hourly electricity prices and load data are characterized by strong serial long-range dependence in the time series dimension in addition to strong seasonal periodicity, and along the cross-sectional dimension, i.e. the hours of the day, there is a strong dependence which necessarily has to be accounted for in order to avoid spurious inference when focusing on the time series dependence alone. The long-range dependence is modelled in terms of a fractionally integrated panel data model and it is shown that both prices and loads consist of common factors with long memory and with loadings that vary considerably during the day. Due to the competitiveness of the Nordic power market the aggregate supply curve approximates well the marginal costs of the underlying production technology and because the demand is more volatile than the supply, equilibrium prices and loads are argued to identify the periodic power supply curve. The estimated supply elasticities are estimated from fractionally co-integrated relations and range between 0.5 and 1.17 with the largest elasticities being estimated during morning and evening peak hours.</em>
@@ -1611,7 +1620,7 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
     <strong>Bayesian log-periodic model for financial crashes.</strong><br>
     <u>Rodríguez-Caballero, C.V.</u> <br>
     <em>European Physical Journal B</em>, 2014.
-   
+
     <div class="btn-row">
       <a href="javascript:toggleDiv('abs-2014')" class="btn btn--info btn--sm">ABS</a>
 
@@ -1620,7 +1629,7 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
 
          <a href="javascript:toggleDiv('bib-2014')" class="btn btn--warning btn--sm">BIB</a>
     </div>
-    
+
     <div id="abs-2014" class="abstract-block" style="display:none;">
       <strong>Abstract:</strong><br>
       <em>This paper introduces a Bayesian approach in econophysics literature about financial bubbles in order to estimate the most probable time for a financial crash to occur. To this end, we propose using noninformative prior distributions to obtain posterior distributions. Since these distributions cannot be performed analytically, we develop a Markov Chain Monte Carlo algorithm to draw from posterior distributions. We consider three Bayesian models that involve normal and Student’s t-distributions in the disturbances and an AR(1)-GARCH(1,1) structure only within the first case. In the empirical part of the study, we analyze a well-known example of financial bubble – the S&P 500 1987 crash – to show the usefulness of the three methods under consideration and crashes of Merval-94, Bovespa-97, IPCMX-94, Hang Seng-97 using the simplest method. The novelty of this research is that the Bayesian models provide 95% credible intervals for the estimated crash time.</em>
@@ -1653,7 +1662,7 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
     <strong>Granger causality and unit roots.</strong><br>
     <u>Rodríguez-Caballero, C.V.</u> & Ventosa-Santaularia, D. <br>
     <em>Journal of Statistical and Econometric Methods</em>, 2014.
-   
+
     <div class="btn-row">
       <a href="javascript:toggleDiv('abs-2014b')" class="btn btn--info btn--sm">ABS</a>
 
@@ -1662,20 +1671,11 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
 
          <a href="javascript:toggleDiv('bib-2014b')" class="btn btn--warning btn--sm">BIB</a>
     </div>
-    
+
     <div id="abs-2014b" class="abstract-block" style="display:none;">
       <strong>Abstract:</strong><br>
       <em>The asymptotic behavior of the Granger-causality test under stochastic nonstationarity is studied. Our results confirm that the inference drawn from the test is not reliable when the series are integrated to the first order. In the presence of deterministic components, the test statistic diverges, eventually rejecting the null hypothesis, even when the series are independent of each other. Moreover, controlling for these deterministic elements (in the auxiliary regressions of the test) does not preclude the possibility of drawing erroneous inferences. Granger causality tests should not be used under stochastic nonstationarity, a property typically found in many macroeconomic variables.</em>
     </div>
-
-<!-- ====
-          <div class="dropdown-container">
-        <button class="btn btn--secondary btn--sm"
-                onclick="toggleDropdown('media-2014b')">Media ▼</button>
-        <div id="media-2014b" class="dropdown-menu">
-          <a href="https://www.dropbox.com/scl/fi/6pnrz44zonmu1ctks11ia/GC-UR.pdf?rlkey=mcj01xdzphynsk4g2tu8ntlp7&st=m40wtkz3&dl=0" target="_blank">Slides (PDF)</a>
-      </div>
-    </div>============= -->
 
     <div id="bib-2014b" class="bib-block" style="display:none;">
 <pre><code>@article{rodriguez2014granger,
@@ -1704,7 +1704,7 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
     <strong>Polynomial regressions and nonsense inference.</strong><br>
     <u>Rodríguez-Caballero, C.V.</u> & Ventosa-Santaularia, D. <br>
     <em>Econometrics</em>, 2013.
-   
+
     <div class="btn-row">
       <a href="javascript:toggleDiv('abs-2014c')" class="btn btn--info btn--sm">ABS</a>
 
@@ -1713,7 +1713,7 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
 
          <a href="javascript:toggleDiv('bib-2014c')" class="btn btn--warning btn--sm">BIB</a>
     </div>
-    
+
     <div id="abs-2014c" class="abstract-block" style="display:none;">
       <strong>Abstract:</strong><br>
       <em>Polynomial specifications are widely used, not only in applied economics, but also in epidemiology, physics, political analysis and psychology, just to mention a few examples. In many cases, the data employed to estimate such specifications are time series that may exhibit stochastic nonstationary behavior. We extend Phillips’ results (Phillips, P. Understanding spurious regressions in econometrics. J. Econom. 1986, 33, 311–340.) by proving that an inference drawn from polynomial specifications, under stochastic nonstationarity, is misleading unless the variables cointegrate. We use a generalized polynomial specification as a vehicle to study its asymptotic and finite-sample properties. Our results, therefore, lead to a call to be cautious whenever practitioners estimate polynomial regressions.</em>
@@ -1746,7 +1746,7 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
     <strong>Metodología para un scoring de clientes sin referencias crediticias</strong><br>
     <u>Rodríguez-Caballero, C.V.</u> & Espin-García, O. <br>
     <em>Cuadernos de economía</em>, 2013.
-   
+
     <div class="btn-row">
       <a href="javascript:toggleDiv('abs-2014d')" class="btn btn--info btn--sm">ABS</a>
 
@@ -1755,23 +1755,11 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
 
          <a href="javascript:toggleDiv('bib-2014d')" class="btn btn--warning btn--sm">BIB</a>
     </div>
-    
+
     <div id="abs-2014d" class="abstract-block" style="display:none;">
       <strong>Abstract:</strong><br>
       <em>Las decisiones de otorgamiento de crédito son cruciales en la administración de riesgos. Las instituciones financieras han desarrollado y usado modelos de credit scoring para estandarizar y automatizar las decisiones de crédito, sin embargo, no es común encontrar metodologías para aplicarlos a clientes sin referencias crediticias, es decir clientes que carecen de información en los burós nacionales de crédito. En este trabajo se presenta una metodología general para construir un modelo sencillo de credit scoring enfocado justamente a esa población, la cual ha venido tomando una mayor importancia en el sector crediticio latinoamericano. Se usa la información sociodemográfica proveniente de las solicitudes de crédito de una pequeña institución bancaria mexicana para ejemplificar la metodología.</em>
     </div>
-<!-- ====
-      <div class="dropdown-container">
-  <button class="btn btn--secondary btn--sm"
-          onclick="toggleDropdown('media-2014d')">Media ▼</button>
-
-  <div id="media-2014d" class="dropdown-menu">
-    <a href="https://www.dropbox.com/scl/fi/405hnyhntk9gcgmzhhh9b/Kiev.pdf?rlkey=uodz4efp4qwpvfaa2zticedm6&st=n135anhr&dl=0"
-       target="_blank">Slides (PDF)</a>
-  </div>
-
-</div> --> 
-
 
     <div id="bib-2014d" class="bib-block" style="display:none;">
 <pre><code>@article{espin2013metodologia,
@@ -1812,7 +1800,6 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
       </div>
     </div>
   </div>
-  
 
   <!-- ============================== -->
   <!-- TECHNICAL NOTES (HIDDEN) -->
@@ -1992,13 +1979,5 @@ This high school textbook was created to share financial mathematics tools with 
       </p>
     </div>
   </div>
+
 </div>
-
-
-
-
-
-
-
-
-
