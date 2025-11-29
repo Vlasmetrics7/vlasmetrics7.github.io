@@ -1506,10 +1506,18 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
     </div>
   </div>
 </div>
-
 </div>
 
+
+<!--
+<button class="year-button" onclick="toggleYear('year2018')">
+  2018 ▼
+</button>
+
+<div id="year2018" style="display:none;">-->
+
 <div id="year2018" class="year-block" style="display:none;">
+ 
 <!-- ===================================================== -->
 <!-- ==================== PAPER: Energy Economics === -->
 <!-- ===================================================== -->
