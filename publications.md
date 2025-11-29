@@ -1346,7 +1346,7 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
         <div id="media-ECOSTAT21" class="dropdown-menu">
           <a href="https://www.dropbox.com/scl/fi/zwzy0xsbxghl9ddvqy6d1/Aalborg.pdf?rlkey=5m4eqzato4sqye91baxz3b2j9&st=htnt221f&dl=0" target="_blank">Slides (PDF)</a><br>
         </div>
-      </div>
+   <!--   </div> -->
 
       <a href="javascript:toggleDiv('bib-ECOSTAT21')" class="btn btn--warning btn--sm">BIB</a>
 
