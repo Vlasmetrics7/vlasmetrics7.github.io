@@ -1270,8 +1270,7 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
       <a href="javascript:toggleDiv('abs-WAV21')" class="btn btn--info btn--sm">ABS</a>
 
       <div class="dropdown-container">
-        <button class="btn btn--primary btn--sm"
-                onclick="toggleDropdown('wp-WAV21')">Working Papers ▼</button>
+        <button class="btn btn--primary btn--sm" onclick="toggleDropdown('wp-WAV21')">Working Papers ▼</button>
         <div id="wp-WAV21" class="dropdown-menu">
           <a href="https://arxiv.org/abs/2110.04416" target="_blank">Arxiv 2021</a><br>
           <a href="https://repositorio.usp.br/bitstreams/6d4a500b-e34a-4616-a37d-99e4cb4ac9c8" target="_blank">USP WP 2021</a>
@@ -1312,8 +1311,10 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
 }
 </code></pre>
     </div>
-  </div>
-</div>
+
+  </div> <!-- pub-info -->
+
+</div> <!-- pub-card -->
 
 <!-- ===================================================== -->
 <!-- ==================== PAPER  ECOSTAT ================== -->
