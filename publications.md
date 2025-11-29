@@ -1338,7 +1338,8 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
         <button class="btn btn--secondary btn--sm"
                 onclick="toggleDropdown('media-ECOSTAT21')">Media ▼</button>
         <div id="media-ECOSTAT21" class="dropdown-menu">
-          <a href="https://www.dropbox.com/scl/fi/zwzy0xsbxghl9ddvqy6d1/Aalborg.pdf?rlkey=5m4eqzato4sqye91baxz3b2j9&st=htnt221f&dl=0" target="_blank">Slides (PDF)</a><br>
+          <a href="https://www.dropbox.com/scl/fi/sx9h5jc6x7hysqvkexcxb/job-market-seminar.pdf?rlkey=so3hyjaphyl1yizc7xc3b53y6&st=f4hty2ss&dl=0" target="_blank">JMS (UC3M)</a><br>
+           <a href="https://www.dropbox.com/scl/fi/dqzsfzyrj4k2lwurij2pq/job-market-seminar.pdf?rlkey=d1yhfx7wmipk7mqbwn82dgqka&st=asqy6pr9&dl=0" target="_blank">JMS (ITAM)</a><br>
         </div>
       </div>
 
@@ -1474,15 +1475,13 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
       <a href="https://doi.org/10.1016/j.intfin.2019.101144"
          target="_blank" class="btn btn--success btn--sm">Published</a>
 
-<!-- =================================
       <div class="dropdown-container">
         <button class="btn btn--secondary btn--sm"
                 onclick="toggleDropdown('media-FIN19')">Media ▼</button>
         <div id="media-FIN19" class="dropdown-menu">
-          <a href="https://www.dropbox.com/scl/fi/zwzy0xsbxghl9ddvqy6d1/Aalborg.pdf?rlkey=5m4eqzato4sqye91baxz3b2j9&st=htnt221f&dl=0" target="_blank">Slides (PDF)</a><br>
+          <a href="https://www.dropbox.com/scl/fi/79t9yw2mi7jvwjclqo02j/IAAE-2019-Annual-Conference-CVRC.pdf?rlkey=84u0i66la112fofluhth7x6s5&st=n3oyuywz&dl=0" target="_blank">Slides (PDF)</a><br>
         </div>
-      </div>==================== -->
-
+ 
       <a href="javascript:toggleDiv('bib-FIN19')" class="btn btn--warning btn--sm">BIB</a>
 
     </div>
@@ -1667,6 +1666,13 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
       <em>The asymptotic behavior of the Granger-causality test under stochastic nonstationarity is studied. Our results confirm that the inference drawn from the test is not reliable when the series are integrated to the first order. In the presence of deterministic components, the test statistic diverges, eventually rejecting the null hypothesis, even when the series are independent of each other. Moreover, controlling for these deterministic elements (in the auxiliary regressions of the test) does not preclude the possibility of drawing erroneous inferences. Granger causality tests should not be used under stochastic nonstationarity, a property typically found in many macroeconomic variables.</em>
     </div>
 
+          <div class="dropdown-container">
+        <button class="btn btn--secondary btn--sm"
+                onclick="toggleDropdown('media-2014b')">Media ▼</button>
+        <div id="media-2014b" class="dropdown-menu">
+          <a href="https://www.dropbox.com/scl/fi/6pnrz44zonmu1ctks11ia/GC-UR.pdf?rlkey=mcj01xdzphynsk4g2tu8ntlp7&st=m40wtkz3&dl=0" target="_blank">Slides (PDF)</a><br>
+        </div>
+
     <div id="bib-2014b" class="bib-block" style="display:none;">
 <pre><code>@article{rodriguez2014granger,
   title={Granger causality and unit roots},
@@ -1750,6 +1756,13 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
       <strong>Abstract:</strong><br>
       <em>Las decisiones de otorgamiento de crédito son cruciales en la administración de riesgos. Las instituciones financieras han desarrollado y usado modelos de credit scoring para estandarizar y automatizar las decisiones de crédito, sin embargo, no es común encontrar metodologías para aplicarlos a clientes sin referencias crediticias, es decir clientes que carecen de información en los burós nacionales de crédito. En este trabajo se presenta una metodología general para construir un modelo sencillo de credit scoring enfocado justamente a esa población, la cual ha venido tomando una mayor importancia en el sector crediticio latinoamericano. Se usa la información sociodemográfica proveniente de las solicitudes de crédito de una pequeña institución bancaria mexicana para ejemplificar la metodología.</em>
     </div>
+
+              <div class="dropdown-container">
+        <button class="btn btn--secondary btn--sm"
+                onclick="toggleDropdown('media-2014d')">Media ▼</button>
+        <div id="media-2014d" class="dropdown-menu">
+          <a href="https://www.dropbox.com/scl/fi/405hnyhntk9gcgmzhhh9b/Kiev.pdf?rlkey=uodz4efp4qwpvfaa2zticedm6&st=n135anhr&dl=0" target="_blank">Slides (PDF)</a><br>
+        </div>
 
     <div id="bib-2014d" class="bib-block" style="display:none;">
 <pre><code>@article{espin2013metodologia,
