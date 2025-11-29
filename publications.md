@@ -1660,13 +1660,14 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
       <em>The asymptotic behavior of the Granger-causality test under stochastic nonstationarity is studied. Our results confirm that the inference drawn from the test is not reliable when the series are integrated to the first order. In the presence of deterministic components, the test statistic diverges, eventually rejecting the null hypothesis, even when the series are independent of each other. Moreover, controlling for these deterministic elements (in the auxiliary regressions of the test) does not preclude the possibility of drawing erroneous inferences. Granger causality tests should not be used under stochastic nonstationarity, a property typically found in many macroeconomic variables.</em>
     </div>
 
+<!-- ====
           <div class="dropdown-container">
         <button class="btn btn--secondary btn--sm"
                 onclick="toggleDropdown('media-2014b')">Media ▼</button>
         <div id="media-2014b" class="dropdown-menu">
           <a href="https://www.dropbox.com/scl/fi/6pnrz44zonmu1ctks11ia/GC-UR.pdf?rlkey=mcj01xdzphynsk4g2tu8ntlp7&st=m40wtkz3&dl=0" target="_blank">Slides (PDF)</a>
       </div>
-    </div>
+    </div>============= -->
 
     <div id="bib-2014b" class="bib-block" style="display:none;">
 <pre><code>@article{rodriguez2014granger,
@@ -1751,7 +1752,7 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
       <strong>Abstract:</strong><br>
       <em>Las decisiones de otorgamiento de crédito son cruciales en la administración de riesgos. Las instituciones financieras han desarrollado y usado modelos de credit scoring para estandarizar y automatizar las decisiones de crédito, sin embargo, no es común encontrar metodologías para aplicarlos a clientes sin referencias crediticias, es decir clientes que carecen de información en los burós nacionales de crédito. En este trabajo se presenta una metodología general para construir un modelo sencillo de credit scoring enfocado justamente a esa población, la cual ha venido tomando una mayor importancia en el sector crediticio latinoamericano. Se usa la información sociodemográfica proveniente de las solicitudes de crédito de una pequeña institución bancaria mexicana para ejemplificar la metodología.</em>
     </div>
-
+<!-- ====
       <div class="dropdown-container">
   <button class="btn btn--secondary btn--sm"
           onclick="toggleDropdown('media-2014d')">Media ▼</button>
@@ -1759,9 +1760,9 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
   <div id="media-2014d" class="dropdown-menu">
     <a href="https://www.dropbox.com/scl/fi/405hnyhntk9gcgmzhhh9b/Kiev.pdf?rlkey=uodz4efp4qwpvfaa2zticedm6&st=n135anhr&dl=0"
        target="_blank">Slides (PDF)</a>
-  </div> <!-- cierre correcto -->
+  </div>
 
-</div> <!-- cierre correcto -->
+</div> --> 
 
 
     <div id="bib-2014d" class="bib-block" style="display:none;">
