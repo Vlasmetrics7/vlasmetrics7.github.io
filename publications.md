@@ -1379,13 +1379,6 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
 
 </div>
 
-
-
-
-
-
-
-
 <!--</div>
 <button class="year-button" onclick="toggleYear('year2020')">
   2020 ▼
@@ -1492,14 +1485,13 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
       <a href="https://doi.org/10.1016/j.intfin.2019.101144"
          target="_blank" class="btn btn--success btn--sm">Published</a>
 
-<!-- =================================
       <div class="dropdown-container">
         <button class="btn btn--secondary btn--sm"
                 onclick="toggleDropdown('media-FIN19')">Media ▼</button>
         <div id="media-FIN19" class="dropdown-menu">
           <a href="https://www.dropbox.com/scl/fi/zwzy0xsbxghl9ddvqy6d1/Aalborg.pdf?rlkey=5m4eqzato4sqye91baxz3b2j9&st=htnt221f&dl=0" target="_blank">Slides (PDF)</a><br>
         </div>
-      </div>==================== -->
+      </div>
 
       <a href="javascript:toggleDiv('bib-FIN19')" class="btn btn--warning btn--sm">BIB</a>
 
