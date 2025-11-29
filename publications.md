@@ -1311,10 +1311,8 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
 }
 </code></pre>
     </div>
-
-  </div> <!-- pub-info -->
-
-</div> <!-- pub-card -->
+  </div>
+</div>
 
 <!-- ===================================================== -->
 <!-- ==================== PAPER  ECOSTAT ================== -->
@@ -1374,7 +1372,7 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
     </div>
   </div>
 </div>
-
+</div>
 
 
 <!--</div>
