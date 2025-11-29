@@ -1670,8 +1670,9 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
         <button class="btn btn--secondary btn--sm"
                 onclick="toggleDropdown('media-2014b')">Media ▼</button>
         <div id="media-2014b" class="dropdown-menu">
-          <a href="https://www.dropbox.com/scl/fi/6pnrz44zonmu1ctks11ia/GC-UR.pdf?rlkey=mcj01xdzphynsk4g2tu8ntlp7&st=m40wtkz3&dl=0" target="_blank">Slides (PDF)</a><br>
-        </div>
+          <a href="https://www.dropbox.com/scl/fi/6pnrz44zonmu1ctks11ia/GC-UR.pdf?rlkey=mcj01xdzphynsk4g2tu8ntlp7&st=m40wtkz3&dl=0" target="_blank">Slides (PDF)</a>
+      </div>
+    </div>
 
     <div id="bib-2014b" class="bib-block" style="display:none;">
 <pre><code>@article{rodriguez2014granger,
@@ -1761,8 +1762,9 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
         <button class="btn btn--secondary btn--sm"
                 onclick="toggleDropdown('media-2014d')">Media ▼</button>
         <div id="media-2014d" class="dropdown-menu">
-          <a href="https://www.dropbox.com/scl/fi/405hnyhntk9gcgmzhhh9b/Kiev.pdf?rlkey=uodz4efp4qwpvfaa2zticedm6&st=n135anhr&dl=0" target="_blank">Slides (PDF)</a><br>
-        </div>
+          <a href="https://www.dropbox.com/scl/fi/405hnyhntk9gcgmzhhh9b/Kiev.pdf?rlkey=uodz4efp4qwpvfaa2zticedm6&st=n135anhr&dl=0" target="_blank">Slides (PDF)</a>
+      </div>
+    </div>
 
     <div id="bib-2014d" class="bib-block" style="display:none;">
 <pre><code>@article{espin2013metodologia,
