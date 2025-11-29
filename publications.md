@@ -1508,13 +1508,6 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
 
 </div>
 
-<!--
-<button class="year-button" onclick="toggleYear('year2018')">
-  <2018 ▼
-</button>
-
-<div id="year2018" style="display:none;">-->
-
 <div id="year2018" class="year-block" style="display:none;">
 <!-- ===================================================== -->
 <!-- ==================== PAPER: Energy Economics === -->
@@ -1758,13 +1751,17 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
       <em>Las decisiones de otorgamiento de crédito son cruciales en la administración de riesgos. Las instituciones financieras han desarrollado y usado modelos de credit scoring para estandarizar y automatizar las decisiones de crédito, sin embargo, no es común encontrar metodologías para aplicarlos a clientes sin referencias crediticias, es decir clientes que carecen de información en los burós nacionales de crédito. En este trabajo se presenta una metodología general para construir un modelo sencillo de credit scoring enfocado justamente a esa población, la cual ha venido tomando una mayor importancia en el sector crediticio latinoamericano. Se usa la información sociodemográfica proveniente de las solicitudes de crédito de una pequeña institución bancaria mexicana para ejemplificar la metodología.</em>
     </div>
 
-              <div class="dropdown-container">
-        <button class="btn btn--secondary btn--sm"
-                onclick="toggleDropdown('media-2014d')">Media ▼</button>
-        <div id="media-2014d" class="dropdown-menu">
-          <a href="https://www.dropbox.com/scl/fi/405hnyhntk9gcgmzhhh9b/Kiev.pdf?rlkey=uodz4efp4qwpvfaa2zticedm6&st=n135anhr&dl=0" target="_blank">Slides (PDF)</a>
-      </div>
-    </div>
+      <div class="dropdown-container">
+  <button class="btn btn--secondary btn--sm"
+          onclick="toggleDropdown('media-2014d')">Media ▼</button>
+
+  <div id="media-2014d" class="dropdown-menu">
+    <a href="https://www.dropbox.com/scl/fi/405hnyhntk9gcgmzhhh9b/Kiev.pdf?rlkey=uodz4efp4qwpvfaa2zticedm6&st=n135anhr&dl=0"
+       target="_blank">Slides (PDF)</a>
+  </div> <!-- cierre correcto -->
+
+</div> <!-- cierre correcto -->
+
 
     <div id="bib-2014d" class="bib-block" style="display:none;">
 <pre><code>@article{espin2013metodologia,
