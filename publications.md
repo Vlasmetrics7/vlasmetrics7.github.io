@@ -663,7 +663,8 @@ Explore my research output by year, or browse a curated selection of highlighted
    <button class="year-tile year-2021" onclick="toggleYear('year2021')">2021 (5) ▼</button>
    <button class="year-tile year-2020" onclick="toggleYear('year2020')">2020 (1) ▼</button>
    <button class="year-tile year-2019" onclick="toggleYear('year2019')">2019 (1) ▼</button>
-   <button class="year-tile year-2018" onclick="toggleYear('year2018')"><2018 (6) ▼</button>
+ <!--  <button class="year-tile year-2018" onclick="toggleYear('year2018')"><2018 (6) ▼</button> -->
+   <button class="year-tile year-2018" onclick="toggleYear('year2018')">&lt;2018 (6) ▼</button>
 </div>
 
 <hr style="margin-top:5px; margin-bottom:25px; opacity:0.25;">
