@@ -1289,8 +1289,7 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
           <a href="https://www.dropbox.com/scl/fi/ycgx41xqn6d9d0cay1ta4/Symposium-on-Forecasting.pdf?rlkey=tf0vfnqmaktgs7nngb0a7xow8&st=mungl78r&dl=0" target="_blank">Slides (PDF)</a><br>
         </div>
       </div>
-      </div>
-
+     
       <a href="javascript:toggleDiv('bib-WAV21')" class="btn btn--warning btn--sm">BIB</a>
 
     </div>
