@@ -1375,9 +1375,9 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
   </div>
 </div>
 
-</div>
 
-<!--
+
+<!--</div>
 <button class="year-button" onclick="toggleYear('year2020')">
   2020 ▼
 </button>
