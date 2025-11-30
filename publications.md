@@ -663,6 +663,9 @@ Explore my research output by year, or browse a curated selection of highlighted
         <a href="https://doi.org/10.1016/j.eneco.2016.09.008"
          target="_blank" class="btn btn--success btn--sm">Published</a>
          <a href="javascript:toggleDiv('bib-ENECO16B')" class="btn btn--warning btn--sm">BIB</a>
+         <!-- NUEVO BOTÓN REP -->
+      <a href="https://github.com/Vlasmetrics7/CommonLongRange"
+         target="_blank" class="btn btn--dark btn--sm">Codes</a>
     </div>
   <div id="abs-ENECO16B" class="abstract-block" style="display:none;">
       <strong>Abstract:</strong><br>
