@@ -55,6 +55,7 @@ Click each section to explore.
         <li>COVID-19 induces permanent shifts in the global factor</li>
         <li>Intermittent factors show 1-year mean reversion</li>
       </ul>
+      <li>CDS comovement driven by global + local + semi-pervasive factors</li>
 
       <h4>Dynamic Multi-Level Factor Models with Stochastic Trends</h4>
       <ul>
@@ -96,61 +97,6 @@ Click each section to explore.
       <h4>Periodic FI Models for Power Markets</h4>
       <p>Electricity prices exhibit fractional cointegration and strong diurnal periodicity.</p>
 
-    </div>
-  </div>
-
-  <!-- SECTION V -->
-  <div class="acc-item">
-    <button class="acc-btn">V. Long-Range Dependence in Economic History</button>
-    <div class="acc-content">
-      <ul>
-        <li>Uses fractional dynamics to analyze pandemics and European growth</li>
-        <li>Black Death effects vary across Malthusian structures</li>
-        <li>North Sea economies show positive post-plague trend growth</li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- SECTION VI -->
-  <div class="acc-item">
-    <button class="acc-btn">VI. Applied Macro-Finance, Volatility, and Bubbles</button>
-    <div class="acc-content">
-      <ul>
-        <li>Dates Bitcoin’s 2017 crash to 13 Dec 2017 using crash-time econometrics</li>
-        <li>Develops Bayesian MCMC methods for financial crash inference</li>
-        <li>Provides credible intervals for bubble-collapse timing</li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- SECTION VII -->
-  <div class="acc-item">
-    <button class="acc-btn">VII. Pollution, Mobility, and Epidemiological Econometrics</button>
-    <div class="acc-content">
-      <ul>
-        <li>Rejects pollution as main SARS-CoV-2 transmission driver</li>
-        <li>Mobility explains cross-municipality infection dependence</li>
-        <li>COVID lockdowns reduced mobility but not pollution</li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- SECTION VIII -->
-  <div class="acc-item">
-    <button class="acc-btn">VIII. Labor Markets, Institutions, and Gender Economics</button>
-    <div class="acc-content">
-      <p>Gender-equality reforms increase female labor participation by ~6 pp and GDP per capita by ~1 pp.</p>
-    </div>
-  </div>
-
-  <!-- SECTION IX -->
-  <div class="acc-item">
-    <button class="acc-btn">IX. Risk, Credit, and Macroeconomic Diagnostics</button>
-    <div class="acc-content">
-      <ul>
-        <li>CDS comovement driven by global + local + semi-pervasive factors</li>
-        <li>Socio-demographic credit scoring for unbanked populations</li>
-      </ul>
     </div>
   </div>
 
