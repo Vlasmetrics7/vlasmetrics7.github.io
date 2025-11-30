@@ -37,6 +37,6 @@ permalink: /cv/
 
 Please find my complete CV below:
 
-[Download CV (English)](/uploads/cv_9.pdf){: .btn .btn--large .btn--primary }
+[Download CV (English)](/uploads/6/6/5/9/66590417/cv_9.pdf){: .btn .btn--large .btn--primary }
 
 *(Asegúrate de subir el archivo `cv_9.pdf` a la carpeta `uploads/` en tu repositorio.)*
