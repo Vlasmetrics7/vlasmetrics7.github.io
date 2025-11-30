@@ -1093,6 +1093,9 @@ the maximum price. Nine days after, the bitcoin price fell 45% from its peaks.</
          target="_blank" class="btn btn--success btn--sm">Published</a>
 
       <a href="javascript:toggleDiv('bib-EcEx2023')" class="btn btn--warning btn--sm">BIB</a>
+       <!-- NUEVO BOTÓN REP -->
+      <a href="https://doi.org/10.3886/E173721V2"
+         target="_blank" class="btn btn--dark btn--sm">Codes</a>
     </div>
 
     <div id="abs-EcEx2023" class="abstract-block" style="display:none;">
@@ -1173,6 +1176,9 @@ of modern economic growth and the Great Divergence in Eurasia.</em>
         </div>
 
         <a href="javascript:toggleDiv('bib-ECO2021')" class="btn btn--warning btn--sm">BIB</a>
+          <!-- NUEVO BOTÓN REP -->
+      <a href="https://github.com/Vlasmetrics7/COVID19carrier"
+         target="_blank" class="btn btn--dark btn--sm">Codes</a>
       </div>
 
       <div id="abs-ECO2021" class="abstract-block" style="display:none;">
@@ -1458,7 +1464,9 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
       </div> -->
 
       <a href="javascript:toggleDiv('bib-ECO2020')" class="btn btn--warning btn--sm">BIB</a>
-
+  <!-- NUEVO BOTÓN REP -->
+      <a href="https://c-vladimir-rodriguez-caballero.weebly.com/uploads/6/6/5/9/66590417/persistence_analysis_gdp_many_countries.r"
+         target="_blank" class="btn btn--dark btn--sm">Codes</a>
     </div>
 
     <div id="abs-ECO2020" class="abstract-block" style="display:none;">
@@ -1667,6 +1675,9 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
          target="_blank" class="btn btn--success btn--sm">Published</a>
 
          <a href="javascript:toggleDiv('bib-2014')" class="btn btn--warning btn--sm">BIB</a>
+          <!-- NUEVO BOTÓN REP -->
+      <a href="https://github.com/Vlasmetrics7/BayesianLPModel"
+         target="_blank" class="btn btn--dark btn--sm">Codes</a>
     </div>
 
     <div id="abs-2014" class="abstract-block" style="display:none;">
@@ -1709,6 +1720,9 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
          target="_blank" class="btn btn--success btn--sm">Published</a>
 
          <a href="javascript:toggleDiv('bib-2014b')" class="btn btn--warning btn--sm">BIB</a>
+           <!-- NUEVO BOTÓN REP -->
+      <a href="https://github.com/Vlasmetrics7/GCUnitRoot"
+         target="_blank" class="btn btn--dark btn--sm">Codes</a>
     </div>
 
     <div id="abs-2014b" class="abstract-block" style="display:none;">
@@ -1751,6 +1765,9 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
          target="_blank" class="btn btn--success btn--sm">Published</a>
 
          <a href="javascript:toggleDiv('bib-2014c')" class="btn btn--warning btn--sm">BIB</a>
+          <!-- NUEVO BOTÓN REP -->
+      <a href="https://github.com/Vlasmetrics7/PolReg.NonsenseInference.git"
+         target="_blank" class="btn btn--dark btn--sm">Codes</a>
     </div>
 
     <div id="abs-2014c" class="abstract-block" style="display:none;">
