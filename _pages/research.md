@@ -8,7 +8,7 @@ permalink: /research/
 <!--  1. CONTENIDO HTML    -->
 <!-- ===================== -->
 
-<h2>What I Research</h2>
+<h1>Research Overview</h1>
 
 <p>
 My research program develops a coherent econometric framework that links multilevel factor structures, fractional integration, long-memory dynamics, and stress-scenario propagation across macroeconomic, financial, energy, and climate-related systems. 
@@ -27,164 +27,193 @@ My research fields are:
 
 You can find related publications in the [Publications](/publications/) and [Working Papers](/working-papers/) sections.
 <br><br>
+Click each section to explore.
 </p>
 
-<button class="research-toggle" onclick="toggleResearchText()">Read Full Research Overview ▼</button>
+<div class="accordion">
 
-<div id="research-full" class="research-hidden">
-<!-- ============================= -->
-<!--   RESEARCH OVERVIEW SECTION   -->
-<!-- ============================= -->
+  <!-- SECTION I -->
+  <div class="acc-item">
+    <button class="acc-btn">I. Stress-Scenario Econometrics and Growth-in-Stress Frameworks</button>
+    <div class="acc-content">
+      <p><strong>Stressed Conditional Growth Densities (GiS):</strong>  
+      You construct conditional growth densities under stressed factor configurations derived from multilevel DFMs. The framework:</p>
 
-<h2>What I Research</h2>
+      <ul>
+        <li>Derives <em>severe yet plausible</em> stress scenarios from the joint distribution of latent factors</li>
+        <li>Generates <strong>full predictive densities</strong>, not only quantiles</li>
+        <li>Defines <strong>Growth-in-Stress (GiS)</strong> as the 5% lower tail under stress</li>
+        <li>Shows how <strong>COVID-19 amplifies tail risks</strong></li>
+      </ul>
 
-<p>
-My work spans econometrics, time-series modelling, climate–economy interactions,
-long-range dependence, multi-level factor models, and the study of structural dynamics 
-in macro-financial systems. Below is a compact overview summarizing the themes that 
-appear recurrently across my published and ongoing research.
-</p>
+      <p>Technical contribution: a multidimensional scenario methodology that complements GaR 
+      and exploits the structure of factor-driven dependencies.</p>
+    </div>
+  </div>
 
-<button class="research-toggle" onclick="toggleResearchText()">Read Full Research Overview ▼</button>
+  <!-- SECTION II -->
+  <div class="acc-item">
+    <button class="acc-btn">II. Multilevel Factor Models with Fractional Integration</button>
+    <div class="acc-content">
 
-<div id="research-full" class="research-hidden">
-  <p>
-The links between climate change and economic activity have a critical relevance for the
-well-being of future generations. Consequently, many publications are devoted to
-understanding and measuring them. This paper is a comprehensive survey of recent
-contributions using econometric methods. We update previous surveys focusing on partial
-aspects of the complex relationships linking the economy and climate change. Starting from
-economic activity, the channels that relate it to climate change are energy consumption and
-the consequent pollution. Hence, we first describe the main econometric contributions of the
-interactions between economic activity and energy consumption, then explain the
-contributions and interactions of economic activity to pollution. Finally, we look at the main
-results on the relationship between climate change and economic activity. A necessary
-consequence of climate change is the increasing occurrence of extreme weather phenomena.
-Therefore, we also survey contributions on the economic effects of catastrophic climate
-phenomena.
-<br><br>
+      <h4>FI-ML-DFM for High-Frequency Volatility</h4>
+      <ul>
+        <li>Defines global-in-time factors + intermittent hourly factors</li>
+        <li>COVID-19 induces permanent shifts in the global factor</li>
+        <li>Intermittent factors show 1-year mean reversion</li>
+      </ul>
 
-We propose the construction of conditional growth densities under stressed factor scenarios to
-assess the level of exposure of an economy to small probability but potentially catastrophic
-economic and/or financial scenarios, which can be either domestic or international. The choice
-of severe yet plausible stress scenarios is based on the joint probability distribution of the
-underlying factors driving growth, which are extracted with a multilevel dynamic factor model
-(DFM) from a wide set of domestic/worldwide and/or macroeconomic/financial variables.
-All together, we provide a risk management tool that allows for a complete visualization of the
-dynamics of the growth densities under average scenarios and extreme scenarios.
-<br><br>
+      <h4>Dynamic Multi-Level Factor Models with Stochastic Trends</h4>
+      <ul>
+        <li>Allows long memory + short memory + stochastic trends</li>
+        <li>Prewhitening via cross-sectional and local averages</li>
+        <li>Factor estimators are asymptotically normal</li>
+        <li>Nord Pool application shows fractional cointegration</li>
+      </ul>
 
-In this paper, we consider a fractionally integrated multi-level dynamic factor model
-(FI-ML-DFM) to represent commonalities in the hourly evolution of realized volatilities of
-several international exchange rates. The FI-ML-DFM assumes common global factors active
-during the 24 h of the day, accompanied by intermittent factors active at mutually exclusive
-times. We propose determining the number of global factors using a distance among the
-intermittent loadings. We show that although the bulk of common dynamics of exchange rate
-realized volatilities can be attributed to global factors, there are non-negligible effects of
-intermittent factors.
-<br><br>
+      <p><strong>Technical contribution:</strong> a unified asymptotic framework combining long memory and multilevel factor structures.</p>
 
-A dynamic multi-level factor model with possible stochastic time trends is proposed. In the
-model, long-range dependence and short memory dynamics are allowed in global and local
-common factors as well as in the innovations. We estimate factors using prewhitened series,
-canonical correlations, and a sequential least-squares algorithm. The methodology performs
-well in simulations and is applied to the Nord Pool electricity market.
-<br><br>
+    </div>
+  </div>
 
-We introduce a high-dimensional factor model with time-varying loadings and develop an
-estimation procedure based on principal components and iterative GLS with wavelets. We
-apply the method to the Nord Pool electricity market’s prices and loads.
-<br><br>
+  <!-- SECTION III -->
+  <div class="acc-item">
+    <button class="acc-btn">III. High-Dimensional Factor Dynamics with Time-Varying Loadings</button>
+    <div class="acc-content">
+      <ul>
+        <li>Wavelet-based GLS estimation for time-varying loadings</li>
+        <li>Handles stationary + nonstationary factors</li>
+        <li>Explains cross-hour dependence in Nord Pool electricity markets</li>
+      </ul>
+      <p>This links time-varying loadings with long-memory innovations.</p>
+    </div>
+  </div>
 
-A fractionally integrated panel data model with multi-level cross-sectional dependence is
-proposed. It captures comovements between groups of variables via top-level and local
-factors, allowing stationary and nonstationary behaviour. We apply it to long-run relationships
-between energy consumption and economic growth.
-<br><br>
+  <!-- SECTION IV -->
+  <div class="acc-item">
+    <button class="acc-btn">IV. Energy, Growth, and Long-Memory Macroeconomics</button>
+    <div class="acc-content">
 
-We introduce a multilevel factor model capturing global, local, and semi-pervasive factors to
-explain the commonality in CDS spreads. These models are more interpretable than PCA and
-help recover risk contributions of latent factors in baskets of sovereign credit default swaps.
-<br><br>
+      <h4>Fractionally Integrated Panel Models</h4>
+      <p>Proposes FI panels with multilevel dependence: top-level and block-level factors.</p>
 
-We study the causal link between electricity consumption and GDP (per capita) using VEC
-models with structural breaks and exogeneity-based inference. Evidence varies across
-countries, revealing multiple energy–growth regimes.
-<br><br>
+      <h4>EPC–GDP Causality under Structural Breaks</h4>
+      <p>Shows heterogeneous causal relationships across the Americas, depending on crisis episodes.</p>
 
-We analyze long economic series to assess persistent effects of pandemics on growth and
-unemployment. Recent pandemics appear to have permanent effects on growth and increase
-unemployment persistence, supporting timely countercyclical policies.
-<br><br>
+      <h4>Periodic FI Models for Power Markets</h4>
+      <p>Electricity prices exhibit fractional cointegration and strong diurnal periodicity.</p>
 
-We develop Bayesian approaches for dating financial crashes in major historical bubbles
-(S&P500, Hang Seng, Merval, IPCMX). These models provide 95% credible intervals for crash
-timing.
-<br><br>
+    </div>
+  </div>
 
-Polynomial specifications estimated under stochastic nonstationarity can lead to misleading
-inference unless variables cointegrate. We generalize Phillips (1986) and highlight risks for
-numerous applied fields.
-<br><br>
+  <!-- SECTION V -->
+  <div class="acc-item">
+    <button class="acc-btn">V. Long-Range Dependence in Economic History</button>
+    <div class="acc-content">
+      <ul>
+        <li>Uses fractional dynamics to analyze pandemics and European growth</li>
+        <li>Black Death effects vary across Malthusian structures</li>
+        <li>North Sea economies show positive post-plague trend growth</li>
+      </ul>
+    </div>
+  </div>
 
-Las decisiones de otorgamiento de crédito son cruciales en la administración de riesgos.
-Presentamos una metodología para credit scoring en poblaciones sin historial crediticio, con
-aplicación en una institución bancaria mexicana.
-  </p>
+  <!-- SECTION VI -->
+  <div class="acc-item">
+    <button class="acc-btn">VI. Applied Macro-Finance, Volatility, and Bubbles</button>
+    <div class="acc-content">
+      <ul>
+        <li>Dates Bitcoin’s 2017 crash to 13 Dec 2017 using crash-time econometrics</li>
+        <li>Develops Bayesian MCMC methods for financial crash inference</li>
+        <li>Provides credible intervals for bubble-collapse timing</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SECTION VII -->
+  <div class="acc-item">
+    <button class="acc-btn">VII. Pollution, Mobility, and Epidemiological Econometrics</button>
+    <div class="acc-content">
+      <ul>
+        <li>Rejects pollution as main SARS-CoV-2 transmission driver</li>
+        <li>Mobility explains cross-municipality infection dependence</li>
+        <li>COVID lockdowns reduced mobility but not pollution</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SECTION VIII -->
+  <div class="acc-item">
+    <button class="acc-btn">VIII. Labor Markets, Institutions, and Gender Economics</button>
+    <div class="acc-content">
+      <p>Gender-equality reforms increase female labor participation by ~6 pp and GDP per capita by ~1 pp.</p>
+    </div>
+  </div>
+
+  <!-- SECTION IX -->
+  <div class="acc-item">
+    <button class="acc-btn">IX. Risk, Credit, and Macroeconomic Diagnostics</button>
+    <div class="acc-content">
+      <ul>
+        <li>CDS comovement driven by global + local + semi-pervasive factors</li>
+        <li>Socio-demographic credit scoring for unbanked populations</li>
+      </ul>
+    </div>
+  </div>
+
 </div>
-
-
-</div>
-
-<!-- ===================== -->
-<!--        2. CSS         -->
-<!-- ===================== -->
 
 <style>
-.research-toggle {
-  background: #e4ecff;
-  border: 1px solid #b7c8ff;
-  padding: 10px 18px;
+.accordion {
+  margin-top: 25px;
+}
+
+.acc-btn {
+  width: 100%;
+  background: #e7ecff;
+  border: 1px solid #c8d0ff;
+  padding: 12px 18px;
+  text-align: left;
   border-radius: 8px;
   cursor: pointer;
+  font-size: 17px;
   font-weight: 600;
-  margin-top: 15px;
-  transition: background 0.2s;
+  margin-bottom: 8px;
+  transition: 0.2s;
 }
 
-.research-toggle:hover {
-  background: #d7e3ff;
+.acc-btn:hover {
+  background: #dbe4ff;
 }
 
-#research-full {
-  margin-top: 18px;
-  padding: 16px 20px;
+.acc-content {
+  display: none;
+  padding: 15px 20px;
   background: #fafbff;
   border-left: 4px solid #8aa5ff;
   border-radius: 6px;
-  display: none;
+  margin-bottom: 15px;
   font-size: 15px;
   line-height: 1.45;
 }
 </style>
 
-<!-- ===================== -->
-<!--       3. SCRIPT       -->
-<!-- ===================== -->
-
 <script>
-function toggleResearchText() {
-  const box = document.getElementById("research-full");
-  const btn = document.querySelector(".research-toggle");
+const accButtons = document.querySelectorAll(".acc-btn");
 
-  if (box.style.display === "none" || box.style.display === "") {
-    box.style.display = "block";
-    btn.textContent = "Hide Full Research Overview ▲";
-  } else {
-    box.style.display = "none";
-    btn.textContent = "Read Full Research Overview ▼";
-  }
-}
+accButtons.forEach(btn => {
+  btn.addEventListener("click", () => {
+    const content = btn.nextElementSibling;
+
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      // cerrar otras secciones
+      document.querySelectorAll(".acc-content").forEach(c => c.style.display = "none");
+      content.style.display = "block";
+      content.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  });
+});
 </script>
-
 
