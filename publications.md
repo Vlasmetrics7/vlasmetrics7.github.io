@@ -1347,6 +1347,8 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
           <div id="media-ECOSTAT21" class="dropdown-menu">
             <a href="https://www.dropbox.com/scl/fi/sx9h5jc6x7hysqvkexcxb/job-market-seminar.pdf?rlkey=so3hyjaphyl1yizc7xc3b53y6&st=1zw14n05&dl=0"
                target="_blank">Slides (PDF)</a><br>
+                           <a href="https://www.dropbox.com/scl/fi/dqzsfzyrj4k2lwurij2pq/job-market-seminar.pdf?rlkey=d1yhfx7wmipk7mqbwn82dgqka&st=2bik03mq&dl=0"
+               target="_blank">Slides (PDF)</a><br>
           </div>
         </div>
 
