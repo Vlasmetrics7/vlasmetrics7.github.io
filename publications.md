@@ -228,6 +228,19 @@ function toggleYear(id) {
   flex-wrap: wrap;
   gap: 10px;
 } 
+
+  .btn--dark {
+  background: #555;
+  color: white;
+  border-radius: 6px;
+  padding: 2px 8px;
+  font-size: 0.75rem;
+  opacity: 0.85;
+}
+.btn--dark:hover {
+  opacity: 1;
+}
+
 </style>
 
 <script>
@@ -415,7 +428,11 @@ Explore my research output by year, or browse a curated selection of highlighted
           <a href="https://youtu.be/DGJhBLE6CpA" target="_blank">Seminar recording</a>
         </div>
       </div>
+
       <a href="javascript:toggleDiv('bib-stress2024A')" class="btn btn--warning btn--sm">BIB</a>
+      <!-- NUEVO BOTÓN REP -->
+      <a href="https://TU-LINK-REPLICATION"
+         target="_blank" class="btn btn--dark btn--sm">REP</a>
     </div>
  <div id="abs-stress2024A" class="abstract-block" style="display:none;">
       <strong>Abstract:</strong><br>
