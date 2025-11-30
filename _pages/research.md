@@ -50,9 +50,9 @@ Click each section to explore.
         <li>Defines global-in-time factors + intermittent hourly factors</li>
         <li>COVID-19 induces permanent shifts in the global factor</li>
         <li>Intermittent factors show 1-year mean reversion</li>
+        <li>CDS comovement driven by global + local + semi-pervasive factors</li>
       </ul>
-      <li>CDS comovement driven by global + local + semi-pervasive factors</li>
-
+      
       <h4>Dynamic Multi-Level Factor Models with Stochastic Trends</h4>
       <ul>
         <li>Allows long memory + short memory + stochastic trends</li>
