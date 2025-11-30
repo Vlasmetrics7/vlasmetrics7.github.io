@@ -11,38 +11,38 @@ Across applications (from growth-in-stress densities to electricity markets, exc
 <br><br>
 My research fields are:
 <br>
-- Non-stationary time series analysis  
-- Modelling of persistence (long memory models)  
-- Panel data models and dynamic factor models  
-- Forecasting
-<br>
 <br>
 
 You can find related publications in the [Publications](/publications/) and [Working Papers](/working-papers/) sections.
 <br><br>
 Click each section to explore.
-</p>
 
 <div class="accordion">
 
-  <!-- SECTION I -->
-  <div class="acc-item">
-    <button class="acc-btn">I. Stress-Scenario Econometrics and Growth-in-Stress Frameworks</button>
-    <div class="acc-content">
-      <p><strong>Stressed Conditional Growth Densities (GiS):</strong>  
-      You construct conditional growth densities under stressed factor configurations derived from multilevel DFMs. The framework:</p>
+<!-- SECTION I -->
+<div class="acc-item">
+  <button class="acc-btn">I. Scenario-Based Predictive Density Methods</button>
+  <div class="acc-content">
 
-      <ul>
-        <li>Derives <em>severe yet plausible</em> stress scenarios from the joint distribution of latent factors</li>
-        <li>Generates <strong>full predictive densities</strong>, not only quantiles</li>
-        <li>Defines <strong>Growth-in-Stress (GiS)</strong> as the 5% lower tail under stress</li>
-        <li>Shows how <strong>COVID-19 amplifies tail risks</strong></li>
-      </ul>
+    <p><strong>Scenario-Based Predictive Densities:</strong>  
+    I develop econometric frameworks that generate full predictive densities under both 
+    baseline and stressed configurations of the latent factors driving macro-financial systems. 
+    These methods are applicable to growth, inflation, volatility, energy markets, and other 
+    macroeconomic variables.</p>
 
-      <p>Technical contribution: a multidimensional scenario methodology that complements GaR 
-      and exploits the structure of factor-driven dependencies.</p>
-    </div>
+    <ul>
+      <li>Construct <em>severe yet plausible</em> scenarios from the joint distribution of high-dimensional factor models</li>
+      <li>Produce <strong>full predictive densities</strong> instead of point forecasts or isolated quantiles</li>
+      <li>Generalize <strong>Growth-in-Stress (GiS)</strong> to other macro-financial variables</li>
+      <li>Quantify how shocks—e.g., <strong>COVID-19</strong>—alter the tails of predictive distributions</li>
+    </ul>
+
+    <p>Technical contribution: a multidimensional scenario-consistent methodology that extends 
+    traditional risk tools such as GaR by exploiting multilevel dynamic factor structures and 
+    tail-sensitive predictive environments.</p>
+
   </div>
+</div>
 
   <!-- SECTION II -->
   <div class="acc-item">
