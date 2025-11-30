@@ -431,8 +431,8 @@ Explore my research output by year, or browse a curated selection of highlighted
 
       <a href="javascript:toggleDiv('bib-stress2024A')" class="btn btn--warning btn--sm">BIB</a>
       <!-- NUEVO BOTÓN REP -->
-      <a href="https://TU-LINK-REPLICATION"
-         target="_blank" class="btn btn--dark btn--sm">REP</a>
+      <a href="https://github.com/GPEBellocca/FARS/tree/main"
+         target="_blank" class="btn btn--dark btn--sm">Codes</a>
     </div>
  <div id="abs-stress2024A" class="abstract-block" style="display:none;">
       <strong>Abstract:</strong><br>
@@ -484,7 +484,11 @@ Explore my research output by year, or browse a curated selection of highlighted
         </div>
       </div>
       <a href="javascript:toggleDiv('bib-IJF2023B')" class="btn btn--warning btn--sm">BIB</a>
+       <!-- NUEVO BOTÓN REP -->
+      <a href="https://github.com/Vlasmetrics7/FractionalMLFactorModel"
+         target="_blank" class="btn btn--dark btn--sm">Codes</a>
     </div>
+
    <div id="abs-IJF2023B" class="abstract-block" style="display:none;">
       <strong>Abstract:</strong><br>
       <em>A dynamic multi-level factor model with possible stochastic time trends is proposed. In the model, long-range dependence and short memory dynamics are allowed in global and local common factors as well as model innovations. Estimation of global and local common factors is performed on the prewhitened series, for which the prewhitening parameter is estimated semiparametrically from the cross-sectional and local average of the observable series. Employing canonical correlation analysis and a sequential least-squares algorithm on the prewhitened series, the resulting multi-level factor estimates have centered asymptotic normal distributions under certain rate conditions depending on the bandwidth and cross-section size. Asymptotic results for common components are also established. The selection of the number of global and local factors is discussed. The methodology is shown to lead to good small-sample performance via Monte Carlo simulations. The method is then applied to the Nord Pool electricity market for the analysis of price comovements among different regions within the power grid. The global factor is identified to be the system price, and fractional cointegration relationships are found between local prices and the system price, motivating a long-run equilibrium relationship. Two forecasting exercises are then discussed.</em>
