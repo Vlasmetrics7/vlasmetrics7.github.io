@@ -9,10 +9,6 @@ My research program develops a coherent econometric framework that links multile
 <br>
 Across applications (from growth-in-stress densities to electricity markets, exchange-rate volatility, long economic histories, labour participation, pollution, and credit dynamics), most of my research papers uncover persistent common components, heterogeneous cross-sectional structures, and non-negligible tail risks that shape macroeconomic adjustment and policy design.
 <br><br>
-My research fields are:
-<br>
-<br>
-
 You can find related publications in the [Publications](/publications/) and [Working Papers](/working-papers/) sections.
 <br><br>
 Click each section to explore.
