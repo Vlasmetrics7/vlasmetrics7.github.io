@@ -513,7 +513,7 @@ Explore my research output by year, or browse a curated selection of highlighted
         <button class="btn btn--secondary btn--sm"
                 onclick="toggleDropdown('media-ECOSTAT21B')">Media ▼</button>
         <div id="media-ECOSTAT21B" class="dropdown-menu">
-          <a href="https://www.dropbox.com/scl/fi/zwzy0xsbxghl9ddvqy6d1/Aalborg.pdf?rlkey=5m4eqzato4sqye91baxz3b2j9&st=htnt221f&dl=0" target="_blank">Slides (PDF)</a><br>
+          <a href="https://www.dropbox.com/scl/fi/dqzsfzyrj4k2lwurij2pq/job-market-seminar.pdf?rlkey=d1yhfx7wmipk7mqbwn82dgqka&st=2bik03mq&dl=0" target="_blank">Slides (PDF)</a><br>
         </div>
       </div>
       <a href="javascript:toggleDiv('bib-ECOSTAT21B')" class="btn btn--warning btn--sm">BIB</a>
@@ -562,7 +562,7 @@ Explore my research output by year, or browse a curated selection of highlighted
         <button class="btn btn--secondary btn--sm"
                 onclick="toggleDropdown('media-FIN19B')">Media ▼</button>
         <div id="media-FIN19B" class="dropdown-menu">
-          <a href="https://www.dropbox.com/scl/fi/zwzy0xsbxghl9ddvqy6d1/Aalborg.pdf?rlkey=5m4eqzato4sqye91baxz3b2j9&st=htnt221f&dl=0" target="_blank">Slides (PDF)</a><br>
+          <a href="https://www.dropbox.com/scl/fi/79t9yw2mi7jvwjclqo02j/IAAE-2019-Annual-Conference-CVRC.pdf?rlkey=84u0i66la112fofluhth7x6s5&st=s6ypxn30&dl=0" target="_blank">Slides (PDF)</a><br>
         </div>
       </div>
       <a href="javascript:toggleDiv('bib-FIN19B')" class="btn btn--warning btn--sm">BIB</a>
