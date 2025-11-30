@@ -1133,9 +1133,7 @@ of modern economic growth and the Great Divergence in Eurasia.</em>
           <button class="btn btn--secondary btn--sm"
                   onclick="toggleDropdown('media-ECO2021')">Media ▼</button>
           <div id="media-ECO2021" class="dropdown-menu">
-            <a href="https://www.dropbox.com/scl/fi/zwzy0xsbxghl9ddvqy6d1/Aalborg.pdf?rlkey=5m4eqzato4sqye91baxz3b2j9&st=htnt221f&dl=0"
-               target="_blank">Slides (PDF)</a><br>
-            <a href="https://www.dropbox.com/scl/fi/6p59nn6yidw272ibz1z1z/IPDC.pdf?rlkey=q026h1zl1qsysj76renew9bx4&st=hcep76t4&dl=0"
+         <a href="https://www.dropbox.com/scl/fi/6p59nn6yidw272ibz1z1z/IPDC.pdf?rlkey=q026h1zl1qsysj76renew9bx4&st=hcep76t4&dl=0"
                target="_blank">Slides (PDF)</a><br>
           </div>
         </div>
@@ -1287,9 +1285,7 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
           <button class="btn btn--secondary btn--sm"
                   onclick="toggleDropdown('media-WAV21')">Media ▼</button>
           <div id="media-WAV21" class="dropdown-menu">
-            <a href="https://www.dropbox.com/scl/fi/zwzy0xsbxghl9ddvqy6d1/Aalborg.pdf?rlkey=5m4eqzato4sqye91baxz3b2j9&st=htnt221f&dl=0"
-               target="_blank">Slides (PDF)</a><br>
-            <a href="https://www.dropbox.com/scl/fi/ycgx41xqn6d9d0cay1ta4/Symposium-on-Forecasting.pdf?rlkey=tf0vfnqmaktgs7nngb0a7xow8&st=mungl78r&dl=0"
+          <a href="https://www.dropbox.com/scl/fi/ycgx41xqn6d9d0cay1ta4/Symposium-on-Forecasting.pdf?rlkey=tf0vfnqmaktgs7nngb0a7xow8&st=mungl78r&dl=0"
                target="_blank">Slides (PDF)</a><br>
           </div>
         </div>
@@ -1349,7 +1345,7 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
           <button class="btn btn--secondary btn--sm"
                   onclick="toggleDropdown('media-ECOSTAT21')">Media ▼</button>
           <div id="media-ECOSTAT21" class="dropdown-menu">
-            <a href="https://www.dropbox.com/scl/fi/zwzy0xsbxghl9ddvqy6d1/Aalborg.pdf?rlkey=5m4eqzato4sqye91baxz3b2j9&st=htnt221f&dl=0"
+            <a href="https://www.dropbox.com/scl/fi/sx9h5jc6x7hysqvkexcxb/job-market-seminar.pdf?rlkey=so3hyjaphyl1yizc7xc3b53y6&st=1zw14n05&dl=0"
                target="_blank">Slides (PDF)</a><br>
           </div>
         </div>
@@ -1414,14 +1410,13 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
       <a href="https://doi.org/10.3390/econometrics8030037"
          target="_blank" class="btn btn--success btn--sm">Published</a>
 
-  <!-- BSc Thesis 
       <div class="dropdown-container">
         <button class="btn btn--secondary btn--sm"
                 onclick="toggleDropdown('media-ECO2020')">Media ▼</button>
         <div id="media-ECO2020" class="dropdown-menu">
           <a href="https://www.dropbox.com/scl/fi/zwzy0xsbxghl9ddvqy6d1/Aalborg.pdf?rlkey=5m4eqzato4sqye91baxz3b2j9&st=htnt221f&dl=0" target="_blank">Slides (PDF)</a><br>
         </div>
-      </div>-->
+      </div>
 
       <a href="javascript:toggleDiv('bib-ECO2020')" class="btn btn--warning btn--sm">BIB</a>
 
