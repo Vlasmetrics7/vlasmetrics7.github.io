@@ -1,21 +1,14 @@
 ---
 layout: single
-title: "Research"
+title: "Research Overview"
 permalink: /research/
 ---
 
-<!-- ===================== -->
-<!--  1. CONTENIDO HTML    -->
-<!-- ===================== -->
-
-<h1>Research Overview</h1>
-
-<p>
 My research program develops a coherent econometric framework that links multilevel factor structures, fractional integration, long-memory dynamics, and stress-scenario propagation across macroeconomic, financial, energy, and climate-related systems. 
 <br>
 <br>
 Across applications (from growth-in-stress densities to electricity markets, exchange-rate volatility, long economic histories, labour participation, pollution, and credit dynamics), most of my research papers uncover persistent common components, heterogeneous cross-sectional structures, and non-negligible tail risks that shape macroeconomic adjustment and policy design.
-<br><br><br>
+<br><br>
 My research fields are:
 <br>
 - Non-stationary time series analysis  
