@@ -1906,7 +1906,7 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
 
 This high school textbook was created to share financial mathematics tools with young students throughout Mexico. It is used nationally as part of the sixth-semester curriculum of the Mexican Education Secretary system.<br><br>
 
-        <strong>Download:</strong> <a href="#" target="_blank">Full Book (PDF)</a>
+        <strong>Índice:</strong> <a href="https://www.gafra.com.mx/web/bundles/framework/indices/DGB/978-607-8224-42-5.pdf" target="_blank">Índice (PDF)</a>
       </p>
     </div>
   </div>
