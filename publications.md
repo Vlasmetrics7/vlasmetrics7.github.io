@@ -811,7 +811,9 @@ author = {Aránzazu de Juan and Pilar Poncela and C. Vladimir Rodríguez-Caballe
       </div>
 
       <a href="javascript:toggleDiv('bib-stress2024')" class="btn btn--warning btn--sm">BIB</a>
-
+   <!-- NUEVO BOTÓN REP -->
+      <a href="https://arxiv.org/abs/2507.10679"
+         target="_blank" class="btn btn--dark btn--sm">Codes</a>
     </div>
 
     <div id="abs-stress2024" class="abstract-block" style="display:none;">
@@ -933,7 +935,9 @@ author = {Aránzazu de Juan and Pilar Poncela and C. Vladimir Rodríguez-Caballe
       </div>
 
       <a href="javascript:toggleDiv('bib-IJF2023')" class="btn btn--warning btn--sm">BIB</a>
-
+<!-- NUEVO BOTÓN REP -->
+      <a href="https://github.com/Vlasmetrics7/FractionalMLFactorModel"
+         target="_blank" class="btn btn--dark btn--sm">Codes</a>
     </div>
 
     <div id="abs-IJF2023" class="abstract-block" style="display:none;">
@@ -1383,6 +1387,9 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
         </div>
 
         <a href="javascript:toggleDiv('bib-ECOSTAT21')" class="btn btn--warning btn--sm">BIB</a>
+          <!-- NUEVO BOTÓN REP -->
+      <a href="https://github.com/Vlasmetrics7/MultiLevelPanelDataLongMemory"
+         target="_blank" class="btn btn--dark btn--sm">Codes</a>
       </div>
 
       <div id="abs-ECOSTAT21" class="abstract-block" style="display:none;">
@@ -1521,7 +1528,9 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
       </div>
 
       <a href="javascript:toggleDiv('bib-FIN19')" class="btn btn--warning btn--sm">BIB</a>
-
+ <!-- NUEVO BOTÓN REP -->
+      <a href="https://github.com/Vlasmetrics7/MultilevelFactorCDS"
+         target="_blank" class="btn btn--dark btn--sm">Codes</a>
     </div>
 
     <div id="abs-FIN19" class="abstract-block" style="display:none;">
@@ -1614,6 +1623,9 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
          target="_blank" class="btn btn--success btn--sm">Published</a>
 
          <a href="javascript:toggleDiv('bib-ENECO16')" class="btn btn--warning btn--sm">BIB</a>
+         <!-- NUEVO BOTÓN REP -->
+      <a href="https://github.com/Vlasmetrics7/CommonLongRange"
+         target="_blank" class="btn btn--dark btn--sm">Codes</a>
     </div>
 
     <div id="abs-ENECO16" class="abstract-block" style="display:none;">
