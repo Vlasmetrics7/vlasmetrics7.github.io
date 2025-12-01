@@ -1,115 +1,38 @@
 ---
 layout: default
-title: "Carlos Vladimir Rodríguez-Caballero"
+title: "Home"
 permalink: /
+classes: wide
+author_profile: false
+sidebar: false
+toc: false
 ---
 
+<!-- ================= DARK MODE ================= -->
 <style>
-:root {
-  --bg-color: #ffffff;
-  --text-color: #1a1a1a;
-  --link-color: #1a73e8;
-}
-
-body {
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  font-family: system-ui, sans-serif;
-}
-
-.intro {
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  gap: 60px;
-  max-width: 1400px;
-  margin: 40px auto;
-  padding: 0 20px;
-}
-
-.text-block {
-  flex: 1;
-  font-size: 18px;
-  line-height: 1.7;
-  text-align: justify;
-}
-
-.text-block h1 {
-  font-size: 40px;
-  font-weight: 800;
-  margin-bottom: 12px;
-}
-
-.text-block .subtitle {
-  font-size: 20px;
-  color: #555;
-  margin-bottom: 22px;
-}
-
-.text-block ul {
-  margin-top: 8px;
-  padding-left: 1.4rem;
-}
-
-.profile-photo img {
-  width: 360px;
-  border-radius: 12px;
-  box-shadow: 0 8px 22px rgba(0,0,0,0.2);
-  margin-top: 16px;
-}
-
-.social-buttons {
-  margin-top: 28px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.social-buttons a {
-  background: #eef2ff;
-  border: 1px solid #cdd8ff;
-  padding: 9px 16px;
-  border-radius: 8px;
-  font-weight: 600;
-  color: #222;
-  text-decoration: none;
-  transition: 0.2s;
-}
-
-.social-buttons a:hover {
-  background: #dce4ff;
-  transform: translateY(-2px);
-}
-
-/* DARK MODE */
-body.dark-mode {
-  --bg-color: #121212;
-  --text-color: #e4e4e4;
-  --link-color: #90caf9;
-}
-
-.dark-toggle {
-  position: fixed;
-  top: 12px;
-  right: 16px;
-  padding: 8px 12px;
-  border: none;
-  border-radius: 8px;
-  background: #f1f1f1;
-  cursor: pointer;
-  font-size: 15px;
-  font-weight: 600;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.2);
-  z-index: 9999;
-}
-body.dark-mode .dark-toggle {
-  background: #2a2a2a;
-  color: #fff;
-}
+  #darkToggle {
+    position: fixed;
+    top: 20px;
+    right: 25px;
+    background: #f4f4f4;
+    border: none;
+    padding: 10px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    z-index: 9999;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+  }
+  body.dark-mode,
+  body.dark-mode .page,
+  body.dark-mode .page__content {
+    background-color: #111 !important;
+    color: #eee !important;
+  }
+  body.dark-mode a { color: #9ecbff !important; }
+  body.dark-mode .social-buttons a { background: #222 !important; border-color: #444 !important; color: #eee !important; }
 </style>
-
-<!-- Botón modo oscuro -->
-<button class="dark-toggle" onclick="toggleDarkMode()" id="darkToggle">🌙 Dark</button>
 
 <script>
   function toggleDarkMode() {
@@ -118,49 +41,133 @@ body.dark-mode .dark-toggle {
     body.classList.toggle('dark-mode');
     const isDark = body.classList.contains('dark-mode');
     localStorage.setItem('darkMode', isDark);
-    btn.textContent = isDark ? '☀ Light' : '🌙 Dark';
+    if (btn) btn.textContent = isDark ? '☀ Light' : '🌙 Dark';
   }
-
   document.addEventListener("DOMContentLoaded", function(){
     const isDark = localStorage.getItem('darkMode') === 'true';
-    const btn    = document.getElementById('darkToggle');
     if (isDark) document.body.classList.add('dark-mode');
-    if (btn)    btn.textContent = isDark ? '☀ Light' : '🌙 Dark';
+    const btn = document.getElementById('darkToggle');
+    if (btn) btn.textContent = isDark ? '☀ Light' : '🌙 Dark';
   });
 </script>
 
-<!-- ====================== PERFIL ========================== -->
+<button id="darkToggle" onclick="toggleDarkMode()">🌙 Dark</button>
 
-<div class="intro">
-  <div class="text-block">
-    <h1>Carlos Vladimir Rodríguez-Caballero</h1>
-    <div class="subtitle">Applied Econometrics · Time Series · Climate & Financial Econometrics</div>
+<!-- ================= MAIN PROFILE ================= -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-    <p>
-      Associate Professor of Statistics at ITAM and Visiting Researcher at Duke University (2025–2026).  
-      PhD in Economics (Econometrics), Aarhus University & CREATES.
-    </p>
+<style>
+  .profile-wrapper {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px 20px;
+  }
 
-    <p><strong>Research fields:</strong></p>
-    <ul>
-      <li>Time-series econometrics and long memory</li>
-      <li>High-dimensional factor models</li>
-      <li>Macroeconometrics & empirical forecasting</li>
-      <li>Climate, energy & financial econometrics</li>
-    </ul>
+  .profile-grid {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 60px;
+    align-items: start;
+  }
 
-    <div class="social-buttons">
-      <a href="mailto:vlad.rodriguez@itam.mx"><i class="fa-solid fa-envelope"></i> ITAM Email</a>
-      <a href="mailto:vladimir.rodriguez@duke.edu"><i class="fa-solid fa-envelope-open"></i> Duke Email</a>
-      <a href="https://github.com/Vlasmetrics7" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
-      <a href="https://www.itam.mx" target="_blank"><i class="fa-solid fa-landmark"></i> ITAM</a>
-      <a href="https://scholar.google.com" target="_blank"><i class="fa-brands fa-google"></i> Scholar</a>
-      <a href="https://orcid.org" target="_blank"><i class="fa-brands fa-orcid"></i> ORCID</a>
-      <a href="https://www.scopus.com/authid/detail.uri?authorId=57195995467" target="_blank"><i class="fa-solid fa-database"></i> Scopus</a>
+  .profile-photo img {
+    width: 100%;
+    border-radius: 14px;
+    box-shadow: 0 8px 22px rgba(0,0,0,0.25);
+  }
+
+  .profile-text .name {
+    font-size: 36px;
+    font-weight: 800;
+    margin-bottom: 8px;
+  }
+
+  .subtitle {
+    font-size: 20px;
+    color: #666;
+    margin-bottom: 20px;
+  }
+
+  .profile-text p {
+    font-size: 17px;
+    line-height: 1.7;
+    text-align: justify;
+  }
+
+  .social-buttons {
+    margin-top: 25px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .social-buttons a {
+    padding: 9px 14px;
+    background: #eef2ff;
+    border-radius: 8px;
+    border: 1px solid #cdd8ff;
+    text-decoration: none;
+    font-weight: 600;
+    color: #222;
+    transition: .2s;
+  }
+
+  .social-buttons a:hover {
+    transform: translateY(-2px);
+    background: #dce4ff;
+  }
+</style>
+
+<div class="profile-wrapper">
+  <div class="profile-grid">
+
+    <div class="profile-text">
+      <div class="name">Carlos Vladimir Rodríguez-Caballero</div>
+      <div class="subtitle">Applied Econometrics · Time Series · Climate & Financial Econometrics</div>
+
+      <p>Associate Professor of Statistics at ITAM and Visiting Researcher at Duke University (2025–2026). PhD in Economics (Econometrics), Aarhus University & CREATES.</p>
+
+      <p><strong>Research fields:</strong></p>
+      <ul>
+        <li>Time-series econometrics and long memory</li>
+        <li>High-dimensional factor models</li>
+        <li>Macroeconometrics & empirical forecasting</li>
+        <li>Climate, energy & financial econometrics</li>
+      </ul>
+
+      <div class="social-buttons">
+        <a href="mailto:vlad.rodriguez@itam.mx"><i class="fa-solid fa-envelope"></i> ITAM Email</a>
+        <a href="mailto:vladimir.rodriguez@duke.edu"><i class="fa-solid fa-envelope-open"></i> Duke Email</a>
+        <a href="https://github.com/Vlasmetrics7" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
+        <a href="https://www.itam.mx" target="_blank"><i class="fa-solid fa-landmark"></i> ITAM</a>
+        <a href="https://scholar.google.com" target="_blank"><i class="fa-brands fa-google"></i> Scholar</a>
+        <a href="https://orcid.org" target="_blank"><i class="fa-brands fa-orcid"></i> ORCID</a>
+        <a href="https://www.scopus.com/authid/detail.uri?authorId=57195995467" target="_blank"><i class="fa-solid fa-database"></i> Scopus</a>
+      </div>
+    </div>
+
+    <div class="profile-photo">
+      <img src="assets/images/img-6925_orig.jpg" alt="profile photo">
     </div>
   </div>
 
-  <div class="profile-photo">
-    <img src="assets/images/img-6925_orig.jpg" alt="Foto de Carlos Vladimir Rodríguez-Caballero">
+  <!-- ================= ADDITIONAL SECTIONS ================= -->
+  <div style="margin-top: 60px;">
+    <h2>Next Participation in Workshops / Conferences / Congresses</h2>
+    <ul>
+      <li><strong>2025:</strong> Climate Econometrics Workshop, Oxford</li>
+      <li><strong>2025:</strong> Latin American Econometric Society, Buenos Aires</li>
+      <li><strong>2026:</strong> Time Series and Empirical Forecasting Symposium, Duke</li>
+    </ul>
+
+    <h2 style="margin-top:40px;">News</h2>
+    <ul>
+      <li><strong>Nov 2025:</strong> Appointed Visiting Researcher at Duke University</li>
+      <li><strong>Oct 2025:</strong> New working paper on high-dimensional factor models uploaded</li>
+      <li><strong>Aug 2025:</strong> Received ITAM Research Grant</li>
+    </ul>
   </div>
 </div>
+
+<!-- FontAwesome icons (for JS rendering of icons) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/js/all.min.js"></script>
