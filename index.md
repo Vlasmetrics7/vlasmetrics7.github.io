@@ -152,7 +152,7 @@ toc: false
     </div>
 
     <div class="profile-photo">
-      <img src="assets/images/img-6925_orig.jpg" alt="profile photo">
+      <img src="assets/images/profile.jpg" alt="profile photo">
     </div>
   </div>
 
