@@ -238,7 +238,7 @@ toc: false
 
   <!-- RIGHT SIDE: BIG PHOTO -->
   <div class="profile-right">
-    <img src="/assets/images/profile.jpg" class="profile-pic">
+    <img src="uploads/6/6/5/9/66590417/img-6925_orig.jpg" class="profile-pic">
   </div>
 
 </div>
