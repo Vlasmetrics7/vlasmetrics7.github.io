@@ -1,227 +1,208 @@
 ---
 layout: single
-title: "About Me"
-permalink: /about/
+title: "Home"
+permalink: /
 classes: wide
-sidebar: false
 author_profile: false
+sidebar: false
 toc: false
 ---
+
+<!-- ========================================================= -->
+<!--                  🌙 DARK MODE TOGGLE                      -->
+<!-- ========================================================= -->
 
 <!-- ========================================================= -->
 <!--                 🌙 DARK MODE TOGGLE BUTTON               -->
 <!-- ========================================================= -->
 
 <style>
-#darkToggle {
-  position: fixed;
-  top: 20px;
-  right: 25px;
-  background: #eee;
-  border: none;
-  padding: 10px 14px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 15px;
-  font-weight: 600;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.15);
-  transition: .3s;
-  z-index: 3000;
-}
-#darkToggle:hover { background: #ddd; }
+  /* Botón flotante arriba-derecha */
+  #darkToggle {
+    position: fixed;
+    top: 20px;
+    right: 25px;
+    background: #e6e6e6;
+    border: none;
+    padding: 10px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+    transition: .3s;
+    z-index: 9999;
+  }
+  #darkToggle:hover {
+    transform: translateY(-2px);
+    background: #d4d4d4;
+  }
 
-/* DARK MODE */
-body.dark-mode { background: #111 !important; color: #ddd !important; }
-body.dark-mode .about-block { background: #1a1a1a !important; }
-body.dark-mode a { color: #9fc1ff !important; }
+  /* ===================== DARK MODE GLOBAL ===================== */
+  body.dark-mode,
+  body.dark-mode .page,
+  body.dark-mode .page__content,
+  body.dark-mode .masthead,
+  body.dark-mode .site-header,
+  body.dark-mode .site-footer {
+    background-color: #111 !important;
+    color: #eee !important;
+  }
 
-/* LAYOUT */
-.about-wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 40px;
-  margin-top: 20px;
-}
+  /* Enlaces en oscuro */
+  body.dark-mode a {
+    color: #9ecbff !important;
+  }
 
-.about-text {
-  flex: 1;
-  min-width: 320px;
-  font-size: 19px;
-  line-height: 1.7;
-}
+  /* Tarjeta principal de tu portada */
+  body.dark-mode .profile-wrapper,
+  body.dark-mode .profile-flex,
+  body.dark-mode .profile-text {
+    background-color: #111 !important;
+    color: #eee !important;
+  }
 
-.about-photo {
-  flex: 0 0 320px;
-  text-align: center;
-}
-
-.about-photo img {
-  width: 320px;
-  border-radius: 12px;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.25);
-}
-
-.section-title {
-  font-size: 26px;
-  font-weight: 700;
-  margin-top: 45px;
-  margin-bottom: 12px;
-}
-
-.section-block {
-  background: #f7f9ff;
-  padding: 18px 22px;
-  border-radius: 10px;
-  margin-bottom: 25px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.10);
-}
-
-body.dark-mode .section-block {
-  background: #222 !important;
-  box-shadow: 0 4px 16px rgba(255,255,255,0.05);
-}
-
-/* SOCIAL BUTTONS */
-.social-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 25px;
-}
-
-.social-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 16px;
-  background: #eef2ff;
-  border-radius: 8px;
-  font-weight: 600;
-  border: 1px solid #cdd8ff;
-  text-decoration: none;
-  color: #222;
-  transition: 0.2s;
-}
-
-.social-btn:hover { background: #dce4ff; transform: translateY(-2px); }
-
-body.dark-mode .social-btn {
-  background: #333 !important;
-  border-color: #555;
-  color: #eee !important;
-}
-
+  /* Para que imágenes no se inviertan (las dejamos normales) */
+  body.dark-mode img {
+    filter: none !important;
+  }
 </style>
 
 <script>
-function toggleDarkMode() {
-  document.body.classList.toggle("dark-mode");
-  localStorage.setItem("darkMode", document.body.classList.contains("dark-mode"));
-}
+  function toggleDarkMode() {
+    const body = document.body;
+    const btn  = document.getElementById('darkToggle');
 
-document.addEventListener("DOMContentLoaded", function(){
-  if (localStorage.getItem("darkMode") === "true") {
-    document.body.classList.add("dark-mode");
+    body.classList.toggle('dark-mode');
+
+    const isDark = body.classList.contains('dark-mode');
+    localStorage.setItem('darkMode', isDark);
+
+    if (btn) btn.textContent = isDark ? '☀ Light' : '🌙 Dark';
   }
-});
+
+  // Mantener preferencia entre visitas
+  document.addEventListener("DOMContentLoaded", function(){
+    const isDark = localStorage.getItem('darkMode') === 'true';
+    const btn    = document.getElementById('darkToggle');
+
+    if (isDark) document.body.classList.add('dark-mode');
+    if (btn)    btn.textContent = isDark ? '☀ Light' : '🌙 Dark';
+  });
 </script>
 
-<button id="darkToggle" onclick="toggleDarkMode()">🌙</button>
+<button id="darkToggle" onclick="toggleDarkMode()">🌙 Dark</button>
+
+
+<!-- ========================================================= -->
+<!--                  PROFILE LAYOUT WIDE                      -->
+<!-- ========================================================= -->
+
+<style>
+.profile-wrapper {
+  max-width: 1400px;      /* 🔥 mucho más ancho */
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.profile-flex {
+  display: flex;
+  gap: 60px;
+  align-items: flex-start;
+}
+
+/* FOTO MÁS GRANDE */
+.profile-photo img {
+  width: 360px;           /* 🔥 aumentado */
+  border-radius: 14px;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.28);
+}
+
+/* TEXTO MÁS ANCHO */
+.profile-text {
+  flex: 1;
+  font-size: 18px;
+  line-height: 1.65;
+}
+
+.name {
+  font-size: 44px;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 22px;
+  color: #555;
+  margin-bottom: 25px;
+}
+
+/* BOTONES */
+.social-buttons {
+  margin-top: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.social-buttons a {
+  padding: 9px 16px;
+  background: #eef2ff;
+  border-radius: 8px;
+  border: 1px solid #cdd8ff;
+  text-decoration: none;
+  font-weight: 600;
+  color: #222;
+  transition: .2s;
+}
+.social-buttons a:hover { transform: translateY(-2px); background: #dce4ff; }
+</style>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-<!-- ========================================================= -->
-<!--                        ABOUT SECTION                       -->
-<!-- ========================================================= -->
+<div class="profile-wrapper">
+  <div class="profile-flex">
 
-<div class="about-wrapper">
+    <!-- =========================================== -->
+    <!--                 TEXTO                       -->
+    <!-- =========================================== -->
+    <div class="profile-text">
+      <div class="name">Carlos Vladimir Rodríguez-Caballero</div>
 
-  <div class="about-text">
-    <h1 style="margin-top:0;">Carlos Vladimir Rodríguez-Caballero</h1>
+      <div class="subtitle">
+        Applied Econometrics · Time Series · Climate & Financial Econometrics
+      </div>
 
-    <p>
-    I am an Associate Professor of Statistics at the Instituto Tecnológico Autónomo de México (ITAM) 
-    and Visiting Researcher at the Department of Economics, Duke University (2025–2026). 
-    I hold a PhD in Economics (Econometrics) from Aarhus University and CREATES.
-    </p>
+      Associate Professor of Statistics at ITAM and Visiting Researcher at Duke University (2025–2026).  
+      PhD in Economics (Econometrics), Aarhus University & CREATES.
 
-    <p>
-    My research spans <strong>time-series econometrics</strong>, <strong>long memory</strong>, 
-    <strong>dynamic factor models</strong>, <strong>forecasting</strong>, and applied work in 
-    climate, macroeconomics, and financial econometrics.
-    </p>
+      <br><br>
 
-    <p>
-    I serve as Associate Editor of <em>Latin American Economic Review</em> (2023–2025)  
-    and I am a member of the Mexican National System of Researchers (SNI Level II).
-    </p>
+      <strong>Research fields:</strong>
+      <ul>
+        <li>Time-series econometrics and long memory</li>
+        <li>High-dimensional factor models</li>
+        <li>Macroeconometrics & empirical forecasting</li>
+        <li>Climate, energy & financial econometrics</li>
+      </ul>
 
-    <!-- SOCIAL BUTTONS -->
-    <div class="social-row">
+      <!-- BOTONES -->
+      <div class="social-buttons">
+        <a href="mailto:vlad.rodriguez@itam.mx"><i class="fa-solid fa-envelope"></i> ITAM Email</a>
+        <a href="mailto:vladimir.rodriguez@duke.edu"><i class="fa-solid fa-envelope-open"></i> Duke Email</a>
+        <a href="https://github.com/Vlasmetrics7" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
+        <a href="https://www.itam.mx" target="_blank"><i class="fa-solid fa-landmark"></i> ITAM</a>
+        <a href="https://scholar.google.com" target="_blank"><i class="fa-brands fa-google"></i> Scholar</a>
+        <a href="https://orcid.org" target="_blank"><i class="fa-brands fa-orcid"></i> ORCID</a>
+        <a href="https://www.scopus.com/authid/detail.uri?authorId=57195995467" target="_blank"><i class="fa-solid fa-database"></i> Scopus</a>
+      </div>
+    </div>
 
-      <a class="social-btn" href="mailto:vlad.rodriguez@itam.mx">
-        <i class="fa-solid fa-envelope"></i> ITAM
-      </a>
-
-      <a class="social-btn" href="mailto:vladimir.rodriguez@duke.edu">
-        <i class="fa-solid fa-envelope-circle-check"></i> Duke
-      </a>
-
-      <a class="social-btn" href="https://github.com/Vlasmetrics7" target="_blank">
-        <i class="fab fa-github"></i> GitHub
-      </a>
-
-      <a class="social-btn" href="https://scholar.google.com/citations?user=XXXX" target="_blank">
-        <i class="fab fa-google"></i> Scholar
-      </a>
-
-      <a class="social-btn" href="https://orcid.org/0000-0002-XXXX-XXXX" target="_blank">
-        <i class="fab fa-orcid"></i> ORCID
-      </a>
-
-      <a class="social-btn" href="https://www.scopus.com/authid/detail.uri?authorId=57195995467" target="_blank">
-        <i class="fa-solid fa-database"></i> Scopus
-      </a>
-
-      <a class="social-btn" href="https://www.itam.mx" target="_blank">
-        <i class="fa-solid fa-landmark"></i> ITAM
-      </a>
-
+    <!-- =========================================== -->
+    <!--                 FOTO                        -->
+    <!-- =========================================== -->
+    <div class="profile-photo">
+      <img src="assets/images/img-6925_orig.jpg">
     </div>
 
   </div>
-
-  <!-- PHOTO -->
-  <div class="about-photo">
-    <img src="/assets/images/profile.jpg" alt="Profile Photo">
-  </div>
-
-</div>
-
-<!-- ========================================================= -->
-<!--                    EVENTS / PARTICIPATIONS                -->
-<!-- ========================================================= -->
-
-<h2 class="section-title">Next participation in workshops / conferences</h2>
-
-<div class="section-block">
-<ul>
-  <li><strong>sIAAE 2025</strong>, Oslo — Presenter (Time-Series Econometrics)</li>
-  <li><strong>NBER-NSF Time Series Meeting</strong>, UC Berkeley — Discussant</li>
-  <li><strong>EC^2 Conference</strong>, Florence — Paper Presentation (Dynamic Factor Models)</li>
-</ul>
-</div>
-
-<!-- ========================================================= -->
-<!--                             NEWS                          -->
-<!-- ========================================================= -->
-
-<h2 class="section-title">News</h2>
-
-<div class="section-block">
-<ul>
-  <li>📄 New manuscript: <em>“Stressed Predictive Densities for Multivariate Economies”</em></li>
-  <li>🎓 Visiting Position confirmed at Duke University (2025–2026)</li>
-  <li>📢 FARS package update released on CRAN</li>
-</ul>
 </div>
