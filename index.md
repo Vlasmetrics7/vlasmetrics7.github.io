@@ -22,7 +22,7 @@ toc: false
 }
 
 .home-wrapper {
-  width: 100%;
+  width: 200%;
   max-width: 1500px;
   margin: 0 auto;
 }
