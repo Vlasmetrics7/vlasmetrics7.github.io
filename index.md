@@ -123,9 +123,11 @@ toc: false
 
     <div class="profile-text">
       <div class="name">Carlos Vladimir Rodríguez-Caballero</div>
-      <div class="subtitle">Applied Econometrics · Time Series · Climate & Financial Econometrics</div>
+      <div class="subtitle">Time Series Econometrics </div>
 
-      <p>Associate Professor of Statistics at ITAM and Visiting Researcher at Duke University (2025–2026). PhD in Economics (Econometrics), Aarhus University & CREATES.</p>
+      <p>Associate Professor of Statistics at ITAM </p>
+      <p>Visiting Researcher at Duke University (2025–2026).</p> 
+      <p>PhD in Econometrics, Aarhus University & CREATES.</p>
 
       <p><strong>Research fields:</strong></p>
       <ul>
