@@ -89,7 +89,7 @@ toc: false
   }
 
   .profile-text p {
-    font-size: 17px;
+    font-size: 25px;
     line-height: 1.7;
     text-align: justify;
   }
