@@ -73,7 +73,7 @@ toc: false
 .profile-photo img {
   width: 420px;
   height: 520px; /* 🔥 ajusta según lo que visualmente quede mejor */
-  object-fit: fill; /* mantiene buena proporción */
+  object-fit: contain; /* mantiene buena proporción */
   border-radius: 14px;
   box-shadow: 0 8px 22px rgba(0,0,0,0.25);
   display: block;
