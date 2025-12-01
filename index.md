@@ -18,7 +18,7 @@ toc: false
 .home-wrapper .page__content {
   padding: 0 !important;
   margin: 0 !important;
-  max-width: 100% !important;
+  max-width: 200% !important;
 }
 
 .home-wrapper {
