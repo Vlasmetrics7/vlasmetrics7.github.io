@@ -1,21 +1,18 @@
 ---
 layout: single
-title: "About Me"
-permalink: /about/
+title: ""
+permalink: /
 classes: wide
 sidebar: false
 author_profile: false
 toc: false
 ---
 
-
-
 <!-- ========================================================= -->
 <!--                 🌙 DARK MODE TOGGLE BUTTON               -->
 <!-- ========================================================= -->
 
 <style>
-  /* Botón flotante arriba-derecha */
   #darkToggle {
     position: fixed;
     top: 20px;
@@ -36,7 +33,6 @@ toc: false
     background: #d4d4d4;
   }
 
-  /* ===================== DARK MODE ===================== */
   body.dark-mode {
     background: #111 !important;
     color: #ddd !important;
@@ -61,7 +57,6 @@ toc: false
     background: #222 !important;
     color: #eee !important;
   }
-
 </style>
 
 <script>
@@ -70,7 +65,6 @@ toc: false
     localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
   }
 
-  // Mantener preferencia entre visitas
   document.addEventListener("DOMContentLoaded", function(){
     if (localStorage.getItem('darkMode') === 'true') {
       document.body.classList.add('dark-mode');
@@ -85,56 +79,59 @@ toc: false
 <!-- ========================================================= -->
 
 <style>
-
 .profile-container {
-  max-width: 850px;
+  max-width: 1150px;
   margin: 0 auto;
   padding: 35px 25px;
+  display: flex;
+  gap: 45px;
+  align-items: center;
+}
+
+.profile-left {
+  flex: 1;
+}
+
+.profile-right {
+  flex: 1;
+  text-align: center;
 }
 
 .profile-card {
   background: #ffffff;
   padding: 35px;
   border-radius: 18px;
-  text-align: center;
   box-shadow: 0 8px 24px rgba(0,0,0,0.18);
   transition: .25s;
 }
 
-/* Foto */
 .profile-pic {
-  width: 180px;
-  height: 180px;
-  border-radius: 50%;
+  width: 280px;
+  height: 280px;
+  border-radius: 12px;
   object-fit: cover;
   box-shadow: 0 6px 18px rgba(0,0,0,0.28);
-  margin-bottom: 20px;
 }
 
-/* Nombre */
 .profile-name {
-  font-size: 38px;
+  font-size: 40px;
   font-weight: 700;
   margin-bottom: 6px;
 }
 
-/* Subtítulo */
 .profile-subtitle {
-  font-size: 20px;
+  font-size: 22px;
   color: #555;
   margin-bottom: 25px;
 }
 
-/* Botón grid */
 .social-grid {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   gap: 14px;
-  margin-bottom: 35px;
+  margin: 30px 0;
 }
 
-/* Botones */
 .social-btn {
   display: inline-flex;
   align-items: center;
@@ -154,76 +151,60 @@ toc: false
   background: #dce4ff;
 }
 
-/* Font Awesome icons */
-.social-btn i {
-  font-size: 18px;
-}
-
-/* About text */
 .about-text {
-  margin-top: 25px;
+  margin-top: 15px;
   font-size: 18px;
   line-height: 1.6;
-  text-align: left;
 }
 
-/* Stats Section */
-.stats-container {
-  margin-top: 40px;
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-.stat-item {
-  background: #f6f6ff;
-  padding: 16px 20px;
-  border-radius: 12px;
-  min-width: 150px;
-  text-align: center;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.12);
-}
-
-.stat-title {
-  font-size: 14px;
-  color: #666;
-}
-
-.stat-value {
+.section-title {
   font-size: 26px;
   font-weight: 700;
-  margin-top: 4px;
+  margin-top: 50px;
+  margin-bottom: 15px;
 }
 
+.news-box, .events-box {
+  background: #f7f7ff;
+  padding: 18px 22px;
+  border-radius: 12px;
+  margin-bottom: 14px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.12);
+}
 </style>
 
-<!-- ICONOS -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 
 <div class="profile-container">
 
-  <div class="profile-card">
-
-    <!-- FOTO -->
-    <img src="/assets/images/profile.jpg" class="profile-pic">
-
-    <!-- NOMBRE -->
+  <!-- LEFT SIDE: TEXT -->
+  <div class="profile-left">
     <div class="profile-name">Carlos Vladimir Rodríguez-Caballero</div>
+    <div class="profile-subtitle">Applied Econometrics · Time Series · Climate & Financial Econometrics</div>
 
-    <!-- SUBTÍTULO -->
-    <div class="profile-subtitle">
-      Applied Econometrics · Time Series · Climate & Financial Econometrics
+    <div class="about-text">
+      Associate Professor of Statistics at ITAM and Visiting Researcher at Duke University (2025–2026).  
+      PhD in Economics (Econometrics), Aarhus University & CREATES.
+
+      <br><br>
+      Research fields:
+      <ul>
+        <li>Time-series econometrics and long memory</li>
+        <li>High-dimensional factor models</li>
+        <li>Macroeconometrics & empirical forecasting</li>
+        <li>Climate, energy & financial econometrics</li>
+      </ul>
     </div>
 
-    <!-- BOTONES -->
+    <!-- SOCIAL BUTTONS -->
     <div class="social-grid">
 
-      <a href="mailto:vlad.rodriguez@itam.mx" target="_blank" class="social-btn">
+      <a href="mailto:vlad.rodriguez@itam.mx" class="social-btn">
         <i class="fa-solid fa-envelope"></i> ITAM Email
       </a>
 
-      <a href="mailto:vladimir.rodriguez@duke.edu" target="_blank" class="social-btn">
+      <a href="mailto:vladimir.rodriguez@duke.edu" class="social-btn">
         <i class="fa-solid fa-envelope-circle-check"></i> Duke Email
       </a>
 
@@ -248,41 +229,30 @@ toc: false
       </a>
 
     </div>
-
-    <!-- STATISTICS -->
-    <div class="stats-container">
-      <div class="stat-item">
-        <div class="stat-title">Citations</div>
-        <div class="stat-value">1,234</div>
-      </div>
-
-      <div class="stat-item">
-        <div class="stat-title">h-Index</div>
-        <div class="stat-value">17</div>
-      </div>
-
-      <div class="stat-item">
-        <div class="stat-title">GitHub Repos</div>
-        <div class="stat-value">12</div>
-      </div>
-    </div>
-
-    <!-- ABOUT TEXT -->
-    <div class="about-text">
-     I am an Associate Professor of Statistics at the Instituto Tecnológico Autónomo de México (ITAM) and Visiting Researcher at the Department of Economics, Duke University (2025–2026). I hold a PhD in Economics (Econometrics) from Aarhus University and CREATES.
-
-My main research fields include:
-
-- Time-series econometrics and long memory  
-- High-dimensional data and forecasting  
-- Macroeconometrics  
-- Applied studies in financial econometrics, energy, climate, and macroeconomics  
-
-I serve as Associate Editor of *Latin American Economic Review* (2023–2025) 
-
-Member of the Mexican National System of Researchers (SNI, Level II).
-
-    </div>
-
   </div>
+
+  <!-- RIGHT SIDE: PHOTO -->
+  <div class="profile-right">
+    <img src="/assets/images/profile.jpg" class="profile-pic">
+  </div>
+
 </div>
+
+
+
+<!-- ====================== EVENTS SECTION ====================== -->
+
+<div class="section-title">Next Speaking Events / Workshops</div>
+
+<div class="events-box">• 2025 — Bank of England Seminar (Invited)</div>
+<div class="events-box">• 2025 — Duke Econometrics Workshop</div>
+<div class="events-box">• 2025 — ITAM-Duke Joint Seminar Series</div>
+
+
+<!-- ====================== NEWS SECTION ====================== -->
+
+<div class="section-title">News</div>
+
+<div class="news-box">• 2025 — Visiting Researcher, Duke University</div>
+<div class="news-box">• 2024 — JAE paper accepted</div>
+<div class="news-box">• 2024 — Climate-econometrics survey published</div>
