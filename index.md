@@ -8,36 +8,52 @@ toc: false
 ---
 
 <!-- ========================================================= -->
-<!--                  PROFILE LAYOUT WIDE                      -->
+<!--                  OVERRIDE DEL TEMA                        -->
 <!-- ========================================================= -->
 
 <style>
-.profile-wrapper {
+
+/* Hace que Minimal Mistakes NO interfiera */
+.home-wrapper .page,
+.home-wrapper .page__content {
+  padding: 0 !important;
+  margin: 0 !important;
+  max-width: 100% !important;
+}
+
+.home-wrapper {
+  width: 100%;
   max-width: 1500px;
   margin: 0 auto;
+}
+
+/* ========================================================= */
+/*                  TU NUEVO DISEÑO                          */
+/* ========================================================= */
+
+.profile-wrapper {
   padding: 50px 20px;
 }
 
 .profile-grid {
   display: grid;
-  grid-template-columns: 1fr 420px; /* Texto amplio + foto fija */
-  gap: 60px;
+  grid-template-columns: 1fr 430px;
+  gap: 70px;
   align-items: start;
 }
 
-/* ===================== FOTO ===================== */
 .profile-photo img {
-  width: 420px;
-  border-radius: 14px;
-  box-shadow: 0 8px 22px rgba(0,0,0,0.25);
+  width: 100%;
+  max-width: 430px;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
   display: block;
 }
 
 .profile-photo {
-  margin-top: 40px; /* 🔥 Ajusta la altura con este valor */
+  margin-top: 40px;
 }
 
-/* ===================== TEXTO ===================== */
 .profile-text {
   text-align: left;
 }
@@ -51,7 +67,7 @@ toc: false
 
 .subtitle {
   font-size: 22px;
-  color: #666;
+  color: #555;
   margin-bottom: 28px;
 }
 
@@ -62,6 +78,7 @@ toc: false
 }
 
 /* ===================== BOTONES ===================== */
+
 .social-buttons {
   margin-top: 30px;
   display: flex;
@@ -83,9 +100,18 @@ toc: false
   transform: translateY(-2px);
   background: #dce4ff;
 }
+
 </style>
 
+<!-- ICONOS -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+
+<!-- ========================================================= -->
+<!--                CONTENIDO REAL DEL HOME                    -->
+<!-- ========================================================= -->
+
+<div class="home-wrapper">
 
 <div class="profile-wrapper">
   <div class="profile-grid">
@@ -132,4 +158,7 @@ toc: false
 
   </div>
 </div>
+
+</div>
+
 
