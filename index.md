@@ -70,12 +70,14 @@ toc: false
     align-items: start;
   }
 
-  .profile-photo img {
-    width: 150%;
-    height:150% ;
-    border-radius: 14px;
-    box-shadow: 0 8px 22px rgba(0,0,0,0.25);
-  }
+.profile-photo img {
+  width: 420px;
+  height: 520px; /* 🔥 ajusta según lo que visualmente quede mejor */
+  object-fit: cover; /* mantiene buena proporción */
+  border-radius: 14px;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.25);
+  display: block;
+}
 
   .profile-text .name {
     font-size: 36px;
@@ -123,12 +125,12 @@ toc: false
   <div class="profile-grid">
 
     <div class="profile-text">
-      <div class="name">Carlos Vladimir Rodríguez-Caballero</div>
+      <div class="name">C. Vladimir Rodríguez-Caballero</div>
       <div class="subtitle">Time Series Econometrics </div>
 
-      <p>Associate Professor of Statistics at ITAM </p>
-      <p>Visiting Researcher at Duke University (2025–2026).</p> 
-      <p>PhD in Econometrics, Aarhus University & CREATES.</p>
+      <p>Associate Professor of Statistics at <a href="https://www.itam.mx" target="_blank">ITAM</a> </p>
+      <p>Visiting Professor in the <a href="https://econ.duke.edu/" target="_blank">Department of Economics</a>  at <a href="https://www.duke.edu" target="_blank">Duke University</a> (2025–2026).  .</p> 
+      <p>PhD in Econometrics, Aarhus University & <a href="https://econ.au.dk/research/research-centres/former-research-centres/creates" target="_blank">CREATES</a>.</p>
 
       <p><strong>Research fields:</strong></p>
       <ul>
