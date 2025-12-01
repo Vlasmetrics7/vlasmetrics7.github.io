@@ -13,29 +13,35 @@ toc: false
 
 <style>
 .profile-wrapper {
-  max-width: 1400px;      /* 🔥 mucho más ancho */
+  max-width: 1800px;
   margin: 0 auto;
-  padding: 40px 20px;
+  padding: 40px 40px;
 }
 
 .profile-flex {
-  display: flex;
-  gap: 60px;
-  align-items: flex-start;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;  /* Texto más ancho */
+  gap: 80px;
+  align-items: start;
 }
 
 /* FOTO MÁS GRANDE */
 .profile-photo img {
-  width: 360px;           /* 🔥 aumentado */
-  border-radius: 14px;
+  width: 420px;
+  border-radius: 16px;
   box-shadow: 0 8px 22px rgba(0,0,0,0.28);
+}
+
+/* BAJAR LA FOTO */
+.profile-photo {
+  margin-top: 60px;   /* Ajusta a tu gusto */
 }
 
 /* TEXTO MÁS ANCHO */
 .profile-text {
-  flex: 1;
-  font-size: 18px;
-  line-height: 1.65;
+  font-size: 19px;
+  line-height: 1.7;
+  text-align: justify;
 }
 
 .name {
