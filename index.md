@@ -119,7 +119,7 @@ toc: false
     <!-- ===================== TEXTO ===================== -->
     <div class="profile-text">
 
-      <div class="name">Carlos Vladimir Rodríguez-Caballero</div>
+      <div class="name">C. Vladimir Rodríguez-Caballero</div>
 
       <div class="subtitle">
         Applied Econometrics · Time Series · Climate & Financial Econometrics
