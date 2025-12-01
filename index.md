@@ -137,7 +137,6 @@ toc: false
         <li>Time-series econometrics and long memory</li>
         <li>High-dimensional factor models</li>
         <li>Macroeconometrics & empirical forecasting</li>
-        <li>Climate, energy & financial econometrics</li>
       </ul>
 
       <div class="social-buttons">
