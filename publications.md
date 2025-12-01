@@ -377,8 +377,6 @@ function toggleExtra(id) {
 }
 </script>
 
-
-
 <p style="font-size: 20px; color:#444; margin-top:10px;">
 My research field is a unified econometric perspective on multilevel factor structures, long-memory dynamics, stress-testing frameworks, and macro-financial transmission mechanisms.
   <br><br>
