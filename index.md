@@ -71,7 +71,7 @@ toc: false
   }
 
   .profile-photo img {
-    width: 100%;
+    width: 120%;
     border-radius: 14px;
     box-shadow: 0 8px 22px rgba(0,0,0,0.25);
   }
@@ -90,7 +90,7 @@ toc: false
 
   .profile-text p {
     font-size: 25px;
-    line-height: 1.75;
+    line-height: 1;
     text-align: justify;
   }
 
