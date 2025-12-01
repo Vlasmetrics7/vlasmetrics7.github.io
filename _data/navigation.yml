@@ -1,7 +1,7 @@
 main:
   - title: "Home"
     url: /
-      - title: "CV"
+  - title: "CV"
     url: /cv/
   - title: "Research"
     url: /research/
@@ -16,7 +16,6 @@ main:
         url: /publications/#technical-notes
       - title: "Articles in Books"
         url: /publications/#book-articles
-
   - title: "Working Papers"
     url: /working-papers/
   - title: "Teaching"
