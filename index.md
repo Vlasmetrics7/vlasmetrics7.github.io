@@ -1,263 +1,167 @@
 ---
 layout: single
-title: ""
+title: "Home"
 permalink: /
 classes: wide
-sidebar: false
 author_profile: false
+sidebar: false
 toc: false
 ---
 
 <!-- ========================================================= -->
-<!--                 🌙 DARK MODE TOGGLE BUTTON               -->
+<!--                  🌙 DARK MODE TOGGLE                      -->
 <!-- ========================================================= -->
 
 <style>
-  #darkToggle {
-    position: fixed;
-    top: 20px;
-    right: 25px;
-    background: #e6e6e6;
-    border: none;
-    padding: 10px 14px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 15px;
-    font-weight: 600;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
-    transition: .3s;
-    z-index: 3000;
-  }
-  #darkToggle:hover {
-    transform: translateY(-2px);
-    background: #d4d4d4;
-  }
+#darkToggle {
+  position: fixed;
+  top: 20px;
+  right: 25px;
+  background: #e6e6e6;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+  transition: .3s;
+  z-index: 9999;
+}
+#darkToggle:hover { transform: translateY(-2px); background: #d4d4d4; }
 
-  body.dark-mode {
-    background: #111 !important;
-    color: #ddd !important;
-  }
-
-  body.dark-mode .profile-card {
-    background: #1b1b1b !important;
-    color: #ddd !important;
-    box-shadow: 0 5px 20px rgba(255,255,255,0.10) !important;
-  }
-
-  body.dark-mode .social-btn {
-    background: #222 !important;
-    border-color: #333 !important;
-    color: #eee !important;
-  }
-  body.dark-mode .social-btn:hover {
-    background: #333 !important;
-  }
-
-  body.dark-mode .stat-item {
-    background: #222 !important;
-    color: #eee !important;
-  }
+/* DARK MODE */
+.dark-mode {
+  filter: invert(1) hue-rotate(180deg);
+}
+.dark-mode img {
+  filter: invert(1) hue-rotate(180deg);
+}
 </style>
 
 <script>
-  function toggleDarkMode() {
-    document.body.classList.toggle('dark-mode');
-    localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
-  }
-
-  document.addEventListener("DOMContentLoaded", function(){
+function toggleDarkMode() {
+    document.documentElement.classList.toggle('dark-mode');
+    localStorage.setItem('darkMode', document.documentElement.classList.contains('dark-mode'));
+}
+document.addEventListener("DOMContentLoaded", function(){
     if (localStorage.getItem('darkMode') === 'true') {
-      document.body.classList.add('dark-mode');
+        document.documentElement.classList.add('dark-mode');
     }
-  });
+});
 </script>
 
-<button id="darkToggle" onclick="toggleDarkMode()">🌙 Dark Mode</button>
+<button id="darkToggle" onclick="toggleDarkMode()">🌙</button>
 
 <!-- ========================================================= -->
-<!--                         PROFILE CARD                      -->
+<!--                  PROFILE LAYOUT WIDE                      -->
 <!-- ========================================================= -->
 
 <style>
+.profile-wrapper {
+  max-width: 1400px;      /* 🔥 mucho más ancho */
+  margin: 0 auto;
+  padding: 40px 20px;
+}
 
-/* ======= CONTENEDOR GENERAL ======= */
-.profile-container {
-  max-width: 1200px;
-  margin: 40px auto 0 auto;  /* sube el contenido */
-  padding: 10px 25px;
+.profile-flex {
   display: flex;
   gap: 60px;
-  align-items: flex-start;   /* alinea la parte superior foto/texto */
+  align-items: flex-start;
 }
 
-/* ======= COLUMNA IZQUIERDA (TEXTO) ======= */
-.profile-left {
-  flex: 1.2;
+/* FOTO MÁS GRANDE */
+.profile-photo img {
+  width: 360px;           /* 🔥 aumentado */
+  border-radius: 14px;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.28);
 }
 
-/* ======= COLUMNA DERECHA (FOTO) ======= */
-.profile-right {
+/* TEXTO MÁS ANCHO */
+.profile-text {
   flex: 1;
-  text-align: center;
-}
-
-/* ======= TARJETA ======= */
-.profile-card {
-  background: #ffffff;
-  padding: 0; /* no necesitamos card aquí */
-  border-radius: 18px;
-  transition: .25s;
-}
-
-/* ======= FOTO MÁS GRANDE ======= */
-.profile-pic {
-  width: 350px;      /* antes 280 */
-  height: 350px;     /* antes 280 */
-  border-radius: 16px;
-  object-fit: cover;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
-}
-
-/* ======= TIPOGRAFÍA ======= */
-.profile-name {
-  font-size: 46px;
-  font-weight: 700;
-  margin-bottom: 12px;
-}
-
-.profile-subtitle {
-  font-size: 22px;
-  color: #555;
-  margin-bottom: 20px;
-  font-weight: 500;
-}
-
-/* ======= TEXTO JUSTIFICADO ======= */
-.about-text {
-  margin-top: 15px;
   font-size: 18px;
   line-height: 1.65;
-  text-align: justify;      /* JUSTIFICADO */
 }
 
-/* ======= GRID DE BOTONES ======= */
-.social-grid {
+.name {
+  font-size: 44px;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 22px;
+  color: #555;
+  margin-bottom: 25px;
+}
+
+/* BOTONES */
+.social-buttons {
+  margin-top: 30px;
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  margin: 28px 0;
 }
-
-.social-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 18px;
+.social-buttons a {
+  padding: 9px 16px;
   background: #eef2ff;
   border-radius: 8px;
-  font-weight: 600;
-  font-size: 15px;
-  text-decoration: none;
   border: 1px solid #cdd8ff;
-  transition: .20s ease;
+  text-decoration: none;
+  font-weight: 600;
   color: #222;
+  transition: .2s;
 }
-.social-btn:hover {
-  transform: translateY(-2px);
-  background: #dce4ff;
-}
-
+.social-buttons a:hover { transform: translateY(-2px); background: #dce4ff; }
 </style>
-
-
-<!-- ========================================================= -->
-<!--                    CONTENIDO PRINCIPAL                     -->
-<!-- ========================================================= -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-<div class="profile-container">
+<div class="profile-wrapper">
+  <div class="profile-flex">
 
-  <!-- LEFT SIDE: TEXT -->
-  <div class="profile-left">
+    <!-- =========================================== -->
+    <!--                 TEXTO                       -->
+    <!-- =========================================== -->
+    <div class="profile-text">
+      <div class="name">Carlos Vladimir Rodríguez-Caballero</div>
 
-    <div class="profile-name">Carlos Vladimir Rodríguez-Caballero</div>
+      <div class="subtitle">
+        Applied Econometrics · Time Series · Climate & Financial Econometrics
+      </div>
 
-    <div class="profile-subtitle">
-      Applied Econometrics · Time Series · Climate & Financial Econometrics
-    </div>
-
-    <div class="about-text">
-      Associate Professor of Statistics at ITAM and Visiting Researcher at Duke University (2025–2026). PhD in Economics (Econometrics), Aarhus University & CREATES.
+      Associate Professor of Statistics at ITAM and Visiting Researcher at Duke University (2025–2026).  
+      PhD in Economics (Econometrics), Aarhus University & CREATES.
 
       <br><br>
-      <strong>Research fields:</strong>
 
+      <strong>Research fields:</strong>
       <ul>
         <li>Time-series econometrics and long memory</li>
         <li>High-dimensional factor models</li>
         <li>Macroeconometrics & empirical forecasting</li>
         <li>Climate, energy & financial econometrics</li>
       </ul>
+
+      <!-- BOTONES -->
+      <div class="social-buttons">
+        <a href="mailto:vlad.rodriguez@itam.mx"><i class="fa-solid fa-envelope"></i> ITAM Email</a>
+        <a href="mailto:vladimir.rodriguez@duke.edu"><i class="fa-solid fa-envelope-open"></i> Duke Email</a>
+        <a href="https://github.com/Vlasmetrics7" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
+        <a href="https://www.itam.mx" target="_blank"><i class="fa-solid fa-landmark"></i> ITAM</a>
+        <a href="https://scholar.google.com" target="_blank"><i class="fa-brands fa-google"></i> Scholar</a>
+        <a href="https://orcid.org" target="_blank"><i class="fa-brands fa-orcid"></i> ORCID</a>
+        <a href="https://www.scopus.com/authid/detail.uri?authorId=57195995467" target="_blank"><i class="fa-solid fa-database"></i> Scopus</a>
+      </div>
     </div>
 
-    <!-- SOCIAL BUTTONS -->
-    <div class="social-grid">
-
-      <a href="mailto:vlad.rodriguez@itam.mx" class="social-btn">
-        <i class="fa-solid fa-envelope"></i> ITAM Email
-      </a>
-
-      <a href="mailto:vladimir.rodriguez@duke.edu" class="social-btn">
-        <i class="fa-solid fa-envelope-circle-check"></i> Duke Email
-      </a>
-
-      <a href="https://github.com/Vlasmetrics7" target="_blank" class="social-btn">
-        <i class="fa-brands fa-github"></i> GitHub
-      </a>
-
-      <a href="https://www.itam.mx" target="_blank" class="social-btn">
-        <i class="fa-solid fa-landmark"></i> ITAM
-      </a>
-
-      <a href="https://scholar.google.com/citations?user=XXXXXX" target="_blank" class="social-btn">
-        <i class="fa-brands fa-google"></i> Scholar
-      </a>
-
-      <a href="https://orcid.org/0000-0002-XXXX-XXXX" target="_blank" class="social-btn">
-        <i class="fa-brands fa-orcid"></i> ORCID
-      </a>
-
-      <a href="https://www.scopus.com/authid/detail.uri?authorId=57195995467" target="_blank" class="social-btn">
-        <i class="fa-solid fa-database"></i> Scopus
-      </a>
-
+    <!-- =========================================== -->
+    <!--                 FOTO                        -->
+    <!-- =========================================== -->
+    <div class="profile-photo">
+      <img src="/assets/images/profile.jpg">
     </div>
 
   </div>
-
-  <!-- RIGHT SIDE: BIG PHOTO -->
-  <div class="profile-right">
-    <img src="uploads/6/6/5/9/66590417/img-6925_orig.jpg" class="profile-pic">
-  </div>
-
 </div>
-
-
-
-<!-- ====================== EVENTS SECTION ====================== -->
-
-<div class="section-title">Next Speaking Events / Workshops</div>
-
-<div class="events-box">• 2025 — Bank of England Seminar (Invited)</div>
-<div class="events-box">• 2025 — Duke Econometrics Workshop</div>
-<div class="events-box">• 2025 — ITAM-Duke Joint Seminar Series</div>
-
-
-<!-- ====================== NEWS SECTION ====================== -->
-
-<div class="section-title">News</div>
-
-<div class="news-box">• 2025 — Visiting Researcher, Duke University</div>
-<div class="news-box">• 2024 — JAE paper accepted</div>
-<div class="news-box">• 2024 — Climate-econometrics survey published</div>
