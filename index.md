@@ -144,7 +144,7 @@ toc: false
         <a href="mailto:vlad.rodriguez@itam.mx"><i class="fa-solid fa-envelope"></i> ITAM Email</a>
         <a href="mailto:vladimir.rodriguez@duke.edu"><i class="fa-solid fa-envelope-open"></i> Duke Email</a>
         <a href="https://github.com/Vlasmetrics7" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
-        <a href="https://www.itam.mx" target="_blank"><i class="fa-solid fa-landmark"></i> ITAM</a>
+       <!-- === <a href="https://www.itam.mx" target="_blank"><i class="fa-solid fa-landmark"></i> ITAM</a> == -->
         <a href="https://scholar.google.com" target="_blank"><i class="fa-brands fa-google"></i> Scholar</a>
         <a href="https://orcid.org" target="_blank"><i class="fa-brands fa-orcid"></i> ORCID</a>
         <a href="https://www.scopus.com/authid/detail.uri?authorId=57195995467" target="_blank"><i class="fa-solid fa-database"></i> Scopus</a>
@@ -160,16 +160,16 @@ toc: false
   <div style="margin-top: 100px;">
     <h2>Next Participation in Workshops / Conferences / Congresses</h2>
     <ul>
-      <li><strong>2025:</strong> Climate Econometrics Workshop, Oxford</li>
+   <!-- ===   <li><strong>2025:</strong> Climate Econometrics Workshop, Oxford</li>
       <li><strong>2025:</strong> Latin American Econometric Society, Buenos Aires</li>
-      <li><strong>2026:</strong> Time Series and Empirical Forecasting Symposium, Duke</li>
+      <li><strong>2026:</strong> Time Series and Empirical Forecasting Symposium, Duke</li>== -->
     </ul>
 
     <h2 style="margin-top:40px;">News</h2>
     <ul>
-      <li><strong>Nov 2025:</strong> Appointed Visiting Researcher at Duke University</li>
+     <!-- ===  <li><strong>Nov 2025:</strong> Appointed Visiting Professor at Duke University</li>
       <li><strong>Oct 2025:</strong> New working paper on high-dimensional factor models uploaded</li>
-      <li><strong>Aug 2025:</strong> Received ITAM Research Grant</li>
+     <li><strong>Aug 2025:</strong> Received ITAM Research Grant</li>== -->
     </ul>
   </div>
 </div>
