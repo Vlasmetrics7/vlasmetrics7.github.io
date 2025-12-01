@@ -201,7 +201,7 @@ toc: false
     <!--                 FOTO                        -->
     <!-- =========================================== -->
     <div class="profile-photo">
-      <img src="/assets/images/profile.jpg">
+      <img src="assets/images/img-6925_orig.jpg">
     </div>
 
   </div>
