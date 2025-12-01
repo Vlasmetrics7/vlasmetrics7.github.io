@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: dafault
 title: "Home"
 permalink: /
 classes: wide
@@ -90,7 +90,7 @@ toc: false
 
   .profile-text p {
     font-size: 25px;
-    line-height: 1.7;
+    line-height: 1;
     text-align: justify;
   }
 
