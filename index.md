@@ -90,7 +90,7 @@ toc: false
 
   .profile-text p {
     font-size: 25px;
-    line-height: 1;
+    line-height: 1.75;
     text-align: justify;
   }
 
@@ -154,7 +154,7 @@ toc: false
   </div>
 
   <!-- ================= ADDITIONAL SECTIONS ================= -->
-  <div style="margin-top: 60px;">
+  <div style="margin-top: 100px;">
     <h2>Next Participation in Workshops / Conferences / Congresses</h2>
     <ul>
       <li><strong>2025:</strong> Climate Econometrics Workshop, Oxford</li>
