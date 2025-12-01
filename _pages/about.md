@@ -206,7 +206,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
 <div class="section-block">
 <ul>
-  <li><strong>IAAE 2025</strong>, Oslo — Presenter (Time-Series Econometrics)</li>
+  <li><strong>sIAAE 2025</strong>, Oslo — Presenter (Time-Series Econometrics)</li>
   <li><strong>NBER-NSF Time Series Meeting</strong>, UC Berkeley — Discussant</li>
   <li><strong>EC^2 Conference</strong>, Florence — Paper Presentation (Dynamic Factor Models)</li>
 </ul>
