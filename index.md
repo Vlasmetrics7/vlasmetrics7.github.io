@@ -79,64 +79,80 @@ toc: false
 <!-- ========================================================= -->
 
 <style>
+
+/* ======= CONTENEDOR GENERAL ======= */
 .profile-container {
-  max-width: 1150px;
-  margin: 0 auto;
-  padding: 35px 25px;
+  max-width: 1200px;
+  margin: 40px auto 0 auto;  /* sube el contenido */
+  padding: 10px 25px;
   display: flex;
-  gap: 45px;
-  align-items: center;
+  gap: 60px;
+  align-items: flex-start;   /* alinea la parte superior foto/texto */
 }
 
+/* ======= COLUMNA IZQUIERDA (TEXTO) ======= */
 .profile-left {
-  flex: 1;
+  flex: 1.2;
 }
 
+/* ======= COLUMNA DERECHA (FOTO) ======= */
 .profile-right {
   flex: 1;
   text-align: center;
 }
 
+/* ======= TARJETA ======= */
 .profile-card {
   background: #ffffff;
-  padding: 35px;
+  padding: 0; /* no necesitamos card aquí */
   border-radius: 18px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.18);
   transition: .25s;
 }
 
+/* ======= FOTO MÁS GRANDE ======= */
 .profile-pic {
-  width: 280px;
-  height: 280px;
-  border-radius: 12px;
+  width: 350px;      /* antes 280 */
+  height: 350px;     /* antes 280 */
+  border-radius: 16px;
   object-fit: cover;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.28);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
 }
 
+/* ======= TIPOGRAFÍA ======= */
 .profile-name {
-  font-size: 40px;
+  font-size: 46px;
   font-weight: 700;
-  margin-bottom: 6px;
+  margin-bottom: 12px;
 }
 
 .profile-subtitle {
   font-size: 22px;
   color: #555;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
+  font-weight: 500;
 }
 
+/* ======= TEXTO JUSTIFICADO ======= */
+.about-text {
+  margin-top: 15px;
+  font-size: 18px;
+  line-height: 1.65;
+  text-align: justify;      /* JUSTIFICADO */
+}
+
+/* ======= GRID DE BOTONES ======= */
 .social-grid {
   display: flex;
   flex-wrap: wrap;
-  gap: 14px;
-  margin: 30px 0;
+  gap: 12px;
+  margin: 28px 0;
 }
 
 .social-btn {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 10px 16px;
+  padding: 10px 18px;
   background: #eef2ff;
   border-radius: 8px;
   font-weight: 600;
@@ -151,44 +167,32 @@ toc: false
   background: #dce4ff;
 }
 
-.about-text {
-  margin-top: 15px;
-  font-size: 18px;
-  line-height: 1.6;
-}
-
-.section-title {
-  font-size: 26px;
-  font-weight: 700;
-  margin-top: 50px;
-  margin-bottom: 15px;
-}
-
-.news-box, .events-box {
-  background: #f7f7ff;
-  padding: 18px 22px;
-  border-radius: 12px;
-  margin-bottom: 14px;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.12);
-}
 </style>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
+<!-- ========================================================= -->
+<!--                    CONTENIDO PRINCIPAL                     -->
+<!-- ========================================================= -->
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <div class="profile-container">
 
   <!-- LEFT SIDE: TEXT -->
   <div class="profile-left">
+
     <div class="profile-name">Carlos Vladimir Rodríguez-Caballero</div>
-    <div class="profile-subtitle">Applied Econometrics · Time Series · Climate & Financial Econometrics</div>
+
+    <div class="profile-subtitle">
+      Applied Econometrics · Time Series · Climate & Financial Econometrics
+    </div>
 
     <div class="about-text">
-      Associate Professor of Statistics at ITAM and Visiting Researcher at Duke University (2025–2026).  
-      PhD in Economics (Econometrics), Aarhus University & CREATES.
+      Associate Professor of Statistics at ITAM and Visiting Researcher at Duke University (2025–2026). PhD in Economics (Econometrics), Aarhus University & CREATES.
 
       <br><br>
-      Research fields:
+      <strong>Research fields:</strong>
+
       <ul>
         <li>Time-series econometrics and long memory</li>
         <li>High-dimensional factor models</li>
@@ -229,9 +233,10 @@ toc: false
       </a>
 
     </div>
+
   </div>
 
-  <!-- RIGHT SIDE: PHOTO -->
+  <!-- RIGHT SIDE: BIG PHOTO -->
   <div class="profile-right">
     <img src="/assets/images/profile.jpg" class="profile-pic">
   </div>
