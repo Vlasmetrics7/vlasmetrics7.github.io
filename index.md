@@ -145,9 +145,9 @@ toc: false
         <a href="mailto:vladimir.rodriguez@duke.edu"><i class="fa-solid fa-envelope-open"></i> Duke Email</a>
         <a href="https://github.com/Vlasmetrics7" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
        <!-- === <a href="https://www.itam.mx" target="_blank"><i class="fa-solid fa-landmark"></i> ITAM</a> == -->
-        <a href="https://scholar.google.com" target="_blank"><i class="fa-brands fa-google"></i> Scholar</a>
-        <a href="https://orcid.org" target="_blank"><i class="fa-brands fa-orcid"></i> ORCID</a>
-        <a href="https://www.scopus.com/authid/detail.uri?authorId=57195995467" target="_blank"><i class="fa-solid fa-database"></i> Scopus</a>
+        <a href="https://scholar.google.com.mx/citations?user=yzeOjrsAAAAJ&hl=es" target="_blank"><i class="fa-brands fa-google"></i> Scholar</a>
+        <a href="https://orcid.org/0000-0002-3601-7715" target="_blank"><i class="fa-brands fa-orcid"></i> ORCID</a>
+        <a href="https://www.scopus.com/authid/detail.uri?authorId=56144654500" target="_blank"><i class="fa-solid fa-database"></i> Scopus</a>
       </div>
     </div>
 
