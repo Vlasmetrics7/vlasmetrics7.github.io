@@ -71,7 +71,8 @@ toc: false
   }
 
   .profile-photo img {
-    width: 120%;
+    width: 150%;
+    height:150% ;
     border-radius: 14px;
     box-shadow: 0 8px 22px rgba(0,0,0,0.25);
   }
