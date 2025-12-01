@@ -3,17 +3,11 @@ layout: single
 title: "About Me"
 permalink: /about/
 classes: wide
-toc: false
-use_math: false
+sidebar: false
 author_profile: false
-show_date: false
-excerpt: ""
-header:
-  overlay_color: "#000"
-  overlay_filter: 0.0
-  overlay_image: ""
-
+toc: false
 ---
+
 
 
 <!-- ========================================================= -->
