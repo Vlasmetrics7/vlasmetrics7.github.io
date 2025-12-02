@@ -240,3 +240,10 @@ toc: false
 
 <!-- FontAwesome icons (for JS rendering of icons) -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/js/all.min.js"></script>
+<!-- ================= GOATCOUNTER ANALYTICS ================= -->
+<script data-goatcounter="https://vlasmetrics.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+...
+
+
+
