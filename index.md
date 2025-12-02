@@ -120,6 +120,41 @@ toc: false
     background: #dce4ff;
   }
 </style>
+<style>
+@media (max-width: 991px) {
+  .profile-grid {
+    grid-template-columns: 1fr; /* Apila texto y foto verticalmente */
+    gap: 40px;
+  }
+
+  .profile-photo {
+    margin-top: 0;
+    justify-self: center;
+  }
+
+  .profile-photo img {
+    width: 90%;
+    height: auto;
+    max-width: 360px;
+  }
+
+  .name {
+    font-size: 34px;
+    text-align: center;
+  }
+
+  .subtitle,
+  .profile-text p,
+  .profile-text ul {
+    text-align: center;
+  }
+
+  .social-buttons {
+    justify-content: center;
+  }
+}
+</style>
+
 
 <div class="profile-wrapper">
   <div class="profile-grid">
