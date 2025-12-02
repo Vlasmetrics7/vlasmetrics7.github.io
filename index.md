@@ -155,6 +155,31 @@ toc: false
 }
 </style>
 
+<style>
+/* Responsive fix for accordion sections in mobile */
+@media (max-width: 768px) {
+  .acc-btn {
+    font-size: 16px !important;
+    padding: 12px 14px !important;
+  }
+
+  .acc-content {
+    padding: 14px !important;
+    font-size: 15px !important;
+    line-height: 1.6;
+  }
+
+  .acc-item {
+    margin-bottom: 12px !important;
+  }
+
+  .acc-btn::after {
+    right: 14px !important;
+  }
+}
+</style>
+
+
 
 <div class="profile-wrapper">
   <div class="profile-grid">
