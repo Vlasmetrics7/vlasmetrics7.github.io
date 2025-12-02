@@ -156,28 +156,33 @@ toc: false
 </style>
 
 <style>
-/* Responsive fix for accordion sections in mobile */
+/* Full responsive accordion behavior */
 @media (max-width: 768px) {
+  .acc-item {
+    width: 100% !important;
+    box-sizing: border-box;
+  }
+
   .acc-btn {
     font-size: 16px !important;
-    padding: 12px 14px !important;
+    padding: 14px 16px !important;
+    text-align: left;
+    white-space: normal;
   }
 
   .acc-content {
-    padding: 14px !important;
+    padding: 16px !important;
     font-size: 15px !important;
     line-height: 1.6;
-  }
-
-  .acc-item {
-    margin-bottom: 12px !important;
+    word-wrap: break-word;
   }
 
   .acc-btn::after {
-    right: 14px !important;
+    right: 16px !important;
   }
 }
 </style>
+
 
 
 
