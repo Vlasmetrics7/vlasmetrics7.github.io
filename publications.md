@@ -780,6 +780,7 @@ of high inflation.</em>
     </div>
   </div>
 </div>
+</div>
 
 <div id="year2025" class="year-block" style="display:none;">
   
