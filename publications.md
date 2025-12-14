@@ -744,7 +744,7 @@ Explore my research output by year, or browse a curated selection of highlighted
 
       <a href="javascript:toggleDiv('bib-infl2026')" class="btn btn--warning btn--sm">BIB</a>
    <!-- NUEVO BOTÓN REP -->
-      <a href="https://arxiv.org/abs/2507.10679"
+      <a href="https://github.com/IgnacioGarron/replication_ijf_int_inflation_factors_risks/tree/main"
          target="_blank" class="btn btn--dark btn--sm">Codes</a>
     </div>
 
@@ -780,6 +780,9 @@ of high inflation.</em>
     </div>
   </div>
 </div>
+
+<div id="year2025" class="year-block" style="display:none;">
+
   
 <!-- ===================================================== -->
 <!-- ==================== PAPER 1 ========================= -->
