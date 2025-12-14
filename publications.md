@@ -686,6 +686,7 @@ Explore my research output by year, or browse a curated selection of highlighted
 </div>
 
 <div class="year-grid">
+    <button class="year-tile year-2026" onclick="toggleYear('year2026')">2026 (1) ▼</button>
   <button class="year-tile year-2025" onclick="toggleYear('year2025')">2025 (1) ▼</button>
   <button class="year-tile year-2024" onclick="toggleYear('year2024')">2024 (2) ▼</button>
   <button class="year-tile year-2023" onclick="toggleYear('year2023')">2023 (2) ▼</button>
@@ -701,14 +702,85 @@ Explore my research output by year, or browse a curated selection of highlighted
 
 <h2 style="margin-top:15px; font-size:28px;">More Sections</h2>
 
-<!--
-<div id="year2025" class="year-block" style="display:block;">
-<button class="year-button" onclick="toggleYear('year2025')">
-  2025 ▼
-</button>
-<div id="year2025" style="display:none;"> -->
+<div id="year2026" class="year-block" style="display:none;">
 
-<div id="year2025" class="year-block" style="display:none;">
+<!-- ===================================================== -->
+<!-- ==================== PAPER 1 (IJF) ================== -->
+<!-- ===================================================== -->
+
+<div class="pub-card">
+
+  <img src="/assets/images/IJF26.png" class="pub-img">
+
+  <div class="pub-info">
+
+    <strong>International factors and inflation risks</strong><br>
+    Garrón, I., <u>Rodríguez-Caballero, C.V.</u>, & Ruiz, E.<br>
+    <em>International Journal of Forecasting</em>, 2026. [Forthcoming]
+
+    <div class="btn-row">
+
+      <a href="javascript:toggleDiv('abs-infl2026')" class="btn btn--info btn--sm">ABS</a>
+
+      <div class="dropdown-container">
+        <button class="btn btn--primary btn--sm"
+                onclick="toggleDropdown('wp-infl2026')">Working Papers ▼</button>
+        <div id="wp-infl2026" class="dropdown-menu">
+          <a href="https://e-archivo.uc3m.es/bitstreams/31c1d448-b315-4c93-a661-329f31e50f3e/download" target="_blank">UC3M WP 2024</a><br>
+          <a href="https://arxiv.org/pdf/2410.20628" target="_blank">Arxiv WP 2024</a>
+        </div>
+      </div>
+
+      <a href=""
+         target="_blank" class="btn btn--success btn--sm">Published</a>
+
+      <div class="dropdown-container">
+        <button class="btn btn--secondary btn--sm"
+                onclick="toggleDropdown('media-infl2026')">Media ▼</button>
+        <div id="media-infl2026" class="dropdown-menu">
+          <a href="https://www.dropbox.com/scl/fi/zsejgcdar1zwh68n9b0x2/Banco-de-Uruguay-CVRC.pdf?rlkey=gspwimspa2aq2axvm4nx2e3of&st=qzj6so5b&dl=0" target="_blank">Slides (PDF)</a>
+        </div>
+      </div>
+
+      <a href="javascript:toggleDiv('bib-infl2026')" class="btn btn--warning btn--sm">BIB</a>
+   <!-- NUEVO BOTÓN REP -->
+      <a href="https://arxiv.org/abs/2507.10679"
+         target="_blank" class="btn btn--dark btn--sm">Codes</a>
+    </div>
+
+    <div id="abs-infl2026" class="abstract-block" style="display:none;">
+      <strong>Abstract:</strong><br>
+      <em>Assessing the risks of having either very low or very high inflation is crucial
+for policy makers, businesses, and house holders. In a globalised world, these risks
+are increasingly determined by international conditions. In this paper, we analyse
+empirically the impact of international inflation factors on forecasting monthly domestic
+inflation risks in a large number of economies observed worldwide from 1999
+to 2022. Risk forecasts are obtained using factor-augmented quantile regressions
+estimated with international factors extracted from a multi-level Dynamic Factor
+Model with overlapping blocks of inflation corresponding to economies grouped
+either in a given geographical region or according to their development level. We
+conclude that, in a large number of countries, international factors are relevant to
+explain the right tail of the distribution of inflation, and, consequently, they are
+more relevant for the risk related to high inflation than for low inflation. The role
+of international factors is stronger in European developed countries, while inflation
+risks of developing low-income countries are hardly affected by international conditions,
+and the results for middle-income countries are mixed. We also show that
+the predictive power of international factors has increased in the most recent years
+of high inflation.</em>
+    </div>
+
+    <div id="bib-infl2026" class="bib-block" style="display:none;">
+<pre><code>@article{garron2024international,
+  title={International vulnerability of inflation},
+  author={Garr{\'o}n, Ignacio and Rodr{\'\i}guez-Caballero, C Vladimir and Ruiz, Esther},
+  journal={arXiv preprint arXiv:2410.20628},
+  year={2024}
+}
+</code></pre>
+    </div>
+  </div>
+</div>
+  
 <!-- ===================================================== -->
 <!-- ==================== PAPER 1 ========================= -->
 <!-- ===================================================== -->
