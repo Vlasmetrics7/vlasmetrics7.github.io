@@ -231,6 +231,8 @@ toc: false
 
     <h2 style="margin-top:40px;">News</h2>
     <ul>
+    <li><strong>Jan 2026:</strong> New accepted paper. Annals of Applied Statistics.</li>
+    <li><strong>Dic 2025:</strong> New accepted paper. International Journal of Forecasting.</li>
       <li><strong>Nov 2025:</strong> Appointed Visiting Professor at Duke University</li>
      <!-- ===  <li><strong>Oct 2025:</strong> New working paper on high-dimensional factor models uploaded</li>
      <li><strong>Aug 2025:</strong> Received ITAM Research Grant</li>== -->
