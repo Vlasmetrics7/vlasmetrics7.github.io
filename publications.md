@@ -779,16 +779,6 @@ regional components remain relevant, particularly at the log-range.</em>
     </div>
   </div>
 </div>
-</div>
-
-
-
-
-
-
-
-
-
 
 <!-- ===================================================== -->
 <!-- ==================== PAPER 1 (IJF) ================== -->
