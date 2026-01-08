@@ -704,6 +704,92 @@ Explore my research output by year, or browse a curated selection of highlighted
 
 <div id="year2026" class="year-block" style="display:none;">
 
+
+<!-- ===================================================== -->
+<!-- ==================== PAPER 1 (AOAS) ================== -->
+<!-- ===================================================== -->
+
+<div class="pub-card">
+
+  <img src="/assets/images/AOAS26.png" class="pub-img">
+
+  <div class="pub-info">
+
+    <strong>Temperature in the Iberian Peninsula: Trend, seasonality, and heterogeneity</strong><br>
+    Rodríguez-Caballero, C.V.</u>, & Ruiz, E.<br>
+    <em>Annals of Applied Statistics</em>, 2026. [Forthcoming]
+
+    <div class="btn-row">
+
+      <a href="javascript:toggleDiv('abs-AOAS2026')" class="btn btn--info btn--sm">ABS</a>
+
+      <div class="dropdown-container">
+        <button class="btn btn--primary btn--sm"
+                onclick="toggleDropdown('wp-AOAS2026')">Working Papers ▼</button>
+        <div id="wp-AOAS2026" class="dropdown-menu">
+            <a href="https://arxiv.org/pdf/2406.14145" target="_blank">Arxiv WP 2024</a>
+        </div>
+      </div>
+
+      <a href=""
+         target="_blank" class="btn btn--success btn--sm">Published</a>
+
+      <div class="dropdown-container">
+        <button class="btn btn--secondary btn--sm"
+                onclick="toggleDropdown('media-AOAS2026')">Media ▼</button>
+        <div id="media-AOAS2026" class="dropdown-menu">
+          <a href="https://www.dropbox.com/scl/fi/m22pdzkc4dimcomjlnrvb/ICES-Tokyo-CVRC.pdf?rlkey=askpuzztilc6c0ixnpy5ex0ic&dl=0" target="_blank">Slides (PDF)</a>
+        </div>
+      </div>
+
+      <a href="javascript:toggleDiv('bib-AOAS2026')" class="btn btn--warning btn--sm">BIB</a>
+   <!-- NUEVO BOTÓN REP -->
+      <a href="https://github.com/Vlasmetrics7/temperatureIberian"
+         target="_blank" class="btn btn--dark btn--sm">Codes</a>
+    </div>
+
+    <div id="abs-AOAS2026" class="abstract-block" style="display:none;">
+      <strong>Abstract:</strong><br>
+      <em>We propose a Multi-level Dynamic Factor Model (ML-DFM) to capture
+the common global and region-specific stochastic trends in monthly centre
+and log-range temperatures observed at 68 locations across the Iberian
+Peninsula from January 1930 to December 2020. The specification of common
+trends is based on the analysis of temperatures at each location using
+unobserved component models, which decompose temperatures into trend,
+seasonal, and transitory components. First, we show that the centre and logrange
+temperatures evolve independently. Second, we remove the seasonal
+component before analysing common trends. Third, we find that centre temperature
+trends are well approximated by a smooth, integrated random walk
+with a time-varying slope. In contrast, a stochastic level better captures the
+dynamics of the log-range. The ML-DFM is estimated using an EM algorithm
+extended here to accommodate non-stationary factors. We show that
+although the commonality in centre-temperature trends is considerable, the
+regional components remain relevant, particularly at the log-range.</em>
+    </div>
+
+    <div id="bib-AOAS2026" class="bib-block" style="display:none;">
+<pre><code>@article{rodriguez2024temperature,
+  title={Temperature in the Iberian Peninsula: Trend, seasonality, and heterogeneity},
+  author={Rodr{\'\i}guez-Caballero, C Vladimir and Ruiz, Esther},
+  journal={arXiv preprint arXiv:2406.14145},
+  year={2024}
+}
+}
+</code></pre>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
 <!-- ===================================================== -->
 <!-- ==================== PAPER 1 (IJF) ================== -->
 <!-- ===================================================== -->
