@@ -716,7 +716,7 @@ Explore my research output by year, or browse a curated selection of highlighted
   <div class="pub-info">
 
     <strong>Temperature in the Iberian Peninsula: Trend, seasonality, and heterogeneity</strong><br>
-    Rodríguez-Caballero, C.V.</u>, & Ruiz, E.<br>
+    Rodríguez-Caballero, C.V., & Ruiz, E.<br>
     <em>Annals of Applied Statistics</em>, 2026. [Forthcoming]
 
     <div class="btn-row">
