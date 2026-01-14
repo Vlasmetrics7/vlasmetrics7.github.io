@@ -3,6 +3,11 @@ layout: single
 title: "Curriculum Vitae"
 permalink: /cv/
 ---
+## Full CV (PDF)
+
+Please find my complete CV below:
+[Download CV (English)](/uploads/6/6/5/9/66590417/cv_9.pdf){: .btn .btn--large .btn--primary }
+
 ## Education
 
 - PhD in Econometrics, Aarhus University and CREATES, Denmark. 2016  
@@ -33,9 +38,5 @@ permalink: /cv/
 
 ---
 
-## Full CV (PDF)
 
-Please find my complete CV below:
-
-[Download CV (English)](/uploads/6/6/5/9/66590417/cv_9.pdf){: .btn .btn--large .btn--primary }
 
