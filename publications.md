@@ -15,14 +15,6 @@ function toggleDiv(id) {
 }
 </script>
 
-<script>
-function toggleYear(id) {
-  var el = document.getElementById(id);
-  el.style.display = (el.style.display === "none" || el.style.display === "") ? "block" : "none";
-}
-</script>
-
-
 <style>
 
 /* TARJETA HORIZONTAL */
@@ -95,12 +87,12 @@ function toggleYear(id) {
 
 .pub-info pre {
   white-space: pre-wrap !important;   /* Permite salto de línea */
-  word-break: break-word !important;   /* Rompe palabras largas */
+  word-break: break-word !important;  /* Rompe palabras largas */
   overflow-wrap: break-word !important;
-  max-width: 100% !important;          /* Nunca se sale de la tarjeta */
+  max-width: 100% !important;         /* Nunca se sale de la tarjeta */
 }
 
-  /* Reducir tamaño del BibTeX */
+/* Reducir tamaño del BibTeX */
 .pub-info pre code {
   font-size: 12px !important;   /* tamaño más compacto */
   line-height: 1.25 !important; /* más apretado pero legible */
@@ -110,7 +102,7 @@ function toggleYear(id) {
   max-width: 100% !important;
 }
 
-  /* Abstract más compacto y elegante */
+/* Abstract más compacto y elegante */
 .abstract-block {
   font-size: 13px;
   line-height: 1.25;
@@ -118,13 +110,13 @@ function toggleYear(id) {
   margin-bottom: 14px;
   padding-left: 0px;
   max-width: 95%;
-    white-space: pre-wrap !important;
+  white-space: pre-wrap !important;
   word-break: break-word !important;
   overflow-wrap: break-word !important;
   max-width: 100% !important;
 }
 
-  .bib-block {
+.bib-block {
   font-size: 13px;
   line-height: 1.45;
   margin-top: 8px;
@@ -141,6 +133,7 @@ function toggleYear(id) {
   white-space: pre-wrap !important;
   word-break: break-word !important;
 }
+
 .year-button {
   width: 100%;
   background: #f2f2f2;
@@ -158,9 +151,9 @@ function toggleYear(id) {
 
 .year-button:hover {
   background: #e6e6e6;
-} 
+}
 
-  /* GRID DE AÑOS */
+/* GRID DE AÑOS */
 .year-grid {
   display: flex;
   flex-wrap: wrap;
@@ -191,16 +184,16 @@ function toggleYear(id) {
 
 /* Colores suaves distintos por año (puedes cambiar) */
 .year-2025 { background: #e4ecff; }  /* azul pastel */
-.year-2024 { background: #e4ecff; }  
-.year-2023 { background: #e4ecff; }  
-.year-2022 { background: #e4ecff; }  
+.year-2024 { background: #e4ecff; }
+.year-2023 { background: #e4ecff; }
+.year-2022 { background: #e4ecff; }
 
 /* Que el contenido desplegable no quede pegado a los bloques */
 .year-block {
   margin-bottom: 25px;
 }
 
-  .toggle-all-button {
+.toggle-all-button {
   display: inline-block;
   padding: 10px 18px;
   font-size: 16px;
@@ -216,7 +209,7 @@ function toggleYear(id) {
 .toggle-all-button:hover {
   background: #c8d6ff;
   transform: translateY(-2px);
-} 
+}
 
 .more-sections-box {
   background: #fafbff;
@@ -227,9 +220,9 @@ function toggleYear(id) {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-} 
+}
 
-  .btn--dark {
+.btn--dark {
   background: #555;
   color: white;
   border-radius: 6px;
@@ -261,6 +254,12 @@ function isVisible(el) {
   return window.getComputedStyle(el).display !== 'none';
 }
 
+/* ✅ Solo años: excluye el bloque "Selected Publications" aunque tenga class year-block */
+function getYearBlocks() {
+  return Array.from(document.querySelectorAll('.year-block'))
+    .filter(b => b.id !== 'selectedSection');
+}
+
 function hideSelected() {
   const sel = document.getElementById('selectedSection');
   const selBtn = document.getElementById('selectedBtn');
@@ -269,7 +268,7 @@ function hideSelected() {
 }
 
 function hideAllYears() {
-  document.querySelectorAll('.year-block').forEach(b => {
+  getYearBlocks().forEach(b => {
     b.style.display = 'none';
   });
 }
@@ -278,12 +277,13 @@ function updateToggleAllLabel() {
   const btn = document.getElementById('toggleAllBtn');
   if (!btn) return;
 
-  const blocks = Array.from(document.querySelectorAll('.year-block'));
+  const blocks = getYearBlocks();
   if (blocks.length === 0) {
     btn.textContent = 'Expand All';
     return;
   }
-  const allOpen = blocks.every(b => window.getComputedStyle(b).display !== 'none');
+
+  const allOpen = blocks.every(b => isVisible(b));
   btn.textContent = allOpen ? 'Collapse All' : 'Expand All';
 }
 
@@ -299,7 +299,7 @@ function toggleYear(id) {
   hideAllYears();
 
   // Si el año estaba cerrado, lo abrimos
- if (willShow) {
+  if (willShow) {
     block.style.display = 'block';
     scrollToBlock(id);  // ⭐ desplazamiento suave
   } else {
@@ -310,14 +310,13 @@ function toggleYear(id) {
 }
 </script>
 
-
 <script>
 function toggleAllYears() {
-  const blocks = document.querySelectorAll('.year-block');
+  const blocks = getYearBlocks();
   const btn = document.getElementById('toggleAllBtn');
   if (!btn || blocks.length === 0) return;
 
-  const allOpen = Array.from(blocks).every(b => isVisible(b));
+  const allOpen = blocks.every(b => isVisible(b));
 
   hideSelected();
 
@@ -366,8 +365,8 @@ function toggleExtra(id) {
   if (!block) return;
 
   // Toggle simple
-  block.style.display = (block.style.display === "none" || block.style.display === "") 
-      ? "block" 
+  block.style.display = (block.style.display === "none" || block.style.display === "")
+      ? "block"
       : "none";
 
   // Scroll suave cuando se abre
