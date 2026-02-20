@@ -846,12 +846,15 @@ of high inflation.</em>
     </div>
 
     <div id="bib-infl2026" class="bib-block" style="display:none;">
-<pre><code>@article{garron2024international,
-  title={International vulnerability of inflation},
-  author={Garr{\'o}n, Ignacio and Rodr{\'\i}guez-Caballero, C Vladimir and Ruiz, Esther},
-  journal={arXiv preprint arXiv:2410.20628},
-  year={2024}
+<pre><code>
+
+@article{GARRON2026,
+title = {International factors and inflation risks},
+journal = {International Journal of Forecasting},
+year = {2026},
+author = {Ignacio Garrón and Vladimir Rodríguez-Caballero and Esther Ruiz},
 }
+  
 </code></pre>
     </div>
   </div>
