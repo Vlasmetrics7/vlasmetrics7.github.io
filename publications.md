@@ -700,7 +700,7 @@ Explore my research output by year, or browse a curated selection of highlighted
 <hr style="margin-top:5px; margin-bottom:25px; opacity:0.25;">
 <hr style="margin-top:5px; margin-bottom:25px; opacity:0.25;">
 
-<h2 style="margin-top:15px; font-size:28px;">More Sections</h2>
+<!-- <h2 style="margin-top:15px; font-size:28px;">More Sections</h2> -->
 
 <div id="year2026" class="year-block" style="display:none;">
 
