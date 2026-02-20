@@ -384,9 +384,9 @@ Explore my research output by year, or browse a curated selection of highlighted
 </p>
 
 ---
-<button id="toggleAllBtn" class="toggle-all-button" onclick="toggleAllYears()">
-  Expand All
-</button>
+<!-- ===<button id="toggleAllBtn" class="toggle-all-button" onclick="toggleAllYears()">====== -->
+  <!-- ===Expand All====== -->
+<!-- ===</button>====== -->
 
 <button id="selectedBtn" class="toggle-all-button" onclick="toggleSelected()">
   Selected Publications ⭐
