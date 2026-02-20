@@ -686,7 +686,7 @@ Explore my research output by year, or browse a curated selection of highlighted
 </div>
 
 <div class="year-grid">
-    <button class="year-tile year-2026" onclick="toggleYear('year2026')">2026 (1) ▼</button>
+    <button class="year-tile year-2026" onclick="toggleYear('year2026')">2026 (2) ▼</button>
   <button class="year-tile year-2025" onclick="toggleYear('year2025')">2025 (1) ▼</button>
   <button class="year-tile year-2024" onclick="toggleYear('year2024')">2024 (2) ▼</button>
   <button class="year-tile year-2023" onclick="toggleYear('year2023')">2023 (2) ▼</button>
@@ -1985,6 +1985,8 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
   </div>
 </div>
 </div>
+
+<h2 style="margin-top:15px; font-size:28px;">More Sections</h2>
 
   <!-- ============================== -->
   <!-- POP-SCIENCE ARTICLES (HIDDEN) -->
