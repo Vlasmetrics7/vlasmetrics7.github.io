@@ -807,7 +807,7 @@ regional components remain relevant, particularly at the log-range.</em>
         </div>
       </div>
 
-      <a href=""
+      <a href="https://doi.org/10.1016/j.ijforecast.2025.12.003"
          target="_blank" class="btn btn--success btn--sm">Published</a>
 
       <div class="dropdown-container">
