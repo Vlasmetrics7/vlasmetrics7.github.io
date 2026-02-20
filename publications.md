@@ -394,6 +394,161 @@ Explore my research output by year, or browse a curated selection of highlighted
 <div id="selectedSection" class="year-block" style="display:none;">
 
 <!-- ===================================================== -->
+<!-- ==================== PAPER 1 (AOAS) ================== -->
+<!-- ===================================================== -->
+
+<div class="pub-card">
+
+  <img src="/assets/images/AOAS26.png" class="pub-img">
+
+  <div class="pub-info">
+
+    <strong>Temperature in the Iberian Peninsula: Trend, seasonality, and heterogeneity</strong><br>
+    Rodríguez-Caballero, C.V., & Ruiz, E.<br>
+    <em>Annals of Applied Statistics</em>, 2026. [Forthcoming]
+
+    <div class="btn-row">
+
+      <a href="javascript:toggleDiv('abs-AOAS2026')" class="btn btn--info btn--sm">ABS</a>
+
+      <div class="dropdown-container">
+        <button class="btn btn--primary btn--sm"
+                onclick="toggleDropdown('wp-AOAS2026')">Working Papers ▼</button>
+        <div id="wp-AOAS2026" class="dropdown-menu">
+            <a href="https://arxiv.org/pdf/2406.14145" target="_blank">Arxiv WP 2024</a>
+        </div>
+      </div>
+
+      <a href=""
+         target="_blank" class="btn btn--success btn--sm">Published</a>
+
+      <div class="dropdown-container">
+        <button class="btn btn--secondary btn--sm"
+                onclick="toggleDropdown('media-AOAS2026')">Media ▼</button>
+        <div id="media-AOAS2026" class="dropdown-menu">
+          <a href="https://www.dropbox.com/scl/fi/m22pdzkc4dimcomjlnrvb/ICES-Tokyo-CVRC.pdf?rlkey=askpuzztilc6c0ixnpy5ex0ic&dl=0" target="_blank">Slides (PDF)</a>
+        </div>
+      </div>
+
+      <a href="javascript:toggleDiv('bib-AOAS2026')" class="btn btn--warning btn--sm">BIB</a>
+   <!-- NUEVO BOTÓN REP -->
+      <a href="https://github.com/Vlasmetrics7/temperatureIberian"
+         target="_blank" class="btn btn--dark btn--sm">Codes</a>
+    </div>
+
+    <div id="abs-AOAS2026" class="abstract-block" style="display:none;">
+      <strong>Abstract:</strong><br>
+      <em>We propose a Multi-level Dynamic Factor Model (ML-DFM) to capture
+the common global and region-specific stochastic trends in monthly centre
+and log-range temperatures observed at 68 locations across the Iberian
+Peninsula from January 1930 to December 2020. The specification of common
+trends is based on the analysis of temperatures at each location using
+unobserved component models, which decompose temperatures into trend,
+seasonal, and transitory components. First, we show that the centre and logrange
+temperatures evolve independently. Second, we remove the seasonal
+component before analysing common trends. Third, we find that centre temperature
+trends are well approximated by a smooth, integrated random walk
+with a time-varying slope. In contrast, a stochastic level better captures the
+dynamics of the log-range. The ML-DFM is estimated using an EM algorithm
+extended here to accommodate non-stationary factors. We show that
+although the commonality in centre-temperature trends is considerable, the
+regional components remain relevant, particularly at the log-range.</em>
+    </div>
+
+    <div id="bib-AOAS2026" class="bib-block" style="display:none;">
+<pre><code>@article{rodriguez2024temperature,
+  title={Temperature in the Iberian Peninsula: Trend, seasonality, and heterogeneity},
+  author={Rodr{\'\i}guez-Caballero, C Vladimir and Ruiz, Esther},
+  journal={arXiv preprint arXiv:2406.14145},
+  year={2024}
+}
+}
+</code></pre>
+    </div>
+  </div>
+</div>
+
+<!-- ===================================================== -->
+<!-- ==================== PAPER 1 (IJF) ================== -->
+<!-- ===================================================== -->
+
+<div class="pub-card">
+
+  <img src="/assets/images/IJF26.png" class="pub-img">
+
+  <div class="pub-info">
+
+    <strong>International factors and inflation risks</strong><br>
+    Garrón, I., <u>Rodríguez-Caballero, C.V.</u>, & Ruiz, E.<br>
+    <em>International Journal of Forecasting</em>, 2026. [Forthcoming]
+
+    <div class="btn-row">
+
+      <a href="javascript:toggleDiv('abs-infl2026')" class="btn btn--info btn--sm">ABS</a>
+
+      <div class="dropdown-container">
+        <button class="btn btn--primary btn--sm"
+                onclick="toggleDropdown('wp-infl2026')">Working Papers ▼</button>
+        <div id="wp-infl2026" class="dropdown-menu">
+          <a href="https://e-archivo.uc3m.es/bitstreams/31c1d448-b315-4c93-a661-329f31e50f3e/download" target="_blank">UC3M WP 2024</a><br>
+          <a href="https://arxiv.org/pdf/2410.20628" target="_blank">Arxiv WP 2024</a>
+        </div>
+      </div>
+
+      <a href="https://doi.org/10.1016/j.ijforecast.2025.12.003"
+         target="_blank" class="btn btn--success btn--sm">Published</a>
+
+      <div class="dropdown-container">
+        <button class="btn btn--secondary btn--sm"
+                onclick="toggleDropdown('media-infl2026')">Media ▼</button>
+        <div id="media-infl2026" class="dropdown-menu">
+          <a href="https://www.dropbox.com/scl/fi/zsejgcdar1zwh68n9b0x2/Banco-de-Uruguay-CVRC.pdf?rlkey=gspwimspa2aq2axvm4nx2e3of&st=qzj6so5b&dl=0" target="_blank">Slides (PDF)</a>
+        </div>
+      </div>
+
+      <a href="javascript:toggleDiv('bib-infl2026')" class="btn btn--warning btn--sm">BIB</a>
+   <!-- NUEVO BOTÓN REP -->
+      <a href="https://github.com/IgnacioGarron/replication_ijf_int_inflation_factors_risks/tree/main"
+         target="_blank" class="btn btn--dark btn--sm">Codes</a>
+    </div>
+
+    <div id="abs-infl2026" class="abstract-block" style="display:none;">
+      <strong>Abstract:</strong><br>
+      <em>Assessing the risks of having either very low or very high inflation is crucial
+for policy makers, businesses, and house holders. In a globalised world, these risks
+are increasingly determined by international conditions. In this paper, we analyse
+empirically the impact of international inflation factors on forecasting monthly domestic
+inflation risks in a large number of economies observed worldwide from 1999
+to 2022. Risk forecasts are obtained using factor-augmented quantile regressions
+estimated with international factors extracted from a multi-level Dynamic Factor
+Model with overlapping blocks of inflation corresponding to economies grouped
+either in a given geographical region or according to their development level. We
+conclude that, in a large number of countries, international factors are relevant to
+explain the right tail of the distribution of inflation, and, consequently, they are
+more relevant for the risk related to high inflation than for low inflation. The role
+of international factors is stronger in European developed countries, while inflation
+risks of developing low-income countries are hardly affected by international conditions,
+and the results for middle-income countries are mixed. We also show that
+the predictive power of international factors has increased in the most recent years
+of high inflation.</em>
+    </div>
+
+    <div id="bib-infl2026" class="bib-block" style="display:none;">
+<pre><code>
+
+@article{GARRON2026,
+title = {International factors and inflation risks},
+journal = {International Journal of Forecasting},
+year = {2026},
+author = {Ignacio Garrón and Vladimir Rodríguez-Caballero and Esther Ruiz},
+}
+  
+</code></pre>
+    </div>
+  </div>
+</div>
+
+<!-- ===================================================== -->
 <!-- ==================== PAPER 2 (JAE) ================== -->
 <!-- ===================================================== -->
 
@@ -603,79 +758,6 @@ Explore my research output by year, or browse a curated selection of highlighted
   volume={63},
   pages={101144},
   year={2019},
-  publisher={Elsevier}
-}
-</code></pre>
-    </div>
-  </div>
-</div>
-
-<!-- ===================================================== -->
-<!-- ==================== PAPER: Energy Economics === -->
-<!-- ===================================================== -->
-
-<div class="pub-card">
-  <img src="/assets/images/ENECO19.png" class="pub-img">
-  <div class="pub-info">
-    <strong>Energy-growth long-term relationship under structural breaks. Evidence from Canada, 17 Latin American economies and the USA</strong><br>
-    <u>Rodríguez-Caballero, C.V.</u> & Ventosa-Santaularia, D.<br>
-    <em>Energy Economics</em>, 2017.
-  <div class="btn-row">
-      <a href="javascript:toggleDiv('abs-ENECO17B')" class="btn btn--info btn--sm">ABS</a>
-        <a href="https://doi.org/10.1016/j.eneco.2016.10.026"
-         target="_blank" class="btn btn--success btn--sm">Published</a>
-         <a href="javascript:toggleDiv('bib-ENECO17B')" class="btn btn--warning btn--sm">BIB</a>
-    </div>
-   <div id="abs-ENECO17B" class="abstract-block" style="display:none;">
-      <strong>Abstract:</strong><br>
-      <em>We study the relationship and the causal link between Electric Power Consumption, EPC, and Gross Domestic Product, GDP (both per capita) for 17 countries in Latin America, Canada and the USA. Considering that many of these economies underwent important economic crises in the last three decades, we therefore model the EPC-GDP relationship through a VEC specification that allows for structural breaks, along with a robust testing methodology of causal links based on the concepts of weak and super exogeneity, rather than Granger causality. Evidence favorable to the growth hypothesis (EPC→GDP) is found for eight countries, while data of three countries support the conservation hypothesis (GDP→EPC). For three countries evidence is favorable to the neutrality hypothesis, but should be considered with caution. As for the remaining five countries the evidence is not conclusive.</em>
-    </div>
-    <div id="bib-ENECO17B" class="bib-block" style="display:none;">
-<pre><code>@article{rodriguez2017energy,
-  title={Energy-growth long-term relationship under structural breaks. Evidence from Canada, 17 Latin American economies and the USA},
-  author={Rodr{\'\i}guez-Caballero, Carlos Vladimir and Ventosa-Santaul{\`a}ria, Daniel},
-  journal={Energy Economics},
-  volume={61},
-  pages={121--134},
-  year={2017},
-  publisher={Elsevier}
-}
-</code></pre>
-    </div>
-  </div>
-</div>
-
-<!-- ===================================================== -->
-<!-- ==================== PAPER: Energy Economics === -->
-<!-- ===================================================== -->
-
-<div class="pub-card">
-  <img src="/assets/images/ENECO16.png" class="pub-img">
-  <div class="pub-info">
-    <strong>Common long-range dependence in a panel of hourly Nord Pool electricity prices and loads. </strong><br>
-    Ergemen, Yunus & Haldrup, Niels & <u>Rodríguez-Caballero, C.V.</u> <br>
-    <em>Energy Economics</em>, 2016.
-  <div class="btn-row">
-      <a href="javascript:toggleDiv('abs-ENECO16B')" class="btn btn--info btn--sm">ABS</a>
-        <a href="https://doi.org/10.1016/j.eneco.2016.09.008"
-         target="_blank" class="btn btn--success btn--sm">Published</a>
-         <a href="javascript:toggleDiv('bib-ENECO16B')" class="btn btn--warning btn--sm">BIB</a>
-         <!-- NUEVO BOTÓN REP -->
-      <a href="https://github.com/Vlasmetrics7/CommonLongRange"
-         target="_blank" class="btn btn--dark btn--sm">Codes</a>
-    </div>
-  <div id="abs-ENECO16B" class="abstract-block" style="display:none;">
-      <strong>Abstract:</strong><br>
-      <em>Equilibrium electricity spot prices and loads are often determined simultaneously in a day-ahead auction market for each hour of the subsequent day. Hence daily observations of hourly prices take the form of a periodic panel rather than a time series of hourly observations. We consider novel panel data approaches to analyse the time series and the cross-sectional dependence of hourly Nord Pool electricity spot prices and loads for the period 2000–2013. Hourly electricity prices and load data are characterized by strong serial long-range dependence in the time series dimension in addition to strong seasonal periodicity, and along the cross-sectional dimension, i.e. the hours of the day, there is a strong dependence which necessarily has to be accounted for in order to avoid spurious inference when focusing on the time series dependence alone. The long-range dependence is modelled in terms of a fractionally integrated panel data model and it is shown that both prices and loads consist of common factors with long memory and with loadings that vary considerably during the day. Due to the competitiveness of the Nordic power market the aggregate supply curve approximates well the marginal costs of the underlying production technology and because the demand is more volatile than the supply, equilibrium prices and loads are argued to identify the periodic power supply curve. The estimated supply elasticities are estimated from fractionally co-integrated relations and range between 0.5 and 1.17 with the largest elasticities being estimated during morning and evening peak hours.</em>
-    </div>
- <div id="bib-ENECO16B" class="bib-block" style="display:none;">
-<pre><code>@article{ergemen2016common,
-  title={Common long-range dependence in a panel of hourly Nord Pool electricity prices and loads},
-  author={Ergemen, Yunus Emre and Haldrup, Niels and Rodr{\'\i}guez-Caballero, Carlos Vladimir},
-  journal={Energy Economics},
-  volume={60},
-  pages={79--96},
-  year={2016},
   publisher={Elsevier}
 }
 </code></pre>
