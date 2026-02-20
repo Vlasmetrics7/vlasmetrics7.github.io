@@ -685,6 +685,11 @@ Explore my research output by year, or browse a curated selection of highlighted
 </div>
 </div>
 
+---
+<button id="toggleAllBtn" class="toggle-all-button" onclick="toggleAllYears()">
+  Expand All
+</button>
+
 <div class="year-grid">
     <button class="year-tile year-2026" onclick="toggleYear('year2026')">2026 (2) ▼</button>
   <button class="year-tile year-2025" onclick="toggleYear('year2025')">2025 (1) ▼</button>
