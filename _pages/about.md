@@ -180,7 +180,7 @@ toc: false
       <strong>Research fields:</strong>
       <ul>
         <li>Time-series econometrics and long memory</li>
-        <li>High-dimensional factor models</li>
+        <li>High-dimensional models</li>
         <li>Macroeconometrics & empirical forecasting</li>
         <li>Climate, energy & financial econometrics</li>
       </ul>
