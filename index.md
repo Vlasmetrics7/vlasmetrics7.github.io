@@ -224,18 +224,15 @@ toc: false
   <div style="margin-top: 100px;">
     <h2>Next Participation in Workshops / Conferences / Congresses</h2>
     <ul>
-      <li><strong>2025:</strong> Financial Econometrics Lunch Group, Oct 20th, Duke University. </li>
-      <li><strong>2025:</strong> Taller de frontera. CIMAT 45 Aniversario. By zoom. November 14th.</li>
-     <!-- === <li><strong>2026:</strong> Time Series and Empirical Forecasting Symposium, Duke</li>== -->
+          <!-- === <li><strong>2026:</strong> Time Series and Empirical Forecasting Symposium, Duke</li>== -->
     </ul>
 
     <h2 style="margin-top:40px;">News</h2>
     <ul>
+    <li><strong>Mar 2026:</strong> New accepted paper. Journal of Statistical Software.</li>
     <li><strong>Jan 2026:</strong> New accepted paper. Annals of Applied Statistics.</li>
     <li><strong>Dic 2025:</strong> New accepted paper. International Journal of Forecasting.</li>
-      <li><strong>Nov 2025:</strong> Appointed Visiting Professor at Duke University</li>
-     <!-- ===  <li><strong>Oct 2025:</strong> New working paper on high-dimensional factor models uploaded</li>
-     <li><strong>Aug 2025:</strong> Received ITAM Research Grant</li>== -->
+      <!-- ===  <li><strong>Oct 2025:</strong> New working paper on high-dimensional factor models uploaded</li>
     </ul>
   </div>
 </div>
