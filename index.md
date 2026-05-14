@@ -224,7 +224,8 @@ toc: false
   <div style="margin-top: 100px;">
     <h2>Next Participation in Workshops / Conferences / Congresses</h2>
     <ul>
-          <!-- === <li><strong>2026:</strong> Time Series and Empirical Forecasting Symposium, Duke</li>== -->
+     <li><strong>2026:</strong> Econometric Models of Climate Change Conference, Aalborg, Denmark. August 20-21, 2026</li>
+     <li><strong>2026:</strong> LACSC-TIES-EnviBayes-EnvrASA 2026: International Conference on Statistics, Data Science, and Computing for the Environment and Climate Change, December 7 -11, 2026. Mexico City, Mexico</li> 
     </ul>
 
     <h2 style="margin-top:40px;">News</h2>
