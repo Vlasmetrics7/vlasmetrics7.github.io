@@ -6,7 +6,7 @@ permalink: /cv/
 ## Full CV (PDF)
 
 Please find my complete CV below:
-[Download CV (English)](/uploads/6/6/5/9/66590417/cv_9.pdf){: .btn .btn--large .btn--primary }
+[Download CV (English)](/uploads/6/6/5/9/66590417/cv_vladimir.pdf){: .btn .btn--large .btn--primary }
 
 ## Education
 
