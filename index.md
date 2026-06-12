@@ -192,9 +192,9 @@ toc: false
     <div class="profile-text">
       <div class="name">C. Vladimir Rodríguez-Caballero</div>
       <div class="subtitle">Time Series Econometrics </div>
-<!--===   == -->
+   
       <p>Associate Professor of Statistics at <a href="https://www.itam.mx" target="_blank">ITAM</a> </p>
-       <p>Visiting Professor in the <a href="https://econ.duke.edu/" target="_blank">Department of Economics</a>  at <a href="https://www.duke.edu" target="_blank">Duke University</a> (2025–2026).</p> 
+ <!--===      <p>Visiting Professor in the <a href="https://econ.duke.edu/" target="_blank">Department of Economics</a>  at <a href="https://www.duke.edu" target="_blank">Duke University</a> (2025–2026).</p> == -->
       <p>PhD in Econometrics, Aarhus University & <a href="https://econ.au.dk/research/research-centres/former-research-centres/creates" target="_blank">CREATES</a>.</p>
 
       <p><strong>Research fields:</strong></p>
@@ -206,7 +206,7 @@ toc: false
 
       <div class="social-buttons">
         <a href="mailto:vladimir.rodriguez@itam.mx"><i class="fa-solid fa-envelope"></i> ITAM Email</a>
-        <a href="mailto:vladimir.rodriguez@duke.edu"><i class="fa-solid fa-envelope"></i> Duke Email</a>
+     <!--===    <a href="mailto:vladimir.rodriguez@duke.edu"><i class="fa-solid fa-envelope"></i> Duke Email</a> == -->
         <a href="https://github.com/Vlasmetrics7" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
        <!-- === <a href="https://www.itam.mx" target="_blank"><i class="fa-solid fa-landmark"></i> ITAM</a> == -->
         <a href="https://scholar.google.com.mx/citations?user=yzeOjrsAAAAJ&hl=es" target="_blank"><i class="fa-brands fa-google"></i> Scholar</a>
