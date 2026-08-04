@@ -17,6 +17,8 @@ If you require more information about seminars, working papers, or related acade
 
 ## Courses and Training
 
-- [Course materials (BID–Hacienda)](https://github.com){: .btn .btn--sm }
+- [Course materials (BID–Hacienda)]{: .btn .btn--sm }
 
-More detailed information on regular teaching (course lists, syllabi, etc.) can be added here later.
+- 
+
+
