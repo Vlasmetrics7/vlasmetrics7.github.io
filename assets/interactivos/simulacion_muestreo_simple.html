@@ -143,8 +143,8 @@ function selectOne(){
   el.style.background = AZUL;
   if(mode === 'con'){
     setTimeout(() => {
-      el.style.background = counts[idx] > 0 ? VERDE : 'var(--border)';
-      el.style.opacity = counts[idx] > 0 ? '0.55' : '1';
+      el.style.background = 'var(--border)';
+      el.style.opacity = '1';
     }, 350);
   }
   updateStats();
