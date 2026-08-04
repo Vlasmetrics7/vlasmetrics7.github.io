@@ -19,6 +19,13 @@ If you require more information about seminars, working papers, or related acade
 
 - [Course materials (BID–Hacienda)]{: .btn .btn--sm }
 
+### Inferencia Estadística (EST-11102, ITAM)
+
+Simulaciones interactivas de muestreo aleatorio simple, usadas en clase:
+
+- [Simulación: unidades simples](/assets/interactivos/simulacion_muestreo_simple.html){: .btn .btn--sm }
+- [Simulación: variable numérica (salarios)](/assets/interactivos/simulacion_muestreo_salarios.html){: .btn .btn--sm }
+
 - 
 
 
