@@ -26,6 +26,10 @@ Simulaciones interactivas de muestreo aleatorio simple, usadas en clase:
 - [Simulación: unidades simples](/assets/interactivos/simulacion_muestreo_simple.html){: .btn .btn--sm }
 - [Simulación: variable numérica (salarios)](/assets/interactivos/simulacion_muestreo_salarios.html){: .btn .btn--sm }
 
+Simulaciones interactivas de estadística descriptiva, usadas en clase:
+
+- [Simulación: media vs. mediana ante un valor atípico](/assets/interactivos/simulacion_media_mediana_outlier.html){: .btn .btn--sm }
+
 Código en R, un script por capítulo:
 
 - [Capítulo 1](/assets/codigo-R/capitulo1.R){: .btn .btn--sm }
