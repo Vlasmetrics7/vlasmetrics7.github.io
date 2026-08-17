@@ -25,6 +25,7 @@ Simulaciones interactivas de muestreo aleatorio simple, usadas en clase:
 
 - [Simulación: unidades simples](/assets/interactivos/simulacion_muestreo_simple.html){: .btn .btn--sm }
 - [Simulación: variable numérica (salarios)](/assets/interactivos/simulacion_muestreo_salarios.html){: .btn .btn--sm }
+- [Simulación: muestreo aleatorio vs. sesgado (mapa de México)](/assets/interactivos/simulacion_sesgo_geografico.html){: .btn .btn--sm }
 
 Simulaciones interactivas de estadística descriptiva, usadas en clase:
 
