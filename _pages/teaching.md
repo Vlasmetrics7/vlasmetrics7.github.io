@@ -37,6 +37,6 @@ Código en R, un script por capítulo:
 
 Presentaciones (Beamer):
 
-- [Introducción a R y RStudio](/assets/beamer/intro_R_RStudio_beamer.pdf){: .btn .btn--sm } [(código .tex)](/assets/beamer/intro_R_RStudio_beamer.tex){: .btn .btn--sm }
+- [Introducción a R y RStudio](/assets/beamer/intro_R_RStudio_beamer.pdf){: .btn .btn--sm }
 
 
