@@ -1,0 +1,268 @@
+\documentclass[aspectratio=169]{beamer}
+
+% ============================================================
+% Preámbulo autocontenido (no depende de preambulo.tex)
+% ============================================================
+\usetheme{Boadilla}
+\usecolortheme{default}
+
+\usepackage[utf8]{inputenc}
+\usepackage[spanish,mexico]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{tikz}
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}[frame number]
+\setbeamercolor{block title}{bg=structure.fg!20,fg=black}
+
+% Estilo para código R
+\lstdefinestyle{Rstyle}{
+  language=R,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{blue},
+  commentstyle=\color{gray},
+  stringstyle=\color{teal},
+  breaklines=true,
+  showstringspaces=false,
+  frame=single,
+  backgroundcolor=\color{black!3}
+}
+\lstset{style=Rstyle}
+
+\title[Introducción a R y RStudio]{Introducción a R y RStudio}
+\subtitle{EST-11102 · Inferencia Estadística}
+\author{C. Vladimir Rodríguez-Caballero}
+\institute[ITAM]{Departamento Académico de Estadística, ITAM}
+\date{\today}
+
+\begin{document}
+
+% ------------------------------------------------------------
+\begin{frame}
+\titlepage
+\end{frame}
+
+% ------------------------------------------------------------
+\begin{frame}{Objetivo de esta sesión}
+\begin{itemize}
+  \item<1-> Familiarizarnos con \textbf{R} y \textbf{RStudio}, las herramientas de cómputo del curso.
+  \item<2-> \textbf{No} es un curso de programación: es una introducción práctica para que puedan trabajar sin fricción.
+  \item<3-> Todo el código del curso (ejemplos, tareas) estará disponible en R.
+\end{itemize}
+\end{frame}
+
+% ------------------------------------------------------------
+\begin{frame}{¿Por qué R?}
+\begin{itemize}
+  \item<1-> \textbf{Software libre} y de código abierto, mantenido por la comunidad estadística.
+  \item<2-> Es el \textit{lenguaje estándar} en estadística académica y muy usado en econometría aplicada.
+  \item<3-> Enorme ecosistema de paquetes: series de tiempo, econometría, finanzas, macro.
+  \item<4-> Reproducibilidad: el mismo script genera siempre el mismo resultado.
+\end{itemize}
+
+\begin{block}<5->{Contexto económico}
+Bancos centrales, organismos como el Banco Mundial y el FMI, y buena parte de la industria financiera usan R para análisis de datos y modelación.
+\end{block}
+\end{frame}
+
+% ------------------------------------------------------------
+\begin{frame}{R vs. RStudio: ¿cuál es la diferencia?}
+\begin{columns}[T]
+\begin{column}{0.48\textwidth}
+\begin{exampleblock}{R}
+\begin{itemize}
+  \item El \textbf{motor}: el lenguaje y el intérprete.
+  \item Se descarga de \href{https://cran.r-project.org}{CRAN}.
+  \item Se puede usar solo, pero es incómodo.
+\end{itemize}
+\end{exampleblock}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{exampleblock}{RStudio}
+\begin{itemize}
+  \item El \textbf{IDE}: entorno de desarrollo.
+  \item Se descarga de \href{https://posit.co/download/rstudio-desktop/}{posit.co}.
+  \item Requiere tener R ya instalado.
+\end{itemize}
+\end{exampleblock}
+\end{column}
+\end{columns}
+
+\vspace{0.5cm}
+\pause
+\centering
+\textbf{Analogía:} R es el motor del coche; RStudio es el tablero, el volante y los asientos.
+\end{frame}
+
+% ------------------------------------------------------------
+\begin{frame}{Instalación (orden importa)}
+\begin{enumerate}
+  \item<1-> Instalar \textbf{R} desde \url{https://cran.r-project.org}
+  \item<2-> Instalar \textbf{RStudio Desktop} (versión gratuita) desde \url{https://posit.co/download/rstudio-desktop/}
+  \item<3-> Abrir RStudio (no R directamente) para todo el trabajo del curso
+\end{enumerate}
+
+\vspace{0.3cm}
+\pause
+\begin{alertblock}{Nota}
+Si actualizan R en el futuro, RStudio detecta la nueva versión automáticamente; no es necesario reinstalar RStudio.
+\end{alertblock}
+\end{frame}
+
+% ------------------------------------------------------------
+\begin{frame}{La interfaz de RStudio}
+\centering
+\begin{tikzpicture}[scale=0.85, every node/.style={font=\small}]
+  \draw (0,0) rectangle (10,6);
+  \draw (5,3) -- (5,6);
+  \draw (0,3) -- (10,3);
+  \draw (5,0) -- (5,3);
+
+  \node at (2.5,5.4) {\textbf{Script (.R)}};
+  \node[align=center] at (2.5,4.3) {donde se escribe\\ y guarda el código};
+
+  \node at (7.5,5.4) {\textbf{Environment / History}};
+  \node[align=center] at (7.5,4.3) {objetos creados\\ en la sesión};
+
+  \node at (2.5,2.4) {\textbf{Consola}};
+  \node[align=center] at (2.5,1.3) {donde el código\\ se ejecuta};
+
+  \node[align=center] at (7.5,2.35) {\textbf{Files / Plots /}\\ \textbf{Packages / Help}};
+  \node[align=center] at (7.5,0.7) {gráficas, paquetes\\ y documentación};
+\end{tikzpicture}
+\end{frame}
+
+% ------------------------------------------------------------
+\begin{frame}[fragile]{Consola vs. Script}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\textbf{Consola}
+\begin{itemize}
+  \item Ejecuta código \textit{inmediatamente}.
+  \item No se guarda automáticamente.
+  \item Útil para probar cosas rápido.
+\end{itemize}
+\end{column}
+\begin{column}{0.5\textwidth}
+\textbf{Script (.R)}
+\begin{itemize}
+  \item Se guarda como archivo.
+  \item Se ejecuta línea por línea con \texttt{Ctrl+Enter} (\texttt{Cmd+Enter} en Mac).
+  \item Es lo que usaremos siempre en el curso.
+\end{itemize}
+\end{column}
+\end{columns}
+
+\vspace{0.4cm}
+\pause
+\begin{lstlisting}
+# Esto es un comentario
+x <- 5        # asignacion
+y <- 3
+x + y         # se ejecuta y muestra 8
+\end{lstlisting}
+\end{frame}
+
+% ------------------------------------------------------------
+\begin{frame}[fragile]{Conceptos básicos I: asignación y tipos}
+\begin{lstlisting}
+# Asignacion (preferir <- sobre =)
+pib <- 1200000
+tasa_interes <- 0.075
+pais <- "Mexico"
+es_miembro_ocde <- TRUE
+
+class(pib)             # "numeric"
+class(pais)             # "character"
+class(es_miembro_ocde)  # "logical"
+\end{lstlisting}
+\pause
+\begin{itemize}
+  \item R distingue mayúsculas/minúsculas: \texttt{PIB} $\neq$ \texttt{pib}.
+  \item Nombres de objetos: sin espacios, no empezar con número.
+\end{itemize}
+\end{frame}
+
+% ------------------------------------------------------------
+\begin{frame}[fragile]{Conceptos básicos II: vectores y data frames}
+\begin{lstlisting}
+# Vector: la estructura mas basica
+inflacion <- c(4.2, 4.5, 3.9, 4.1)
+mean(inflacion)
+sd(inflacion)
+
+# Data frame: tabla de datos (como Excel)
+datos <- data.frame(
+  pais = c("Mexico", "Chile", "Colombia"),
+  inflacion_2024 = c(4.2, 4.0, 6.1)
+)
+head(datos)
+\end{lstlisting}
+\end{frame}
+
+% ------------------------------------------------------------
+\begin{frame}[fragile]{Paquetes: extendiendo R}
+\begin{itemize}
+  \item<1-> R base ya trae mucho, pero los \textbf{paquetes} añaden funciones especializadas.
+  \item<2-> Se instalan \textit{una vez}, se cargan \textit{cada sesión}.
+\end{itemize}
+
+\vspace{0.3cm}
+\pause
+\begin{lstlisting}
+# Instalar (solo una vez por computadora)
+install.packages("tidyverse")
+
+# Cargar (cada vez que se abre RStudio)
+library(tidyverse)
+\end{lstlisting}
+
+\pause
+\begin{block}{Paquetes que usaremos en el curso}
+\texttt{tidyverse}, \texttt{tseries}, \texttt{nortest}, entre otros para pruebas de hipótesis y validación de normalidad.
+\end{block}
+\end{frame}
+
+% ------------------------------------------------------------
+\begin{frame}{Organización: RStudio Projects}
+\begin{itemize}
+  \item<1-> Un \textbf{proyecto} (\texttt{.Rproj}) fija la carpeta de trabajo automáticamente.
+  \item<2-> Evita el uso de \texttt{setwd()} con rutas absolutas (que no funcionan en la computadora de alguien más).
+  \item<3-> \textbf{Recomendación:} un proyecto por curso o por tarea, con subcarpetas \texttt{datos/}, \texttt{scripts/}, \texttt{figuras/}.
+\end{itemize}
+
+\pause
+\begin{alertblock}{Buena práctica}
+Todo script del curso debe poder ejecutarse de principio a fin sin errores en una sesión nueva de R (``reproducibilidad'').
+\end{alertblock}
+\end{frame}
+
+% ------------------------------------------------------------
+\begin{frame}{Ayuda y recursos}
+\begin{itemize}
+  \item \texttt{?funcion} o \texttt{help(funcion)} dentro de R.
+  \item Paquete \texttt{swirl}: tutoriales interactivos dentro de la consola.
+  \item Libro gratuito \textit{R for Data Science} (Wickham \& Grolemund).
+  \item \href{https://cran.r-project.org/web/views/Econometrics.html}{CRAN Task View: Econometrics} — paquetes especializados.
+  \item Los scripts del curso estarán en el sitio del curso (GitHub Pages).
+\end{itemize}
+\end{frame}
+
+% ------------------------------------------------------------
+\begin{frame}{Lo que viene}
+\begin{itemize}
+  \item De aquí en adelante, cada tema del curso vendrá acompañado de código en R.
+  \item El objetivo \textbf{no} es programar de forma elegante, sino \textbf{entender la estadística} usando la computadora como herramienta.
+  \item Practiquen: instalar R y RStudio antes de la próxima clase.
+\end{itemize}
+
+\vspace{0.5cm}
+\centering
+\Large \textbf{¡Bienvenidos a R!}
+\end{frame}
+
+\end{document}
