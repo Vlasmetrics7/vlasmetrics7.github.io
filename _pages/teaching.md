@@ -27,6 +27,10 @@ Simulaciones interactivas de muestreo aleatorio simple, usadas en clase:
 - [Simulación: variable numérica (salarios)](/assets/interactivos/simulacion_muestreo_salarios.html){: .btn .btn--sm }
 - [Simulación: muestreo aleatorio vs. sesgado (mapa de México)](/assets/interactivos/simulacion_sesgo_geografico.html){: .btn .btn--sm }
 
+Tómbola para sortear estudiantes en clase (muestreo con reemplazo):
+
+- [Tómbola: sorteo de estudiantes](/assets/interactivos/tombola_lista.html){: .btn .btn--sm }
+
 Simulaciones interactivas de estadística descriptiva, usadas en clase:
 
 - [Simulación: media vs. mediana ante un valor atípico](/assets/interactivos/simulacion_media_mediana_outlier.html){: .btn .btn--sm }
