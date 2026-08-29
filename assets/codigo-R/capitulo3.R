@@ -77,6 +77,131 @@ cat("Media de 1/F simulada:            ", round(mean(Fsim_inv), 3), "\n")
 cat("Media de F_(10,6) simulada directo:", round(mean(Fsim_directo), 3), "\n")
 cat("(ambas deben acercarse a la misma teorica, no definida si m<=2)\n")
 
+# --- (d) Convergencia de la forma de la Ji-cuadrada conforme aumenta n
+#         (Proposicion 3.2.1, punto 4: mayor simetria por TCL, Cap. 4)
+#         Se compara cada chi2_n contra su aproximacion normal N(n, 2n).
+png("cap3_chi2_convergencia_n.png", width = 2700, height = 950, res = 220)
+par(mfrow = c(1, 3), mar = c(4, 4, 3, 1))
+
+ns_convergencia <- c(2, 10, 30)
+for (n_gl in ns_convergencia) {
+  x_max <- qchisq(0.999, df = n_gl)
+  x_seq <- seq(0.001, x_max, length.out = 400)
+  plot(x_seq, dchisq(x_seq, df = n_gl), type = "l", col = "steelblue", lwd = 2,
+       main = bquote(chi[.(n_gl)]^2 ~ "  (n =" ~ .(n_gl) * ")"),
+       xlab = "x", ylab = "Densidad")
+  lines(x_seq, dnorm(x_seq, mean = n_gl, sd = sqrt(2 * n_gl)),
+        col = "firebrick", lwd = 2, lty = 2)
+  legend("topright",
+         legend = c(as.expression(bquote(chi[.(n_gl)]^2)), "N(n, 2n)"),
+         col = c("steelblue", "firebrick"), lwd = 2, lty = c(1, 2),
+         bty = "n", cex = 0.85)
+}
+dev.off()
+cat("\nFigura exportada: cap3_chi2_convergencia_n.png\n")
+cat("(chi2_n se vuelve mas simetrica y se acerca a N(n,2n) conforme n crece)\n")
+
+# --- (e) Convergencia de la forma de la t de Student conforme aumenta nu
+#         (Proposicion 3.2.2, punto 4). Se compara cada t_nu contra N(0,1).
+png("cap3_t_convergencia_nu.png", width = 2700, height = 950, res = 220)
+par(mfrow = c(1, 3), mar = c(4, 4, 3, 1))
+
+nus_convergencia <- c(1, 5, 30)
+x_seq_t <- seq(-5, 5, length.out = 400)
+for (nu_gl in nus_convergencia) {
+  plot(x_seq_t, dt(x_seq_t, df = nu_gl), type = "l", col = "steelblue", lwd = 2,
+       main = bquote(t[.(nu_gl)] ~ "  (" * nu == .(nu_gl) * ")"),
+       xlab = "x", ylab = "Densidad", ylim = c(0, 0.42))
+  lines(x_seq_t, dnorm(x_seq_t), col = "firebrick", lwd = 2, lty = 2)
+  legend("topright",
+         legend = c(as.expression(bquote(t[.(nu_gl)])), "N(0,1)"),
+         col = c("steelblue", "firebrick"), lwd = 2, lty = c(1, 2),
+         bty = "n", cex = 0.85)
+}
+dev.off()
+cat("\nFigura exportada: cap3_t_convergencia_nu.png\n")
+
+# --- Verificacion numerica de la regla de dedo "nu=30 ya esta cerca de la normal" ---
+cat("\n--- Que tan buena es la aproximacion normal en nu=30? ---\n")
+for (nu_chk in c(30, 50, 100, 200)) {
+  var_t   <- nu_chk / (nu_chk - 2)
+  kurt_t  <- 3 + 6 / (nu_chk - 4)
+  q_t     <- qt(0.975, df = nu_chk)
+  q_n     <- qnorm(0.975)
+  dif_pct <- (q_t - q_n) / q_n * 100
+  cat(sprintf("nu=%-4d Var=%.4f  K=%.4f  q_97.5%%(t)=%.4f  dif. vs. q_97.5%%(N)=%.2f%%\n",
+              nu_chk, var_t, kurt_t, q_t, dif_pct))
+}
+
+# --------------------------------------------------------------
+# (f) Aplicacion: rendimientos DIARIOS del IPC (S&P/BMV IPC), ajuste
+#     normal vs. t de Student por metodo de momentos (usando el
+#     coeficiente de curtosis K del Capitulo 2). Datos reales via
+#     Yahoo Finance con quantmod -mismo indice ya usado en el Capitulo 2
+#     (Ejemplo del IPC), pero con rendimientos DIARIOS en vez de
+#     mensuales, porque la curtosis de los rendimientos mensuales se
+#     atenua demasiado por agregacion temporal para ilustrar bien el
+#     punto de las colas pesadas. Requiere conexion a internet; NO se
+#     ejecuta al compilar el libro (igual que el bloque del IPC del
+#     Capitulo 2): correlo tu localmente, exporta el PNG con
+#     png()/dev.off() como abajo, y guardalo en Figuras/ como
+#     cap3_ipc_normal_vs_t.png.
+# --------------------------------------------------------------
+if (!requireNamespace("quantmod", quietly = TRUE)) {
+  install.packages("quantmod")
+}
+library(quantmod)
+
+fecha_fin_ipc    <- Sys.Date()
+fecha_inicio_ipc <- fecha_fin_ipc - 366 * 3   # aprox. los ultimos 3 anios
+
+getSymbols("^MXX", src = "yahoo", from = fecha_inicio_ipc, to = fecha_fin_ipc)
+
+# Rendimientos diarios, en porcentaje
+retornos_ipc_diarios <- as.numeric(dailyReturn(Cl(MXX))) * 100
+retornos_ipc_diarios <- retornos_ipc_diarios[retornos_ipc_diarios != 0]  # quita dias sin cambio/feriados mal marcados
+
+# --- Ajuste normal (metodo de momentos) ---
+mu_ipc    <- mean(retornos_ipc_diarios)
+sigma_ipc <- sd(retornos_ipc_diarios)
+
+# --- Ajuste t de Student (metodo de momentos, usando K del Capitulo 2) ---
+K_ipc <- mean((retornos_ipc_diarios - mu_ipc)^4) / sigma_ipc^4
+exceso_curtosis_ipc <- K_ipc - 3
+nu_ipc <- if (exceso_curtosis_ipc > 0) 4 + 6 / exceso_curtosis_ipc else NA
+escala_ipc <- sigma_ipc / sqrt(nu_ipc / (nu_ipc - 2))
+
+cat("\n--- Rendimientos diarios del IPC (ultimos ~3 anios) ---\n")
+cat("Media diaria:                   ", round(mu_ipc, 4), "%\n")
+cat("Desviacion estandar diaria:     ", round(sigma_ipc, 4), "%\n")
+cat("Coeficiente de curtosis K (Cap. 2):", round(K_ipc, 3),
+    ifelse(K_ipc > 3, "(leptocurtica)", "(no leptocurtica)"), "\n")
+cat("nu estimado (metodo de momentos):", round(nu_ipc, 2), "\n")
+
+png("cap3_ipc_normal_vs_t.png", width = 2400, height = 1400, res = 220)
+par(mar = c(4, 4, 3, 1))
+
+hist(retornos_ipc_diarios, breaks = 50, freq = FALSE, col = "gray88", border = "white",
+     main = "IPC: rendimientos diarios vs. ajuste normal y t de Student",
+     xlab = "Rendimiento diario (%)", ylab = "Densidad")
+
+x_seq_ipc <- seq(mu_ipc - 6*sigma_ipc, mu_ipc + 6*sigma_ipc, length.out = 500)
+lines(x_seq_ipc, dnorm(x_seq_ipc, mean = mu_ipc, sd = sigma_ipc),
+      col = "firebrick", lwd = 2.5, lty = 2)
+lines(x_seq_ipc, dt((x_seq_ipc - mu_ipc) / escala_ipc, df = nu_ipc) / escala_ipc,
+      col = "steelblue", lwd = 2.5)
+
+legend("topright",
+       legend = c("Datos (histograma)",
+                  paste0("Normal(", round(mu_ipc,2), ", ", round(sigma_ipc,2), "^2)"),
+                  paste0("t escalada, nu=", round(nu_ipc,1))),
+       fill = c("gray88", NA, NA), border = c("gray50", NA, NA),
+       lty = c(NA, 2, 1), lwd = c(NA, 2.5, 2.5),
+       col = c(NA, "firebrick", "steelblue"), bty = "n")
+
+dev.off()
+cat("\nFigura exportada: cap3_ipc_normal_vs_t.png\n")
+
 # --------------------------------------------------------------
 # A3.1 Verificacion por simulacion de la distribucion de muestreo
 #      de la media muestral (Teorema 3.2.1: Xbarra | sigma^2 conocida)
