@@ -38,6 +38,7 @@ Simulaciones interactivas de estadística descriptiva, usadas en clase:
 Simulaciones interactivas de distribuciones muestrales, usadas en clase:
 
 - [Simulación: convergencia de la Chi-cuadrada](/assets/interactivos/simulacion_chi2_convergencia.html){: .btn .btn--sm }
+- [Simulación: convergencia de la t de Student](/assets/interactivos/simulacion_t_convergencia.html){: .btn .btn--sm }
 
 Código en R, un script por capítulo:
 
