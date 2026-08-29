@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Simulación: convergencia de la Ji-cuadrada</title>
+<style>
+  :root {
+    --azul-itam: #003366;
+    --verde-itam: #00783C;
+    --coral: #C0432A;
+    --morado: #6B62C6;
+    --surface-1: #f2f2f0;
+    --surface-2: #ffffff;
+    --border: #dcdcd8;
+    --text-primary: #1a1a1a;
+    --text-secondary: #595955;
+    --radius: 8px;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+    color: var(--text-primary);
+    background: var(--surface-2);
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 3rem;
+    line-height: 1.6;
+  }
+  h1 { font-size: 24px; font-weight: 600; margin: 0 0 0.5rem; color: var(--azul-itam); }
+  p.instrucciones { color: var(--text-secondary); margin: 0 0 1.75rem; }
+  label { font-size: 13px; color: var(--text-secondary); }
+  input[type="range"] { width: 100%; accent-color: var(--coral); }
+  .ts { font-size: 12px; fill: var(--text-secondary); }
+  .axis { stroke: var(--border); stroke-width: 1; }
+  .curva-chi2 { fill: none; stroke: var(--azul-itam); stroke-width: 2.5; }
+  .curva-normal { fill: none; stroke: var(--coral); stroke-width: 2.5; stroke-dasharray: 6 4; }
+  .leyenda-linea { stroke-width: 2.5; }
+  .controles { display: flex; align-items: center; gap: 14px; margin: 1.5rem 0; }
+  .controles label { white-space: nowrap; min-width: 150px; }
+  .controles .valor { font-size: 14px; font-weight: 600; min-width: 40px; text-align: right; color: var(--azul-itam); }
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 1.25rem; }
+  .stat-card { background: var(--surface-1); border-radius: var(--radius); padding: 1rem; }
+  .stat-card p:first-child { font-size: 13px; color: var(--text-secondary); margin: 0 0 4px; display: flex; align-items: center; gap: 6px; }
+  .stat-card p:last-child { font-size: 22px; font-weight: 600; margin: 0; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+  .leyenda { display: flex; gap: 22px; margin: 0.5rem 0 0; font-size: 13px; color: var(--text-secondary); }
+  .leyenda span.linea { display: inline-block; width: 22px; height: 0; border-top-width: 2.5px; border-top-style: solid; vertical-align: middle; margin-right: 6px; }
+  #nota { font-size: 13px; color: var(--text-secondary); margin-top: 1.25rem; }
+</style>
+</head>
+<body>
+
+<h1>Simulación: convergencia de la &chi;&sup2;<sub>(n)</sub></h1>
+<p class="instrucciones">
+  La Proposición 3.2.1 del libro (punto 4) afirma que la distribución
+  Ji-cuadrada se vuelve más simétrica conforme aumentan sus grados de
+  libertad <em>n</em>, acercándose a su aproximación normal
+  <em>N</em>(n, 2n). Mueve el control para ver esta convergencia en
+  tiempo real.
+</p>
+
+<svg id="chart" width="100%" viewBox="0 0 700 320" role="img" aria-label="Densidad de la Ji-cuadrada y su aproximación normal">
+  <line id="eje-x" class="axis" x1="55" y1="270" x2="670" y2="270"></line>
+  <line id="eje-y" class="axis" x1="55" y1="20" x2="55" y2="270"></line>
+  <text id="label-x0" class="ts" x="55" y="290">0</text>
+  <text id="label-xmed" class="ts" x="362" y="290" text-anchor="middle"></text>
+  <text id="label-xmax" class="ts" x="670" y="290" text-anchor="end"></text>
+  <text id="label-ymax" class="ts" x="48" y="24" text-anchor="end"></text>
+  <path id="curva-chi2" class="curva-chi2"></path>
+  <path id="curva-normal" class="curva-normal"></path>
+</svg>
+
+<div class="leyenda">
+  <span><span class="linea" style="border-color: var(--azul-itam);"></span>&chi;&sup2;<sub>(n)</sub> (densidad exacta)</span>
+  <span><span class="linea" style="border-color: var(--coral); border-top-style: dashed;"></span><em>N</em>(n, 2n) (aproximación normal)</span>
+</div>
+
+<div class="controles">
+  <label for="slider">Grados de libertad n</label>
+  <input type="range" id="slider" min="1" max="60" step="1" value="2">
+  <span class="valor" id="slider-out">2</span>
+</div>
+
+<div class="stats">
+  <div class="stat-card">
+    <p>Media: n</p>
+    <p id="media-out">2</p>
+  </div>
+  <div class="stat-card">
+    <p>Varianza: 2n</p>
+    <p id="var-out">4</p>
+  </div>
+  <div class="stat-card">
+    <p>Asimetría: <span style="white-space:nowrap;">&radic;(8/n)</span></p>
+    <p id="asim-out">2.00</p>
+  </div>
+</div>
+
+<p id="nota">Con pocos grados de libertad la curva es muy asimétrica (cola larga a la derecha). Conforme n crece, la asimetría —proporcional a 1/&radic;n— disminuye y la curva azul se aproxima cada vez más a la normal punteada, ilustrando el caso particular de Teorema Central del Límite que se demuestra en el Capítulo 4.</p>
+
+<script>
+// --- Funcion Gamma (aproximacion de Lanczos), en escala log para estabilidad ---
+function gammaLn(x) {
+  var cof = [76.18009172947146, -86.50532032941677, 24.01409824083091,
+             -1.231739572450155, 0.1208650973866179e-2, -0.5395239384953e-5];
+  var y = x, tmp = x + 5.5;
+  tmp -= (x + 0.5) * Math.log(tmp);
+  var ser = 1.000000000190015;
+  for (var j = 0; j < 6; j++) { y += 1; ser += cof[j] / y; }
+  return -tmp + Math.log(2.5066282746310005 * ser / x);
+}
+
+function chi2pdf(x, k) {
+  if (x <= 0) return 0;
+  var logf = (k / 2 - 1) * Math.log(x) - x / 2 - (k / 2) * Math.log(2) - gammaLn(k / 2);
+  return Math.exp(logf);
+}
+
+function normPdf(x, mu, varr) {
+  return Math.exp(-0.5 * Math.pow(x - mu, 2) / varr) / Math.sqrt(2 * Math.PI * varr);
+}
+
+// --- Area de dibujo ---
+var pxMin = 55, pxMax = 670, pyTop = 20, pyBase = 270;
+var N_PUNTOS = 300;
+
+var slider = document.getElementById('slider');
+var sliderOut = document.getElementById('slider-out');
+var mediaOut = document.getElementById('media-out');
+var varOut = document.getElementById('var-out');
+var asimOut = document.getElementById('asim-out');
+var curvaChi2 = document.getElementById('curva-chi2');
+var curvaNormal = document.getElementById('curva-normal');
+var labelXmed = document.getElementById('label-xmed');
+var labelXmax = document.getElementById('label-xmax');
+var labelYmax = document.getElementById('label-ymax');
+
+function pathFrom(points) {
+  var d = '';
+  for (var i = 0; i < points.length; i++) {
+    d += (i === 0 ? 'M' : 'L') + points[i][0].toFixed(2) + ',' + points[i][1].toFixed(2) + ' ';
+  }
+  return d;
+}
+
+function update() {
+  var n = parseInt(slider.value, 10);
+  sliderOut.textContent = n;
+  mediaOut.textContent = n;
+  varOut.textContent = 2 * n;
+  asimOut.textContent = Math.sqrt(8 / n).toFixed(2);
+
+  var media = n, varianza = 2 * n, sd = Math.sqrt(varianza);
+  var xMax = Math.max(6, n + 5 * sd);
+
+  // Muestreamos ambas densidades sobre la misma rejilla en x
+  var yMax = 0;
+  var xs = [];
+  var chi2Vals = [];
+  var normVals = [];
+  for (var i = 0; i <= N_PUNTOS; i++) {
+    var x = (xMax * i) / N_PUNTOS;
+    xs.push(x);
+    var c = chi2pdf(Math.max(x, 1e-6), n);
+    var nd = normPdf(x, media, varianza);
+    chi2Vals.push(c);
+    normVals.push(nd);
+    if (c > yMax) yMax = c;
+    if (nd > yMax) yMax = nd;
+  }
+  yMax *= 1.12;
+
+  function xOf(x) { return pxMin + (x / xMax) * (pxMax - pxMin); }
+  function yOf(y) { return pyBase - (y / yMax) * (pyBase - pyTop); }
+
+  var chi2Points = [];
+  var normPoints = [];
+  for (var j = 0; j < xs.length; j++) {
+    chi2Points.push([xOf(xs[j]), yOf(chi2Vals[j])]);
+    normPoints.push([xOf(xs[j]), yOf(normVals[j])]);
+  }
+  curvaChi2.setAttribute('d', pathFrom(chi2Points));
+  curvaNormal.setAttribute('d', pathFrom(normPoints));
+
+  labelXmed.textContent = (xMax / 2).toFixed(0);
+  labelXmed.setAttribute('x', xOf(xMax / 2));
+  labelXmax.textContent = xMax.toFixed(0);
+  labelXmax.setAttribute('x', xOf(xMax));
+  labelYmax.textContent = yMax.toFixed(2);
+}
+
+slider.addEventListener('input', update);
+update();
+</script>
+
+</body>
+</html>

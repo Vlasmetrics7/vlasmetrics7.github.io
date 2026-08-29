@@ -35,6 +35,10 @@ Simulaciones interactivas de estadística descriptiva, usadas en clase:
 
 - [Simulación: media vs. mediana ante un valor atípico](/assets/interactivos/simulacion_media_mediana_outlier.html){: .btn .btn--sm }
 
+Simulaciones interactivas de distribuciones muestrales, usadas en clase:
+
+- [Simulación: convergencia de la Ji-cuadrada](/assets/interactivos/simulacion_chi2_convergencia.html){: .btn .btn--sm }
+
 Código en R, un script por capítulo:
 
 - [Capítulo 1](/assets/codigo-R/capitulo1.R){: .btn .btn--sm }
