@@ -270,6 +270,52 @@ cat("Media de las medias simuladas: ", round(mean(medias), 4),
 cat("Var. de las medias simuladas:  ", round(var(medias), 4),
     " (teorica:", sigma^2/n, ")\n")
 
+# --- Verificacion conjunta de Xbarra, S^2 y T (Teoremas 3.3.1-3.3.3),
+#     con los mismos parametros del Ejemplo de la maquina llenadora
+#     (mu=500, sigma=4, n=25). Genera la Figura del capitulo.
+set.seed(2026)
+B_v   <- 20000
+n_v   <- 25
+mu_v  <- 500
+sigma_v <- 4
+
+muestras_v <- matrix(rnorm(B_v * n_v, mean = mu_v, sd = sigma_v), nrow = B_v)
+xbars_v <- rowMeans(muestras_v)
+s2s_v   <- apply(muestras_v, 1, var)
+Ts_v    <- (xbars_v - mu_v) / (sqrt(s2s_v) / sqrt(n_v))
+
+png("cap3_verificacion_xbar_s2_t.png", width = 2700, height = 950, res = 220)
+par(mfrow = c(1, 3), mar = c(4, 4, 3, 1))
+
+# Panel 1: Xbarra vs N(mu, sigma^2/n)
+hist(xbars_v, breaks = 60, freq = FALSE, col = "lightblue", border = "white",
+     main = expression(paste(bar(X), " vs. ", N(mu, sigma^2/n))),
+     xlab = expression(bar(x)), ylab = "Densidad")
+xs1_v <- seq(min(xbars_v), max(xbars_v), length.out = 300)
+lines(xs1_v, dnorm(xs1_v, mean = mu_v, sd = sigma_v/sqrt(n_v)), col = "firebrick", lwd = 2)
+
+# Panel 2: (n-1)S^2/sigma^2 vs chi2_(n-1)
+chi_stat_v <- (n_v - 1) * s2s_v / sigma_v^2
+hist(chi_stat_v, breaks = 60, freq = FALSE, col = "lightgreen", border = "white",
+     main = expression(paste("(n-1)", S^2, "/", sigma^2, " vs. ", chi[24]^2)),
+     xlab = "", ylab = "Densidad")
+xs2_v <- seq(0, max(chi_stat_v), length.out = 300)
+lines(xs2_v, dchisq(xs2_v, df = n_v - 1), col = "firebrick", lwd = 2)
+
+# Panel 3: T vs t_(n-1)
+hist(Ts_v, breaks = 60, freq = FALSE, col = "lightyellow", border = "white",
+     xlim = c(-5, 5),
+     main = expression(paste("T vs. ", t[24])),
+     xlab = "t", ylab = "Densidad")
+xs3_v <- seq(-5, 5, length.out = 300)
+lines(xs3_v, dt(xs3_v, df = n_v - 1), col = "firebrick", lwd = 2)
+
+dev.off()
+cat("\nFigura exportada: cap3_verificacion_xbar_s2_t.png\n")
+cat(sprintf("Media simulada de Xbarra: %.3f (teorica: %d)\n", mean(xbars_v), mu_v))
+cat(sprintf("Varianza simulada de Xbarra: %.4f (teorica: %.4f)\n", var(xbars_v), sigma_v^2/n_v))
+cat(sprintf("Media simulada de (n-1)S2/sigma2: %.3f (teorica: %d)\n", mean(chi_stat_v), n_v - 1))
+
 # --------------------------------------------------------------
 # A3.2 Distribuciones chi-cuadrada, t de Student y F de Fisher
 #      (Seccion 3.2: distribuciones muestrales bajo poblacion normal)
