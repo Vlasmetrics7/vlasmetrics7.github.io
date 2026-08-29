@@ -4,8 +4,6 @@ title: "Working Papers"
 permalink: /working-papers/
 ---
 
-## Working Papers
-
 **The empirical distribution of sequential LS factors in Multi-level Dynamic Factor Models**  
 With Bellocca GP, Garrón-Vedia, I., & Ruiz, E.  (R&R in Econometrics and Statistics)
 [ arXiv:2602.14813v2 [stat.ME]](https://arxiv.org/pdf/2602.14813){: .btn .btn--primary .btn--sm }
