@@ -39,6 +39,7 @@ Código en R, un script por capítulo:
 
 - [Capítulo 1](/assets/codigo-R/capitulo1.R){: .btn .btn--sm }
 - [Capítulo 2](/assets/codigo-R/capitulo2.R){: .btn .btn--sm }
+- [Capítulo 3](/assets/codigo-R/capitulo3.R){: .btn .btn--sm }
 
 Presentaciones (Beamer):
 
