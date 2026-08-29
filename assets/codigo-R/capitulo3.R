@@ -206,6 +206,30 @@ legend("topright",
 dev.off()
 cat("\nFigura exportada: cap3_ipc_normal_vs_t.png\n")
 
+# --- (g) Variacion de la forma de la F de Fisher conforme cambian n y m
+#         (Proposicion 3.2.3, punto 1). Se marca la media m/(m-2) en cada panel.
+png("cap3_f_variacion_nm.png", width = 2700, height = 950, res = 220)
+par(mfrow = c(1, 3), mar = c(4, 4, 3, 1))
+
+pares_nm <- list(c(2, 5), c(10, 20), c(30, 50))
+for (par_nm in pares_nm) {
+  n_gl <- par_nm[1]; m_gl <- par_nm[2]
+  x_max_f <- qf(0.995, df1 = n_gl, df2 = m_gl)
+  x_seq_f <- seq(0.001, x_max_f, length.out = 400)
+  media_f <- m_gl / (m_gl - 2)
+  plot(x_seq_f, df(x_seq_f, df1 = n_gl, df2 = m_gl), type = "l", col = "steelblue", lwd = 2,
+       main = bquote(F[list(.(n_gl), .(m_gl))] ~ "  (n=" * .(n_gl) * ", m=" * .(m_gl) * ")"),
+       xlab = "x", ylab = "Densidad")
+  abline(v = media_f, col = "firebrick", lwd = 2, lty = 2)
+  legend("topright",
+         legend = c(as.expression(bquote(F[list(.(n_gl),.(m_gl))])),
+                    paste0("E[F]=", round(media_f, 2))),
+         col = c("steelblue", "firebrick"), lwd = 2, lty = c(1, 2),
+         bty = "n", cex = 0.85)
+}
+dev.off()
+cat("\nFigura exportada: cap3_f_variacion_nm.png\n")
+
 # --------------------------------------------------------------
 # A3.1 Verificacion por simulacion de la distribucion de muestreo
 #      de la media muestral (Teorema 3.2.1: Xbarra | sigma^2 conocida)

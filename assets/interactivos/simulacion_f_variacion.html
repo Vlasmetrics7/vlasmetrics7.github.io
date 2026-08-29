@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Simulación: la distribución F según n y m</title>
+<style>
+  :root {
+    --azul-itam: #003366;
+    --verde-itam: #00783C;
+    --coral: #C0432A;
+    --morado: #6B62C6;
+    --surface-1: #f2f2f0;
+    --surface-2: #ffffff;
+    --border: #dcdcd8;
+    --text-primary: #1a1a1a;
+    --text-secondary: #595955;
+    --radius: 8px;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+    color: var(--text-primary);
+    background: var(--surface-2);
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 3rem;
+    line-height: 1.6;
+  }
+  h1 { font-size: 24px; font-weight: 600; margin: 0 0 0.5rem; color: var(--azul-itam); }
+  p.instrucciones { color: var(--text-secondary); margin: 0 0 1.75rem; }
+  label { font-size: 13px; color: var(--text-secondary); }
+  input[type="range"] { width: 100%; accent-color: var(--coral); }
+  .ts { font-size: 12px; fill: var(--text-secondary); }
+  .axis { stroke: var(--border); stroke-width: 1; }
+  .curva-f { fill: none; stroke: var(--azul-itam); stroke-width: 2.5; }
+  .linea-media { stroke: var(--coral); stroke-width: 2; stroke-dasharray: 6 4; }
+  .controles { display: flex; align-items: center; gap: 14px; margin: 1.1rem 0; }
+  .controles label { white-space: nowrap; min-width: 150px; }
+  .controles .valor { font-size: 14px; font-weight: 600; min-width: 40px; text-align: right; color: var(--azul-itam); }
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 1.25rem; }
+  .stat-card { background: var(--surface-1); border-radius: var(--radius); padding: 1rem; }
+  .stat-card p:first-child { font-size: 13px; color: var(--text-secondary); margin: 0 0 4px; }
+  .stat-card p:last-child { font-size: 22px; font-weight: 600; margin: 0; }
+  .leyenda { display: flex; gap: 22px; margin: 0.5rem 0 0; font-size: 13px; color: var(--text-secondary); }
+  .leyenda span.linea { display: inline-block; width: 22px; height: 0; border-top-width: 2.5px; border-top-style: solid; vertical-align: middle; margin-right: 6px; }
+  #nota { font-size: 13px; color: var(--text-secondary); margin-top: 1.25rem; }
+</style>
+</head>
+<body>
+
+<h1>Simulación: la distribución F según n y m</h1>
+<p class="instrucciones">
+  La Proposición 3.2.3 del libro (punto 1) describe a la
+  F<sub>(n,m)</sub> como una distribución con soporte en los reales
+  positivos y siempre asimétrica. Mueve los dos controles —grados de
+  libertad del numerador (n) y del denominador (m)— para ver cómo
+  cambia su forma.
+</p>
+
+<svg id="chart" width="100%" viewBox="0 0 700 320" role="img" aria-label="Densidad de la distribución F">
+  <line id="eje-x" class="axis" x1="55" y1="270" x2="670" y2="270"></line>
+  <line id="eje-y" class="axis" x1="55" y1="20" x2="55" y2="270"></line>
+  <text id="label-x0" class="ts" x="55" y="290">0</text>
+  <text id="label-xmed" class="ts" x="362" y="290" text-anchor="middle"></text>
+  <text id="label-xmax" class="ts" x="670" y="290" text-anchor="end"></text>
+  <text id="label-ymax" class="ts" x="48" y="24" text-anchor="end"></text>
+  <path id="curva-f" class="curva-f"></path>
+  <line id="linea-media" class="linea-media" y1="20" y2="270"></line>
+</svg>
+
+<div class="leyenda">
+  <span><span class="linea" style="border-color: var(--azul-itam);"></span>F<sub>(n,m)</sub> (densidad exacta)</span>
+  <span><span class="linea" style="border-color: var(--coral); border-top-style: dashed;"></span>Media: m/(m-2)</span>
+</div>
+
+<div class="controles">
+  <label for="slider-n">Grados de libertad n (numerador)</label>
+  <input type="range" id="slider-n" min="1" max="60" step="1" value="2">
+  <span class="valor" id="slider-n-out">2</span>
+</div>
+<div class="controles">
+  <label for="slider-m">Grados de libertad m (denominador)</label>
+  <input type="range" id="slider-m" min="3" max="60" step="1" value="5">
+  <span class="valor" id="slider-m-out">5</span>
+</div>
+
+<div class="stats">
+  <div class="stat-card">
+    <p>Media: m/(m-2)</p>
+    <p id="media-out">1.67</p>
+  </div>
+  <div class="stat-card">
+    <p>F<sub>(m,n)</sub> = 1/F<sub>(n,m)</sub></p>
+    <p id="recip-out">F<sub>(5,2)</sub></p>
+  </div>
+  <div class="stat-card">
+    <p>Forma</p>
+    <p id="forma-out">Monótona decreciente</p>
+  </div>
+</div>
+
+<p id="nota">Con n y m pequeñas, la densidad puede incluso ser monótona decreciente (sin pico interior), muy alejada de cualquier forma acampanada. Conforme n y m crecen juntas, la distribución se concentra alrededor de su media m/(m-2) y se vuelve visiblemente menos sesgada —aunque, a diferencia de la t o la Ji-cuadrada, la F nunca se acerca a una normal para valores usuales de n y m: conserva soporte en los positivos y una cola derecha más larga que la izquierda.</p>
+
+<script>
+function gammaLn(x) {
+  var cof = [76.18009172947146, -86.50532032941677, 24.01409824083091,
+             -1.231739572450155, 0.1208650973866179e-2, -0.5395239384953e-5];
+  var y = x, tmp = x + 5.5;
+  tmp -= (x + 0.5) * Math.log(tmp);
+  var ser = 1.000000000190015;
+  for (var j = 0; j < 6; j++) { y += 1; ser += cof[j] / y; }
+  return -tmp + Math.log(2.5066282746310005 * ser / x);
+}
+function logBeta(a, b) { return gammaLn(a) + gammaLn(b) - gammaLn(a + b); }
+function fpdf(x, n, m) {
+  if (x <= 0) return 0;
+  var logf = 0.5 * n * Math.log(n) + 0.5 * m * Math.log(m) + (0.5 * n - 1) * Math.log(x)
+             - 0.5 * (n + m) * Math.log(m + n * x) - logBeta(n / 2, m / 2);
+  return Math.exp(logf);
+}
+
+var pxMin = 55, pxMax = 670, pyTop = 20, pyBase = 270;
+var N_PUNTOS = 400;
+
+var sliderN = document.getElementById('slider-n');
+var sliderM = document.getElementById('slider-m');
+var sliderNOut = document.getElementById('slider-n-out');
+var sliderMOut = document.getElementById('slider-m-out');
+var mediaOut = document.getElementById('media-out');
+var recipOut = document.getElementById('recip-out');
+var formaOut = document.getElementById('forma-out');
+var curvaF = document.getElementById('curva-f');
+var lineaMedia = document.getElementById('linea-media');
+var labelXmed = document.getElementById('label-xmed');
+var labelXmax = document.getElementById('label-xmax');
+var labelYmax = document.getElementById('label-ymax');
+
+function pathFrom(points) {
+  var d = '';
+  for (var i = 0; i < points.length; i++) {
+    d += (i === 0 ? 'M' : 'L') + points[i][0].toFixed(2) + ',' + points[i][1].toFixed(2) + ' ';
+  }
+  return d;
+}
+
+// Aproximacion del cuantil 99.5% de la F, suficiente para fijar el
+// rango de graficacion (no requiere precision de tabla).
+function qF995approx(n, m) {
+  // Usa que n*F/m ~ aprox. sigue comportandose como una razon de
+  // chi-cuadradas; para fines de graficacion basta un enfoque numerico
+  // simple: busqueda por bisstion sobre la CDF aproximada via la
+  // relacion con la beta incompleta se evita aqui por simplicidad,
+  // usamos en su lugar un rango generoso basado en la varianza.
+  var media = m > 2 ? m / (m - 2) : 3;
+  var varianza = (m > 4)
+    ? (2 * m * m * (n + m - 2)) / (n * (m - 2) * (m - 2) * (m - 4))
+    : media * media;
+  return media + 6 * Math.sqrt(Math.max(varianza, 0.5));
+}
+
+function update() {
+  var n = parseInt(sliderN.value, 10);
+  var m = parseInt(sliderM.value, 10);
+  sliderNOut.textContent = n;
+  sliderMOut.textContent = m;
+
+  var media = m > 2 ? m / (m - 2) : NaN;
+  mediaOut.textContent = m > 2 ? media.toFixed(2) : 'no definida';
+  recipOut.innerHTML = 'F<sub>(' + m + ',' + n + ')</sub>';
+
+  var xMax = qF995approx(n, m);
+  var yMax = 0;
+  var xs = [];
+  var vals = [];
+  for (var i = 0; i <= N_PUNTOS; i++) {
+    var x = (xMax * i) / N_PUNTOS;
+    var y = fpdf(Math.max(x, 1e-6), n, m);
+    xs.push(x);
+    vals.push(y);
+    if (y > yMax) yMax = y;
+  }
+  yMax *= 1.12;
+
+  formaOut.textContent = (vals[0] === Math.max.apply(null, vals)) ? 'Monótona decreciente' : 'Con pico interior';
+
+  function xOf(x) { return pxMin + (x / xMax) * (pxMax - pxMin); }
+  function yOf(y) { return pyBase - (y / yMax) * (pyBase - pyTop); }
+
+  var pts = [];
+  for (var j = 0; j < xs.length; j++) pts.push([xOf(xs[j]), yOf(vals[j])]);
+  curvaF.setAttribute('d', pathFrom(pts));
+
+  if (m > 2) {
+    lineaMedia.setAttribute('x1', xOf(media));
+    lineaMedia.setAttribute('x2', xOf(media));
+    lineaMedia.style.display = '';
+  } else {
+    lineaMedia.style.display = 'none';
+  }
+
+  labelXmed.textContent = (xMax / 2).toFixed(1);
+  labelXmed.setAttribute('x', xOf(xMax / 2));
+  labelXmax.textContent = xMax.toFixed(1);
+  labelXmax.setAttribute('x', xOf(xMax));
+  labelYmax.textContent = yMax.toFixed(2);
+}
+
+sliderN.addEventListener('input', update);
+sliderM.addEventListener('input', update);
+update();
+</script>
+
+</body>
+</html>
