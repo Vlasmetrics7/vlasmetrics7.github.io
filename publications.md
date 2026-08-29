@@ -2236,7 +2236,7 @@ This high school textbook was created to share financial mathematics tools with 
           Niels Haldrup
         </a><br><br>
 
-        <strong>Download:</strong> <a href="https://pure.au.dk/portal/files/104370677/PhDDissertation.CarlosVladimirRodriguezCaballero.pdf" target="_blank">PhD Dissertation (PDF)</a>
+        <strong>Download:</strong> <a href="https://pure.au.dk/ws/files/428953587/PhDDissertation.CarlosVladimirRodriguezCaballero.pdf" target="_blank">PhD Dissertation (PDF)</a>
       </p>
     </div>
   </div>
