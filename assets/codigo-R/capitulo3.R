@@ -370,3 +370,34 @@ legend("topright",
 cat("\n--- Verificacion de la regla practica ---\n")
 cat("Ejemplo 1: np =", n1*p1, ", n(1-p) =", n1*(1-p1), "\n")
 cat("Ejemplo 2: np =", n2*p2, ", n(1-p) =", n2*(1-p2), "\n")
+
+# --- Figura: convergencia binomial -> normal conforme crece n, p fija
+#     (Teorema 3.4.1, De Moivre-Laplace). Se usa el mismo p=0.08 del
+#     Ejemplo de control de calidad para conectar con el texto.
+png("cap3_binomial_normal_convergencia.png", width = 2700, height = 950, res = 220)
+par(mfrow = c(1, 3), mar = c(4, 4, 3, 1))
+
+p_fijo <- 0.08
+ns_convergencia_binom <- c(20, 100, 500)
+for (n_val in ns_convergencia_binom) {
+  x_bin_c   <- 0:n_val
+  masa_c    <- dbinom(x_bin_c, size = n_val, prob = p_fijo)
+  mu_x_c    <- n_val * p_fijo
+  sigma_x_c <- sqrt(n_val * p_fijo * (1 - p_fijo))
+  x_max_plot <- min(n_val, ceiling(mu_x_c + 4.5 * sigma_x_c))
+  x_min_plot <- max(0, floor(mu_x_c - 4.5 * sigma_x_c))
+  x_cont_c  <- seq(x_min_plot, x_max_plot, length.out = 400)
+
+  titulo <- bquote(n == .(n_val) ~ "," ~ np == .(mu_x_c))
+  plot(x_bin_c, masa_c, type = "h", lwd = 4, col = "steelblue",
+       xlim = c(x_min_plot, x_max_plot),
+       main = titulo,
+       xlab = "x", ylab = "Probabilidad / densidad")
+  lines(x_cont_c, dnorm(x_cont_c, mean = mu_x_c, sd = sigma_x_c),
+        col = "firebrick", lwd = 2)
+  legend("topright",
+         legend = c("Binomial exacta", "Aprox. normal"),
+         col = c("steelblue", "firebrick"), lwd = c(4, 2), bty = "n", cex = 0.8)
+}
+dev.off()
+cat("\nFigura exportada: cap3_binomial_normal_convergencia.png\n")

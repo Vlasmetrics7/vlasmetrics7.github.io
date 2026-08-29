@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Simulación: aproximación normal a la binomial</title>
+<style>
+  :root {
+    --azul-itam: #003366;
+    --verde-itam: #00783C;
+    --coral: #C0432A;
+    --morado: #6B62C6;
+    --surface-1: #f2f2f0;
+    --surface-2: #ffffff;
+    --border: #dcdcd8;
+    --text-primary: #1a1a1a;
+    --text-secondary: #595955;
+    --radius: 8px;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+    color: var(--text-primary);
+    background: var(--surface-2);
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 3rem;
+    line-height: 1.6;
+  }
+  h1 { font-size: 24px; font-weight: 600; margin: 0 0 0.5rem; color: var(--azul-itam); }
+  p.instrucciones { color: var(--text-secondary); margin: 0 0 1.75rem; }
+  label { font-size: 13px; color: var(--text-secondary); }
+  input[type="range"] { width: 100%; accent-color: var(--coral); }
+  .ts { font-size: 12px; fill: var(--text-secondary); }
+  .axis { stroke: var(--border); stroke-width: 1; }
+  .barra { stroke: var(--azul-itam); stroke-width: 3; }
+  .curva-normal { fill: none; stroke: var(--coral); stroke-width: 2.5; }
+  .controles { display: flex; align-items: center; gap: 14px; margin: 1.1rem 0; }
+  .controles label { white-space: nowrap; min-width: 150px; }
+  .controles .valor { font-size: 14px; font-weight: 600; min-width: 44px; text-align: right; color: var(--azul-itam); }
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 1.25rem; }
+  .stat-card { background: var(--surface-1); border-radius: var(--radius); padding: 1rem; }
+  .stat-card p:first-child { font-size: 13px; color: var(--text-secondary); margin: 0 0 4px; }
+  .stat-card p:last-child { font-size: 22px; font-weight: 600; margin: 0; }
+  .leyenda { display: flex; gap: 22px; margin: 0.5rem 0 0; font-size: 13px; color: var(--text-secondary); }
+  .leyenda span.linea { display: inline-block; width: 22px; height: 0; border-top-width: 2.5px; border-top-style: solid; vertical-align: middle; margin-right: 6px; }
+  #nota { font-size: 13px; color: var(--text-secondary); margin-top: 1.25rem; }
+  #regla { font-size: 13px; margin-top: 0.75rem; border-radius: var(--radius); padding: 0.85rem 1rem; }
+  .regla-ok { background: #e6f5ea; color: #0a5c2a; }
+  .regla-mal { background: #fcebeb; color: #9c2b20; }
+</style>
+</head>
+<body>
+
+<h1>Simulación: aproximación normal a la binomial</h1>
+<p class="instrucciones">
+  El Teorema 3.4.1 (De Moivre&ndash;Laplace) dice que, con <em>p</em>
+  fija, la Binomial(n,p) se acerca a una N(np, np(1&minus;p)) conforme
+  crece <em>n</em>. Mueve los controles para ver el efecto de <em>n</em>
+  y de <em>p</em> por separado.
+</p>
+
+<svg id="chart" width="100%" viewBox="0 0 700 320" role="img" aria-label="Distribución binomial y su aproximación normal">
+  <line id="eje-x" class="axis" x1="55" y1="270" x2="670" y2="270"></line>
+  <line id="eje-y" class="axis" x1="55" y1="20" x2="55" y2="270"></line>
+  <text id="label-x0" class="ts" x="55" y="290"></text>
+  <text id="label-xmed" class="ts" x="362" y="290" text-anchor="middle"></text>
+  <text id="label-xmax" class="ts" x="670" y="290" text-anchor="end"></text>
+  <text id="label-ymax" class="ts" x="48" y="24" text-anchor="end"></text>
+  <g id="barras"></g>
+  <path id="curva-normal" class="curva-normal"></path>
+</svg>
+
+<div class="leyenda">
+  <span><span class="linea" style="border-color: var(--azul-itam); border-top-width: 3px;"></span>Binomial(n,p) exacta</span>
+  <span><span class="linea" style="border-color: var(--coral);"></span>N(np, np(1&minus;p))</span>
+</div>
+
+<div class="controles">
+  <label for="slider-n">Tamaño de muestra n</label>
+  <input type="range" id="slider-n" min="5" max="300" step="1" value="20">
+  <span class="valor" id="slider-n-out">20</span>
+</div>
+<div class="controles">
+  <label for="slider-p">Probabilidad p</label>
+  <input type="range" id="slider-p" min="0.01" max="0.99" step="0.01" value="0.08">
+  <span class="valor" id="slider-p-out">0.08</span>
+</div>
+
+<div class="stats">
+  <div class="stat-card">
+    <p>np</p>
+    <p id="np-out">1.6</p>
+  </div>
+  <div class="stat-card">
+    <p>n(1&minus;p)</p>
+    <p id="nq-out">18.4</p>
+  </div>
+  <div class="stat-card">
+    <p>&sigma; = &radic;(np(1&minus;p))</p>
+    <p id="sigma-out">1.21</p>
+  </div>
+</div>
+
+<div id="regla"></div>
+
+<p id="nota">La regla práctica del libro pide np &gt; 5 y n(1&minus;p) &gt; 5 para que la aproximación sea razonable. Cuando p está cerca de 0 o de 1, la binomial es muy asimétrica y hace falta una n mucho más grande para que la normal (simétrica) la aproxime bien.</p>
+
+<script>
+function gammaLn(x) {
+  var cof = [76.18009172947146, -86.50532032941677, 24.01409824083091,
+             -1.231739572450155, 0.1208650973866179e-2, -0.5395239384953e-5];
+  var y = x, tmp = x + 5.5;
+  tmp -= (x + 0.5) * Math.log(tmp);
+  var ser = 1.000000000190015;
+  for (var j = 0; j < 6; j++) { y += 1; ser += cof[j] / y; }
+  return -tmp + Math.log(2.5066282746310005 * ser / x);
+}
+function logChoose(n, x) { return gammaLn(n + 1) - gammaLn(x + 1) - gammaLn(n - x + 1); }
+function binomPmf(x, n, p) {
+  if (x < 0 || x > n) return 0;
+  if (p <= 0) return x === 0 ? 1 : 0;
+  if (p >= 1) return x === n ? 1 : 0;
+  var logf = logChoose(n, x) + x * Math.log(p) + (n - x) * Math.log(1 - p);
+  return Math.exp(logf);
+}
+function normPdf(x, mu, varr) {
+  return Math.exp(-0.5 * Math.pow(x - mu, 2) / varr) / Math.sqrt(2 * Math.PI * varr);
+}
+
+var pxMin = 55, pxMax = 670, pyTop = 20, pyBase = 270;
+
+var sliderN = document.getElementById('slider-n');
+var sliderP = document.getElementById('slider-p');
+var sliderNOut = document.getElementById('slider-n-out');
+var sliderPOut = document.getElementById('slider-p-out');
+var npOut = document.getElementById('np-out');
+var nqOut = document.getElementById('nq-out');
+var sigmaOut = document.getElementById('sigma-out');
+var reglaDiv = document.getElementById('regla');
+var barrasG = document.getElementById('barras');
+var curvaNormal = document.getElementById('curva-normal');
+var labelX0 = document.getElementById('label-x0');
+var labelXmed = document.getElementById('label-xmed');
+var labelXmax = document.getElementById('label-xmax');
+var labelYmax = document.getElementById('label-ymax');
+
+function pathFrom(points) {
+  var d = '';
+  for (var i = 0; i < points.length; i++) {
+    d += (i === 0 ? 'M' : 'L') + points[i][0].toFixed(2) + ',' + points[i][1].toFixed(2) + ' ';
+  }
+  return d;
+}
+
+function update() {
+  var n = parseInt(sliderN.value, 10);
+  var p = parseFloat(sliderP.value);
+  sliderNOut.textContent = n;
+  sliderPOut.textContent = p.toFixed(2);
+
+  var mu = n * p, varr = n * p * (1 - p), sigma = Math.sqrt(varr);
+  npOut.textContent = mu.toFixed(1);
+  nqOut.textContent = (n * (1 - p)).toFixed(1);
+  sigmaOut.textContent = sigma.toFixed(2);
+
+  var cumple = (mu > 5) && (n * (1 - p) > 5);
+  reglaDiv.className = cumple ? 'regla-ok' : 'regla-mal';
+  reglaDiv.innerHTML = '<strong>' + (cumple ? 'Cumple' : 'No cumple') + ' la regla práctica.</strong> ' +
+    (cumple
+      ? 'np y n(1-p) son mayores que 5: la aproximación normal debería ser razonable.'
+      : 'np o n(1-p) son menores o iguales a 5: la aproximación normal puede ser pobre.');
+
+  var xLo = Math.max(0, Math.floor(mu - 4.5 * sigma));
+  var xHi = Math.min(n, Math.ceil(mu + 4.5 * sigma));
+  if (xHi - xLo < 4) { xLo = Math.max(0, xLo - 2); xHi = Math.min(n, xHi + 2); }
+
+  var vals = [];
+  var yMax = 0;
+  for (var x = xLo; x <= xHi; x++) {
+    var m = binomPmf(x, n, p);
+    vals.push([x, m]);
+    if (m > yMax) yMax = m;
+  }
+  var densMaxNorm = 1 / Math.sqrt(2 * Math.PI * varr);
+  if (densMaxNorm > yMax) yMax = densMaxNorm;
+  yMax *= 1.12;
+
+  function xOf(x) { return pxMin + ((x - xLo) / (xHi - xLo)) * (pxMax - pxMin); }
+  function yOf(y) { return pyBase - (y / yMax) * (pyBase - pyTop); }
+
+  var barrasHtml = '';
+  for (var i = 0; i < vals.length; i++) {
+    var xx = xOf(vals[i][0]);
+    var yy = yOf(vals[i][1]);
+    barrasHtml += '<line class="barra" x1="' + xx.toFixed(2) + '" y1="' + pyBase +
+      '" x2="' + xx.toFixed(2) + '" y2="' + yy.toFixed(2) + '"></line>';
+  }
+  barrasG.innerHTML = barrasHtml;
+
+  var normPts = [];
+  var nPuntos = 300;
+  for (var i2 = 0; i2 <= nPuntos; i2++) {
+    var xc = xLo + ((xHi - xLo) * i2) / nPuntos;
+    normPts.push([xOf(xc), yOf(normPdf(xc, mu, varr))]);
+  }
+  curvaNormal.setAttribute('d', pathFrom(normPts));
+
+  labelX0.textContent = xLo;
+  labelXmed.textContent = Math.round((xLo + xHi) / 2);
+  labelXmed.setAttribute('x', xOf((xLo + xHi) / 2));
+  labelXmax.textContent = xHi;
+  labelYmax.textContent = yMax.toFixed(3);
+}
+
+sliderN.addEventListener('input', update);
+sliderP.addEventListener('input', update);
+update();
+</script>
+
+</body>
+</html>
