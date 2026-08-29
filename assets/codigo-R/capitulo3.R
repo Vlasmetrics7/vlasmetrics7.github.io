@@ -153,7 +153,11 @@ if (!requireNamespace("quantmod", quietly = TRUE)) {
 library(quantmod)
 
 fecha_fin_ipc    <- Sys.Date()
-fecha_inicio_ipc <- fecha_fin_ipc - 366 * 3   # aprox. los ultimos 3 anios
+fecha_inicio_ipc <- fecha_fin_ipc - 366 * 10   # aprox. los ultimos 10 anios
+# (con solo ~3 anios de datos diarios, ~750 observaciones, las colas del
+# histograma quedan demasiado dispersas -1 a 3 obs. por bin- para ilustrar
+# bien el punto de colas pesadas; con ~10 anios, ~2500 observaciones, las
+# colas ya quedan razonablemente pobladas.)
 
 getSymbols("^MXX", src = "yahoo", from = fecha_inicio_ipc, to = fecha_fin_ipc)
 
@@ -171,7 +175,7 @@ exceso_curtosis_ipc <- K_ipc - 3
 nu_ipc <- if (exceso_curtosis_ipc > 0) 4 + 6 / exceso_curtosis_ipc else NA
 escala_ipc <- sigma_ipc / sqrt(nu_ipc / (nu_ipc - 2))
 
-cat("\n--- Rendimientos diarios del IPC (ultimos ~3 anios) ---\n")
+cat("\n--- Rendimientos diarios del IPC (ultimos ~10 anios) ---\n")
 cat("Media diaria:                   ", round(mu_ipc, 4), "%\n")
 cat("Desviacion estandar diaria:     ", round(sigma_ipc, 4), "%\n")
 cat("Coeficiente de curtosis K (Cap. 2):", round(K_ipc, 3),
