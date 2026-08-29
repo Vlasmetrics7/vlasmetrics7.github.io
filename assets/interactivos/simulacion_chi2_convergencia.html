@@ -39,7 +39,7 @@
   .controles { display: flex; align-items: center; gap: 14px; margin: 1.5rem 0; }
   .controles label { white-space: nowrap; min-width: 150px; }
   .controles .valor { font-size: 14px; font-weight: 600; min-width: 40px; text-align: right; color: var(--azul-itam); }
-  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 1.25rem; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 1.25rem; }
   .stat-card { background: var(--surface-1); border-radius: var(--radius); padding: 1rem; }
   .stat-card p:first-child { font-size: 13px; color: var(--text-secondary); margin: 0 0 4px; display: flex; align-items: center; gap: 6px; }
   .stat-card p:last-child { font-size: 22px; font-weight: 600; margin: 0; }
@@ -95,9 +95,13 @@
     <p>Asimetría: <span style="white-space:nowrap;">&radic;(8/n)</span></p>
     <p id="asim-out">2.00</p>
   </div>
+  <div class="stat-card">
+    <p>Curtosis: 3 + 12/n</p>
+    <p id="curt-out">9.00</p>
+  </div>
 </div>
 
-<p id="nota">Con pocos grados de libertad la curva es muy asimétrica (cola larga a la derecha). Conforme n crece, la asimetría —proporcional a 1/&radic;n— disminuye y la curva azul se aproxima cada vez más a la normal punteada, ilustrando el caso particular de Teorema Central del Límite que se demuestra en el Capítulo 4.</p>
+<p id="nota">Con pocos grados de libertad la curva es muy asimétrica y de colas pesadas. Conforme n crece, tanto la asimetría —proporcional a 1/&radic;n— como la curtosis —que se acerca a 3, el valor de referencia mesocúrtico de la normal (Capítulo 2)— disminuyen hacia los valores de la normal (asimetría 0, curtosis 3), y la curva azul se aproxima cada vez más a la normal punteada. Es el caso particular del Teorema Central del Límite que se demuestra en el Capítulo 4.</p>
 
 <script>
 // --- Funcion Gamma (aproximacion de Lanczos), en escala log para estabilidad ---
@@ -130,6 +134,7 @@ var sliderOut = document.getElementById('slider-out');
 var mediaOut = document.getElementById('media-out');
 var varOut = document.getElementById('var-out');
 var asimOut = document.getElementById('asim-out');
+var curtOut = document.getElementById('curt-out');
 var curvaChi2 = document.getElementById('curva-chi2');
 var curvaNormal = document.getElementById('curva-normal');
 var labelXmed = document.getElementById('label-xmed');
@@ -150,6 +155,7 @@ function update() {
   mediaOut.textContent = n;
   varOut.textContent = 2 * n;
   asimOut.textContent = Math.sqrt(8 / n).toFixed(2);
+  curtOut.textContent = (3 + 12 / n).toFixed(2);
 
   var media = n, varianza = 2 * n, sd = Math.sqrt(varianza);
   var xMax = Math.max(6, n + 5 * sd);
