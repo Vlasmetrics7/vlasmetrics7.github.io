@@ -16,11 +16,11 @@ Please find my complete CV below:
   
 ## Current Positions
 
-- Visiting Professor, Department of Economics, Duke University (August 2025 – June 2026).  
 - Associate Professor (with tenure), Department of Statistics, Instituto Tecnológico Autónomo de México (ITAM), since August 2023.
 
 ## Previous Positions
 
+- Visiting Professor, Department of Economics, Duke University (August 2025 – June 2026).  
 - Assistant Professor (tenure track), Department of Statistics, ITAM (08/2018 – 07/2023).  
 - Assistant Professor of Econometrics (tenure track), Department of Statistics, Universidad Carlos III de Madrid (08/2017 – 07/2018).  
 - Postdoctoral Researcher, Department of Statistics, Universidad Carlos III de Madrid (01/2017 – 08/2017).
