@@ -42,6 +42,10 @@ Simulaciones interactivas de distribuciones muestrales, usadas en clase:
 - [Simulación: la distribución F según n y m](/assets/interactivos/simulacion_f_variacion.html){: .btn .btn--sm }
 - [Simulación: aproximación normal a la binomial](/assets/interactivos/simulacion_binomial_normal.html){: .btn .btn--sm }
 
+Simulaciones interactivas de estimación puntual, usadas en clase:
+
+- [Simulación: el efecto del sesgo](/assets/interactivos/simulacion_efecto_sesgo.html){: .btn .btn--sm }
+
 Código en R, un script por capítulo:
 
 - [Capítulo 1](/assets/codigo-R/capitulo1.R){: .btn .btn--sm }
