@@ -403,9 +403,9 @@ Explore my research output by year, or browse a curated selection of highlighted
 
   <div class="pub-info">
 
-    <strong>Temperature in the Iberian Peninsula: Trend, seasonality, and heterogeneity</strong><br>
+    <strong>Temperature in the Iberian Peninsula: Common trends and heterogeneity</strong><br>
     Rodríguez-Caballero, C.V., & Ruiz, E.<br>
-    <em>Annals of Applied Statistics</em>, 2026. [Forthcoming]
+    <em>Annals of Applied Statistics</em>, 2026. 
 
     <div class="btn-row">
 
@@ -419,7 +419,7 @@ Explore my research output by year, or browse a curated selection of highlighted
         </div>
       </div>
 
-      <a href=""
+      <a href="https://projecteuclid.org/journals/annals-of-applied-statistics/volume-20/issue-1/Temperature-in-the-Iberian-Peninsula-Common-trends-and-heterogeneity/10.1214/26-AOAS2137.full"
          target="_blank" class="btn btn--success btn--sm">Published</a>
 
       <div class="dropdown-container">
@@ -480,7 +480,7 @@ regional components remain relevant, particularly at the log-range.</em>
 
     <strong>International factors and inflation risks</strong><br>
     Garrón, I., <u>Rodríguez-Caballero, C.V.</u>, & Ruiz, E.<br>
-    <em>International Journal of Forecasting</em>, 2026. [Forthcoming]
+    <em>International Journal of Forecasting</em>, 2026. 
 
     <div class="btn-row">
 
@@ -801,9 +801,9 @@ author = {Ignacio Garrón and Vladimir Rodríguez-Caballero and Esther Ruiz},
 
   <div class="pub-info">
 
-    <strong>Temperature in the Iberian Peninsula: Trend, seasonality, and heterogeneity</strong><br>
+    <strong>Temperature in the Iberian Peninsula: Common trends and heterogeneity</strong><br>
     Rodríguez-Caballero, C.V., & Ruiz, E.<br>
-    <em>Annals of Applied Statistics</em>, 2026. [Forthcoming]
+    <em>Annals of Applied Statistics</em>, 2026. 
 
     <div class="btn-row">
 
@@ -817,7 +817,7 @@ author = {Ignacio Garrón and Vladimir Rodríguez-Caballero and Esther Ruiz},
         </div>
       </div>
 
-      <a href=""
+      <a href="https://projecteuclid.org/journals/annals-of-applied-statistics/volume-20/issue-1/Temperature-in-the-Iberian-Peninsula-Common-trends-and-heterogeneity/10.1214/26-AOAS2137.full"
          target="_blank" class="btn btn--success btn--sm">Published</a>
 
       <div class="dropdown-container">
@@ -878,7 +878,7 @@ regional components remain relevant, particularly at the log-range.</em>
 
     <strong>International factors and inflation risks</strong><br>
     Garrón, I., <u>Rodríguez-Caballero, C.V.</u>, & Ruiz, E.<br>
-    <em>International Journal of Forecasting</em>, 2026. [Forthcoming]
+    <em>International Journal of Forecasting</em>, 2026. 
 
     <div class="btn-row">
 
