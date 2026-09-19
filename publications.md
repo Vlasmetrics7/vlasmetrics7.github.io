@@ -456,12 +456,15 @@ regional components remain relevant, particularly at the log-range.</em>
     </div>
 
     <div id="bib-AOAS2026" class="bib-block" style="display:none;">
-<pre><code>@article{rodriguez2024temperature,
-  title={Temperature in the Iberian Peninsula: Trend, seasonality, and heterogeneity},
+<pre><code>@article{rodriguez2026temperature,
+  title={Temperature in the Iberian Peninsula: Common trends and heterogeneity},
   author={Rodr{\'\i}guez-Caballero, C Vladimir and Ruiz, Esther},
-  journal={arXiv preprint arXiv:2406.14145},
-  year={2024}
-}
+  journal={The Annals of Applied Statistics},
+  volume={20},
+  number={1},
+  pages={173--196},
+  year={2026},
+  publisher={Institute of Mathematical Statistics}
 }
 </code></pre>
     </div>
@@ -854,12 +857,15 @@ regional components remain relevant, particularly at the log-range.</em>
     </div>
 
     <div id="bib-AOAS2026" class="bib-block" style="display:none;">
-<pre><code>@article{rodriguez2024temperature,
-  title={Temperature in the Iberian Peninsula: Trend, seasonality, and heterogeneity},
+<pre><code>@article{rodriguez2026temperature,
+  title={Temperature in the Iberian Peninsula: Common trends and heterogeneity},
   author={Rodr{\'\i}guez-Caballero, C Vladimir and Ruiz, Esther},
-  journal={arXiv preprint arXiv:2406.14145},
-  year={2024}
-}
+  journal={The Annals of Applied Statistics},
+  volume={20},
+  number={1},
+  pages={173--196},
+  year={2026},
+  publisher={Institute of Mathematical Statistics}
 }
 </code></pre>
     </div>
