@@ -888,12 +888,12 @@ regional components remain relevant, particularly at the log-range.</em>
 
     <div class="btn-row">
 
-      <a href="javascript:toggleDiv('abs-infl2026')" class="btn btn--info btn--sm">ABS</a>
+      <a href="javascript:toggleDiv('abs-infl2026_2')" class="btn btn--info btn--sm">ABS</a>
 
       <div class="dropdown-container">
         <button class="btn btn--primary btn--sm"
-                onclick="toggleDropdown('wp-infl2026')">Working Papers ▼</button>
-        <div id="wp-infl2026" class="dropdown-menu">
+                onclick="toggleDropdown('wp-infl2026_2')">Working Papers ▼</button>
+        <div id="wp-infl2026_2" class="dropdown-menu">
           <a href="https://e-archivo.uc3m.es/bitstreams/31c1d448-b315-4c93-a661-329f31e50f3e/download" target="_blank">UC3M WP 2024</a><br>
           <a href="https://arxiv.org/pdf/2410.20628" target="_blank">Arxiv WP 2024</a>
         </div>
@@ -904,19 +904,19 @@ regional components remain relevant, particularly at the log-range.</em>
 
       <div class="dropdown-container">
         <button class="btn btn--secondary btn--sm"
-                onclick="toggleDropdown('media-infl2026')">Media ▼</button>
-        <div id="media-infl2026" class="dropdown-menu">
+                onclick="toggleDropdown('media-infl2026_2')">Media ▼</button>
+        <div id="media-infl2026_2" class="dropdown-menu">
           <a href="https://www.dropbox.com/scl/fi/zsejgcdar1zwh68n9b0x2/Banco-de-Uruguay-CVRC.pdf?rlkey=gspwimspa2aq2axvm4nx2e3of&st=qzj6so5b&dl=0" target="_blank">Slides (PDF)</a>
         </div>
       </div>
 
-      <a href="javascript:toggleDiv('bib-infl2026')" class="btn btn--warning btn--sm">BIB</a>
+      <a href="javascript:toggleDiv('bib-infl2026_2')" class="btn btn--warning btn--sm">BIB</a>
    <!-- NUEVO BOTÓN REP -->
       <a href="https://github.com/IgnacioGarron/replication_ijf_int_inflation_factors_risks/tree/main"
          target="_blank" class="btn btn--dark btn--sm">Codes</a>
     </div>
 
-    <div id="abs-infl2026" class="abstract-block" style="display:none;">
+    <div id="abs-infl2026_2" class="abstract-block" style="display:none;">
       <strong>Abstract:</strong><br>
       <em>Assessing the risks of having either very low or very high inflation is crucial
 for policy makers, businesses, and house holders. In a globalised world, these risks
@@ -937,7 +937,7 @@ the predictive power of international factors has increased in the most recent y
 of high inflation.</em>
     </div>
 
-    <div id="bib-infl2026" class="bib-block" style="display:none;">
+    <div id="bib-infl2026_2" class="bib-block" style="display:none;">
 <pre><code>
 
 @article{GARRON2026,
