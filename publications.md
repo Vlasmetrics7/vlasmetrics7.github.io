@@ -810,12 +810,12 @@ author = {Ignacio Garrón and Vladimir Rodríguez-Caballero and Esther Ruiz},
 
     <div class="btn-row">
 
-      <a href="javascript:toggleDiv('abs-AOAS2026')" class="btn btn--info btn--sm">ABS</a>
+      <a href="javascript:toggleDiv('abs-AOAS2026_2')" class="btn btn--info btn--sm">ABS</a>
 
       <div class="dropdown-container">
         <button class="btn btn--primary btn--sm"
-                onclick="toggleDropdown('wp-AOAS2026')">Working Papers ▼</button>
-        <div id="wp-AOAS2026" class="dropdown-menu">
+                onclick="toggleDropdown('wp-AOAS2026_2')">Working Papers ▼</button>
+        <div id="wp-AOAS2026_2" class="dropdown-menu">
             <a href="https://arxiv.org/pdf/2406.14145" target="_blank">Arxiv WP 2024</a>
         </div>
       </div>
@@ -825,19 +825,19 @@ author = {Ignacio Garrón and Vladimir Rodríguez-Caballero and Esther Ruiz},
 
       <div class="dropdown-container">
         <button class="btn btn--secondary btn--sm"
-                onclick="toggleDropdown('media-AOAS2026')">Media ▼</button>
-        <div id="media-AOAS2026" class="dropdown-menu">
+                onclick="toggleDropdown('media-AOAS2026_2')">Media ▼</button>
+        <div id="media-AOAS2026_2" class="dropdown-menu">
           <a href="https://www.dropbox.com/scl/fi/m22pdzkc4dimcomjlnrvb/ICES-Tokyo-CVRC.pdf?rlkey=askpuzztilc6c0ixnpy5ex0ic&dl=0" target="_blank">Slides (PDF)</a>
         </div>
       </div>
 
-      <a href="javascript:toggleDiv('bib-AOAS2026')" class="btn btn--warning btn--sm">BIB</a>
+      <a href="javascript:toggleDiv('bib-AOAS2026_2')" class="btn btn--warning btn--sm">BIB</a>
    <!-- NUEVO BOTÓN REP -->
       <a href="https://github.com/Vlasmetrics7/temperatureIberian"
          target="_blank" class="btn btn--dark btn--sm">Codes</a>
     </div>
 
-    <div id="abs-AOAS2026" class="abstract-block" style="display:none;">
+    <div id="abs-AOAS2026_2" class="abstract-block" style="display:none;">
       <strong>Abstract:</strong><br>
       <em>We propose a Multi-level Dynamic Factor Model (ML-DFM) to capture
 the common global and region-specific stochastic trends in monthly centre
@@ -856,7 +856,7 @@ although the commonality in centre-temperature trends is considerable, the
 regional components remain relevant, particularly at the log-range.</em>
     </div>
 
-    <div id="bib-AOAS2026" class="bib-block" style="display:none;">
+    <div id="bib-AOAS2026_2" class="bib-block" style="display:none;">
 <pre><code>@article{rodriguez2026temperature,
   title={Temperature in the Iberian Peninsula: Common trends and heterogeneity},
   author={Rodr{\'\i}guez-Caballero, C Vladimir and Ruiz, Esther},
