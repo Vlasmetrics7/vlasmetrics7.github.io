@@ -951,7 +951,7 @@ author = {Ignacio Garrón and Vladimir Rodríguez-Caballero and Esther Ruiz},
     </div>
   </div>
 </div>
-</div>
+<!--</div>-->
 
 <div id="year2025" class="year-block" style="display:none;">
   
