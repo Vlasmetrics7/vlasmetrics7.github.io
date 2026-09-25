@@ -1,12 +1,22 @@
 ---
 layout: single
-title: "Home"
-permalink: /
+title: "About (unused draft)"
+permalink: /about-draft-unused/
+published: false
 classes: wide
 author_profile: false
 sidebar: false
 toc: false
 ---
+<!--
+  This file previously had `permalink: /`, identical to index.md — a Jekyll
+  build conflict where two pages claim the site root. It also carries stale
+  contact info (wrong email, mismatched Scopus ID) and its own duplicate
+  dark-mode implementation. `published: false` removes it from the build.
+  Safe to delete entirely; kept only because this session cannot run `rm`/
+  `git rm` (blocked as an irreversible destructive action).
+-->
+
 
 <!-- ========================================================= -->
 <!--                  🌙 DARK MODE TOGGLE                      -->
