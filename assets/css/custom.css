@@ -1,34 +1,407 @@
-/* Custom CSS placeholder */
+/* =========================================================
+   Site-wide custom styles.
+   Single source of truth: previously duplicated (with drift)
+   across index.md, _pages/research.md and publications.md.
+   ========================================================= */
 
-.pubimg {
-  width: 160px;
-  max-width: 100%;
+/* ---------- Dark mode toggle (button injected by _includes/head/custom.html) ---------- */
+#darkToggle {
+  position: fixed;
+  top: 20px;
+  right: 25px;
+  background: #e6e6e6;
+  border: none;
+  padding: 10px 14px;
   border-radius: 8px;
-  margin-bottom: 10px;
-  margin-right: 15px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+  transition: 0.3s;
+  z-index: 9999;
 }
 
-.pub-entry {
-  margin-bottom: 2.0rem;
-  padding-bottom: 1.2rem;
-  border-bottom: 1px solid #e5e5e5;
+#darkToggle:hover {
+  transform: translateY(-2px);
+  background: #d4d4d4;
 }
 
-.pub-header {
+body.dark-mode,
+body.dark-mode .page,
+body.dark-mode .page__content,
+body.dark-mode .masthead,
+body.dark-mode .site-header,
+body.dark-mode .site-footer,
+body.dark-mode .profile-wrapper,
+body.dark-mode .profile-text {
+  background-color: #111 !important;
+  color: #eee !important;
+}
+
+body.dark-mode a {
+  color: #9ecbff !important;
+}
+
+body.dark-mode .social-buttons a {
+  background: #222 !important;
+  border-color: #444 !important;
+  color: #eee !important;
+}
+
+/* ---------- Home page profile layout ---------- */
+.profile-wrapper {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.profile-grid {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 60px;
+  align-items: start;
+}
+
+.profile-photo img {
+  width: 420px;
+  height: 520px;
+  object-fit: contain;
+  border-radius: 14px;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.25);
+  display: block;
+}
+
+.profile-text .name {
+  font-size: 36px;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.profile-text .subtitle {
+  font-size: 20px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.profile-text p {
+  font-size: 25px;
+  line-height: 1.5;
+  text-align: left;
+}
+
+.social-buttons {
+  margin-top: 25px;
   display: flex;
-  align-items: flex-start;
-  gap: 1rem;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
-.pub-meta {
+.social-buttons a {
+  padding: 9px 14px;
+  background: #eef2ff;
+  border-radius: 8px;
+  border: 1px solid #cdd8ff;
+  text-decoration: none;
+  font-weight: 600;
+  color: #222;
+  transition: 0.2s;
+}
+
+.social-buttons a:hover {
+  transform: translateY(-2px);
+  background: #dce4ff;
+}
+
+@media (max-width: 991px) {
+  .profile-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .profile-photo {
+    margin-top: 0;
+    justify-self: center;
+  }
+
+  .profile-photo img {
+    width: 90%;
+    height: auto;
+    max-width: 360px;
+  }
+
+  .profile-text .name {
+    font-size: 34px;
+    text-align: center;
+  }
+
+  .profile-text .subtitle,
+  .profile-text p,
+  .profile-text ul {
+    text-align: center;
+  }
+
+  .social-buttons {
+    justify-content: center;
+  }
+}
+
+/* ---------- Accordion (used on /research/) ---------- */
+.accordion {
+  margin-top: 25px;
+}
+
+.acc-btn {
+  width: 100%;
+  background: #e7ecff;
+  border: 1px solid #c8d0ff;
+  padding: 12px 18px;
+  text-align: left;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 17px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  transition: 0.2s;
+}
+
+.acc-btn:hover {
+  background: #dbe4ff;
+}
+
+.acc-content {
+  display: none;
+  padding: 15px 20px;
+  background: #fafbff;
+  border-left: 4px solid #8aa5ff;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+@media (max-width: 768px) {
+  .acc-item {
+    width: 100% !important;
+    box-sizing: border-box;
+  }
+
+  .acc-btn {
+    font-size: 16px !important;
+    padding: 14px 16px !important;
+    text-align: left;
+    white-space: normal;
+  }
+
+  .acc-content {
+    padding: 16px !important;
+    font-size: 15px !important;
+    line-height: 1.6;
+    word-wrap: break-word;
+  }
+
+  .acc-btn::after {
+    right: 16px !important;
+  }
+}
+
+/* ---------- Publications page (/publications/) ---------- */
+.pub-card {
+  display: flex;
+  gap: 20px;
+  padding: 18px;
+  margin-bottom: 28px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 8px 22px rgba(0, 0, 0, 0.15);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.pub-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0px 12px 26px rgba(0, 0, 0, 0.22);
+}
+
+.pub-img {
+  width: 260px;
+  height: 195px;
+  object-fit: contain;
+  object-position: center;
+  background: #f8f8f8;
+  border-radius: 8px;
+  flex-shrink: 0;
+  padding: 4px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.pub-info {
   flex: 1;
 }
 
-.pub-year {
-  font-size: 1.2rem;
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid #ddd;
+  padding: 12px;
+  border-radius: 6px;
+  box-shadow: 0px 8px 22px rgba(0, 0, 0, 0.25);
+  z-index: 2000;
+}
+
+.dropdown-menu.show {
+  display: block;
+}
+
+.dropdown-container {
+  position: relative;
+}
+
+/* Allow card shadows to escape the theme's content wrapper */
+.page__content {
+  overflow: visible !important;
+}
+
+.pub-info pre {
+  white-space: pre-wrap !important;
+  word-break: break-word !important;
+  overflow-wrap: break-word !important;
+  max-width: 100% !important;
+}
+
+.pub-info pre code {
+  font-size: 12px !important;
+  line-height: 1.25 !important;
+  white-space: pre-wrap !important;
+  word-break: break-word !important;
+  overflow-wrap: break-word !important;
+  max-width: 100% !important;
+}
+
+.abstract-block {
+  font-size: 13px;
+  line-height: 1.25;
+  margin-top: 8px;
+  margin-bottom: 14px;
+  padding-left: 0px;
+  max-width: 100% !important;
+  white-space: pre-wrap !important;
+  word-break: break-word !important;
+  overflow-wrap: break-word !important;
+}
+
+.bib-block {
+  font-size: 13px;
+  line-height: 1.45;
+  margin-top: 8px;
+  margin-bottom: 14px;
+  padding: 10px 12px;
+  max-width: 95%;
+  background: #f8f8f8;
+  border-radius: 6px;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.bib-block pre code {
+  font-size: 12px !important;
+  white-space: pre-wrap !important;
+  word-break: break-word !important;
+}
+
+.year-button {
+  width: 100%;
+  background: #f2f2f2;
+  border: 1px solid #ccc;
+  padding: 12px 18px;
+  border-radius: 8px;
+  font-size: 20px;
   font-weight: 600;
-  color: #999999;
-  text-align: right;
-  min-width: 3rem;
+  cursor: pointer;
+  margin-top: 25px;
+  margin-bottom: 10px;
+  text-align: left;
+  transition: background 0.2s ease;
+}
+
+.year-button:hover {
+  background: #e6e6e6;
+}
+
+.year-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 25px 0 20px 0;
+}
+
+.year-tile {
+  min-width: 90px;
+  padding: 10px 16px;
+  border-radius: 10px;
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+  color: #222;
+  background: #e4ecff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.year-tile:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 7px 16px rgba(0, 0, 0, 0.18);
+}
+
+.year-block {
+  margin-bottom: 25px;
+}
+
+.toggle-all-button {
+  display: inline-block;
+  padding: 10px 18px;
+  font-size: 16px;
+  font-weight: 600;
+  background: #dce4ff;
+  border: 1px solid #b0c2ff;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.toggle-all-button:hover {
+  background: #c8d6ff;
+  transform: translateY(-2px);
+}
+
+.more-sections-box {
+  background: #fafbff;
+  padding: 15px 20px;
+  border-radius: 10px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.05);
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.btn--dark {
+  background: #555;
+  color: white;
+  border-radius: 6px;
+  padding: 2px 8px;
+  font-size: 0.75rem;
+  opacity: 0.85;
+}
+
+.btn--dark:hover {
+  opacity: 1;
 }

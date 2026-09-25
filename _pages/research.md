@@ -98,41 +98,6 @@ Click each section to explore.
 
 </div>
 
-<style>
-.accordion {
-  margin-top: 25px;
-}
-
-.acc-btn {
-  width: 100%;
-  background: #e7ecff;
-  border: 1px solid #c8d0ff;
-  padding: 12px 18px;
-  text-align: left;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 17px;
-  font-weight: 600;
-  margin-bottom: 8px;
-  transition: 0.2s;
-}
-
-.acc-btn:hover {
-  background: #dbe4ff;
-}
-
-.acc-content {
-  display: none;
-  padding: 15px 20px;
-  background: #fafbff;
-  border-left: 4px solid #8aa5ff;
-  border-radius: 6px;
-  margin-bottom: 15px;
-  font-size: 15px;
-  line-height: 1.45;
-}
-</style>
-
 <script>
 const accButtons = document.querySelectorAll(".acc-btn");
 
