@@ -1,60 +1,17 @@
-<!-- ================= DARK MODE BUTTON + STYLES (GLOBAL) ================= -->
+<!-- ================= SITE-WIDE ASSETS ================= -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="{{ '/assets/css/custom.css' | relative_url }}">
 
-<style>
-  /* Botón flotante arriba-derecha */
-  #darkToggle {
-    position: fixed;
-    top: 20px;
-    right: 25px;
-    background: #e6e6e6;
-    border: none;
-    padding: 10px 14px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 15px;
-    font-weight: 600;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
-    transition: .3s;
-    z-index: 9999;
-  }
-  #darkToggle:hover {
-    transform: translateY(-2px);
-    background: #d4d4d4;
-  }
-
-  /* ===== Estilos globales en modo oscuro ===== */
-  body.dark-mode,
-  body.dark-mode .page,
-  body.dark-mode .page__content,
-  body.dark-mode .masthead,
-  body.dark-mode .site-footer {
-    background-color: #111 !important;
-    color: #eee !important;
-  }
-
-  body.dark-mode a {
-    color: #9ecbff !important;
-  }
-
-  /* Tu layout de portada */
-  body.dark-mode .profile-wrapper,
-  body.dark-mode .profile-text {
-    background-color: #111 !important;
-    color: #eee !important;
-  }
-</style>
-
+<!-- ================= DARK MODE TOGGLE (single implementation, global) ================= -->
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     const body = document.body;
 
-    // Si el botón no existe, lo creamos dinámicamente
     let btn = document.getElementById("darkToggle");
     if (!btn) {
       btn = document.createElement("button");
       btn.id = "darkToggle";
       btn.type = "button";
-      btn.textContent = "🌙 Dark";
       document.body.appendChild(btn);
     }
 
@@ -68,16 +25,22 @@
       }
     }
 
-    // Leer preferencia previa
-    const saved = localStorage.getItem("darkMode") === "true";
+    let saved = false;
+    try {
+      saved = localStorage.getItem("darkMode") === "true";
+    } catch (e) {
+      /* localStorage unavailable (e.g. private browsing) */
+    }
     applyMode(saved);
 
-    // Toggle al hacer clic
     btn.addEventListener("click", function () {
       const newMode = !body.classList.contains("dark-mode");
-      localStorage.setItem("darkMode", newMode);
+      try {
+        localStorage.setItem("darkMode", newMode);
+      } catch (e) {
+        /* ignore */
+      }
       applyMode(newMode);
     });
   });
 </script>
-
