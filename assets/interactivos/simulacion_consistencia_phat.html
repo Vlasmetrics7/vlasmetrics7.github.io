@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Simulación: consistencia de la proporción muestral</title>
+<style>
+  :root {
+    --azul-itam: #003366;
+    --verde-itam: #00783C;
+    --coral: #C0432A;
+    --naranja: #B5651D;
+    --surface-1: #f2f2f0;
+    --surface-2: #ffffff;
+    --border: #dcdcd8;
+    --text-primary: #1a1a1a;
+    --text-secondary: #595955;
+    --radius: 8px;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+    color: var(--text-primary);
+    background: var(--surface-2);
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 3rem;
+    line-height: 1.6;
+  }
+  h1 { font-size: 24px; font-weight: 600; margin: 0 0 0.5rem; color: var(--azul-itam); }
+  h2 { font-size: 16px; font-weight: 600; margin: 0 0 0.5rem; color: var(--azul-itam); }
+  p.instrucciones { color: var(--text-secondary); margin: 0 0 0.75rem; }
+  .controles-botones { display: flex; flex-wrap: wrap; gap: 12px; margin: 1rem 0 1.5rem; }
+  button.boton-accion {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: inherit; font-size: 14px; font-weight: 600;
+    color: #fff; background: var(--azul-itam); border: none;
+    border-radius: 999px; padding: 10px 20px; cursor: pointer;
+  }
+  button.boton-accion.secundario { background: var(--naranja); }
+  button.boton-accion:disabled { background: #9aa7b4; cursor: default; }
+  button.boton-accion:not(:disabled):hover { filter: brightness(1.1); }
+  .panel { background: var(--surface-1); border-radius: var(--radius); padding: 0.9rem 0.9rem 0.6rem; margin-bottom: 1.5rem; }
+  .panel h2 { font-size: 15px; }
+  .ts { font-size: 11px; fill: var(--text-secondary); }
+  .axis { stroke: var(--border); stroke-width: 1; }
+  .linea-p { stroke: var(--verde-itam); stroke-width: 2; stroke-dasharray: 5 4; }
+  .linea-n-ref { stroke: var(--text-secondary); stroke-width: 1; stroke-dasharray: 2 3; opacity: 0.6; }
+  .trayectoria-phat { fill: none; stroke: var(--azul-itam); stroke-width: 1.4; }
+  #svgTrayPhat { width: 100%; height: auto; }
+  #lienzoBoxplot { width: 100%; height: 280px; display: block; }
+  .leyenda { display: flex; flex-wrap: wrap; gap: 16px; margin: 0.4rem 0 0; font-size: 12px; color: var(--text-secondary); }
+  .leyenda-item { display: flex; align-items: center; gap: 6px; }
+  .leyenda-linea { display: inline-block; width: 18px; height: 0; border-top-width: 2px; border-top-style: solid; }
+  .leyenda-caja { width: 11px; height: 11px; border-radius: 2px; display: inline-block; }
+  details { margin-top: 1.5rem; background: var(--surface-1); border-radius: var(--radius); padding: 0.9rem 1.1rem; }
+  summary { cursor: pointer; font-weight: 600; color: var(--azul-itam); font-size: 14px; }
+  details p, details ul { font-size: 14px; color: var(--text-primary); }
+  details ul { margin: 0.5rem 0 0; padding-left: 1.2rem; }
+  details li { margin-bottom: 0.5rem; }
+  #nota { font-size: 13px; color: var(--text-secondary); margin-top: 1.25rem; }
+</style>
+</head>
+<body>
+
+<h1>Simulación: consistencia de la proporción muestral</h1>
+<p class="instrucciones">
+  Mismo ejemplo del libro (Ejemplo 4.6.1): X<sub>i</sub>=1 si el crédito i
+  incumple, X<sub>i</sub> &sim; Bernoulli(p), con p=0.06. El estimador
+  natural es p&#770;<sub>n</sub> = X&#772;<sub>n</sub>, la tasa de incumplimiento
+  observada en una cartera de tamaño n.
+</p>
+
+<div class="controles-botones">
+  <button id="btnPlay" class="boton-accion" type="button">&#9658; Reproducir animación (panel A)</button>
+  <button id="btnNueva" class="boton-accion secundario" type="button">&#8635; Nueva muestra (ambos paneles)</button>
+</div>
+
+<div class="panel">
+  <h2>Panel A. Una trayectoria de p&#770;<sub>n</sub> conforme crece n hasta 1000</h2>
+  <svg id="svgTrayPhat" viewBox="0 0 700 260" role="img" aria-label="Trayectoria de p-hat conforme crece n">
+    <line class="axis" x1="55" y1="215" x2="680" y2="215"></line>
+    <line class="axis" x1="55" y1="10" x2="55" y2="215"></line>
+    <line id="lineaP" class="linea-p" x1="55" y1="0" x2="680" y2="0"></line>
+    <g id="gMarcadoresN"></g>
+    <path id="pathTrayPhat" class="trayectoria-phat" d=""></path>
+    <text class="ts" x="55" y="230">1</text>
+    <text class="ts" x="680" y="230" text-anchor="end">1000</text>
+    <text class="ts" id="ejeYTop" x="49" y="14" text-anchor="end">0.20</text>
+    <text class="ts" id="ejeYBot" x="49" y="216" text-anchor="end">0.00</text>
+  </svg>
+  <div class="leyenda">
+    <span class="leyenda-item"><span class="leyenda-linea" style="border-color:var(--azul-itam)"></span>p&#770;<sub>n</sub></span>
+    <span class="leyenda-item"><span class="leyenda-linea" style="border-color:var(--verde-itam); border-top-style:dashed;"></span>p = 0.06</span>
+    <span class="leyenda-item"><span class="leyenda-linea" style="border-color:var(--text-secondary); border-top-style:dotted;"></span>n = 10, 100, 500, 1000 (Panel B)</span>
+  </div>
+</div>
+
+<div class="panel">
+  <h2>Panel B. Distribución completa de p&#770;<sub>n</sub> en n = 10, 100, 500, 1000</h2>
+  <canvas id="lienzoBoxplot"></canvas>
+  <div class="leyenda">
+    <span class="leyenda-item"><span class="leyenda-caja" style="background:var(--azul-itam); opacity:0.65;"></span>caja = RIQ (2000 réplicas por n)</span>
+    <span class="leyenda-item"><span class="leyenda-linea" style="border-color:var(--verde-itam); border-top-style:dashed;"></span>p = 0.06</span>
+  </div>
+</div>
+
+<details>
+<summary>¿Por qué el Panel B ilustra consistencia?</summary>
+<ul>
+  <li>Cada caja resume 2000 muestras <em>independientes</em> de tamaño n: no es una trayectoria en el tiempo, sino la distribución completa de p&#770;<sub>n</sub> para ese tamaño de muestra específico.</li>
+  <li>Con n=10, la caja es enorme (la mediana incluso puede caer en p&#770;=0: con tan pocos créditos, es común no observar ningún incumplimiento) y hay muchos valores atípicos alejados de p=0.06.</li>
+  <li>Conforme n crece a 100, 500 y 1000, la caja se comprime dramáticamente alrededor de la línea verde: esto es exactamente Var(p&#770;<sub>n</sub>) = p(1&minus;p)/n &rarr; 0 (Ejemplo 4.6.1) hecho visible.</li>
+  <li>El Panel A muestra el mismo fenómeno de otra forma: una <em>única</em> trayectoria que, con el tiempo, deja de alejarse de p=0.06. El Panel B muestra qué tan probable es esa cercanía, para cada n, viendo muchas trayectorias a la vez en lugar de solo una.</li>
+</ul>
+</details>
+
+<p id="nota">El botón "Reproducir animación" solo afecta al Panel A (dibuja la misma trayectoria ya generada, de nuevo, punto por punto). "Nueva muestra" genera datos aleatorios frescos para ambos paneles.</p>
+
+<script>
+(function () {
+  var P_REAL = 0.06;
+  var N_MAX = 1000;
+  var N_REF = [10, 100, 500, 1000];
+  var B_REPS = 2000;
+  var animando = false;
+
+  var btnPlay = document.getElementById('btnPlay');
+  var btnNueva = document.getElementById('btnNueva');
+
+  // ---------- Panel A: trayectoria ----------
+  var pxMin = 55, pxMax = 680, pyTop = 10, pyBase = 215;
+  var yMaxTray = 0.20; // se ajusta dinámicamente según la trayectoria generada
+
+  function xOfN(n) { return pxMin + ((n - 1) / (N_MAX - 1)) * (pxMax - pxMin); }
+  function yOfVal(v) {
+    var y = pyBase - (v / yMaxTray) * (pyBase - pyTop);
+    if (y < pyTop) y = pyTop;
+    if (y > pyBase) y = pyBase;
+    return y;
+  }
+
+  var trayectoriaActual = [];
+
+  function generarTrayectoria() {
+    var exitos = 0;
+    var path = new Array(N_MAX);
+    for (var i = 1; i <= N_MAX; i++) {
+      if (Math.random() < P_REAL) exitos++;
+      path[i - 1] = exitos / i;
+    }
+    return path;
+  }
+
+  var pathEl = document.getElementById('pathTrayPhat');
+  var lineaPEl = document.getElementById('lineaP');
+  var ejeYTopEl = document.getElementById('ejeYTop');
+  var gMarcadores = document.getElementById('gMarcadoresN');
+
+  function construirD(hastaN) {
+    var d = '';
+    for (var i = 0; i < hastaN; i++) {
+      var x = xOfN(i + 1), y = yOfVal(trayectoriaActual[i]);
+      d += (i === 0 ? 'M' : 'L') + x.toFixed(2) + ',' + y.toFixed(2) + ' ';
+    }
+    return d;
+  }
+
+  function dibujarMarcadoresN() {
+    while (gMarcadores.firstChild) gMarcadores.removeChild(gMarcadores.firstChild);
+    N_REF.forEach(function (n) {
+      var x = xOfN(n);
+      var linea = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      linea.setAttribute('x1', x); linea.setAttribute('x2', x);
+      linea.setAttribute('y1', pyTop); linea.setAttribute('y2', pyBase);
+      linea.setAttribute('class', 'linea-n-ref');
+      gMarcadores.appendChild(linea);
+      var texto = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      texto.setAttribute('x', x); texto.setAttribute('y', pyTop - 2);
+      texto.setAttribute('class', 'ts'); texto.setAttribute('text-anchor', 'middle');
+      texto.textContent = 'n=' + n;
+      gMarcadores.appendChild(texto);
+    });
+  }
+
+  function actualizarEjesTrayectoria() {
+    var yMu = yOfVal(P_REAL);
+    lineaPEl.setAttribute('y1', yMu);
+    lineaPEl.setAttribute('y2', yMu);
+    ejeYTopEl.textContent = yMaxTray.toFixed(2);
+  }
+
+  function dibujarTrayectoria(hastaN) {
+    pathEl.setAttribute('d', construirD(hastaN));
+  }
+
+  function regenerarPanelA() {
+    trayectoriaActual = generarTrayectoria();
+    // Escala vertical: un poco por encima del máximo observado (o al menos 2*p)
+    var maxObservado = Math.max.apply(null, trayectoriaActual);
+    yMaxTray = Math.max(maxObservado * 1.15, P_REAL * 2.2);
+    actualizarEjesTrayectoria();
+    dibujarMarcadoresN();
+    dibujarTrayectoria(N_MAX);
+  }
+
+  function reproducirAnimacion() {
+    if (animando) return;
+    animando = true;
+    btnPlay.disabled = true;
+    btnNueva.disabled = true;
+    btnPlay.textContent = 'Reproduciendo\u2026';
+    dibujarTrayectoria(1);
+
+    var duracionMs = 4500;
+    var tInicio = null;
+
+    function frame(timestamp) {
+      if (!tInicio) tInicio = timestamp;
+      var progreso = Math.min(1, (timestamp - tInicio) / duracionMs);
+      var nActual = Math.max(1, Math.round(1 + progreso * (N_MAX - 1)));
+      dibujarTrayectoria(nActual);
+      if (progreso < 1) {
+        requestAnimationFrame(frame);
+      } else {
+        animando = false;
+        btnPlay.disabled = false;
+        btnNueva.disabled = false;
+        btnPlay.textContent = '\u25B6 Reproducir animaci\u00f3n (panel A)';
+      }
+    }
+    requestAnimationFrame(frame);
+  }
+
+  // ---------- Panel B: boxplots ----------
+  function calcularBoxplot(valores) {
+    var v = valores.slice().sort(function (a, b) { return a - b; });
+    var n = v.length;
+    function percentil(p) {
+      var idx = p * (n - 1);
+      var lo = Math.floor(idx), hi = Math.ceil(idx);
+      if (lo === hi) return v[lo];
+      return v[lo] + (v[hi] - v[lo]) * (idx - lo);
+    }
+    var q1 = percentil(0.25), mediana = percentil(0.5), q3 = percentil(0.75);
+    var iqr = q3 - q1;
+    var limInf = q1 - 1.5 * iqr, limSup = q3 + 1.5 * iqr;
+    var dentro = v.filter(function (x) { return x >= limInf && x <= limSup; });
+    var outliers = v.filter(function (x) { return x < limInf || x > limSup; });
+    return {
+      q1: q1, mediana: mediana, q3: q3,
+      whiskerLow: Math.min.apply(null, dentro),
+      whiskerHigh: Math.max.apply(null, dentro),
+      outliers: outliers
+    };
+  }
+
+  function pHatReplicas(n, B) {
+    var out = new Array(B);
+    for (var b = 0; b < B; b++) {
+      var exitos = 0;
+      for (var i = 0; i < n; i++) if (Math.random() < P_REAL) exitos++;
+      out[b] = exitos / n;
+    }
+    return out;
+  }
+
+  var Y_MAX_BOX = 0.5;
+
+  function renderBoxplots(datosPorN) {
+    var canvas = document.getElementById('lienzoBoxplot');
+    var dpr = window.devicePixelRatio || 1;
+    var cssW = canvas.clientWidth, cssH = canvas.clientHeight;
+    canvas.width = cssW * dpr;
+    canvas.height = cssH * dpr;
+    var ctx = canvas.getContext('2d');
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, cssW, cssH);
+
+    var marginL = 42, marginR = 14, marginTop = 14, marginBottom = 26;
+    var plotW = cssW - marginL - marginR;
+    var plotH = cssH - marginTop - marginBottom;
+
+    function yOf(v) {
+      var y = marginTop + plotH - (Math.min(v, Y_MAX_BOX) / Y_MAX_BOX) * plotH;
+      return y;
+    }
+
+    // ejes y marcas horizontales
+    ctx.strokeStyle = '#dcdcd8';
+    ctx.fillStyle = '#595955';
+    ctx.font = '10px -apple-system, Helvetica, Arial, sans-serif';
+    ctx.textAlign = 'right';
+    [0, 0.1, 0.2, 0.3, 0.4, 0.5].forEach(function (v) {
+      var y = yOf(v);
+      ctx.beginPath();
+      ctx.moveTo(marginL, y);
+      ctx.lineTo(marginL + plotW, y);
+      ctx.stroke();
+      ctx.fillText(v.toFixed(1), marginL - 6, y + 3);
+    });
+
+    // linea de referencia p verdadera
+    ctx.strokeStyle = '#00783C';
+    ctx.lineWidth = 2;
+    ctx.setLineDash([5, 4]);
+    var yP = yOf(P_REAL);
+    ctx.beginPath();
+    ctx.moveTo(marginL, yP);
+    ctx.lineTo(marginL + plotW, yP);
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    // cajas
+    var numCajas = N_REF.length;
+    var anchoSlot = plotW / numCajas;
+    var anchoCaja = anchoSlot * 0.4;
+
+    N_REF.forEach(function (n, i) {
+      var bx = calcularBoxplot(datosPorN[n]);
+      var xCentro = marginL + anchoSlot * (i + 0.5);
+      var xIzq = xCentro - anchoCaja / 2, xDer = xCentro + anchoCaja / 2;
+
+      // whiskers
+      ctx.strokeStyle = '#003366';
+      ctx.lineWidth = 1.4;
+      ctx.beginPath();
+      ctx.moveTo(xCentro, yOf(bx.whiskerLow));
+      ctx.lineTo(xCentro, yOf(bx.q1));
+      ctx.moveTo(xCentro, yOf(bx.q3));
+      ctx.lineTo(xCentro, yOf(bx.whiskerHigh));
+      ctx.stroke();
+      // topes de whisker
+      ctx.beginPath();
+      ctx.moveTo(xCentro - anchoCaja * 0.2, yOf(bx.whiskerLow));
+      ctx.lineTo(xCentro + anchoCaja * 0.2, yOf(bx.whiskerLow));
+      ctx.moveTo(xCentro - anchoCaja * 0.2, yOf(bx.whiskerHigh));
+      ctx.lineTo(xCentro + anchoCaja * 0.2, yOf(bx.whiskerHigh));
+      ctx.stroke();
+
+      // caja (Q1-Q3)
+      ctx.fillStyle = 'rgba(0,51,102,0.65)';
+      ctx.fillRect(xIzq, yOf(bx.q3), anchoCaja, yOf(bx.q1) - yOf(bx.q3));
+      ctx.strokeStyle = '#003366';
+      ctx.strokeRect(xIzq, yOf(bx.q3), anchoCaja, yOf(bx.q1) - yOf(bx.q3));
+
+      // mediana
+      ctx.strokeStyle = '#ffffff';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(xIzq, yOf(bx.mediana));
+      ctx.lineTo(xDer, yOf(bx.mediana));
+      ctx.stroke();
+
+      // outliers (a lo mas 60, para no saturar)
+      ctx.fillStyle = 'rgba(192,67,42,0.55)';
+      bx.outliers.slice(0, 60).forEach(function (v) {
+        ctx.beginPath();
+        ctx.arc(xCentro, yOf(v), 1.6, 0, 2 * Math.PI);
+        ctx.fill();
+      });
+
+      // etiqueta de n
+      ctx.fillStyle = '#595955';
+      ctx.textAlign = 'center';
+      ctx.font = '11px -apple-system, Helvetica, Arial, sans-serif';
+      ctx.fillText('n=' + n, xCentro, marginTop + plotH + 16);
+    });
+  }
+
+  function regenerarPanelB() {
+    var datosPorN = {};
+    N_REF.forEach(function (n) {
+      datosPorN[n] = pHatReplicas(n, B_REPS);
+    });
+    renderBoxplots(datosPorN);
+  }
+
+  function nuevaMuestra() {
+    regenerarPanelA();
+    regenerarPanelB();
+  }
+
+  btnPlay.addEventListener('click', reproducirAnimacion);
+  btnNueva.addEventListener('click', nuevaMuestra);
+  window.addEventListener('resize', function () {
+    regenerarPanelB();
+  });
+
+  nuevaMuestra();
+})();
+</script>
+
+<p style="margin-top:2rem; padding-top:0.75rem; border-top:1px solid #dcdcd8; font-size:12px; color:#595955; font-family:-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;">Elaborado por C. Vladimir Rodríguez-Caballero (Depto. Estadística, ITAM)</p>
+</body>
+</html>

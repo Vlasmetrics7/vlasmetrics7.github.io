@@ -49,6 +49,7 @@ Simulaciones interactivas de estimación puntual, usadas en clase:
 Simulaciones interactivas de convergencia y consistencia, usadas en clase:
 
 - [Simulación: los modos de convergencia](/assets/interactivos/simulacion_modos_convergencia.html){: .btn .btn--sm }
+- [Simulación: consistencia de la proporción muestral](/assets/interactivos/simulacion_consistencia_phat.html){: .btn .btn--sm }
 
 Código en R, un script por capítulo:
 
