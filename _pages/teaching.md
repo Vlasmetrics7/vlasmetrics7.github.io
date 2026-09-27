@@ -46,14 +46,18 @@ Simulaciones interactivas de estimación puntual, usadas en clase:
 
 - [Simulación: el efecto del sesgo](/assets/interactivos/simulacion_efecto_sesgo.html){: .btn .btn--sm }
 
+Simulaciones interactivas de convergencia y consistencia, usadas en clase:
+
+- [Simulación: los modos de convergencia](/assets/interactivos/simulacion_modos_convergencia.html){: .btn .btn--sm }
+
 Código en R, un script por capítulo:
 
 - [Capítulo 1](/assets/codigo-R/capitulo1.R){: .btn .btn--sm }
 - [Capítulo 2](/assets/codigo-R/capitulo2.R){: .btn .btn--sm }
 - [Capítulo 3](/assets/codigo-R/capitulo3.R){: .btn .btn--sm }
+- [Capítulo 4](/assets/codigo-R/capitulo4.R){: .btn .btn--sm }
 
 <!--
-- [Capítulo 4](/assets/codigo-R/capitulo4.R){: .btn .btn--sm }
 - [Capítulo 5](/assets/codigo-R/capitulo5.R){: .btn .btn--sm }
 - [Capítulo 6](/assets/codigo-R/capitulo6.R){: .btn .btn--sm }
 - [Capítulo 7](/assets/codigo-R/capitulo7.R){: .btn .btn--sm }

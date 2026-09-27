@@ -3,8 +3,142 @@
 # Inferencia Estadística, EST-11102, ITAM
 # ==============================================================
 
+# Si este script se ejecuta en un entorno con locale POSIX/C (sin
+# UTF-8), los acentos en las etiquetas de las figuras (p. ej.
+# "distribución", "cuadrática") se corrompen al renderizar. Este
+# intento silencioso de fijar un locale UTF-8 evita ese problema; si
+# el locale no está disponible en el sistema, no interrumpe el script.
+try(Sys.setlocale("LC_CTYPE", "C.UTF-8"), silent = TRUE)
+
 # --------------------------------------------------------------
-# 1. Verificación del Teorema Central del Límite (Sección 4.7)
+# 1. Figura: sesgo vs. varianza (Sección 4.2, Figura cap4_sesgo_varianza)
+#    Distribuciones EXACTAS (no simuladas) de S^2 y sigma_hat^2 para el
+#    Ejemplo 4.2.1 (n=5, sigma^2=100), usando (n-1)S^2/sigma^2 ~ chi^2_(n-1).
+# --------------------------------------------------------------
+n_fig <- 5
+sigma2_fig <- 100
+df_fig <- n_fig - 1
+
+# S^2 = (sigma^2/(n-1)) * W, W ~ chi2_(n-1)  =>  densidad de S^2 en s:
+dS2 <- function(s) dchisq((df_fig / sigma2_fig) * s, df = df_fig) * (df_fig / sigma2_fig)
+# sigma_hat^2 = (sigma^2/n) * W  =>  densidad de sigma_hat^2 en t:
+dSigmaHat2 <- function(t) dchisq((n_fig / sigma2_fig) * t, df = df_fig) * (n_fig / sigma2_fig)
+
+x_fig <- seq(0.1, 340, length.out = 1000)
+AZUL_ITAM  <- "#003366"
+VERDE_ITAM <- "#00783C"
+NARANJA    <- "#B5651D"
+
+png("cap4_sesgo_varianza.png", width = 2200, height = 1500, res = 220)
+par(mar = c(4.2, 4.2, 1.5, 1.5))
+yS2 <- dS2(x_fig); ySigmaHat2 <- dSigmaHat2(x_fig)
+ymax_fig <- max(yS2, ySigmaHat2) * 1.15
+plot(x_fig, yS2, type = "l", col = VERDE_ITAM, lwd = 3,
+     xlab = expression(paste("Valor del estimador de  ", sigma^2)),
+     ylab = "Densidad", ylim = c(0, ymax_fig), xlim = c(0, 340),
+     cex.lab = 1.15, cex.axis = 1.05)
+lines(x_fig, ySigmaHat2, col = NARANJA, lwd = 3)
+abline(v = sigma2_fig, col = VERDE_ITAM, lwd = 2, lty = 1)
+abline(v = (df_fig / n_fig) * sigma2_fig, col = NARANJA, lwd = 2, lty = 2)
+y_bracket <- ymax_fig * 0.92
+arrows(x0 = (df_fig / n_fig) * sigma2_fig, y0 = y_bracket, x1 = sigma2_fig, y1 = y_bracket,
+       length = 0.08, angle = 20, code = 3, col = "gray30", lwd = 1.6)
+text(x = mean(c((df_fig / n_fig) * sigma2_fig, sigma2_fig)), y = y_bracket * 1.045,
+     labels = "Sesgo", col = "gray20", cex = 1.05)
+legend("topright",
+       legend = c(expression(S^2 ~ "(insesgado)"), expression(hat(sigma)^2 ~ "(sesgado)"),
+                  expression(sigma^2 ~ "verdadera (100)"), expression(E(hat(sigma)^2) ~ "= 80")),
+       col = c(VERDE_ITAM, NARANJA, VERDE_ITAM, NARANJA),
+       lwd = c(3, 3, 2, 2), lty = c(1, 1, 1, 2), bty = "n", cex = 0.95, seg.len = 2.2)
+dev.off()
+cat("Figura exportada: cap4_sesgo_varianza.png\n")
+
+# --------------------------------------------------------------
+# 1b. Figura: sesgo y precisión (Sección 4.2, Figura cap4_sesgo_precision)
+#     Cuadricula 2x2: sesgado/insesgado x preciso/impreciso.
+#     Convencion visual: un "x" fuera del recuadro (la region alrededor
+#     de theta) representa una estimacion sesgada; dentro del recuadro,
+#     una estimacion insesgada. La dispersion de los puntos (compactos
+#     vs. dispersos) representa la precision.
+# --------------------------------------------------------------
+set.seed(123)
+box_half <- 1.3
+
+gen_points <- function(n, cx, cy, sd, inside) {
+  pts <- matrix(NA_real_, nrow = n, ncol = 2)
+  for (i in 1:n) {
+    repeat {
+      x <- rnorm(1, cx, sd); y <- rnorm(1, cy, sd)
+      es_dentro <- (abs(x) <= box_half) && (abs(y) <= box_half)
+      if (inside == es_dentro) { pts[i, ] <- c(x, y); break }
+    }
+  }
+  pts
+}
+
+pa <- gen_points(9, cx = 2.1, cy = 2.1, sd = 0.8,  inside = FALSE) # (a) sesgado, poco preciso
+pb <- gen_points(9, cx = 2.1, cy = 2.1, sd = 0.15, inside = FALSE) # (b) sesgado, preciso
+pc <- gen_points(9, cx = 0,   cy = 0,   sd = 0.8,  inside = TRUE)  # (c) insesgado, poco preciso
+pd <- gen_points(9, cx = 0,   cy = 0,   sd = 0.15, inside = TRUE)  # (d) insesgado, preciso
+
+dibujar_panel <- function(pts, etiqueta) {
+  plot(NA, xlim = c(-1.9, 3.5), ylim = c(-1.9, 3.5), asp = 1,
+       axes = FALSE, xlab = "", ylab = "")
+  rect(-box_half, -box_half, box_half, box_half, border = "gray30", lwd = 1.3)
+  points(pts[, 1], pts[, 2], pch = 4, cex = 1.6, lwd = 2, col = AZUL_ITAM)
+  points(0, 0, pch = 19, cex = 1.1)
+  text(0.35, 0.05, expression(theta), cex = 1.3)
+  mtext(etiqueta, side = 1, line = 0.5, cex = 1.1, font = 2)
+}
+
+png("cap4_sesgo_precision.png", width = 2000, height = 1750, res = 220)
+par(mfrow = c(2, 2), mar = c(2, 0.3, 0.3, 0.3), oma = c(0, 0, 0, 0))
+dibujar_panel(pa, "(a) Sesgado, poco preciso")
+dibujar_panel(pb, "(b) Sesgado, preciso")
+dibujar_panel(pc, "(c) Insesgado, poco preciso")
+dibujar_panel(pd, "(d) Insesgado, preciso")
+dev.off()
+cat("Figura exportada: cap4_sesgo_precision.png\n")
+
+# --------------------------------------------------------------
+# 1c. Figura: jerarquía de los modos de convergencia (Sección 4.4,
+#     Figura cap4_jerarquia_convergencia, Teorema 4.4.1). Elipses
+#     anidadas: distribución (más externa) > probabilidad > {casi
+#     segura, media} (no anidadas entre sí) > media cuadrática (dentro
+#     de media). Inspirado en el diagrama de Rincón (2007), redibujado
+#     con estilo y paleta propios.
+# --------------------------------------------------------------
+draw_ellipse <- function(cx, cy, rx, ry, col, border = "gray30", lwd = 1.4, n = 300) {
+  theta <- seq(0, 2 * pi, length.out = n)
+  polygon(cx + rx * cos(theta), cy + ry * sin(theta),
+          col = col, border = border, lwd = lwd)
+}
+
+# Paleta: tonos del azul ITAM, de más claro (externo) a más oscuro (interno)
+pal_jer <- colorRampPalette(c("#EAF1F8", AZUL_ITAM))(5)
+
+png("cap4_jerarquia_convergencia.png", width = 2400, height = 1500, res = 220, type = "cairo")
+par(mar = c(0.5, 0.5, 0.5, 0.5))
+plot(NA, xlim = c(-8, 8), ylim = c(-4.3, 4.3), asp = 1,
+     axes = FALSE, xlab = "", ylab = "")
+
+draw_ellipse(0, -0.1, 7.2, 4.0, col = pal_jer[1])                 # distribución
+draw_ellipse(0, -0.2, 6.1, 3.2, col = pal_jer[2])                 # probabilidad
+draw_ellipse(-2.6, 0.1, 2.3, 2.35, col = pal_jer[3])              # casi segura
+draw_ellipse(2.3, 0.1, 2.85, 2.45, col = pal_jer[3])              # media
+draw_ellipse(2.85, 0.1, 1.45, 1.45, col = pal_jer[5])             # media cuadrática
+
+text(-2.6, 0.55, "Convergencia\ncasi segura", cex = 1.15, font = 2)
+text(2.85, 0.15, "Conv. en\nmedia\ncuadrática", cex = 1.0, font = 2, col = "white")
+text(1.55, -1.75, "Conv. en media", cex = 1.1, font = 2)
+text(0, -2.75, "Convergencia en probabilidad", cex = 1.25, font = 2)
+text(0, -3.75, "Convergencia en distribución", cex = 1.3, font = 2)
+
+dev.off()
+cat("Figura exportada: cap4_jerarquia_convergencia.png\n")
+
+# --------------------------------------------------------------
+# 2. Verificación del Teorema Central del Límite (Sección 4.7)
 #    Población NO normal: exponencial(lambda = 1/8500), que modela
 #    montos de reclamaciones de seguros (Ejercicio del capítulo).
 # --------------------------------------------------------------
@@ -36,11 +170,39 @@ mtext("Convergencia a N(0,1) del TCL (población exponencial)",
 
 cat("Nótese cómo, aunque la población exponencial es muy asimétrica,\n",
     "la distribución de Z se acerca a la normal estándar conforme\n",
-    "aumenta n --el contenido del Teorema Central del Límite.\n")
+    "aumenta n: el contenido del Teorema Central del Límite.\n")
+
+# --------------------------------------------------------------
+# 2b. Figura: densidad exacta vs. asintótica de Xbar_n, n chico
+#     (Sección 4.7, Figura cap4_exacta_vs_asintotica). Población
+#     exponencial(lambda), mismos parámetros que arriba. Inspirado en
+#     el Gráfico 4.5 de Greene, redibujado con estilo propio.
+# --------------------------------------------------------------
+n_fig2 <- 10
+
+# Densidad EXACTA de Xbar_n: para una exponencial(lambda), la suma de n
+# observaciones es Gamma(forma=n, tasa=lambda), asi que Xbar_n es
+# Gamma(forma=n, tasa=n*lambda).
+dens_exacta_fig2 <- function(x) dgamma(x, shape = n_fig2, rate = n_fig2 * lambda_pob)
+# Densidad ASINTOTICA que predice el TCL: N(mu, sigma^2/n)
+dens_asint_fig2 <- function(x) dnorm(x, mean = mu_pob, sd = sigma_pob / sqrt(n_fig2))
+
+x_fig2 <- seq(500, 20000, length.out = 500)
+
+png("cap4_exacta_vs_asintotica.png", width = 2200, height = 1500, res = 220, type = "cairo")
+par(mar = c(4.2, 4.5, 2.5, 1))
+plot(x_fig2, dens_exacta_fig2(x_fig2), type = "l", lwd = 2.8, col = AZUL_ITAM,
+     xlab = "Monto promedio de reclamación", ylab = "Densidad",
+     main = bquote("Distribución de " * bar(X)[n] * ": exacta vs. asintótica (n = " * .(n_fig2) * ")"))
+lines(x_fig2, dens_asint_fig2(x_fig2), lwd = 2.8, col = NARANJA, lty = 2)
+legend("topright", legend = c("Exacta (Gamma)", "Asintótica (Normal, TCL)"),
+       col = c(AZUL_ITAM, NARANJA), lwd = 2.8, lty = c(1, 2), bty = "n", cex = 1.05)
+dev.off()
+cat("Figura exportada: cap4_exacta_vs_asintotica.png\n")
 
 
 # --------------------------------------------------------------
-# 2. Consistencia: la varianza del estimador decrece con n
+# 3. Consistencia: la varianza del estimador decrece con n
 #    (Sección 4.6). Estimador: S^2 (varianza muestral) de una
 #    población de rendimientos simulados N(0.01, 0.04^2).
 # --------------------------------------------------------------
@@ -77,7 +239,7 @@ cat("\nLa varianza de S^2 entre simulaciones (columna var_S2) disminuye\n",
 
 
 # --------------------------------------------------------------
-# 3. Máxima verosimilitud: forma cerrada y optimización numérica
+# 4. Máxima verosimilitud: forma cerrada y optimización numérica
 #    (Sección 4.9)
 # --------------------------------------------------------------
 
@@ -129,7 +291,7 @@ cat("EMV (optim, L-BFGS-B):  forma =", round(ajuste$par[1], 3),
 
 
 # --------------------------------------------------------------
-# 4. Normalidad asintótica del EMV (Teorema 4.9, Sección 4.9)
+# 5. Normalidad asintótica del EMV (Teorema 4.9, Sección 4.9)
 #    Verificación por simulación para el modelo Bernoulli:
 #    sqrt(n)*(p_hat - p) --> N(0, p(1-p))
 # --------------------------------------------------------------
