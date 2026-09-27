@@ -239,7 +239,57 @@ cat("\nLa varianza de S^2 entre simulaciones (columna var_S2) disminuye\n",
 
 
 # --------------------------------------------------------------
-# 4. Máxima verosimilitud: forma cerrada y optimización numérica
+# 4. Figura: consistencia de la proporción muestral p_hat
+#    (Sección 4.6, Ejemplo 4.6.1, Figura cap4_consistencia_phat).
+#    Dos paneles: (A) una trayectoria de p_hat_n conforme crece n, y
+#    (B) la distribución completa de p_hat_n (via boxplots) en cuatro
+#    tamaños de muestra específicos, mostrando el colapso de la caja.
+#    Para el ejemplo de incumplimiento de crédito (Bernoulli(p),
+#    p=0.06). Inspirado en el codigo de consistencia usado en el curso
+#    de teoria asintotica (media muestral de una uniforme), aqui
+#    ajustado a este ejemplo, y en el interactivo HTML homónimo
+#    (simulacion_consistencia_phat.html).
+# --------------------------------------------------------------
+set.seed(2025)
+p_credito <- 0.06
+N_max_phat <- 1000
+n_ref_phat <- c(10, 100, 500, 1000)
+
+incumplimientos_traj <- rbinom(N_max_phat, size = 1, prob = p_credito)
+p_hat_traj <- cumsum(incumplimientos_traj) / seq_len(N_max_phat)
+
+B_box_phat <- 2000
+datos_box_phat <- lapply(n_ref_phat, function(n) {
+  replicate(B_box_phat, mean(rbinom(n, size = 1, prob = p_credito)))
+})
+names(datos_box_phat) <- paste0("n=", n_ref_phat)
+
+png("cap4_consistencia_phat.png", width = 2200, height = 2900, res = 220, type = "cairo")
+par(mfrow = c(2, 1), mar = c(4.2, 4.5, 2.8, 1))
+
+# Panel A (arriba): una trayectoria
+plot(seq_len(N_max_phat), p_hat_traj, type = "l", lwd = 1.6, col = AZUL_ITAM,
+     xlab = "Tamaño de la cartera (n)", ylab = expression(hat(p)[n]),
+     main = "A. Una trayectoria de p_hat_n conforme crece n")
+abline(h = p_credito, col = NARANJA, lwd = 2.2, lty = 2)
+abline(v = n_ref_phat, col = "gray70", lty = 3)
+legend("topright", legend = c(expression(hat(p)[n] * "  (una trayectoria)"),
+                               "p verdadera = 0.06"),
+       col = c(AZUL_ITAM, NARANJA), lwd = c(1.6, 2.2), lty = c(1, 2), bty = "n")
+
+# Panel B (abajo): distribución completa (boxplots) en n fijos
+boxplot(datos_box_phat, col = "#6E9BB8", border = AZUL_ITAM,
+        main = paste0("B. Distribución de p_hat_n en n = 10, 100, 500, 1000 (",
+                       B_box_phat, " réplicas c/u)"),
+        xlab = "Tamaño de muestra (n)", ylab = expression(hat(p)[n]))
+abline(h = p_credito, col = NARANJA, lwd = 2.2, lty = 2)
+
+dev.off()
+cat("Figura exportada: cap4_consistencia_phat.png\n")
+
+
+# --------------------------------------------------------------
+# 5. Máxima verosimilitud: forma cerrada y optimización numérica
 #    (Sección 4.9)
 # --------------------------------------------------------------
 
@@ -291,7 +341,7 @@ cat("EMV (optim, L-BFGS-B):  forma =", round(ajuste$par[1], 3),
 
 
 # --------------------------------------------------------------
-# 5. Normalidad asintótica del EMV (Teorema 4.9, Sección 4.9)
+# 6. Normalidad asintótica del EMV (Teorema 4.9, Sección 4.9)
 #    Verificación por simulación para el modelo Bernoulli:
 #    sqrt(n)*(p_hat - p) --> N(0, p(1-p))
 # --------------------------------------------------------------
@@ -319,7 +369,7 @@ cat("Esta simulación confirma numéricamente el Teorema 4.9:",
     "para n suficientemente grande.\n")
 
 # --------------------------------------------------------------
-# 6. Figura: tasas de convergencia de la media y la mediana
+# 7. Figura: tasas de convergencia de la media y la mediana
 #    (Sección 4.7, Ejemplo de eficiencia asintótica media vs.
 #    mediana, Figura cap4_tasa_media_mediana). Población N(0,1):
 #    sd(media)=1/sqrt(n), sd(mediana)=sqrt(pi/2)/sqrt(n).
@@ -343,7 +393,7 @@ dev.off()
 cat("Figura exportada: cap4_tasa_media_mediana.png\n")
 
 # --------------------------------------------------------------
-# 7. Figura: superficie de la log-verosimilitud de una normal
+# 8. Figura: superficie de la log-verosimilitud de una normal
 #    (Sección 4.9, Ejemplo de invarianza, Figura
 #    cap4_superficie_verosimilitud). Muestra pequeña de
 #    rendimientos diarios (%) de un activo.
@@ -382,38 +432,6 @@ points(punto_mle, pch = 19, col = "black", cex = 1.3)
 text(punto_mle$x, punto_mle$y - 0.02, labels = "EMV", pos = 3, cex = 1.0)
 dev.off()
 cat("Figura exportada: cap4_superficie_verosimilitud.png\n")
-
-# --------------------------------------------------------------
-# 8. Verificación numérica: MCO y EMV coinciden bajo normalidad
-#    (Sección 4.5, Ejemplo de consistencia de MCO). Se estima el
-#    mismo modelo de dos formas: minimizando la suma de cuadrados
-#    (MCO, vía optim) y maximizando la log-verosimilitud normal
-#    (EMV, vía optim), y se comparan contra los valores verdaderos.
-# --------------------------------------------------------------
-set.seed(666)
-Tn <- 2000
-x_ols <- rnorm(Tn, 0, 1)
-u_ols <- rnorm(Tn, 0, 1)
-y_ols <- 1 + 5.5 * x_ols + u_ols
-
-rss <- function(beta) sum((beta[1] + beta[2] * x_ols - y_ols)^2)
-ajuste_mco <- optim(par = c(0, 0), fn = rss)
-
-neg_log_verosim <- function(par) {
-  beta0 <- par[1]; beta1 <- par[2]; sigma <- par[3]
-  -sum(dnorm(y_ols, mean = beta0 + beta1 * x_ols, sd = sigma, log = TRUE))
-}
-ajuste_emv <- optim(par = c(0, 0, 1), fn = neg_log_verosim,
-                     method = "L-BFGS-B", lower = c(-Inf, -Inf, 0.01))
-
-cat("\n--- Verificación: MCO y EMV bajo normalidad (n = 2000, beta verdadero = (1, 5.5)) ---\n")
-cat("MCO  (optim, minimiza RSS):        beta0 =", round(ajuste_mco$par[1], 4),
-    " beta1 =", round(ajuste_mco$par[2], 4), "\n")
-cat("EMV  (optim, maximiza log L):      beta0 =", round(ajuste_emv$par[1], 4),
-    " beta1 =", round(ajuste_emv$par[2], 4),
-    " sigma_hat =", round(ajuste_emv$par[3], 4), "\n")
-cat("Ambos coinciden (hasta el error numérico de optim): bajo normalidad,",
-    "el EMV de (beta0, beta1) es exactamente el estimador de MCO.\n")
 
 # --------------------------------------------------------------
 # 9. Verificación por simulación: error estándar delta-method del
