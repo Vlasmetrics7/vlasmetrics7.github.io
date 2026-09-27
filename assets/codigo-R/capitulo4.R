@@ -317,3 +317,127 @@ cat("Varianza de Z simulada:", round(var(z_emv), 4), "(teórica: 1)\n")
 cat("Esta simulación confirma numéricamente el Teorema 4.9:",
     "el EMV estandarizado se distribuye aproximadamente N(0,1)",
     "para n suficientemente grande.\n")
+
+# --------------------------------------------------------------
+# 6. Figura: tasas de convergencia de la media y la mediana
+#    (Sección 4.7, Ejemplo de eficiencia asintótica media vs.
+#    mediana, Figura cap4_tasa_media_mediana). Población N(0,1):
+#    sd(media)=1/sqrt(n), sd(mediana)=sqrt(pi/2)/sqrt(n).
+# --------------------------------------------------------------
+n_vals <- seq(2, 100, by = 1)
+sd_media   <- 1 / sqrt(n_vals)
+sd_mediana <- sqrt(pi / 2) / sqrt(n_vals)
+
+png("cap4_tasa_media_mediana.png", width = 2200, height = 1500, res = 220, type = "cairo")
+par(mar = c(4.2, 4.5, 2.5, 1))
+plot(n_vals, sd_media, type = "l", lwd = 2.8, col = AZUL_ITAM,
+     ylim = c(0, max(sd_mediana)),
+     xlab = "Tamaño de muestra n",
+     ylab = "Desviación estándar asintótica",
+     main = "Eficiencia asintótica: media vs. mediana (población N(0,1))")
+lines(n_vals, sd_mediana, lwd = 2.8, col = NARANJA, lty = 2)
+legend("topright", legend = c(expression(sd(bar(X)[n]) == 1/sqrt(n)),
+                               expression(sd(M[n]) == sqrt(pi/2)/sqrt(n))),
+       col = c(AZUL_ITAM, NARANJA), lwd = 2.8, lty = c(1, 2), bty = "n", cex = 1.05)
+dev.off()
+cat("Figura exportada: cap4_tasa_media_mediana.png\n")
+
+# --------------------------------------------------------------
+# 7. Figura: superficie de la log-verosimilitud de una normal
+#    (Sección 4.9, Ejemplo de invarianza, Figura
+#    cap4_superficie_verosimilitud). Muestra pequeña de
+#    rendimientos diarios (%) de un activo.
+# --------------------------------------------------------------
+y_ll <- c(1.2, -0.8, 0.5, 0.1, -0.3, 0.9)
+t_ll <- length(y_ll)
+mu_mle_ll   <- mean(y_ll)
+sig2_mle_ll <- mean((y_ll - mu_mle_ll)^2)
+cat("\nEMV normal (rendimientos de ejemplo): mu_hat =", round(mu_mle_ll, 4),
+    " sigma2_hat =", round(sig2_mle_ll, 4), "\n")
+
+mu_grid   <- seq(mu_mle_ll - 1, mu_mle_ll + 1, length.out = 60)
+sig2_grid <- seq(max(0.02, sig2_mle_ll - 0.35), sig2_mle_ll + 0.6, length.out = 60)
+lnL <- outer(mu_grid, sig2_grid, Vectorize(function(mu, s2) {
+  -0.5 * t_ll * log(2 * pi) - 0.5 * t_ll * log(s2) - sum((y_ll - mu)^2) / (2 * s2)
+}))
+
+png("cap4_superficie_verosimilitud.png", width = 2200, height = 1900, res = 220, type = "cairo")
+par(mar = c(1, 1, 2, 1))
+# Color de cada panel segun su altura promedio (paleta azul-ITAM -> naranja),
+# para que el pico (el EMV) resalte con claridad.
+nrz <- nrow(lnL); ncz <- ncol(lnL)
+alturas_panel <- (lnL[-1, -1] + lnL[-1, -ncz] + lnL[-nrz, -1] + lnL[-nrz, -ncz]) / 4
+paleta <- colorRampPalette(c(AZUL_ITAM, "#6E9BB8", NARANJA))(100)
+rango <- range(alturas_panel)
+idx_color <- 1 + round(99 * (alturas_panel - rango[1]) / diff(rango))
+colores_panel <- paleta[idx_color]
+
+res_persp <- persp(mu_grid, sig2_grid, lnL,
+      theta = 35, phi = 25, expand = 0.65, ticktype = "detailed",
+      col = colores_panel, border = NA, shade = 0.25,
+      xlab = "mu", ylab = "sigma^2", zlab = "log L(mu, sigma^2)",
+      main = "Superficie de la log-verosimilitud normal")
+punto_mle <- trans3d(mu_mle_ll, sig2_mle_ll, max(lnL) + 0.5, res_persp)
+points(punto_mle, pch = 19, col = "black", cex = 1.3)
+text(punto_mle$x, punto_mle$y - 0.02, labels = "EMV", pos = 3, cex = 1.0)
+dev.off()
+cat("Figura exportada: cap4_superficie_verosimilitud.png\n")
+
+# --------------------------------------------------------------
+# 8. Verificación numérica: MCO y EMV coinciden bajo normalidad
+#    (Sección 4.5, Ejemplo de consistencia de MCO). Se estima el
+#    mismo modelo de dos formas: minimizando la suma de cuadrados
+#    (MCO, vía optim) y maximizando la log-verosimilitud normal
+#    (EMV, vía optim), y se comparan contra los valores verdaderos.
+# --------------------------------------------------------------
+set.seed(666)
+Tn <- 2000
+x_ols <- rnorm(Tn, 0, 1)
+u_ols <- rnorm(Tn, 0, 1)
+y_ols <- 1 + 5.5 * x_ols + u_ols
+
+rss <- function(beta) sum((beta[1] + beta[2] * x_ols - y_ols)^2)
+ajuste_mco <- optim(par = c(0, 0), fn = rss)
+
+neg_log_verosim <- function(par) {
+  beta0 <- par[1]; beta1 <- par[2]; sigma <- par[3]
+  -sum(dnorm(y_ols, mean = beta0 + beta1 * x_ols, sd = sigma, log = TRUE))
+}
+ajuste_emv <- optim(par = c(0, 0, 1), fn = neg_log_verosim,
+                     method = "L-BFGS-B", lower = c(-Inf, -Inf, 0.01))
+
+cat("\n--- Verificación: MCO y EMV bajo normalidad (n = 2000, beta verdadero = (1, 5.5)) ---\n")
+cat("MCO  (optim, minimiza RSS):        beta0 =", round(ajuste_mco$par[1], 4),
+    " beta1 =", round(ajuste_mco$par[2], 4), "\n")
+cat("EMV  (optim, maximiza log L):      beta0 =", round(ajuste_emv$par[1], 4),
+    " beta1 =", round(ajuste_emv$par[2], 4),
+    " sigma_hat =", round(ajuste_emv$par[3], 4), "\n")
+cat("Ambos coinciden (hasta el error numérico de optim): bajo normalidad,",
+    "el EMV de (beta0, beta1) es exactamente el estimador de MCO.\n")
+
+# --------------------------------------------------------------
+# 9. Verificación por simulación: error estándar delta-method del
+#    Sharpe ratio (Sección 4.8, Ejemplo del Sharpe ratio). Se
+#    simulan muchas muestras, se calcula theta_hat = Xbar/S en cada
+#    una, y se compara la desviación estándar empírica de theta_hat
+#    contra la fórmula delta-method evaluada en el theta verdadero.
+# --------------------------------------------------------------
+set.seed(2024)
+mu_sr <- 0.05; sigma_sr <- 0.10; n_sr <- 172; B_sr <- 5000
+theta_sr <- mu_sr / sigma_sr
+
+theta_hats <- replicate(B_sr, {
+  muestra <- rnorm(n_sr, mean = mu_sr, sd = sigma_sr)
+  mean(muestra) / sd(muestra)
+})
+
+ee_delta_teorico   <- sqrt((1 + theta_sr^2 / 2) / n_sr)
+ee_empirico        <- sd(theta_hats)
+
+cat("\n--- Verificación: error estándar delta-method del Sharpe ratio ---\n")
+cat("theta verdadero (mu/sigma):", round(theta_sr, 4), "\n")
+cat("ee delta-method teórico:   ", round(ee_delta_teorico, 4), "\n")
+cat("ee empírico (", B_sr, "réplicas, n =", n_sr, "):", round(ee_empirico, 4), "\n")
+cat("La cercanía entre ambos confirma numéricamente la fórmula del",
+    "Ejemplo del Sharpe ratio (Método Delta, Sección 4.8).\n")
+
