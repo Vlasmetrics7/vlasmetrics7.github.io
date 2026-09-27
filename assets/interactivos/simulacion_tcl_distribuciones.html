@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Simulación: el Teorema Central del Límite en acción</title>
+<style>
+  :root {
+    --azul-itam: #003366;
+    --verde-itam: #00783C;
+    --coral: #C0432A;
+    --naranja: #B5651D;
+    --surface-1: #f2f2f0;
+    --surface-2: #ffffff;
+    --border: #dcdcd8;
+    --text-primary: #1a1a1a;
+    --text-secondary: #595955;
+    --radius: 8px;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+    color: var(--text-primary);
+    background: var(--surface-2);
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 3rem;
+    line-height: 1.6;
+  }
+  h1 { font-size: 24px; font-weight: 600; margin: 0 0 0.5rem; color: var(--azul-itam); }
+  h2 { font-size: 15px; font-weight: 600; margin: 0 0 0.5rem; color: var(--azul-itam); }
+  p.instrucciones { color: var(--text-secondary); margin: 0 0 1rem; }
+  label { font-size: 13px; color: var(--text-secondary); }
+  select {
+    font-family: inherit; font-size: 14px; padding: 7px 10px; width: 100%;
+    border: 1px solid var(--border); border-radius: 6px; background: var(--surface-2);
+    color: var(--text-primary);
+  }
+  input[type="range"] { width: 100%; accent-color: var(--coral); }
+  .fila-control { margin: 0 0 1rem; }
+  .fila-control > label { display: block; margin-bottom: 4px; }
+  .fila-label { display: flex; justify-content: space-between; }
+  .valor { font-size: 14px; font-weight: 600; color: var(--azul-itam); }
+  .panel { background: var(--surface-1); border-radius: var(--radius); padding: 0.9rem 0.9rem 0.6rem; margin-bottom: 1.5rem; }
+  #lienzoHist { width: 100%; height: 280px; display: block; }
+  .leyenda { display: flex; flex-wrap: wrap; gap: 16px; margin: 0.4rem 0 0; font-size: 12px; color: var(--text-secondary); }
+  .leyenda-item { display: flex; align-items: center; gap: 6px; }
+  .leyenda-linea { display: inline-block; width: 18px; height: 0; border-top-width: 2.5px; border-top-style: solid; }
+  .leyenda-caja { width: 11px; height: 11px; border-radius: 2px; display: inline-block; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 0.5rem; }
+  @media (max-width: 640px) { .stats { grid-template-columns: repeat(2, 1fr); } }
+  .stat-card { background: var(--surface-1); border-radius: var(--radius); padding: 0.8rem; }
+  .stat-card p:first-child { font-size: 12px; color: var(--text-secondary); margin: 0 0 4px; }
+  .stat-card p:last-child { font-size: 18px; font-weight: 600; margin: 0; }
+  .stat-card p.teo { font-size: 11.5px; font-weight: 400; color: var(--text-secondary); margin: 2px 0 0; }
+  details { margin-top: 1.5rem; background: var(--surface-1); border-radius: var(--radius); padding: 0.9rem 1.1rem; }
+  summary { cursor: pointer; font-weight: 600; color: var(--azul-itam); font-size: 14px; }
+  details p, details ul { font-size: 14px; color: var(--text-primary); }
+  details ul { margin: 0.5rem 0 0; padding-left: 1.2rem; }
+  details li { margin-bottom: 0.5rem; }
+  #nota { font-size: 13px; color: var(--text-secondary); margin-top: 1.25rem; }
+</style>
+</head>
+<body>
+
+<h1>Simulación: el Teorema Central del Límite en acción</h1>
+<p class="instrucciones">
+  Observación 4.7.1: el TCL no impone ninguna condición sobre la forma
+  de la población, solo que tenga varianza finita. Elige abajo una
+  población que se parezca a alguna variable económica o financiera
+  real (ninguna es normal) y observa cómo la distribución de
+  X&#772;<sub>n</sub> se acerca a la normal conforme crece n &mdash; sin
+  importar cuál elijas.
+</p>
+
+<div class="fila-control">
+  <label for="distSelector">Población (variable económica/financiera que representa)</label>
+  <select id="distSelector">
+    <option value="bernoulli">Bernoulli(p = 0.06) &mdash; incumplimiento de un crédito</option>
+    <option value="exponencial">Exponencial (media 10 días) &mdash; días entre reclamaciones de un seguro</option>
+    <option value="t5">t de Student (5 g.l.) &mdash; rendimiento diario estandarizado de un activo</option>
+    <option value="lognormal">Log-normal &mdash; monto de una reclamación de seguro</option>
+  </select>
+</div>
+
+<div class="fila-control">
+  <div class="fila-label"><label for="nSlider">Tamaño de muestra n</label><span class="valor" id="nOut">5</span></div>
+  <input type="range" id="nSlider" min="1" max="300" value="5" step="1">
+</div>
+
+<div class="panel">
+  <h2>Distribución de X&#772;<sub>n</sub> (2000 réplicas) vs. la normal que predice el TCL</h2>
+  <canvas id="lienzoHist"></canvas>
+  <div class="leyenda">
+    <span class="leyenda-item"><span class="leyenda-caja" style="background:var(--azul-itam); opacity:0.7;"></span>2000 réplicas de X&#772;<sub>n</sub></span>
+    <span class="leyenda-item"><span class="leyenda-linea" style="border-color:var(--coral); border-top-style:dashed;"></span>Normal(&mu;, &sigma;&sup2;/n) &mdash; TCL</span>
+  </div>
+</div>
+
+<div class="stats">
+  <div class="stat-card">
+    <p>Media de X&#772;<sub>n</sub> &mdash; emp. / teórica</p>
+    <p id="statMedia">&mdash;</p>
+    <p class="teo" id="statMediaTeo">&mu;</p>
+  </div>
+  <div class="stat-card">
+    <p>Varianza de X&#772;<sub>n</sub> &mdash; emp. / teórica</p>
+    <p id="statVar">&mdash;</p>
+    <p class="teo">&sigma;&sup2;/n</p>
+  </div>
+  <div class="stat-card">
+    <p>Asimetría &mdash; emp. / teórica (&asymp;)</p>
+    <p id="statAsim">&mdash;</p>
+    <p class="teo">&prop; 1/&radic;n &rarr; 0</p>
+  </div>
+  <div class="stat-card">
+    <p>Curtosis &mdash; emp. / teórica (&asymp;)</p>
+    <p id="statCurt">&mdash;</p>
+    <p class="teo">&rarr; 3 (mesocúrtica)</p>
+  </div>
+</div>
+
+<details>
+<summary>¿Por qué la asimetría y la curtosis se comportan así?</summary>
+<ul>
+  <li>Sea cual sea la población, la asimetría de X&#772;<sub>n</sub> se acerca a 0 aproximadamente como (asimetría de la población)/&radic;n, y su curtosis se acerca a 3 aproximadamente como 3&nbsp;+&nbsp;(exceso de curtosis de la población)/n. No es una casualidad de una distribución en particular: es una consecuencia general del Teorema Central del Límite, la misma idea que viste en <em>simulacion_chi2_convergencia.html</em> pero aplicable a cualquier población con varianza finita.</li>
+  <li>Con la Bernoulli(0.06) o la log-normal, la población de partida es muy asimétrica (pocos incumplimientos, pero grandes cuando ocurren); aun así, X&#772;<sub>n</sub> se simetriza con n grande.</li>
+  <li>Con la t de Student, la población ya es simétrica (asimetría 0) pero de colas pesadas (curtosis alta); el TCL corrige la curtosis, no la asimetría, que ya partía de 0.</li>
+  <li>Las curtosis empíricas de esta simulación pueden fluctuar bastante de una réplica a otra, sobre todo con la t de Student: los momentos de cuarto orden de poblaciones de colas pesadas se estiman con mucha variabilidad, aun con 2000 réplicas.</li>
+</ul>
+</details>
+
+<p id="nota">Cada vez que mueves n o cambias de población, se generan 2000 réplicas frescas de X&#772;<sub>n</sub> para recalcular el histograma y los estadísticos.</p>
+
+<script>
+(function () {
+  var B = 2000;
+  var N_MAX = 300;
+
+  function randNormal() {
+    var u1 = Math.random(), u2 = Math.random();
+    return Math.sqrt(-2 * Math.log(u1)) * Math.cos(2 * Math.PI * u2);
+  }
+  function randChiSq5() {
+    var s = 0;
+    for (var i = 0; i < 5; i++) { var z = randNormal(); s += z * z; }
+    return s;
+  }
+  function randT5() {
+    return randNormal() / Math.sqrt(randChiSq5() / 5);
+  }
+
+  var sigma_ln = 0.5;
+  var omega_ln = Math.exp(sigma_ln * sigma_ln);
+  var mu_ln = Math.exp(sigma_ln * sigma_ln / 2);
+  var var_ln = (omega_ln - 1) * Math.exp(sigma_ln * sigma_ln);
+  var skew_ln = (omega_ln + 2) * Math.sqrt(omega_ln - 1);
+  var kurtExc_ln = Math.pow(omega_ln, 4) + 2 * Math.pow(omega_ln, 3) + 3 * omega_ln * omega_ln - 6;
+
+  var p_bern = 0.06;
+  var varX_bern = p_bern * (1 - p_bern);
+
+  var POBLACIONES = {
+    bernoulli: {
+      muestrear: function () { return Math.random() < p_bern ? 1 : 0; },
+      mu: p_bern, varX: varX_bern,
+      skewPob: (1 - 2 * p_bern) / Math.sqrt(varX_bern),
+      kurtExcesoPob: (1 - 6 * varX_bern) / varX_bern
+    },
+    exponencial: {
+      muestrear: function () { return -10 * Math.log(1 - Math.random()); },
+      mu: 10, varX: 100, skewPob: 2, kurtExcesoPob: 6
+    },
+    t5: {
+      muestrear: randT5,
+      mu: 0, varX: 5 / 3, skewPob: 0, kurtExcesoPob: 6
+    },
+    lognormal: {
+      muestrear: function () { return Math.exp(sigma_ln * randNormal()); },
+      mu: mu_ln, varX: var_ln, skewPob: skew_ln, kurtExcesoPob: kurtExc_ln
+    }
+  };
+
+  var poblacionActual;
+
+  var nSlider = document.getElementById('nSlider');
+  var nOut = document.getElementById('nOut');
+  var distSelector = document.getElementById('distSelector');
+  var statMedia = document.getElementById('statMedia');
+  var statMediaTeo = document.getElementById('statMediaTeo');
+  var statVar = document.getElementById('statVar');
+  var statAsim = document.getElementById('statAsim');
+  var statCurt = document.getElementById('statCurt');
+
+  function replicasXbarra(n, pob) {
+    var out = new Array(B);
+    for (var b = 0; b < B; b++) {
+      var suma = 0;
+      for (var i = 0; i < n; i++) suma += pob.muestrear();
+      out[b] = suma / n;
+    }
+    return out;
+  }
+
+  function normPdf(x, media, varianza) {
+    return Math.exp(-0.5 * (x - media) * (x - media) / varianza) / Math.sqrt(2 * Math.PI * varianza);
+  }
+
+  var NUM_BINS = 30;
+
+  function renderHist(valores, media, varianza) {
+    var canvas = document.getElementById('lienzoHist');
+    var dpr = window.devicePixelRatio || 1;
+    var cssW = canvas.clientWidth, cssH = canvas.clientHeight;
+    canvas.width = cssW * dpr;
+    canvas.height = cssH * dpr;
+    var ctx = canvas.getContext('2d');
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, cssW, cssH);
+
+    var marginL = 42, marginR = 14, marginTop = 10, marginBottom = 24;
+    var plotW = cssW - marginL - marginR;
+    var plotH = cssH - marginTop - marginBottom;
+
+    var sd = Math.sqrt(varianza);
+    var lo = Math.min.apply(null, valores);
+    var hi = Math.max.apply(null, valores);
+    var rango = Math.max(hi - lo, 1e-9);
+    var loPlot = lo - rango * 0.05, hiPlot = hi + rango * 0.05;
+
+    function xOf(v) { return marginL + ((v - loPlot) / (hiPlot - loPlot)) * plotW; }
+
+    var bins = new Array(NUM_BINS).fill(0);
+    var w = (hiPlot - loPlot) / NUM_BINS;
+    for (var i = 0; i < valores.length; i++) {
+      var idx = Math.floor((valores[i] - loPlot) / w);
+      if (idx < 0) idx = 0;
+      if (idx > NUM_BINS - 1) idx = NUM_BINS - 1;
+      bins[idx]++;
+    }
+    // Convertir a densidad (area = 1) para poder comparar con la normal
+    var densBins = bins.map(function (c) { return c / (valores.length * w); });
+    var maxDens = Math.max.apply(null, densBins);
+
+    var maxNormPdf = normPdf(media, media, varianza);
+    var yMax = Math.max(maxDens, maxNormPdf) * 1.15;
+
+    function yOf(d) { return marginTop + plotH - (d / yMax) * plotH; }
+
+    // barras
+    var binW = plotW / NUM_BINS;
+    ctx.fillStyle = 'rgba(0,51,102,0.7)';
+    for (var b = 0; b < NUM_BINS; b++) {
+      var h = plotH - (yOf(densBins[b]) - marginTop);
+      ctx.fillRect(marginL + b * binW, yOf(densBins[b]), binW - 1, h);
+    }
+
+    // eje x con marcas
+    ctx.strokeStyle = '#9a9a94';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(marginL, marginTop + plotH);
+    ctx.lineTo(marginL + plotW, marginTop + plotH);
+    ctx.stroke();
+
+    ctx.fillStyle = '#595955';
+    ctx.font = '10px -apple-system, Helvetica, Arial, sans-serif';
+    ctx.textAlign = 'center';
+    for (var t = 0; t <= 4; t++) {
+      var val = loPlot + (t / 4) * (hiPlot - loPlot);
+      var x = xOf(val);
+      ctx.fillText(val.toFixed(2), x, marginTop + plotH + 14);
+    }
+
+    // curva normal teorica
+    ctx.strokeStyle = '#C0432A';
+    ctx.lineWidth = 2.2;
+    ctx.setLineDash([6, 4]);
+    ctx.beginPath();
+    var pasos = 200;
+    for (var k = 0; k <= pasos; k++) {
+      var xv = loPlot + (k / pasos) * (hiPlot - loPlot);
+      var yv = normPdf(xv, media, varianza);
+      var xpix = xOf(xv), ypix = yOf(yv);
+      if (k === 0) ctx.moveTo(xpix, ypix); else ctx.lineTo(xpix, ypix);
+    }
+    ctx.stroke();
+    ctx.setLineDash([]);
+  }
+
+  function fmt(v) {
+    if (Math.abs(v) >= 100) return v.toFixed(1);
+    return v.toFixed(3);
+  }
+
+  function actualizarTodo() {
+    var n = parseInt(nSlider.value, 10);
+    nOut.textContent = n;
+    poblacionActual = POBLACIONES[distSelector.value];
+
+    var valores = replicasXbarra(n, poblacionActual);
+
+    var mediaEmp = valores.reduce(function (a, x) { return a + x; }, 0) / B;
+    var m2 = valores.reduce(function (a, x) { return a + Math.pow(x - mediaEmp, 2); }, 0) / B;
+    var m3 = valores.reduce(function (a, x) { return a + Math.pow(x - mediaEmp, 3); }, 0) / B;
+    var m4 = valores.reduce(function (a, x) { return a + Math.pow(x - mediaEmp, 4); }, 0) / B;
+    var sdEmp = Math.sqrt(m2);
+    var asimEmp = m3 / Math.pow(sdEmp, 3);
+    var curtEmp = m4 / (m2 * m2);
+
+    var varTeo = poblacionActual.varX / n;
+    var asimTeo = poblacionActual.skewPob / Math.sqrt(n);
+    var curtTeo = 3 + poblacionActual.kurtExcesoPob / n;
+
+    statMedia.textContent = fmt(mediaEmp) + ' / ' + fmt(poblacionActual.mu);
+    statMediaTeo.textContent = '\u03bc = ' + fmt(poblacionActual.mu);
+    statVar.textContent = fmt(m2) + ' / ' + fmt(varTeo);
+    statAsim.textContent = fmt(asimEmp) + ' / ' + fmt(asimTeo);
+    statCurt.textContent = fmt(curtEmp) + ' / ' + fmt(curtTeo);
+
+    renderHist(valores, poblacionActual.mu, varTeo);
+  }
+
+  nSlider.addEventListener('input', actualizarTodo);
+  distSelector.addEventListener('change', actualizarTodo);
+  window.addEventListener('resize', actualizarTodo);
+
+  actualizarTodo();
+})();
+</script>
+
+<p style="margin-top:2rem; padding-top:0.75rem; border-top:1px solid #dcdcd8; font-size:12px; color:#595955; font-family:-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;">Elaborado por C. Vladimir Rodríguez-Caballero (Depto. Estadística, ITAM)</p>
+</body>
+</html>
