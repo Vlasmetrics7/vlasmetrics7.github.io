@@ -554,7 +554,7 @@ author = {Ignacio Garrón and Vladimir Rodríguez-Caballero and Esther Ruiz},
 </button>
 
 <div class="year-grid">
-    <button class="year-tile year-2026" onclick="toggleYear('year2026')">2026 (2) ▼</button>
+    <button class="year-tile year-2026" onclick="toggleYear('year2026')">2026 (4) ▼</button>
   <button class="year-tile year-2025" onclick="toggleYear('year2025')">2025 (1) ▼</button>
   <button class="year-tile year-2024" onclick="toggleYear('year2024')">2024 (2) ▼</button>
   <button class="year-tile year-2023" onclick="toggleYear('year2023')">2023 (2) ▼</button>
@@ -726,6 +726,131 @@ year = {2026},
 author = {Ignacio Garrón and Vladimir Rodríguez-Caballero and Esther Ruiz},
 }
   
+</code></pre>
+    </div>
+  </div>
+</div>
+
+<!-- ===================================================== -->
+<!-- ================ PAPER 2 (Econometrics & Statistics) = -->
+<!-- ===================================================== -->
+
+<div class="pub-card">
+
+  <img src="/assets/images/paper_default.png" class="pub-img">
+
+  <div class="pub-info">
+
+    <strong>The empirical distribution of sequential LS factors in Multi-level Dynamic Factor Models</strong><br>
+    Bellocca, G.P., Garrón, I., <u>Rodríguez-Caballero, C.V.</u>, & Ruiz, E.<br>
+    <em>Econometrics and Statistics</em>, forthcoming, 2026.
+
+    <div class="btn-row">
+
+      <a href="javascript:toggleDiv('abs-SLS2026')" class="btn btn--info btn--sm">ABS</a>
+
+      <div class="dropdown-container">
+        <button class="btn btn--primary btn--sm"
+                onclick="toggleDropdown('wp-SLS2026')">Working Papers ▼</button>
+        <div id="wp-SLS2026" class="dropdown-menu">
+            <a href="https://arxiv.org/pdf/2602.14813" target="_blank">Arxiv WP</a>
+        </div>
+      </div>
+
+      <a href="javascript:toggleDiv('bib-SLS2026')" class="btn btn--warning btn--sm">BIB</a>
+    </div>
+
+    <div id="abs-SLS2026" class="abstract-block" style="display:none;">
+      <strong>Abstract:</strong><br>
+      <em>Monte Carlo experiments confirm that under general forms of the idiosyncratic covariance
+matrix, the finite-sample distribution of the sequential Least Squares (SLS) estimator of global
+and group-specific factors in multi-level dynamic factor models (ML-DFMs) can be well
+approximated using the asymptotic distribution of Principal Components (PC) factors in dynamic
+factor models (DFMs). The performance of alternative estimators of the covariance matrix of
+the SLS factors is also analysed. The estimator that allows for idiosyncratic cross-sectional
+correlation and accounts for estimation uncertainty in factor loadings performs best. The results
+are illustrated by constructing confidence bounds for global and group-specific international
+business cycles.</em>
+    </div>
+
+    <div id="bib-SLS2026" class="bib-block" style="display:none;">
+<pre><code>@article{bellocca2026sequential,
+  title={The empirical distribution of sequential LS factors in Multi-level Dynamic Factor Models},
+  author={Gian Pietro Bellocca and Ignacio Garrón and C. Vladimir Rodríguez-Caballero and Esther Ruiz},
+  journal={Econometrics and Statistics},
+  year={2026},
+  note={Forthcoming}
+}
+</code></pre>
+    </div>
+  </div>
+</div>
+
+<!-- ===================================================== -->
+<!-- ==================== PAPER 2 (FARS / JSS) ============ -->
+<!-- ===================================================== -->
+
+<div class="pub-card">
+
+  <img src="/assets/images/paper_default.png" class="pub-img">
+
+  <div class="pub-info">
+
+    <strong>FARS: Factor Augmented Regression Scenarios in R</strong><br>
+    Bellocca, G.P., Garrón, I., <u>Rodríguez-Caballero, C.V.</u>, & Ruiz, E.<br>
+    <em>Journal of Statistical Software</em>, forthcoming, 2026.
+
+    <div class="btn-row">
+
+      <a href="javascript:toggleDiv('abs-FARS2026')" class="btn btn--info btn--sm">ABS</a>
+
+      <div class="dropdown-container">
+        <button class="btn btn--primary btn--sm"
+                onclick="toggleDropdown('wp-FARS2026')">Working Papers ▼</button>
+        <div id="wp-FARS2026" class="dropdown-menu">
+            <a href="https://arxiv.org/pdf/2507.10679" target="_blank">Arxiv WP</a>
+        </div>
+      </div>
+
+      <a href="javascript:toggleDiv('bib-FARS2026')" class="btn btn--warning btn--sm">BIB</a>
+
+      <div class="dropdown-container">
+        <button class="btn btn--dark btn--sm"
+                onclick="toggleDropdown('pkg-FARS2026')">Package ▼</button>
+        <div id="pkg-FARS2026" class="dropdown-menu">
+          <a href="https://CRAN.R-project.org/package=FARS" target="_blank">CRAN</a><br>
+          <a href="https://github.com/GPEBellocca/FARS" target="_blank">GitHub</a>
+        </div>
+      </div>
+    </div>
+
+    <div id="abs-FARS2026" class="abstract-block" style="display:none;">
+      <strong>Abstract:</strong><br>
+      <em>In the context of macroeconomic/financial time series, the FARS package provides
+a framework in R for the construction of conditional densities of the variable of interest
+based on the factor-augmented quantile regressions (FA-QRs) methodology. Within this
+context, the factors used to estimate the quantiles are extracted from a multi-level dynamic
+factor model with potential overlapping group-specific factors, while the densities are
+obtained by matching the estimated quantiles to a Skewed-Student density. The package
+also allows the construction of measures of risk as well as designing economic scenarios
+for the conditional densities. In particular, the package enables users to: (i) extract global
+and group-specific factors using a flexible multi-level factor structure and compute
+asymptotically valid confidence regions for the estimated factors, accounting for uncertainty
+in the factor loadings; (ii) obtain estimates of the parameters of the FA-QRs together with
+their standard deviations, and recover full predictive conditional densities from estimated
+quantiles; (iii) obtain risk measures based on extreme quantiles of the conditional densities;
+and (iv) estimate the conditional density and the corresponding extreme quantiles when the
+factors are stressed.</em>
+    </div>
+
+    <div id="bib-FARS2026" class="bib-block" style="display:none;">
+<pre><code>@article{bellocca2026fars,
+  title={FARS: Factor Augmented Regression Scenarios in R},
+  author={Gian Pietro Bellocca and Ignacio Garrón and C. Vladimir Rodríguez-Caballero and Esther Ruiz},
+  journal={Journal of Statistical Software},
+  year={2026},
+  note={Forthcoming}
+}
 </code></pre>
     </div>
   </div>
