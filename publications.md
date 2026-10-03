@@ -562,7 +562,7 @@ author = {Ignacio Garrón and Vladimir Rodríguez-Caballero and Esther Ruiz},
    <button class="year-tile year-2021" onclick="toggleYear('year2021')">2021 (5) ▼</button>
    <button class="year-tile year-2020" onclick="toggleYear('year2020')">2020 (1) ▼</button>
    <button class="year-tile year-2019" onclick="toggleYear('year2019')">2019 (1) ▼</button>
-   <button class="year-tile year-2018" onclick="toggleYear('year2018')"><2018 (6) ▼</button>
+   <button class="year-tile year-2018" onclick="toggleYear('year2018')">2018 (6) ▼</button>
 </div>
 
 <hr style="margin-top:5px; margin-bottom:25px; opacity:0.25;">
@@ -730,7 +730,7 @@ author = {Ignacio Garrón and Vladimir Rodríguez-Caballero and Esther Ruiz},
     </div>
   </div>
 </div>
-<!--</div>-->
+</div>
 
 <div id="year2025" class="year-block" style="display:none;">
   
