@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Simulación: la superficie de verosimilitud y cómo se encuentra su máximo</title>
+<style>
+  :root {
+    --azul-itam: #003366; --verde-itam: #00783C; --coral: #C0432A; --naranja: #B5651D;
+    --surface-1: #f2f2f0; --surface-2: #ffffff; --border: #dcdcd8;
+    --text-primary: #1a1a1a; --text-secondary: #595955; --radius: 8px;
+  }
+  * { box-sizing: border-box; }
+  body { font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; color: var(--text-primary);
+         background: var(--surface-2); max-width: 980px; margin: 0 auto; padding: 2rem 1.5rem 3rem; line-height: 1.55; }
+  h1 { font-size: 24px; font-weight: 600; margin: 0 0 0.5rem; color: var(--azul-itam); }
+  h2 { font-size: 16px; font-weight: 600; margin: 0 0 0.5rem; color: var(--azul-itam); }
+  h3 { font-size: 14px; font-weight: 600; margin: 0 0 0.4rem; color: var(--azul-itam); }
+  p.instrucciones { color: var(--text-secondary); margin: 0 0 0.75rem; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 0.5rem 0 1rem; }
+  .chip { background: var(--surface-1); border-radius: 999px; padding: 4px 12px; font-size: 12.5px; color: var(--text-secondary); }
+  .chip b { color: var(--azul-itam); }
+  .paneles { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 1.25rem; }
+  @media (max-width: 760px) { .paneles { grid-template-columns: 1fr; } }
+  .panel, .tarjeta { background: var(--surface-1); border-radius: var(--radius); padding: 0.8rem 0.8rem 0.6rem; }
+  .tarjeta { margin-bottom: 1.25rem; padding: 1rem 1.1rem; }
+  #c3d { width: 100%; height: 340px; display: block; cursor: grab; touch-action: none; }
+  #cmap { width: 100%; height: 300px; display: block; cursor: crosshair; }
+  #cgap { width: 100%; height: 170px; display: block; }
+  .fila { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; margin: 0.4rem 0; }
+  .fila label { font-size: 13px; color: var(--text-secondary); }
+  .fila input[type="range"] { width: 120px; accent-color: var(--coral); }
+  select { font-family: inherit; font-size: 13.5px; padding: 6px 8px; border: 1px solid var(--border); border-radius: 6px; background: #fff; max-width: 100%; }
+  button { font-family: inherit; font-size: 13.5px; font-weight: 600; color: #fff; background: var(--azul-itam); border: none;
+           border-radius: 999px; padding: 8px 16px; cursor: pointer; }
+  button.sec { background: var(--naranja); }
+  button.claro { background: #fff; color: var(--azul-itam); border: 1px solid var(--azul-itam); }
+  button:disabled { background: #9aa7b4; border-color: #9aa7b4; color: #fff; cursor: default; }
+  button:not(:disabled):hover { filter: brightness(1.1); }
+  .leyenda { display: flex; flex-wrap: wrap; gap: 6px 14px; margin: 0.3rem 0 0; font-size: 12px; color: var(--text-secondary); }
+  .pt { display: inline-block; width: 10px; height: 10px; border-radius: 50%; vertical-align: -1px; margin-right: 4px; }
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 0.6rem 0; }
+  @media (max-width: 640px) { .stats { grid-template-columns: 1fr 1fr; } }
+  .stat { background: #fff; border-radius: var(--radius); padding: 0.6rem 0.7rem; }
+  .stat p { margin: 0; }
+  .stat p.k { font-size: 11.5px; color: var(--text-secondary); }
+  .stat p.v { font-size: 17px; font-weight: 600; }
+  .stat.bien p.v { color: var(--verde-itam); }
+  #msg, #msgAzar { font-size: 13.5px; margin: 0.5rem 0; min-height: 1.4em; }
+  #msg .mal { color: var(--coral); font-weight: 600; }
+  #msg .ok { color: var(--verde-itam); font-weight: 600; }
+  .scroll { max-height: 190px; overflow-y: auto; background: #fff; border-radius: var(--radius); margin-top: 0.4rem; }
+  table { border-collapse: collapse; width: 100%; font-size: 12px; font-variant-numeric: tabular-nums; }
+  th, td { padding: 3px 8px; text-align: right; border-bottom: 1px solid var(--border); white-space: nowrap; }
+  th { position: sticky; top: 0; background: #fff; color: var(--text-secondary); font-weight: 600; }
+  td.l, th.l { text-align: left; }
+  tr.fuera td { color: var(--coral); }
+  .matrices { font-size: 13px; margin: 0.4rem 0; }
+  details { margin-top: 0.8rem; background: var(--surface-1); border-radius: var(--radius); padding: 0.8rem 1.1rem; }
+  summary { cursor: pointer; font-weight: 600; color: var(--azul-itam); font-size: 14px; }
+  details p, details li { font-size: 14px; }
+  details ul { margin: 0.4rem 0 0; padding-left: 1.2rem; }
+  .nota { font-size: 12.5px; color: var(--text-secondary); margin: 0.4rem 0 0; }
+</style>
+</head>
+<body>
+
+<h1>Simulación: la superficie de verosimilitud y cómo se encuentra su máximo</h1>
+<p class="instrucciones">
+  Es la superficie de la Figura 4.7: la log-verosimilitud
+  &ell;(&mu;,&sigma;&sup2;) de seis rendimientos diarios (%) de un activo, supuestos normales.
+  Primero evalúa la función en puntos al azar y comprueba que ninguno supera al estimador de máxima
+  verosimilitud; después mira cómo un algoritmo numérico sube, paso a paso, hasta la cima.
+</p>
+<div class="chips">
+  <span class="chip">Muestra: <b>1.2, &minus;0.8, 0.5, 0.1, &minus;0.3, 0.9</b></span>
+  <span class="chip">EMV: <b>&mu;&#770; = 0.2667</b>, <b>&sigma;&#770;&sup2; = 0.4689</b></span>
+  <span class="chip">&ell;(&theta;&#770;) = <b id="chipEll">&minus;6.2415</b></span>
+</div>
+
+<div class="paneles">
+  <div class="panel">
+    <h3>Superficie &ell;(&mu;,&sigma;&sup2;) (arrastra para girar)</h3>
+    <canvas id="c3d"></canvas>
+    <div class="fila">
+      <label>Azimut <input type="range" id="sAz" min="-180" max="180" value="-40"></label>
+      <label>Elevación <input type="range" id="sEl" min="5" max="85" value="28"></label>
+    </div>
+    <div class="leyenda">
+      <span><span class="pt" style="background:#C0432A"></span>evaluaciones al azar</span>
+      <span><span class="pt" style="background:#111"></span>EMV</span>
+      <span><span class="pt" style="background:#00783C"></span>iteraciones del algoritmo</span>
+    </div>
+    <p class="nota">Los puntos se dibujan siempre encima de la superficie, aunque estén del lado oculto.</p>
+  </div>
+  <div class="panel">
+    <h3>Vista desde arriba: curvas de nivel</h3>
+    <canvas id="cmap"></canvas>
+    <div class="fila">
+      <label>Clic en el mapa:</label>
+      <label><input type="radio" name="modoClic" value="evaluar" checked> evaluar ese punto</label>
+      <label><input type="radio" name="modoClic" value="inicio"> fijar punto de partida</label>
+    </div>
+    <p class="nota">Cada curva une puntos con la misma &ell;; la más interna está a 0.5 unidades de log-verosimilitud del máximo y las siguientes a 1.5, 3, 5, 8, 12, 18 y 26. La franja gris es la zona donde el Hessiano deja de ser definido negativo.</p>
+  </div>
+</div>
+
+<div class="tarjeta">
+  <h2>1. Evaluar al azar: ¿alguna supera al EMV?</h2>
+  <div class="fila">
+    <button id="bA1" type="button">+1 punto</button>
+    <button id="bA10" type="button">+10</button>
+    <button id="bA100" type="button">+100</button>
+    <button id="bA1000" type="button">+1,000</button>
+    <button id="bAB" type="button" class="claro">Borrar puntos</button>
+  </div>
+  <div class="stats">
+    <div class="stat"><p class="k">Evaluaciones</p><p class="v" id="stN">0</p></div>
+    <div class="stat bien"><p class="k">Superaron al EMV</p><p class="v" id="stSup">0 de 0</p></div>
+    <div class="stat"><p class="k">Mejor &ell; hallada al azar</p><p class="v" id="stMejor">&ndash;</p></div>
+  </div>
+  <p id="msgAzar">Presiona un botón para evaluar la log-verosimilitud en puntos elegidos al azar dentro de la ventana de la figura.</p>
+  <canvas id="cgap"></canvas>
+  <p class="nota">Brecha &ell;(&theta;&#770;) &minus; (mejor &ell; al azar), en escala logarítmica, contra el número de evaluaciones. Se acerca a cero, pero nunca la cruza, y baja lentamente: elegir puntos al azar es una forma muy ineficiente de buscar un máximo.</p>
+  <details>
+    <summary>¿Por qué ninguna evaluación puede superar al EMV?</summary>
+    <p>Con S = &Sigma;(x<sub>i</sub> &minus; x&#772;)&sup2; y n = 6,
+       &ell;(&mu;,&sigma;&sup2;) = &minus;(n/2) log 2&pi; &minus; (n/2) log &sigma;&sup2; &minus; [S + n(x&#772; &minus; &mu;)&sup2;]/(2&sigma;&sup2;).</p>
+    <ul>
+      <li>Para &sigma;&sup2; fijo, el término n(x&#772; &minus; &mu;)&sup2;/(2&sigma;&sup2;) es no negativo, así que &ell;(&mu;,&sigma;&sup2;) &le; &ell;(x&#772;,&sigma;&sup2;).</li>
+      <li>Con &sigma;&#770;&sup2; = S/n y t = &sigma;&#770;&sup2;/&sigma;&sup2;, &ell;(x&#772;,&sigma;&sup2;) &minus; &ell;(x&#772;,&sigma;&#770;&sup2;) = (n/2)[log t &minus; (t &minus; 1)] &le; 0, porque log t &le; t &minus; 1.</li>
+      <li>Por tanto &ell;(&theta;) &le; &ell;(&theta;&#770;) para todo &theta;, con igualdad solo en &theta;&#770;. En términos de razón de verosimilitudes, LR(&theta;&#770;, &theta;) &ge; 1: el EMV le gana a cualquier otro valor (Observación 4.9.5).</li>
+    </ul>
+  </details>
+</div>
+
+<div class="tarjeta">
+  <h2>2. Subir a la cima, paso a paso</h2>
+  <div class="fila">
+    <label for="selAlg">Algoritmo:</label>
+    <select id="selAlg">
+      <option value="newton">Newton-Raphson con retroceso (usa el Hessiano)</option>
+      <option value="bfgs_s2">BFGS como optim() de R, sobre (&mu;, &sigma;&sup2;)</option>
+      <option value="bfgs_log">BFGS como optim() de R, sobre (&mu;, log &sigma;&sup2;)</option>
+      <option value="puro">Newton puro (puede fallar)</option>
+    </select>
+  </div>
+  <div class="fila">
+    <label>Punto de partida:</label>
+    <button id="bTran" type="button" class="claro">Partida tranquila</button>
+    <button id="bDif" type="button" class="claro">Partida difícil</button>
+    <button id="bAzar" type="button" class="claro">Partida al azar</button>
+    <span class="nota" id="txtInicio"></span>
+  </div>
+  <div class="fila">
+    <button id="bSig" type="button">Siguiente iteración</button>
+    <button id="bPlay" type="button" class="sec">Reproducir</button>
+    <button id="bReset" type="button" class="claro">Reiniciar</button>
+    <label><input type="checkbox" id="chGrad" checked> gradiente y paso</label>
+    <label><input type="checkbox" id="chElip" checked> aproximación cuadrática (elipses)</label>
+  </div>
+  <p class="nota">La partida difícil es (&mu;, &sigma;&sup2;) = (&minus;0.73, 0.23): desde ahí Newton puro falla y BFGS sobre (&mu;, &sigma;&sup2;) se sale de la ventana. Prueba los cuatro algoritmos.</p>
+  <p class="nota">También puedes elegir el punto de partida con un clic en el mapa (activa &laquo;fijar punto de partida&raquo; debajo del mapa).</p>
+  <div id="msg"></div>
+  <div class="matrices" id="matrices"></div>
+  <div class="scroll"><table id="tabla"></table></div>
+  <div class="leyenda">
+    <span><svg width="26" height="8"><line x1="0" y1="4" x2="22" y2="4" stroke="#1d5fd1" stroke-width="2.4"/></svg> gradiente &nabla;&ell; (dirección; es perpendicular a la curva de nivel)</span>
+    <span><svg width="26" height="8"><line x1="0" y1="4" x2="22" y2="4" stroke="#111" stroke-width="2.4" stroke-dasharray="4 3"/></svg> paso completo propuesto (salto al máximo del modelo cuadrático)</span>
+    <span><svg width="26" height="8"><line x1="0" y1="4" x2="22" y2="4" stroke="#00783C" stroke-width="2.6"/></svg> paso que se acepta</span>
+  </div>
+  <details>
+    <summary>¿Qué hace cada algoritmo?</summary>
+    <ul>
+      <li><b>Newton-Raphson.</b> Cerca de &theta;<sub>k</sub> reemplaza &ell; por su aproximación cuadrática de Taylor (las elipses punteadas) y salta a su máximo: &theta;<sub>k+1</sub> = &theta;<sub>k</sub> &minus; H(&theta;<sub>k</sub>)<sup>&minus;1</sup>&nabla;&ell;(&theta;<sub>k</sub>). El gradiente &nabla;&ell; es el score; las ecuaciones de score son &nabla;&ell; = 0. Funciona cuando H es definido negativo, y aquí eso ocurre solo si &sigma;&sup2; &lt; 2&sigma;&#770;&sup2; &asymp; 0.94 (la franja gris del mapa no lo cumple). La versión con retroceso acorta el salto (t = 1, 1/2, 1/4, &hellip;) hasta que &ell; mejora, y si H no es definido negativo lo reemplaza por una versión con autovalores forzados a ser negativos.</li>
+      <li><b>Newton puro.</b> El salto completo, sin salvaguardas. Desde una partida lejos de la cima el modelo cuadrático puede apuntar a &sigma;&sup2; &le; 0, que no existe: el algoritmo falla. Desde 50 de las 90 partidas de una cuadrícula sobre la ventana de la figura ocurre así.</li>
+      <li><b>BFGS.</b> No calcula H: mantiene una matriz B que aproxima la inversa de &minus;H y la va corrigiendo con la diferencia entre los gradientes de dos iteraciones. Arranca con B = I (círculos), así que el primer paso es un ascenso por gradiente, y poco a poco los círculos se deforman en elipses parecidas a las curvas de nivel. Es una réplica fiel del código de optim(method = &quot;BFGS&quot;) en R: mismo retroceso (factor 0.2), misma condición de aceptación, mismo criterio de parada (cambio relativo en &ell; menor que 1.5e-8) y máximo de 100 iteraciones; sus iterados coinciden con los de optim.</li>
+      <li><b>Sobre (&mu;, log &sigma;&sup2;).</b> Optimizar sobre &phi; = log &sigma;&sup2; evita que el paso caiga en &sigma;&sup2; &le; 0. Es legítimo porque, por la invarianza del EMV, el máximo en &phi; corresponde al máximo en &sigma;&sup2;.</li>
+      <li><b>Al final.</b> En el máximo, &minus;H(&theta;&#770;)<sup>&minus;1</sup> = diag(&sigma;&#770;&sup2;/n, 2&sigma;&#770;&sup4;/n): las varianzas asintóticas del EMV, o sea la inversa de la información de Fisher.</li>
+    </ul>
+  </details>
+</div>
+
+<script>
+var Nucleo = (function () {
+  'use strict';
+
+  // ---- Muestra de la Figura 4.7: seis rendimientos diarios (%) ----
+  var Y = [1.2, -0.8, 0.5, 0.1, -0.3, 0.9];
+  var n = Y.length, i;
+  var yb = 0; for (i = 0; i < n; i++) yb += Y[i]; yb /= n;
+  var S = 0; for (i = 0; i < n; i++) S += (Y[i] - yb) * (Y[i] - yb);
+  var s2h = S / n;
+  var VENT = { muLo: yb - 1, muHi: yb + 1, s2Lo: Math.max(0.02, s2h - 0.35), s2Hi: s2h + 0.6 };
+
+  function Q(m) { var q = 0, k; for (k = 0; k < n; k++) q += (Y[k] - m) * (Y[k] - m); return q; }
+  function ell(m, s2) {
+    if (!(s2 > 0) || !isFinite(m) || !isFinite(s2)) return NaN;
+    return -0.5 * n * Math.log(2 * Math.PI) - 0.5 * n * Math.log(s2) - Q(m) / (2 * s2);
+  }
+  function grad(m, s2) { var q = Q(m); return [n * (yb - m) / s2, -n / (2 * s2) + q / (2 * s2 * s2)]; }
+  function hess(m, s2) {
+    var q = Q(m);
+    var a = -n / s2, b = -n * (yb - m) / (s2 * s2), c = n / (2 * s2 * s2) - q / (s2 * s2 * s2);
+    return [[a, b], [b, c]];
+  }
+  var ELL_MLE = ell(yb, s2h);
+  function norm2(v) { return Math.sqrt(v[0] * v[0] + v[1] * v[1]); }
+
+  // ---- Autovalores/autovectores de una matriz simetrica 2x2 ----
+  function eig2(H) {
+    var a = H[0][0], b = H[0][1], c = H[1][1];
+    var tr2 = (a + c) / 2, d = Math.sqrt(((a - c) / 2) * ((a - c) / 2) + b * b);
+    var l1 = tr2 + d, l2 = tr2 - d, v1;
+    if (Math.abs(b) > 1e-300) { v1 = [l1 - c, b]; var nv = norm2(v1); v1 = [v1[0] / nv, v1[1] / nv]; }
+    else v1 = (a >= c) ? [1, 0] : [0, 1];
+    return { l1: l1, l2: l2, v1: v1, v2: [-v1[1], v1[0]] };
+  }
+  function inv2(A) {
+    var det = A[0][0] * A[1][1] - A[0][1] * A[1][0];
+    return [[A[1][1] / det, -A[0][1] / det], [-A[1][0] / det, A[0][0] / det]];
+  }
+  function mv(A, v) { return [A[0][0] * v[0] + A[0][1] * v[1], A[1][0] * v[0] + A[1][1] * v[1]]; }
+  function dot(u, v) { return u[0] * v[0] + u[1] * v[1]; }
+
+  // ---- Newton-Raphson (puro, o con Hessiano modificado + retroceso de Armijo) ----
+  function newtonInit(m, s2, puro) {
+    return { tipo: 'newton', puro: !!puro, m: m, s2: s2, k: 0, hecho: false, razon: '', fallo: false, camino: [[m, s2]], maxit: 60 };
+  }
+  function newtonStep(st) {
+    if (st.hecho) return null;
+    var m = st.m, s2 = st.s2, g = grad(m, s2), gn = norm2(g);
+    if (gn < 1e-6) { st.hecho = true; st.razon = 'convergencia'; return { terminado: true, razon: st.razon }; }
+    var H = hess(m, s2), e = eig2(H), definido = e.l1 < 0, d, modo, A = null;
+    var info = { k: st.k + 1, desde: [m, s2], g: g, gradNorm: gn, definido: definido, H: H, eig: [e.l1, e.l2] };
+    if (definido) {
+      A = [[-H[0][0], -H[0][1]], [-H[1][0], -H[1][1]]];
+      d = mv(inv2(A), g); modo = 'Newton';
+    } else if (st.puro) {
+      var det = H[0][0] * H[1][1] - H[0][1] * H[1][0];
+      if (!isFinite(det) || det === 0) {
+        st.hecho = true; st.fallo = true; st.razon = 'fallo: el Hessiano es singular';
+        info.fallo = true; info.razon = st.razon; return info;
+      }
+      d = mv(inv2([[-H[0][0], -H[0][1]], [-H[1][0], -H[1][1]]]), g); modo = 'Newton puro (Hessiano no definido negativo)';
+    } else {
+      var w1 = -Math.max(Math.abs(e.l1), 1e-2), w2 = -Math.max(Math.abs(e.l2), 1e-2);
+      var p1 = dot(e.v1, g) / (-w1), p2 = dot(e.v2, g) / (-w2);   // d = V diag(1/|w'|) V^T g
+      d = [p1 * e.v1[0] + p2 * e.v2[0], p1 * e.v1[1] + p2 * e.v2[1]];
+      A = [[-(w1 * e.v1[0] * e.v1[0] + w2 * e.v2[0] * e.v2[0]), -(w1 * e.v1[0] * e.v1[1] + w2 * e.v2[0] * e.v2[1])],
+           [-(w1 * e.v1[0] * e.v1[1] + w2 * e.v2[0] * e.v2[1]), -(w1 * e.v1[1] * e.v1[1] + w2 * e.v2[1] * e.v2[1])]];
+      modo = 'Hessiano modificado (el Hessiano no es definido negativo)';
+    }
+    info.d = d; info.modo = modo; info.A = A; info.centro = [m + d[0], s2 + d[1]];
+    var t = 1, l0 = ell(m, s2), gd = dot(g, d), nm = m, ns = s2, ok = false;
+    if (st.puro) {
+      nm = m + d[0]; ns = s2 + d[1];
+      if (!(ns > 0) || !isFinite(ns) || !isFinite(nm)) {
+        st.hecho = true; st.fallo = true; st.razon = 'fallo: el paso de Newton cae en sigma2 <= 0';
+        info.fallo = true; info.razon = st.razon; info.t = 1; info.propuesto = [nm, ns]; return info;
+      }
+      ok = true;
+    } else {
+      while (t > 1e-14) {
+        nm = m + t * d[0]; ns = s2 + t * d[1];
+        if (ns > 0 && ell(nm, ns) >= l0 + 1e-4 * t * gd) { ok = true; break; }
+        t /= 2;
+      }
+      if (!ok) { st.hecho = true; st.razon = 'estancado'; info.razon = st.razon; return info; }
+    }
+    info.t = t; info.nuevo = [nm, ns];
+    st.m = nm; st.s2 = ns; st.k++; st.camino.push([nm, ns]);
+    if (norm2(grad(nm, ns)) < 1e-6) { st.hecho = true; st.razon = 'convergencia'; }
+    else if (st.k >= st.maxit) { st.hecho = true; st.razon = 'no convergio'; }
+    info.terminado = st.hecho; info.razon = st.razon;
+    return info;
+  }
+
+  // ---- BFGS: port de vmmin (R, optim(method="BFGS")), minimizando -ell ----
+  function aDatos(param, x) { return param === 'log' ? [x[0], Math.exp(x[1])] : [x[0], x[1]]; }
+  function bfgsInit(m, s2, param) {
+    var x = param === 'log' ? [m, Math.log(s2)] : [m, s2];
+    var fn = param === 'log' ? function (x) { return -ell(x[0], Math.exp(x[1])); }
+                             : function (x) { return -ell(x[0], x[1]); };
+    var gr = param === 'log' ? function (x) { var s = Math.exp(x[1]), g = grad(x[0], s); return [-g[0], -g[1] * s]; }
+                             : function (x) { var g = grad(x[0], x[1]); return [-g[0], -g[1]]; };
+    var st = { tipo: 'bfgs', param: param, fn: fn, gr: gr, b: x.slice(), X: x.slice(), c: [0, 0], t: [0, 0],
+               B: [[1, 0], [0, 1]], funcount: 1, gradcount: 1, iter: 1, ilast: 1, hecho: false, razon: '',
+               maxit: 100, camino: [aDatos(param, x)], k: 0 };
+    st.f = fn(x); st.Fmin = st.f; st.g = gr(x);
+    return st;
+  }
+  function bfgsStep(st) {
+    if (st.hecho) return null;
+    var STEPREDN = 0.2, ACCTOL = 1e-4, RELTEST = 10.0, RELTOL = 1.490116119384766e-08;
+    var info = { ensayos: [], aceptado: false }, guard = 0, a, b2, s, count;
+    while (guard++ < 200) {
+      if (st.ilast === st.gradcount) st.B = [[1, 0], [0, 1]];
+      st.X = st.b.slice(); st.c = st.g.slice();
+      var gradproj = 0;
+      for (a = 0; a < 2; a++) { s = 0; for (b2 = 0; b2 < 2; b2++) s -= st.B[a][b2] * st.g[b2]; st.t[a] = s; gradproj += s * st.g[a]; }
+      count = 0;
+      if (gradproj < 0) {
+        var steplength = 1.0, accpoint = false;
+        if (!info.desde) { info.desde = aDatos(st.param, st.X); info.dirUnit = st.t.slice(); info.g = st.g.slice(); info.B = [st.B[0].slice(), st.B[1].slice()]; }
+        do {
+          count = 0;
+          for (a = 0; a < 2; a++) { st.b[a] = st.X[a] + steplength * st.t[a]; if (RELTEST + st.X[a] === RELTEST + st.b[a]) count++; }
+          if (count < 2) {
+            st.f = st.fn(st.b); st.funcount++;
+            accpoint = isFinite(st.f) && (st.f <= st.Fmin + gradproj * steplength * ACCTOL);
+            info.ensayos.push({ t: steplength, x: aDatos(st.param, st.b), f: st.f, ok: accpoint });
+            if (!accpoint) steplength *= STEPREDN;
+          }
+        } while (!(count === 2 || accpoint));
+        var enough = (st.f > -Infinity) && Math.abs(st.f - st.Fmin) > RELTOL * (Math.abs(st.Fmin) + RELTOL);
+        if (!enough) { count = 2; st.Fmin = st.f; }
+        if (count < 2) {
+          st.Fmin = st.f; st.g = st.gr(st.b); st.gradcount++; st.iter++;
+          var D1 = 0;
+          for (a = 0; a < 2; a++) { st.t[a] = steplength * st.t[a]; st.c[a] = st.g[a] - st.c[a]; D1 += st.t[a] * st.c[a]; }
+          if (D1 > 0) {
+            var D2 = 0, Xv = [0, 0];
+            for (a = 0; a < 2; a++) { s = 0; for (b2 = 0; b2 < 2; b2++) s += st.B[a][b2] * st.c[b2]; Xv[a] = s; D2 += s * st.c[a]; }
+            D2 = 1.0 + D2 / D1;
+            for (a = 0; a < 2; a++) for (b2 = 0; b2 < 2; b2++)
+              st.B[a][b2] += (D2 * st.t[a] * st.t[b2] - Xv[a] * st.t[b2] - st.t[a] * Xv[b2]) / D1;
+          } else st.ilast = st.gradcount;
+          info.aceptado = true; info.t = steplength; info.nuevo = aDatos(st.param, st.b); info.Bnueva = [st.B[0].slice(), st.B[1].slice()];
+          if (D1 > 0) st.Bult = info.Bnueva;
+        } else {
+          if (st.ilast < st.gradcount) { count = 0; st.ilast = st.gradcount; }
+        }
+      } else {
+        count = 0;
+        if (st.ilast === st.gradcount) count = 2; else st.ilast = st.gradcount;
+      }
+      if (st.iter >= st.maxit) { st.hecho = true; st.razon = 'maxit'; }
+      else {
+        if (st.gradcount - st.ilast > 2 * 2) st.ilast = st.gradcount;
+        if (!(count !== 2 || st.ilast !== st.gradcount)) { st.hecho = true; st.razon = 'convergencia'; }
+      }
+      if (info.aceptado || st.hecho) break;
+    }
+    if (info.aceptado) { st.k++; st.camino.push(info.nuevo); }
+    if (st.hecho && st.razon === 'convergencia') {
+      var fin = aDatos(st.param, st.b), ult = st.camino[st.camino.length - 1];
+      if (Math.abs(fin[0] - ult[0]) > 0 || Math.abs(fin[1] - ult[1]) > 0) { st.camino.push(fin); info.final = fin; st.k++; }
+    }
+    info.terminado = st.hecho; info.razon = st.razon;
+    return info;
+  }
+  // Modelo cuadratico local de BFGS: centro (coords. de optimizacion) y matriz A = B^{-1} (Hessiano aprox. de -ell)
+  function bfgsModelo(st) {
+    var Bg = mv(st.B, st.g), xstar = [st.b[0] - Bg[0], st.b[1] - Bg[1]];
+    return { xstar: xstar, A: inv2(st.B), c1: 0.5 * dot(st.g, Bg) };
+  }
+
+  // ---- Utilidades geometricas ----
+  function elipse(centro, A, c, N) {      // { x : 1/2 (x-centro)^T A (x-centro) = c }
+    var e = eig2(A), r1 = Math.sqrt(2 * c / e.l1), r2 = Math.sqrt(2 * c / e.l2), pts = [], k, th, u, v;
+    for (k = 0; k <= N; k++) {
+      th = 2 * Math.PI * k / N; u = r1 * Math.cos(th); v = r2 * Math.sin(th);
+      pts.push([centro[0] + u * e.v1[0] + v * e.v2[0], centro[1] + u * e.v1[1] + v * e.v2[1]]);
+    }
+    return pts;
+  }
+  function recortarSegmento(p, q, R) {    // Liang-Barsky; R = {x0,x1,y0,y1}
+    var t0 = 0, t1 = 1, dx = q[0] - p[0], dy = q[1] - p[1];
+    var P = [-dx, dx, -dy, dy], Qv = [p[0] - R.x0, R.x1 - p[0], p[1] - R.y0, R.y1 - p[1]], k, r;
+    for (k = 0; k < 4; k++) {
+      if (P[k] === 0) { if (Qv[k] < 0) return null; }
+      else { r = Qv[k] / P[k]; if (P[k] < 0) { if (r > t1) return null; if (r > t0) t0 = r; } else { if (r < t0) return null; if (r < t1) t1 = r; } }
+    }
+    return { a: [p[0] + t0 * dx, p[1] + t0 * dy], b: [p[0] + t1 * dx, p[1] + t1 * dy], saleP: t0 > 0, saleQ: t1 < 1 };
+  }
+  function segmentosNivel(f, x0, x1, y0, y1, nx, ny, nivel) {   // marching squares
+    var segs = [], vals = [], ix, iy, X = [], Yg = [];
+    for (ix = 0; ix <= nx; ix++) X.push(x0 + (x1 - x0) * ix / nx);
+    for (iy = 0; iy <= ny; iy++) Yg.push(y0 + (y1 - y0) * iy / ny);
+    for (ix = 0; ix <= nx; ix++) { vals.push([]); for (iy = 0; iy <= ny; iy++) vals[ix].push(f(X[ix], Yg[iy]) - nivel); }
+    function cruce(xa, ya, va, xb, yb, vb) { var t = va / (va - vb); return [xa + t * (xb - xa), ya + t * (yb - ya)]; }
+    for (ix = 0; ix < nx; ix++) for (iy = 0; iy < ny; iy++) {
+      var v00 = vals[ix][iy], v10 = vals[ix + 1][iy], v11 = vals[ix + 1][iy + 1], v01 = vals[ix][iy + 1];
+      if (isNaN(v00) || isNaN(v10) || isNaN(v11) || isNaN(v01)) continue;
+      var pts = [];
+      if ((v00 > 0) !== (v10 > 0)) pts.push(cruce(X[ix], Yg[iy], v00, X[ix + 1], Yg[iy], v10));
+      if ((v10 > 0) !== (v11 > 0)) pts.push(cruce(X[ix + 1], Yg[iy], v10, X[ix + 1], Yg[iy + 1], v11));
+      if ((v01 > 0) !== (v11 > 0)) pts.push(cruce(X[ix], Yg[iy + 1], v01, X[ix + 1], Yg[iy + 1], v11));
+      if ((v00 > 0) !== (v01 > 0)) pts.push(cruce(X[ix], Yg[iy], v00, X[ix], Yg[iy + 1], v01));
+      if (pts.length === 2) segs.push([pts[0], pts[1]]);
+      else if (pts.length === 4) { segs.push([pts[0], pts[1]]); segs.push([pts[2], pts[3]]); }
+    }
+    return segs;
+  }
+  function evaluar(m, s2) { var l = ell(m, s2), d = ELL_MLE - l; return { ell: l, delta: d, LR: Math.exp(d) }; }
+
+  return { Y: Y, n: n, yb: yb, S: S, s2h: s2h, VENT: VENT, ell: ell, grad: grad, hess: hess, ELL_MLE: ELL_MLE,
+           eig2: eig2, inv2: inv2, mv: mv, dot: dot, norm2: norm2, newtonInit: newtonInit, newtonStep: newtonStep,
+           bfgsInit: bfgsInit, bfgsStep: bfgsStep, bfgsModelo: bfgsModelo, elipse: elipse, recortarSegmento: recortarSegmento,
+           segmentosNivel: segmentosNivel, evaluar: evaluar, aDatos: aDatos };
+})();
+
+</script>
+<script>
+(function () {
+  var N = Nucleo, V = N.VENT;
+  var $ = function (id) { return document.getElementById(id); };
+  var dpr = window.devicePixelRatio || 1;
+  var CTX = function (c, w, h) { c.width = Math.round(w * dpr); c.height = Math.round(h * dpr); var g = c.getContext('2d'); g.setTransform(dpr, 0, 0, dpr, 0, 0); g.clearRect(0, 0, w, h); return g; };
+  var f2 = function (x, d) { return (Math.round(x * Math.pow(10, d)) / Math.pow(10, d)).toFixed(d).replace('-', '\u2212'); };
+  var fsci = function (x) { return (Math.abs(x) >= 1e6 || (x !== 0 && Math.abs(x) < 1e-3)) ? x.toExponential(2).replace('-', '\u2212') : f2(x, 4); };
+  var RECT = { x0: V.muLo, x1: V.muHi, y0: V.s2Lo, y1: V.s2Hi };
+  var dentro = function (p) { return p[0] >= V.muLo && p[0] <= V.muHi && p[1] >= V.s2Lo && p[1] <= V.s2Hi; };
+  var PAL = [[0, 51, 102], [110, 155, 184], [181, 101, 29]];
+  function pal(t) { t = Math.max(0, Math.min(1, t)); var k = t * 2, i = Math.min(1, Math.floor(k)), u = k - i, a = PAL[i], b = PAL[i + 1];
+    return 'rgb(' + Math.round(a[0] + (b[0] - a[0]) * u) + ',' + Math.round(a[1] + (b[1] - a[1]) * u) + ',' + Math.round(a[2] + (b[2] - a[2]) * u) + ')'; }
+
+  // ------------------------------ estado ------------------------------
+  var az = -40, el = 28, modoClic = 'evaluar', algoritmo = 'newton', inicio = [-0.3, 0.3];
+  var puntos = [], mejorDelta = Infinity, superaron = 0, histBrecha = [];
+  var st = null, historial = [], preview = null, modeloBFGS = null, timer = null, geom = null;
+
+  // ------------------------------ malla 3D y contornos ------------------------------
+  var NU = 36, NV = 36, malla = [], ellMin = Infinity, ellMax = -Infinity, i, j;
+  for (i = 0; i <= NU; i++) { malla.push([]); for (j = 0; j <= NV; j++) {
+    var mu = V.muLo + (V.muHi - V.muLo) * i / NU, s2 = V.s2Lo + (V.s2Hi - V.s2Lo) * j / NV, l = N.ell(mu, s2);
+    malla[i].push({ mu: mu, s2: s2, l: l }); if (l < ellMin) ellMin = l; if (l > ellMax) ellMax = l; } }
+  var uDe = function (m) { return (m - (V.muLo + V.muHi) / 2) / ((V.muHi - V.muLo) / 2); };
+  var vDe = function (s) { return (s - (V.s2Lo + V.s2Hi) / 2) / ((V.s2Hi - V.s2Lo) / 2); };
+  var wDe = function (l) { return (l - ellMin) / (ellMax - ellMin) * 1.1 - 0.55; };
+  var NIV = [0.5, 1.5, 3, 5, 8, 12, 18, 26], contornos = NIV.map(function (d, k) {
+    return { d: d, color: pal(1 - k / (NIV.length - 1)), segs: N.segmentosNivel(N.ell, V.muLo, V.muHi, V.s2Lo, V.s2Hi, 110, 110, N.ELL_MLE - d) }; });
+
+  // ------------------------------ 3D ------------------------------
+  function proy(u, v, w) { var a = az * Math.PI / 180, e = el * Math.PI / 180;
+    var x1 = u * Math.cos(a) - v * Math.sin(a), y1 = u * Math.sin(a) + v * Math.cos(a);
+    return { x: x1, y: y1 * Math.sin(e) + w * Math.cos(e), d: y1 * Math.cos(e) - w * Math.sin(e) }; }
+  function dibujar3D() {
+    var c = $('c3d'), cw = c.clientWidth, ch = c.clientHeight, g = CTX(c, cw, ch);
+    var minx = Infinity, maxx = -Infinity, miny = Infinity, maxy = -Infinity, uu, vv, ww, p;
+    for (uu = -1; uu <= 1; uu += 2) for (vv = -1; vv <= 1; vv += 2) for (ww = -0.55; ww <= 0.56; ww += 1.1) { p = proy(uu, vv, ww);
+      minx = Math.min(minx, p.x); maxx = Math.max(maxx, p.x); miny = Math.min(miny, p.y); maxy = Math.max(maxy, p.y); }
+    var pad = 18, sc = Math.min((cw - 2 * pad) / (maxx - minx), (ch - 2 * pad) / (maxy - miny));
+    var ox = cw / 2 - sc * (minx + maxx) / 2, oy = ch / 2 + sc * (miny + maxy) / 2;
+    var P = function (u, v, w) { var q = proy(u, v, w); return [ox + sc * q.x, oy - sc * q.y, q.d]; };
+    var quads = [], a, b2;
+    for (a = 0; a < NU; a++) for (b2 = 0; b2 < NV; b2++) {
+      var c00 = malla[a][b2], c10 = malla[a + 1][b2], c11 = malla[a + 1][b2 + 1], c01 = malla[a][b2 + 1];
+      var q0 = P(uDe(c00.mu), vDe(c00.s2), wDe(c00.l)), q1 = P(uDe(c10.mu), vDe(c10.s2), wDe(c10.l)),
+          q2 = P(uDe(c11.mu), vDe(c11.s2), wDe(c11.l)), q3 = P(uDe(c01.mu), vDe(c01.s2), wDe(c01.l));
+      quads.push({ d: (q0[2] + q1[2] + q2[2] + q3[2]) / 4, pts: [q0, q1, q2, q3], t: ((c00.l + c11.l) / 2 - ellMin) / (ellMax - ellMin) });
+    }
+    quads.sort(function (x, y) { return y.d - x.d; });
+    quads.forEach(function (q) { g.beginPath(); g.moveTo(q.pts[0][0], q.pts[0][1]); for (var k = 1; k < 4; k++) g.lineTo(q.pts[k][0], q.pts[k][1]); g.closePath();
+      g.fillStyle = pal(1 - q.t); g.fill(); g.strokeStyle = 'rgba(255,255,255,0.18)'; g.lineWidth = 0.5; g.stroke(); });
+    // base y etiquetas
+    var corners = [[-1, -1], [1, -1], [1, 1], [-1, 1]].map(function (t) { return P(t[0], t[1], -0.55); });
+    g.strokeStyle = 'rgba(0,0,0,0.35)'; g.lineWidth = 1; g.beginPath(); g.moveTo(corners[0][0], corners[0][1]); for (var k = 1; k < 4; k++) g.lineTo(corners[k][0], corners[k][1]); g.closePath(); g.stroke();
+    g.fillStyle = '#333'; g.font = 'italic 13px Georgia, serif'; g.textAlign = 'center';
+    var lm = P(0, -1.22, -0.55), ls = P(1.22, 0, -0.55), ll = P(-1.05, -1.05, 0.62);
+    g.fillText('\u03bc', lm[0], lm[1]); g.fillText('\u03c3\u00b2', ls[0], ls[1]); g.fillText('\u2113', ll[0], ll[1]);
+    // puntos y trayectorias
+    var pt3 = function (m, s) { return P(uDe(m), vDe(s), wDe(N.ell(m, s)) + 0.012); };
+    puntos.forEach(function (q) { var r = pt3(q.m, q.s); g.beginPath(); g.arc(r[0], r[1], 2.6, 0, 6.2832); g.fillStyle = '#C0432A'; g.fill(); g.strokeStyle = '#fff'; g.lineWidth = 0.8; g.stroke(); });
+    if (puntos.length) { var u = puntos[puntos.length - 1], ru = pt3(u.m, u.s); g.beginPath(); g.arc(ru[0], ru[1], 6, 0, 6.2832); g.strokeStyle = '#111'; g.lineWidth = 1.6; g.stroke(); }
+    var cam = st.camino, k2, s1;
+    for (k2 = 1; k2 < cam.length; k2++) { var cl = N.recortarSegmento(cam[k2 - 1], cam[k2], RECT); if (!cl) continue;
+      g.beginPath(); for (s1 = 0; s1 <= 14; s1++) { var pp = pt3(cl.a[0] + (cl.b[0] - cl.a[0]) * s1 / 14, cl.a[1] + (cl.b[1] - cl.a[1]) * s1 / 14); if (s1 === 0) g.moveTo(pp[0], pp[1]); else g.lineTo(pp[0], pp[1]); }
+      g.strokeStyle = '#fff'; g.lineWidth = 4.2; g.stroke();
+      g.strokeStyle = '#111'; g.lineWidth = 2; g.stroke(); }
+    cam.forEach(function (q, k) { if (!dentro(q)) return; var r = pt3(q[0], q[1]); g.beginPath(); g.arc(r[0], r[1], k === cam.length - 1 ? 5.2 : 3.6, 0, 6.2832); g.fillStyle = '#00783C'; g.fill(); g.strokeStyle = '#fff'; g.lineWidth = 1.2; g.stroke(); });
+    var re = pt3(N.yb, N.s2h); g.beginPath(); g.arc(re[0], re[1], 4.2, 0, 6.2832); g.fillStyle = '#111'; g.fill(); g.strokeStyle = '#fff'; g.lineWidth = 1.2; g.stroke();
+    g.fillStyle = '#111'; g.font = '600 11px sans-serif'; g.textAlign = 'left'; g.fillText('EMV', re[0] + 7, re[1] - 6);
+  }
+
+  // ------------------------------ mapa ------------------------------
+  function flecha(g, x0, y0, x1, y1, color, w, dash) {
+    var dx = x1 - x0, dy = y1 - y0, L = Math.sqrt(dx * dx + dy * dy); if (L < 1) return;
+    g.save(); g.strokeStyle = color; g.fillStyle = color; g.lineWidth = w; g.setLineDash(dash || []);
+    g.beginPath(); g.moveTo(x0, y0); g.lineTo(x1, y1); g.stroke(); g.setLineDash([]);
+    var ux = dx / L, uy = dy / L, h = 8; g.beginPath(); g.moveTo(x1, y1); g.lineTo(x1 - h * ux + 4 * uy, y1 - h * uy - 4 * ux); g.lineTo(x1 - h * ux - 4 * uy, y1 - h * uy + 4 * ux); g.closePath(); g.fill(); g.restore();
+  }
+  function dibujarMapa() {
+    var c = $('cmap'), cw = c.clientWidth, ml = 44, mr = 12, mt = 12, mb = 34;
+    var plotW = cw - ml - mr, sc = plotW / (V.muHi - V.muLo), plotH = sc * (V.s2Hi - V.s2Lo), ch = plotH + mt + mb;
+    c.style.height = ch + 'px'; var g = CTX(c, cw, ch);
+    geom = { ml: ml, mt: mt, plotW: plotW, plotH: plotH, sc: sc };
+    var X = function (m) { return ml + (m - V.muLo) * sc; }, Yp = function (s) { return mt + plotH - (s - V.s2Lo) * sc; };
+    g.save(); g.beginPath(); g.rect(ml, mt, plotW, plotH); g.clip();
+    g.fillStyle = '#fff'; g.fillRect(ml, mt, plotW, plotH);
+    // franja donde H no es definido negativo
+    var yTop = Yp(V.s2Hi), yCut = Yp(2 * N.s2h); g.fillStyle = 'rgba(0,0,0,0.06)'; g.fillRect(ml, yTop, plotW, yCut - yTop);
+    g.strokeStyle = 'rgba(0,0,0,0.16)'; g.lineWidth = 1; for (var hx = ml - plotH; hx < ml + plotW; hx += 9) { g.beginPath(); g.moveTo(hx, yCut); g.lineTo(hx + (yCut - yTop), yTop); g.stroke(); }
+    g.strokeStyle = 'rgba(0,0,0,0.35)'; g.beginPath(); g.moveTo(ml, yCut); g.lineTo(ml + plotW, yCut); g.stroke();
+    g.fillStyle = '#555'; g.font = '10.5px sans-serif'; g.textAlign = 'right'; g.fillText('H no definido negativo (\u03c3\u00b2 \u2265 0.94)', ml + plotW - 6, yTop + 13);
+    contornos.forEach(function (cn) { g.strokeStyle = cn.color; g.lineWidth = 1.3; g.beginPath(); cn.segs.forEach(function (s) { g.moveTo(X(s[0][0]), Yp(s[0][1])); g.lineTo(X(s[1][0]), Yp(s[1][1])); }); g.stroke(); });
+    // puntos al azar
+    puntos.forEach(function (q) { g.beginPath(); g.arc(X(q.m), Yp(q.s), 2.8, 0, 6.2832); g.fillStyle = '#C0432A'; g.fill(); g.strokeStyle = '#fff'; g.lineWidth = 0.8; g.stroke(); });
+    if (puntos.length) { var u = puntos[puntos.length - 1]; g.beginPath(); g.arc(X(u.m), Yp(u.s), 6, 0, 6.2832); g.strokeStyle = '#111'; g.lineWidth = 1.6; g.stroke(); }
+    // vista previa del siguiente paso: elipses, gradiente, paso propuesto y aceptado
+    var cam = st.camino, cur = cam[cam.length - 1];
+    if (preview && !st.hecho) {
+      if ($('chElip').checked) dibujarElipses(g, X, Yp);
+      if ($('chGrad').checked) {
+        var gr = N.grad(cur[0], cur[1]), gn = N.norm2(gr), L = 46; if (gn > 0) flecha(g, X(cur[0]), Yp(cur[1]), X(cur[0]) + L * gr[0] / gn, Yp(cur[1]) - L * gr[1] / gn, '#1d5fd1', 2.4);
+        var prop = (st.tipo === 'bfgs') ? (preview.ensayos && preview.ensayos.length ? preview.ensayos[0].x : null) : (preview.fallo ? preview.propuesto : preview.centro);
+        if (prop && isFinite(prop[0]) && isFinite(prop[1])) { var cl = N.recortarSegmento(cur, prop, RECT); if (cl) { flecha(g, X(cl.a[0]), Yp(cl.a[1]), X(cl.b[0]), Yp(cl.b[1]), '#111', 1.8, [5, 4]); if (cl.saleQ) marcaSalida(g, X(cl.b[0]), Yp(cl.b[1]), prop); } }
+        if (preview.nuevo) { var cl2 = N.recortarSegmento(cur, preview.nuevo, RECT); if (cl2) flecha(g, X(cl2.a[0]), Yp(cl2.a[1]), X(cl2.b[0]), Yp(cl2.b[1]), '#00783C', 3); }
+      }
+    }
+    // camino recorrido
+    for (var k = 1; k < cam.length; k++) { var cs = N.recortarSegmento(cam[k - 1], cam[k], RECT); if (!cs) continue;
+      g.strokeStyle = '#fff'; g.lineWidth = 4.2; g.beginPath(); g.moveTo(X(cs.a[0]), Yp(cs.a[1])); g.lineTo(X(cs.b[0]), Yp(cs.b[1])); g.stroke();
+      g.strokeStyle = '#111'; g.lineWidth = 2; g.beginPath(); g.moveTo(X(cs.a[0]), Yp(cs.a[1])); g.lineTo(X(cs.b[0]), Yp(cs.b[1])); g.stroke();
+      if (cs.saleQ) marcaSalida(g, X(cs.b[0]), Yp(cs.b[1]), cam[k]); }
+    cam.forEach(function (q, k) { if (!dentro(q)) return; g.beginPath(); g.arc(X(q[0]), Yp(q[1]), k === cam.length - 1 ? 5.4 : 3.8, 0, 6.2832);
+      if (k === 0) { g.fillStyle = '#fff'; g.fill(); g.strokeStyle = '#00783C'; g.lineWidth = 2; g.stroke(); } else { g.fillStyle = '#00783C'; g.fill(); g.strokeStyle = '#fff'; g.lineWidth = 1.2; g.stroke(); }
+      if (k <= 9 || k === cam.length - 1) { g.fillStyle = '#111'; g.font = '600 10.5px sans-serif'; g.textAlign = 'left'; g.fillText(String(k), X(q[0]) + 6, Yp(q[1]) - 5); } });
+    if (st.fallo && preview === null && historial.length && historial[historial.length - 1].propuesto) {
+      var pr = historial[historial.length - 1].propuesto, cl3 = N.recortarSegmento(cur, pr, RECT);
+      if (cl3) { g.strokeStyle = '#C0432A'; g.lineWidth = 2; g.setLineDash([5, 4]); g.beginPath(); g.moveTo(X(cl3.a[0]), Yp(cl3.a[1])); g.lineTo(X(cl3.b[0]), Yp(cl3.b[1])); g.stroke(); g.setLineDash([]); if (cl3.saleQ) marcaSalida(g, X(cl3.b[0]), Yp(cl3.b[1]), pr, '#C0432A'); } }
+    var ex = X(N.yb), ey = Yp(N.s2h); g.strokeStyle = '#111'; g.lineWidth = 2; g.beginPath(); g.moveTo(ex - 5, ey - 5); g.lineTo(ex + 5, ey + 5); g.moveTo(ex - 5, ey + 5); g.lineTo(ex + 5, ey - 5); g.stroke();
+    g.fillStyle = '#111'; g.font = '600 11px sans-serif'; g.textAlign = 'left'; g.fillText('EMV', ex + 8, ey - 6);
+    g.restore();
+    // marco y ejes
+    g.strokeStyle = '#9a9a94'; g.lineWidth = 1; g.strokeRect(ml, mt, plotW, plotH);
+    g.fillStyle = '#595955'; g.font = '10.5px sans-serif'; g.textAlign = 'center';
+    [-0.5, 0, 0.5, 1].forEach(function (m) { if (m > V.muLo && m < V.muHi) g.fillText(f2(m, 1), X(m), mt + plotH + 14); });
+    g.textAlign = 'right'; [0.2, 0.4, 0.6, 0.8, 1.0].forEach(function (s) { if (s > V.s2Lo && s < V.s2Hi) g.fillText(f2(s, 1), ml - 5, Yp(s) + 3.5); });
+    g.textAlign = 'center'; g.font = 'italic 12.5px Georgia, serif'; g.fillText('\u03bc', ml + plotW / 2, mt + plotH + 28); g.save(); g.translate(11, mt + plotH / 2); g.rotate(-Math.PI / 2); g.fillText('\u03c3\u00b2', 0, 0); g.restore();
+  }
+  function marcaSalida(g, x, y, p, color) {
+    g.save(); g.fillStyle = color || '#111'; g.font = '600 10.5px sans-serif'; g.textAlign = x > geom.ml + geom.plotW / 2 ? 'right' : 'left';
+    var ty = Math.max(geom.mt + 12, Math.min(geom.mt + geom.plotH - 4, y)); var tx = x > geom.ml + geom.plotW / 2 ? x - 6 : x + 6;
+    g.fillText('sale de la ventana: \u03c3\u00b2 = ' + (isFinite(p[1]) ? f2(p[1], 2) : '\u221e'), tx, ty); g.restore();
+  }
+  function dibujarElipses(g, X, Yp) {
+    var cur = st.camino[st.camino.length - 1], fr = [1, 0.4, 0.12, 0.03], pts, A, c1, centro, aData = function (q) { return q; };
+    if (st.tipo === 'newton') { if (!preview.A) return; A = preview.A; centro = preview.centro; var gg = preview.g, Ai = N.inv2(A); c1 = 0.5 * N.dot(gg, N.mv(Ai, gg)); }
+    else { if (!modeloBFGS) return; A = modeloBFGS.A; centro = modeloBFGS.xstar; c1 = modeloBFGS.c1; if (st.param === 'log') aData = function (q) { return [q[0], Math.exp(q[1])]; }; }
+    g.save(); g.setLineDash([3, 3]); g.lineWidth = 1.3; g.strokeStyle = 'rgba(0,0,0,0.75)';
+    fr.forEach(function (f) { if (!(c1 > 0)) return; pts = N.elipse(centro, A, c1 * f, 90).map(aData); g.beginPath(); var pen = false;
+      for (var k = 0; k < pts.length; k++) { var q = pts[k]; if (!isFinite(q[0]) || !isFinite(q[1])) { pen = false; continue; } if (!pen) { g.moveTo(X(q[0]), Yp(q[1])); pen = true; } else g.lineTo(X(q[0]), Yp(q[1])); } g.stroke(); });
+    g.setLineDash([]); var cc = aData(centro); if (isFinite(cc[0]) && isFinite(cc[1]) && cc[0] > V.muLo && cc[0] < V.muHi && cc[1] > V.s2Lo && cc[1] < V.s2Hi) { g.fillStyle = '#111'; g.beginPath(); g.arc(X(cc[0]), Yp(cc[1]), 2.8, 0, 6.2832); g.fill(); }
+    g.restore();
+  }
+
+  // ------------------------------ brecha ------------------------------
+  function dibujarGap() {
+    var c = $('cgap'), cw = c.clientWidth, ch = c.clientHeight, g = CTX(c, cw, ch), ml = 46, mr = 12, mt = 10, mb = 26, pw = cw - ml - mr, ph = ch - mt - mb;
+    var maxN = Math.max(10, puntos.length), lx = function (n) { return ml + Math.log10(n) / Math.log10(maxN) * pw; }, ly = function (v) { return mt + (1 - (Math.log10(v) + 7) / 8) * ph; };
+    g.strokeStyle = '#dcdcd8'; g.fillStyle = '#595955'; g.font = '10.5px sans-serif'; g.lineWidth = 1; g.textAlign = 'right';
+    [-6, -4, -2, 0].forEach(function (e) { var y = ly(Math.pow(10, e)); g.beginPath(); g.moveTo(ml, y); g.lineTo(ml + pw, y); g.stroke(); g.fillText('1e' + (e < 0 ? '\u2212' + (-e) : e), ml - 4, y + 3.5); });
+    g.textAlign = 'center'; for (var e = 0; Math.pow(10, e) <= maxN; e++) { var x = lx(Math.pow(10, e)); g.beginPath(); g.moveTo(x, mt); g.lineTo(x, mt + ph); g.stroke(); g.fillText(Math.pow(10, e) >= 1000 ? (Math.pow(10, e) / 1000) + 'k' : String(Math.pow(10, e)), x, mt + ph + 14); }
+    g.fillText('evaluaciones', ml + pw / 2, ch - 2);
+    if (histBrecha.length) { g.strokeStyle = '#C0432A'; g.lineWidth = 2; g.beginPath(); histBrecha.forEach(function (h, k) { var x = lx(Math.max(1, h[0])), y = ly(Math.max(1e-7, h[1])); if (k === 0) g.moveTo(x, y); else g.lineTo(x, y); }); g.stroke(); }
+    g.strokeStyle = '#00783C'; g.setLineDash([5, 4]); g.lineWidth = 1.5; g.beginPath(); g.moveTo(ml, ly(1e-7)); g.lineTo(ml + pw, ly(1e-7)); g.stroke(); g.setLineDash([]);
+    g.fillStyle = '#00783C'; g.textAlign = 'right'; g.fillText('brecha 0 = el EMV (nunca se cruza)', ml + pw, ly(1e-7) - 4);
+  }
+
+  // ------------------------------ evaluacion al azar ------------------------------
+  function agregarPunto(m, s) {
+    var e = N.evaluar(m, s); puntos.push({ m: m, s: s, delta: e.delta, ell: e.ell, LR: e.LR });
+    if (e.delta < -1e-9) superaron++; if (e.delta < mejorDelta) mejorDelta = e.delta; histBrecha.push([puntos.length, Math.max(mejorDelta, 1e-12)]);
+  }
+  function azar(k) { for (var q = 0; q < k; q++) agregarPunto(V.muLo + (V.muHi - V.muLo) * Math.random(), V.s2Lo + (V.s2Hi - V.s2Lo) * Math.random()); refrescarAzar(); redibujar(); }
+  function refrescarAzar() {
+    var nP = puntos.length; $('stN').textContent = nP; $('stSup').textContent = superaron + ' de ' + nP;
+    $('stMejor').textContent = nP ? f2(N.ELL_MLE - mejorDelta, 4) : '\u2013';
+    var u = puntos[nP - 1];
+    $('msgAzar').innerHTML = nP ? '\u00daltimo punto: \u03bc = ' + f2(u.m, 3) + ', \u03c3\u00b2 = ' + f2(u.s, 3) + ', \u2113 = ' + f2(u.ell, 3) + '. Diferencia con el EMV: \u2113(\u03b8\u0302) \u2212 \u2113 = <b>' + f2(u.delta, 4) + ' \u2265 0</b>, es decir, LR(\u03b8\u0302, \u03b8) = <b>' + fsci(u.LR) + ' \u2265 1</b>. Mejor brecha hasta ahora: ' + fsci(mejorDelta) + '.'
+      : 'Presiona un bot\u00f3n para evaluar la log-verosimilitud en puntos elegidos al azar dentro de la ventana de la figura.';
+  }
+
+  // ------------------------------ algoritmos ------------------------------
+  function clonar(o) { if (Array.isArray(o)) return o.map(clonar); if (o && typeof o === 'object') { var r = {}; for (var k in o) r[k] = (typeof o[k] === 'function') ? o[k] : clonar(o[k]); return r; } return o; }
+  function reiniciar() {
+    detener(); historial = [];
+    if (algoritmo === 'newton') st = N.newtonInit(inicio[0], inicio[1], false);
+    else if (algoritmo === 'puro') st = N.newtonInit(inicio[0], inicio[1], true);
+    else st = N.bfgsInit(inicio[0], inicio[1], algoritmo === 'bfgs_log' ? 'log' : 's2');
+    actualizarPreview(); redibujar(); refrescarPaso(null);
+  }
+  function actualizarPreview() {
+    preview = null; modeloBFGS = null; if (st.hecho) return;
+    if (st.tipo === 'bfgs') modeloBFGS = N.bfgsModelo(st);
+    var c = clonar(st); preview = (st.tipo === 'newton') ? N.newtonStep(c) : N.bfgsStep(c);
+  }
+  function siguiente() {
+    if (st.hecho) return; var info = (st.tipo === 'newton') ? N.newtonStep(st) : N.bfgsStep(st);
+    historial.push(info); actualizarPreview(); redibujar(); refrescarPaso(info);
+    if (st.hecho) detener();
+  }
+  function detener() { if (timer) { clearInterval(timer); timer = null; } $('bPlay').textContent = 'Reproducir'; }
+  function reproducir() { if (timer) { detener(); return; } if (st.hecho) return; $('bPlay').textContent = 'Pausar'; timer = setInterval(siguiente, 850); }
+
+  function descripcionEnsayos(info) {
+    return info.ensayos.map(function (e) { var why = e.ok ? 'aceptado' : (isFinite(e.f) ? 'no mejora lo suficiente (condici\u00f3n de Armijo)' : '\u03c3\u00b2 \u2264 0 o \u2113 no definida'); return 't = ' + (e.t >= 0.01 ? f2(e.t, 2) : e.t.toExponential(1)) + ': ' + why; }).join('; ');
+  }
+  function refrescarPaso(info) {
+    var m = $('msg'), txt = '', razon = st.razon;
+    if (info && info.k !== undefined && st.tipo === 'newton' && !info.terminado || (info && st.tipo === 'newton')) {
+      txt += 'Paso ' + (info.k || '') + ': ' + (info.modo || '') + '. Autovalores de H: ' + f2(info.eig[0], 1) + ' y ' + f2(info.eig[1], 1) + (info.definido ? ' (definido negativo)' : ' (no definido negativo)') + '.';
+      if (info.t !== undefined && !info.fallo) txt += ' Factor de retroceso t = ' + f2(info.t, 3) + '.';
+    } else if (info && st.tipo === 'bfgs' && info.ensayos) {
+      if (info.aceptado) txt += 'Iteraci\u00f3n ' + st.k + ' de BFGS. Pasos de prueba (t multiplica el paso completo): ' + descripcionEnsayos(info) + '.';
+      else txt += '\u00daltimo paso de BFGS: el cambio relativo de \u2113 ya es menor que 1.5e-8 (criterio de parada de optim), por eso se detiene aqu\u00ed.';
+    } else if (!info) {
+      txt = st.tipo === 'bfgs' ? 'Presiona \u00abSiguiente iteraci\u00f3n\u00bb. Con B = I (c\u00edrculos), el primer paso es un ascenso por gradiente.' : 'Presiona \u00abSiguiente iteraci\u00f3n\u00bb. En cada paso se ven el gradiente, el modelo cuadr\u00e1tico y el salto que propone el algoritmo.';
+    }
+    if (st.hecho) {
+      if (razon === 'convergencia') { var fin = st.camino[st.camino.length - 1]; txt += ' <span class="ok">Converge en ' + st.k + ' pasos</span> a (\u03bc, \u03c3\u00b2) = (' + f2(fin[0], 4) + ', ' + f2(fin[1], 4) + '); \u2113(\u03b8\u0302) \u2212 \u2113(final) = ' + fsci(N.ELL_MLE - N.ell(fin[0], fin[1])) + '.'; }
+      else if (razon === 'maxit') txt += ' <span class="mal">BFGS se detiene en el m\u00e1ximo de 100 iteraciones sin cumplir el criterio de convergencia (en R: convergence = 1).</span> Aunque la trayectoria se acerca en \u03bc, se arrastra por un valle casi plano en \u03c3\u00b2.';
+      else if (st.fallo) { var ult = historial[historial.length - 1] || {};
+        txt += ' <span class="mal">' + razon.charAt(0).toUpperCase() + razon.slice(1) + '.</span> ' + (ult.definido === false
+          ? 'Aqu\u00ed el Hessiano ni siquiera es definido negativo, as\u00ed que el salto de Newton no apunta a un m\u00e1ximo del modelo cuadr\u00e1tico.'
+          : 'Aunque el Hessiano s\u00ed es definido negativo en este punto, el m\u00e1ximo del modelo cuadr\u00e1tico cae en \u03c3\u00b2 \u2264 0, que no pertenece al dominio: la aproximaci\u00f3n de Taylor solo vale cerca del punto, y \u2113 no se parece a una par\u00e1bola cuando \u03c3\u00b2 es peque\u00f1a (el t\u00e9rmino \u2212(n/2) log \u03c3\u00b2 crece sin cota).')
+          + ' Prueba Newton con retroceso o BFGS desde el mismo punto.'; }
+      else txt += ' ' + razon + '.';
+    }
+    m.innerHTML = txt; $('txtInicio').textContent = 'Partida actual: (\u03bc, \u03c3\u00b2) = (' + f2(inicio[0], 3) + ', ' + f2(inicio[1], 3) + ')';
+    $('bSig').disabled = st.hecho; llenarTabla(); matrices();
+  }
+  function llenarTabla() {
+    var h = '<tr><th class="l">k</th><th>\u03bc<sub>k</sub></th><th>\u03c3\u00b2<sub>k</sub></th><th>\u2113(\u03b8<sub>k</sub>)</th><th>\u2016\u2207\u2113\u2016</th></tr>';
+    st.camino.forEach(function (q, k) { var l = N.ell(q[0], q[1]), gn = (q[1] > 0) ? N.norm2(N.grad(q[0], q[1])) : NaN, out = !dentro(q);
+      h += '<tr' + (out ? ' class="fuera"' : '') + '><td class="l">' + k + (out ? ' (fuera de la ventana)' : '') + '</td><td>' + f2(q[0], 4) + '</td><td>' + (isFinite(q[1]) ? f2(q[1], 4) : '\u2013') + '</td><td>' + (isFinite(l) ? f2(l, 4) : '\u2013') + '</td><td>' + (isFinite(gn) ? gn.toExponential(2) : '\u2013') + '</td></tr>'; });
+    $('tabla').innerHTML = h; var sc = $('tabla').parentNode; sc.scrollTop = sc.scrollHeight;
+  }
+  function matrices() {
+    var d = $('matrices'); d.innerHTML = '';
+    if (!(st.hecho && st.razon === 'convergencia')) return;
+    var fin = st.camino[st.camino.length - 1], H = N.hess(fin[0], fin[1]), I = N.inv2([[-H[0][0], -H[0][1]], [-H[1][0], -H[1][1]]]);
+    var fm = function (M) { return '[[' + M[0].map(function (x) { return fsci(x); }).join(', ') + '], [' + M[1].map(function (x) { return fsci(x); }).join(', ') + ']]'; };
+    var s = '\u2212H(\u03b8\u0302)<sup>\u22121</sup> en el punto final = ' + fm(I) + ' (te\u00f3rica: diag(\u03c3\u0302\u00b2/n, 2\u03c3\u0302\u2074/n) = diag(' + f2(N.s2h / N.n, 4) + ', ' + f2(2 * N.s2h * N.s2h / N.n, 4) + ')).';
+    if (st.tipo === 'bfgs') { var objetivo = st.param === 'log' ? '[[' + f2(N.s2h / N.n, 4) + ', 0], [0, ' + f2(2 / N.n, 4) + ']] (en coordenadas (\u03bc, log \u03c3\u00b2))' : '[[' + f2(N.s2h / N.n, 4) + ', 0], [0, ' + f2(2 * N.s2h * N.s2h / N.n, 4) + ']]';
+      if (st.Bult) s += '<br>Última matriz B que BFGS aprendió (aproxima la inversa de &minus;H) = ' + fm(st.Bult) + '; valor al que apunta: ' + objetivo + '. Como BFGS no calcula H, B es solo una aproximaci\u00f3n y puede quedar lejos si el algoritmo se detiene pronto.'; }
+    d.innerHTML = s;
+  }
+
+  // ------------------------------ eventos ------------------------------
+  function redibujar() { dibujar3D(); dibujarMapa(); dibujarGap(); }
+  [['bA1', 1], ['bA10', 10], ['bA100', 100], ['bA1000', 1000]].forEach(function (p) { $(p[0]).addEventListener('click', function () { azar(p[1]); }); });
+  $('bAB').addEventListener('click', function () { puntos = []; mejorDelta = Infinity; superaron = 0; histBrecha = []; refrescarAzar(); redibujar(); });
+  $('selAlg').addEventListener('change', function () { algoritmo = this.value; reiniciar(); });
+  $('bTran').addEventListener('click', function () { inicio = [-0.3, 0.3]; reiniciar(); });
+  $('bDif').addEventListener('click', function () { inicio = [-0.73, 0.23]; reiniciar(); });
+  $('bAzar').addEventListener('click', function () { inicio = [V.muLo + (V.muHi - V.muLo) * Math.random(), V.s2Lo + (V.s2Hi - V.s2Lo) * Math.random()]; reiniciar(); });
+  $('bSig').addEventListener('click', siguiente); $('bPlay').addEventListener('click', reproducir); $('bReset').addEventListener('click', reiniciar);
+  $('chGrad').addEventListener('change', redibujar); $('chElip').addEventListener('change', redibujar);
+  var radios = document.getElementsByName('modoClic'); for (i = 0; i < radios.length; i++) radios[i].addEventListener('change', function () { modoClic = this.value; });
+  $('cmap').addEventListener('click', function (ev) {
+    var r = this.getBoundingClientRect(), x = ev.clientX - r.left, y = ev.clientY - r.top; if (!geom) return;
+    if (x < geom.ml || x > geom.ml + geom.plotW || y < geom.mt || y > geom.mt + geom.plotH) return;
+    var m = V.muLo + (x - geom.ml) / geom.sc, s = V.s2Lo + (geom.mt + geom.plotH - y) / geom.sc;
+    if (modoClic === 'evaluar') { agregarPunto(m, s); refrescarAzar(); redibujar(); } else { inicio = [m, s]; reiniciar(); }
+  });
+  var arrastre = null, c3 = $('c3d');
+  c3.addEventListener('pointerdown', function (e) { arrastre = [e.clientX, e.clientY, az, el]; c3.style.cursor = 'grabbing'; });
+  window.addEventListener('pointermove', function (e) { if (!arrastre) return; az = arrastre[2] + (e.clientX - arrastre[0]) * 0.6; el = Math.max(5, Math.min(85, arrastre[3] + (e.clientY - arrastre[1]) * 0.4));
+    az = ((az + 180) % 360 + 360) % 360 - 180; $('sAz').value = Math.round(az); $('sEl').value = Math.round(el); dibujar3D(); });
+  window.addEventListener('pointerup', function () { arrastre = null; c3.style.cursor = 'grab'; });
+  $('sAz').addEventListener('input', function () { az = +this.value; dibujar3D(); }); $('sEl').addEventListener('input', function () { el = +this.value; dibujar3D(); });
+  window.addEventListener('resize', redibujar);
+  $('chipEll').textContent = f2(N.ELL_MLE, 4);
+  refrescarAzar(); reiniciar();
+  window.__sim = { azar: azar, siguiente: siguiente, reiniciar: reiniciar, estado: function () { return { st: st, puntos: puntos, superaron: superaron, preview: preview, historial: historial }; }, fijarInicio: function (a) { inicio = a; }, fijarAlgoritmo: function (a) { algoritmo = a; } };
+})();
+</script>
+
+<p style="margin-top:2rem; padding-top:0.75rem; border-top:1px solid #dcdcd8; font-size:12px; color:#595955; font-family:-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;">Elaborado por C. Vladimir Rodríguez-Caballero (Depto. Estadística, ITAM)</p>
+</body>
+</html>

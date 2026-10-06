@@ -52,6 +52,10 @@ Simulaciones interactivas de convergencia y consistencia, usadas en clase:
 - [Simulación: consistencia de la proporción muestral](/assets/interactivos/simulacion_consistencia_phat.html){: .btn .btn--sm }
 - [Simulación: el Teorema Central del Límite](/assets/interactivos/simulacion_tcl_distribuciones.html){: .btn .btn--sm }
 
+Simulaciones interactivas de máxima verosimilitud, usadas en clase:
+
+- [Simulación: la superficie de verosimilitud y cómo se encuentra su máximo](/assets/interactivos/simulacion_superficie_verosimilitud.html){: .btn .btn--sm }
+
 Código en R, un script por capítulo:
 
 - [Capítulo 1](/assets/codigo-R/capitulo1.R){: .btn .btn--sm }
