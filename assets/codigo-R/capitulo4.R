@@ -101,6 +101,49 @@ dev.off()
 cat("Figura exportada: cap4_sesgo_precision.png\n")
 
 # --------------------------------------------------------------
+# 1c-bis. Figura 4.1 REPLICADA con estimadores reales (Solucion del
+#     Ejercicio "Disenando la Figura 4.1", Seccion 4.6). A diferencia
+#     de la figura esquematica anterior, aqui cada "x" es una
+#     repeticion real de un estimador genuino: Xbar_n (insesgado) y
+#     theta_hat_n = Xbar_n + 1 (sesgado, sesgo fijo = 1 para todo n),
+#     cada uno a n chica y n grande, para X_1,...,X_n iid N(theta,1).
+#     Esta figura NO va en el libro: va unicamente en el manual de
+#     soluciones, como parte de la respuesta a ese ejercicio.
+# --------------------------------------------------------------
+set.seed(2026)
+theta_real <- 5
+n_chica <- 3
+n_grande <- 100
+B_fig1 <- 14
+
+# Xbar_n ~ N(theta, 1/n) exactamente, para poblacion N(theta,1)
+xbar_chica  <- rnorm(B_fig1, mean = theta_real,     sd = 1/sqrt(n_chica))
+xbar_grande <- rnorm(B_fig1, mean = theta_real,     sd = 1/sqrt(n_grande))
+theta_hat_chica  <- rnorm(B_fig1, mean = theta_real + 1, sd = 1/sqrt(n_chica))
+theta_hat_grande <- rnorm(B_fig1, mean = theta_real + 1, sd = 1/sqrt(n_grande))
+
+dibujar_panel_real <- function(valores, etiqueta, xlim) {
+  set.seed(1)  # jitter vertical reproducible, solo para separar puntos visualmente
+  y_jitter <- runif(length(valores), -0.6, 0.6)
+  plot(NA, xlim = xlim, ylim = c(-1, 1), axes = FALSE, xlab = "", ylab = "")
+  rect(theta_real - 0.35, -1, theta_real + 0.35, 1, col = "gray92", border = "gray30", lwd = 1.3)
+  abline(v = theta_real, lty = 2, col = "gray30")
+  points(valores, y_jitter, pch = 4, cex = 1.6, lwd = 2, col = AZUL_ITAM)
+  text(theta_real, -0.85, expression(theta), cex = 1.3, col = "gray30")
+  axis(1, at = pretty(xlim), cex.axis = 0.85)
+  mtext(etiqueta, side = 3, line = 0.3, cex = 1.05, font = 2)
+}
+
+png("cap4_sesgo_precision_replicada.png", width = 2200, height = 1900, res = 220)
+par(mfrow = c(2, 2), mar = c(3, 0.5, 2, 0.5), oma = c(0, 0, 0, 0))
+dibujar_panel_real(theta_hat_chica,  expression("(a) " * hat(theta)[n] == bar(X)[n] + 1 * ",  n = 3 (sesgado, poco preciso)"), xlim = c(2.5, 7.5))
+dibujar_panel_real(theta_hat_grande, expression("(b) " * hat(theta)[n] == bar(X)[n] + 1 * ",  n = 100 (sesgado, preciso)"),   xlim = c(2.5, 7.5))
+dibujar_panel_real(xbar_chica,       expression("(c) " * bar(X)[n] * ",  n = 3 (insesgado, poco preciso)"),                  xlim = c(2.5, 7.5))
+dibujar_panel_real(xbar_grande,      expression("(d) " * bar(X)[n] * ",  n = 100 (insesgado, preciso)"),                     xlim = c(2.5, 7.5))
+dev.off()
+cat("Figura exportada: cap4_sesgo_precision_replicada.png\n")
+
+# --------------------------------------------------------------
 # 1c. Figura: jerarquía de los modos de convergencia (Sección 4.4,
 #     Figura cap4_jerarquia_convergencia, Teorema 4.4.1). Elipses
 #     anidadas: distribución (más externa) > probabilidad > {casi
@@ -459,3 +502,61 @@ cat("ee empírico (", B_sr, "réplicas, n =", n_sr, "):", round(ee_empirico, 4),
 cat("La cercanía entre ambos confirma numéricamente la fórmula del",
     "Ejemplo del Sharpe ratio (Método Delta, Sección 4.8).\n")
 
+
+# --------------------------------------------------------------
+# 10. Localización de una Cauchy: media, mediana y EMV; tres
+#     estimadores del error estándar del EMV (Sección 4.9, Ejemplo de
+#     la Cauchy y Ejercicio de los tres estimadores del error estándar).
+#     X_i ~ Cauchy(theta, 1): la media muestral no es consistente; la
+#     mediana tiene varianza asintótica pi^2/4; el EMV, que no tiene
+#     forma cerrada, alcanza la cota 1/I(theta) = 2 (I(theta) = 1/2).
+# --------------------------------------------------------------
+set.seed(2026)
+theta_c <- 0                        # parámetro de localización verdadero
+
+# Log-verosimilitud (sin constantes) y EMV con optim(), partiendo de la
+# mediana: en muestras pequeñas la verosimilitud puede tener varios
+# máximos locales, y la mediana es un punto de partida razonable.
+ll_cauchy  <- function(t, x) -sum(log(1 + (x - t)^2))
+emv_cauchy <- function(x) optim(median(x), function(t) -ll_cauchy(t, x),
+                                method = "BFGS")$par
+
+# (a) n * Var(estimador) para la mediana y el EMV, con n grande
+n_c <- 400; B_c <- 2000
+est_c <- replicate(B_c, {
+  x <- rcauchy(n_c, theta_c)
+  c(mediana = median(x), emv = emv_cauchy(x))
+})
+avar_emp_c <- n_c * apply(est_c, 1, var)
+cat("n*Var mediana:", round(avar_emp_c["mediana"], 3), "(teórico pi^2/4 =", round(pi^2/4, 3), ")\n")
+cat("n*Var EMV    :", round(avar_emp_c["emv"], 3), "(teórico 1/I = 2)\n")
+cat("eficiencia relativa empírica de la mediana:", round(2/avar_emp_c["mediana"], 3),
+    "(teórica 8/pi^2 =", round(8/pi^2, 3), ")\n")
+
+# (b) Tres estimadores del error estándar del EMV en una muestra (n = 30):
+#     información esperada, observada y producto externo de scores.
+ee_cauchy <- function(x) {
+  th <- emv_cauchy(x); u <- x - th; n <- length(x)
+  c(emv = th,
+    esperada = 1/sqrt(n/2),                             # I(theta) = 1/2
+    observada = 1/sqrt(sum(2*(1 - u^2)/(1 + u^2)^2)),   # -l''(theta_hat)
+    prod_ext = 1/sqrt(sum((2*u/(1 + u^2))^2)))          # suma de scores^2
+}
+n_e <- 30
+x_e <- rcauchy(n_e, theta_c)
+cat("n = 30: EMV =", round(emv_cauchy(x_e), 4), "| media =", round(mean(x_e), 4),
+    "| mediana =", round(median(x_e), 4), "\n")
+u_e <- x_e - emv_cauchy(x_e)
+cat("información: esperada", n_e/2, "| observada", round(sum(2*(1 - u_e^2)/(1 + u_e^2)^2), 2),
+    "| producto externo", round(sum((2*u_e/(1 + u_e^2))^2), 2), "\n")
+cat("error estándar:", round(ee_cauchy(x_e)[c("esperada", "observada", "prod_ext")], 4), "\n")
+
+# (c) Variabilidad de los tres errores estándar entre muestras
+for (n_s in c(30, 500)) {
+  ee_s <- replicate(1000, ee_cauchy(rcauchy(n_s, theta_c)))
+  cat("n =", n_s, "(1000 muestras): media de ee [esp., obs., prod. ext.] =",
+      round(rowMeans(ee_s[c("esperada", "observada", "prod_ext"), ]), 4),
+      "| desv. est. de ee [obs., prod. ext.] =",
+      round(apply(ee_s[c("observada", "prod_ext"), ], 1, sd), 4),
+      "| desv. est. real del EMV =", round(sd(ee_s["emv", ]), 4), "\n")
+}
