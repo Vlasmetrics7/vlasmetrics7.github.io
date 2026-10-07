@@ -55,6 +55,7 @@ Simulaciones interactivas de convergencia y consistencia, usadas en clase:
 Simulaciones interactivas de máxima verosimilitud, usadas en clase:
 
 - [Simulación: la superficie de verosimilitud y cómo se encuentra su máximo](/assets/interactivos/simulacion_superficie_verosimilitud.html){: .btn .btn--sm }
+- [Simulación: máximos locales en la verosimilitud de una mezcla de normales](/assets/interactivos/simulacion_maximos_locales.html){: .btn .btn--sm }
 
 Código en R, un script por capítulo:
 

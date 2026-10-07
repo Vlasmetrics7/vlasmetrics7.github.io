@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Simulación: máximos locales en la verosimilitud de una mezcla de normales</title>
+<style>
+  :root {
+    --azul-itam: #003366; --verde-itam: #00783C; --coral: #C0432A; --naranja: #B5651D;
+    --surface-1: #f2f2f0; --surface-2: #ffffff; --border: #dcdcd8;
+    --text-primary: #1a1a1a; --text-secondary: #595955; --radius: 8px;
+  }
+  * { box-sizing: border-box; }
+  body { font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; color: var(--text-primary);
+         background: var(--surface-2); max-width: 980px; margin: 0 auto; padding: 2rem 1.5rem 3rem; line-height: 1.55; }
+  h1 { font-size: 24px; font-weight: 600; margin: 0 0 0.5rem; color: var(--azul-itam); }
+  h2 { font-size: 16px; font-weight: 600; margin: 0 0 0.5rem; color: var(--azul-itam); }
+  h3 { font-size: 14px; font-weight: 600; margin: 0 0 0.4rem; color: var(--azul-itam); }
+  p.instrucciones { color: var(--text-secondary); margin: 0 0 0.75rem; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 0.5rem 0 1rem; }
+  .chip { background: var(--surface-1); border-radius: 999px; padding: 4px 12px; font-size: 12.5px; color: var(--text-secondary); }
+  .chip b { color: var(--azul-itam); }
+  .paneles { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 1.25rem; }
+  @media (max-width: 760px) { .paneles { grid-template-columns: 1fr; } }
+  .panel, .tarjeta { background: var(--surface-1); border-radius: var(--radius); padding: 0.8rem 0.8rem 0.6rem; }
+  .tarjeta { margin-bottom: 1.25rem; padding: 1rem 1.1rem; }
+  #chist { width: 100%; height: 300px; display: block; }
+  #cmap { width: 100%; height: 300px; display: block; cursor: crosshair; }
+  .fila { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; margin: 0.4rem 0; }
+  .fila label { font-size: 13px; color: var(--text-secondary); }
+  .fila input[type="range"] { width: 140px; accent-color: var(--coral); }
+  select { font-family: inherit; font-size: 13.5px; padding: 6px 8px; border: 1px solid var(--border); border-radius: 6px; background: #fff; max-width: 100%; }
+  button { font-family: inherit; font-size: 13.5px; font-weight: 600; color: #fff; background: var(--azul-itam); border: none;
+           border-radius: 999px; padding: 8px 16px; cursor: pointer; }
+  button.sec { background: var(--naranja); }
+  button.claro { background: #fff; color: var(--azul-itam); border: 1px solid var(--azul-itam); }
+  button:disabled { background: #9aa7b4; border-color: #9aa7b4; color: #fff; cursor: default; }
+  button:not(:disabled):hover { filter: brightness(1.1); }
+  .leyenda { display: flex; flex-wrap: wrap; gap: 6px 14px; margin: 0.3rem 0 0; font-size: 12px; color: var(--text-secondary); }
+  .pt { display: inline-block; width: 10px; height: 10px; border-radius: 50%; vertical-align: -1px; margin-right: 4px; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 0.6rem 0; }
+  @media (max-width: 640px) { .stats { grid-template-columns: 1fr 1fr; } }
+  .stat { background: #fff; border-radius: var(--radius); padding: 0.6rem 0.7rem; }
+  .stat p { margin: 0; }
+  .stat p.k { font-size: 11.5px; color: var(--text-secondary); }
+  .stat p.v { font-size: 17px; font-weight: 600; }
+  #msg, #msgMuchas, #msgMuestra { font-size: 13.5px; margin: 0.5rem 0; min-height: 1.4em; }
+  .mal { color: var(--coral); font-weight: 600; }
+  .ok { color: var(--verde-itam); font-weight: 600; }
+  .gris { color: var(--text-secondary); font-weight: 600; }
+  table { border-collapse: collapse; width: 100%; font-size: 12.5px; font-variant-numeric: tabular-nums; background: #fff; border-radius: var(--radius); }
+  th, td { padding: 4px 8px; text-align: right; border-bottom: 1px solid var(--border); white-space: nowrap; }
+  th { color: var(--text-secondary); font-weight: 600; }
+  td.l, th.l { text-align: left; }
+  .barra { display: inline-block; height: 9px; border-radius: 3px; vertical-align: middle; }
+  details { margin-top: 0.8rem; background: var(--surface-1); border-radius: var(--radius); padding: 0.8rem 1.1rem; }
+  summary { cursor: pointer; font-weight: 600; color: var(--azul-itam); font-size: 14px; }
+  details p, details li { font-size: 14px; }
+  details ul { margin: 0.4rem 0 0; padding-left: 1.2rem; }
+  .nota { font-size: 12.5px; color: var(--text-secondary); margin: 0.4rem 0 0; }
+</style>
+</head>
+<body>
+
+<h1>Simulación: máximos locales en la verosimilitud de una mezcla de normales</h1>
+<p class="instrucciones">
+  Los rendimientos diarios (%) de un activo vienen de dos regímenes: el <b>calmo</b>, 70&nbsp;% de los días, con media
+  &mu;<sub>1</sub> y desviación 0.5, y el <b>turbulento</b>, 30&nbsp;% de los días, con media &mu;<sub>2</sub> y desviación 2.
+  La densidad es f(y) = &pi; &phi;(y; &mu;<sub>1</sub>, &sigma;<sub>1</sub>&sup2;) + (1 &minus; &pi;) &phi;(y; &mu;<sub>2</sub>, &sigma;<sub>2</sub>&sup2;).
+  Aquí se conocen &pi;, &sigma;<sub>1</sub> y &sigma;<sub>2</sub> y se estiman las dos medias, para poder ver la
+  superficie &ell;(&mu;<sub>1</sub>, &mu;<sub>2</sub>). Verás que la superficie tiene <em>más de una cima</em>: un algoritmo
+  que sube por la pendiente puede detenerse en una cima que no es la más alta.
+</p>
+<div class="chips">
+  <span class="chip">Verdad: <b>&mu;<sub>1</sub> = 0.5, &mu;<sub>2</sub> = &minus;1</b></span>
+  <span class="chip">Muestra: <b id="chipN">n = 100</b></span>
+  <span class="chip">Cimas (m&aacute;ximos locales) en esta muestra: <b id="chipK">&ndash;</b></span>
+  <span class="chip">&ell; en el m&aacute;ximo global: <b id="chipL">&ndash;</b></span>
+</div>
+
+<div class="paneles">
+  <div class="panel">
+    <h3>Los datos y la mezcla en la iteración actual</h3>
+    <canvas id="chist"></canvas>
+    <div class="leyenda">
+      <span><svg width="26" height="8"><line x1="0" y1="4" x2="22" y2="4" stroke="#00783C" stroke-width="2.6"/></svg> mezcla con (&mu;<sub>1</sub>, &mu;<sub>2</sub>) actuales</span>
+      <span><svg width="26" height="8"><line x1="0" y1="4" x2="22" y2="4" stroke="#111" stroke-width="2" stroke-dasharray="4 3"/></svg> mezcla en el m&aacute;ximo global</span>
+    </div>
+  </div>
+  <div class="panel">
+    <h3>Superficie &ell;(&mu;<sub>1</sub>, &mu;<sub>2</sub>) vista desde arriba</h3>
+    <canvas id="cmap"></canvas>
+    <div class="leyenda">
+      <span><span class="pt" style="background:#111"></span>m&aacute;ximo global</span>
+      <span><span class="pt" style="background:#C0432A"></span>m&aacute;ximo local</span>
+      <span><span class="pt" style="background:#00783C"></span>camino del algoritmo</span>
+      <span><span class="pt" style="background:#1d5fd1"></span>punto de partida</span>
+    </div>
+    <p class="nota">Haz clic en el mapa para fijar el punto de partida. Cuanto m&aacute;s oscuro el azul, mayor &ell;; las curvas blancas rodean cada cima. Horizontal: &mu;<sub>1</sub> (media del régimen calmo). Vertical: &mu;<sub>2</sub> (media del turbulento).</p>
+  </div>
+</div>
+
+<div class="tarjeta">
+  <h2>1. Subir desde un punto de partida</h2>
+  <div class="fila">
+    <label for="selAlg">Algoritmo:</label>
+    <select id="selAlg">
+      <option value="grad">Ascenso por gradiente con retroceso</option>
+      <option value="bfgs">BFGS como optim() de R</option>
+    </select>
+    <label>Partida:</label>
+    <button id="bLoc" type="button" class="claro">cerca de una cima local</button>
+    <button id="bGlo" type="button" class="claro">cerca del m&aacute;ximo global</button>
+    <button id="bAzar" type="button" class="claro">al azar</button>
+  </div>
+  <div class="fila">
+    <button id="bSig" type="button">Siguiente iteraci&oacute;n</button>
+    <button id="bPlay" type="button" class="sec">Reproducir</button>
+    <button id="bReset" type="button" class="claro">Reiniciar</button>
+  </div>
+  <div class="stats">
+    <div class="stat"><p class="k">Iteraci&oacute;n</p><p class="v" id="stK">0</p></div>
+    <div class="stat"><p class="k">&ell; actual</p><p class="v" id="stL">&ndash;</p></div>
+    <div class="stat"><p class="k">&ell; del m&aacute;ximo global</p><p class="v" id="stG">&ndash;</p></div>
+    <div class="stat"><p class="k">&Vert;&nabla;&ell;&Vert; (el score)</p><p class="v" id="stN">&ndash;</p></div>
+  </div>
+  <div id="msg">Elige un punto de partida y sube paso a paso.</div>
+  <details>
+    <summary>&iquest;Por qu&eacute; se queda ah&iacute;? Lo que dice el c&aacute;lculo</summary>
+    <ul>
+      <li>Un m&aacute;ximo interior cumple la ecuaci&oacute;n de score, &nabla;&ell; = 0, y la condici&oacute;n de segundo orden, Hessiano definido negativo. Las dos cimas de la figura cumplen ambas; la tabla de abajo lo muestra con los autovalores del Hessiano.</li>
+      <li>Esas condiciones son <em>locales</em>: solo comparan &ell; con los puntos vecinos. Nada en ellas dice si hay otra cima m&aacute;s alta lejos de ah&iacute;.</li>
+      <li>Un algoritmo de ascenso (gradiente, Newton, BFGS, EM) usa informaci&oacute;n local; termina en la cima de la colina donde empez&oacute;.</li>
+      <li>El estimador de m&aacute;xima verosimilitud es, por definici&oacute;n, el m&aacute;ximo <em>global</em>. Un algoritmo local puede entregar otro valor y la salida no avisa del error.</li>
+    </ul>
+  </details>
+</div>
+
+<div class="tarjeta">
+  <h2>2. Muchas partidas al azar</h2>
+  <div class="fila">
+    <button id="bMuchas" type="button">Lanzar 60 partidas</button>
+    <button id="bLimpia" type="button" class="claro">Borrar</button>
+  </div>
+  <div id="msgMuchas">Cada punto del mapa es una partida; su color indica a d&oacute;nde termin&oacute; el algoritmo elegido arriba.</div>
+  <table id="tabDest"></table>
+  <p class="nota">Verde: m&aacute;ximo global. Coral: m&aacute;ximo local. Gris: se detuvo donde el gradiente es casi cero pero no es un m&aacute;ximo (meseta o silla). Con BFGS el primer paso usa el gradiente sin escalar y puede lanzar el punto muy lejos, a regiones planas; por eso aparecen m&aacute;s partidas grises. En la pr&aacute;ctica se corre el algoritmo desde varias partidas y se conserva la de mayor &ell;.</p>
+</div>
+
+<div class="tarjeta">
+  <h2>3. Otra muestra</h2>
+  <div class="fila">
+    <label>n = <span id="nVal">100</span> <input type="range" id="sN" min="30" max="300" step="10" value="100"></label>
+    <button id="bMuestra" type="button">Nueva muestra</button>
+  </div>
+  <div id="msgMuestra"></div>
+  <p class="nota">Entre muestras cambia el n&uacute;mero de cimas. Con m&aacute;s datos las cimas locales no desaparecen: la cima global se separa m&aacute;s de ellas, pero un algoritmo que arranca mal sigue terminando en la equivocada.</p>
+  <details>
+    <summary>Interpretaci&oacute;n de la cima local en este modelo</summary>
+    <p>En la cima global, el r&eacute;gimen calmo (&sigma;<sub>1</sub> = 0.5) se coloca sobre el grueso de los d&iacute;as y el turbulento absorbe las colas. La cima local reparte los papeles al rev&eacute;s: un
+       r&eacute;gimen calmo estrecho se coloca sobre un grupo de d&iacute;as extremos de un lado y el turbulento cubre el resto. Cada reparto es un punto fijo de las ecuaciones de score; solo uno maximiza la verosimilitud.</p>
+    <p>Aqu&iacute; los par&aacute;metros &pi;, &sigma;<sub>1</sub> y &sigma;<sub>2</sub> est&aacute;n fijos para poder dibujar la superficie. Con todos desconocidos hay m&aacute;s cimas, y adem&aacute;s la verosimilitud deja de estar acotada: si &sigma;<sub>1</sub> &rarr; 0 con &mu;<sub>1</sub> sobre una observaci&oacute;n, &ell; &rarr; &infin;. Lo que se estima en la pr&aacute;ctica es la mejor cima interior.</p>
+  </details>
+</div>
+
+<script>
+var Nucleo = (function () {
+  'use strict';
+  // ---- Modelo: mezcla de dos normales con pi, sigma1, sigma2 conocidos; se estiman (mu1, mu2) ----
+  var PI = 0.7, SIG1 = 0.5, SIG2 = 2.0, VERD = [0.5, -1.0];
+  var VENT = { x0: -3.5, x1: 3.5, y0: -3.5, y1: 3.5 };
+  var Y = [], n = 0;
+
+  function mulberry32(a) { return function () { a |= 0; a = a + 0x6D2B79F5 | 0; var t = Math.imul(a ^ a >>> 15, 1 | a);
+    t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+  function genMuestra(seed, nn) {
+    var r = mulberry32(seed), out = [], i, u, v, z;
+    for (i = 0; i < nn; i++) {
+      u = Math.max(r(), 1e-12); v = r(); z = Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v);
+      out.push(r() < PI ? VERD[0] + SIG1 * z : VERD[1] + SIG2 * z);
+    }
+    return out;
+  }
+  function fijar(y) { Y = y.slice(); n = Y.length; }
+  var C1 = 1 / (SIG1 * Math.sqrt(2 * Math.PI)), C2 = 1 / (SIG2 * Math.sqrt(2 * Math.PI));
+  function resp(y, m1, m2) {
+    var d1 = (y - m1) / SIG1, d2 = (y - m2) / SIG2;
+    var a = PI * C1 * Math.exp(-0.5 * d1 * d1), b = (1 - PI) * C2 * Math.exp(-0.5 * d2 * d2), f = a + b;
+    return { f: f, w1: f > 0 ? a / f : 0.5, w2: f > 0 ? b / f : 0.5 };
+  }
+  var I1 = 1 / (SIG1 * SIG1), I2 = 1 / (SIG2 * SIG2);
+  function ell(m1, m2) {
+    if (!isFinite(m1) || !isFinite(m2)) return NaN;
+    var s = 0, k, d1, d2, f;
+    for (k = 0; k < n; k++) {
+      d1 = (Y[k] - m1) / SIG1; d2 = (Y[k] - m2) / SIG2;
+      f = PI * C1 * Math.exp(-0.5 * d1 * d1) + (1 - PI) * C2 * Math.exp(-0.5 * d2 * d2);
+      s += Math.log(f > 1e-300 ? f : 1e-300);
+    }
+    return s;
+  }
+  function grad(m1, m2) {
+    var g1 = 0, g2 = 0, k, d1, d2, a, b, f;
+    for (k = 0; k < n; k++) {
+      d1 = (Y[k] - m1) / SIG1; d2 = (Y[k] - m2) / SIG2;
+      a = PI * C1 * Math.exp(-0.5 * d1 * d1); b = (1 - PI) * C2 * Math.exp(-0.5 * d2 * d2); f = a + b;
+      if (f > 0) { g1 += a / f * (Y[k] - m1) * I1; g2 += b / f * (Y[k] - m2) * I2; }
+    }
+    return [g1, g2];
+  }
+  function hess(m1, m2) {
+    var a = 0, b = 0, c = 0, k, r, e1, e2;
+    for (k = 0; k < n; k++) {
+      r = resp(Y[k], m1, m2); e1 = Y[k] - m1; e2 = Y[k] - m2;
+      a += -r.w1 / (SIG1 * SIG1) + r.w1 * (1 - r.w1) * e1 * e1 / Math.pow(SIG1, 4);
+      c += -r.w2 / (SIG2 * SIG2) + r.w2 * (1 - r.w2) * e2 * e2 / Math.pow(SIG2, 4);
+      b += -r.w1 * r.w2 * e1 * e2 / (SIG1 * SIG1 * SIG2 * SIG2);
+    }
+    return [[a, b], [b, c]];
+  }
+  function norm2(v) { return Math.sqrt(v[0] * v[0] + v[1] * v[1]); }
+  function dot(u, v) { return u[0] * v[0] + u[1] * v[1]; }
+  function mv(A, v) { return [A[0][0] * v[0] + A[0][1] * v[1], A[1][0] * v[0] + A[1][1] * v[1]]; }
+  function inv2(A) { var det = A[0][0] * A[1][1] - A[0][1] * A[1][0]; return [[A[1][1] / det, -A[0][1] / det], [-A[1][0] / det, A[0][0] / det]]; }
+  function eig2(H) {
+    var a = H[0][0], b = H[0][1], c = H[1][1], t2 = (a + c) / 2, d = Math.sqrt(((a - c) / 2) * ((a - c) / 2) + b * b);
+    return { l1: t2 + d, l2: t2 - d };
+  }
+  function esMaximo(m1, m2) { var e = eig2(hess(m1, m2)); return e.l1 < 0; }   // Hessiano definido negativo
+
+  // ---- Ascenso por gradiente con retroceso (Armijo); el primer ensayo avanza a lo mas 'paso0' unidades ----
+  function gradInit(m1, m2) { return { tipo: 'grad', x: [m1, m2], k: 0, hecho: false, razon: '', camino: [[m1, m2]], maxit: 600, t: null }; }
+  function gradStep(st) {
+    if (st.hecho) return null;
+    var g = grad(st.x[0], st.x[1]), gn = norm2(g);
+    var info = { desde: st.x.slice(), g: g, gradNorm: gn };
+    if (gn < 1e-4) { st.hecho = true; st.razon = 'convergencia'; info.terminado = true; info.razon = st.razon; return info; }
+    var t = st.t === null ? Math.min(0.5 / gn, 1) : Math.min(2 * st.t, 1), l0 = ell(st.x[0], st.x[1]), ok = false, nx;
+    while (t > 1e-14) {
+      nx = [st.x[0] + t * g[0], st.x[1] + t * g[1]];
+      if (ell(nx[0], nx[1]) >= l0 + 1e-4 * t * gn * gn) { ok = true; break; }
+      t /= 2;
+    }
+    if (!ok) { st.hecho = true; st.razon = 'estancado'; info.terminado = true; info.razon = st.razon; return info; }
+    st.t = t; info.t = t; info.nuevo = nx; st.x = nx; st.k++; st.camino.push(nx);
+    if (norm2(grad(nx[0], nx[1])) < 1e-4) { st.hecho = true; st.razon = 'convergencia'; }
+    else if (st.k >= st.maxit) { st.hecho = true; st.razon = 'maxit'; }
+    info.terminado = st.hecho; info.razon = st.razon;
+    return info;
+  }
+
+  // ---- BFGS: port de vmmin (R, optim(method="BFGS")), minimizando -ell ----
+  function aDatos(param, x) { return param === 'log' ? [x[0], Math.exp(x[1])] : [x[0], x[1]]; }
+  function bfgsInit(m, s2, param) {
+    var x = param === 'log' ? [m, Math.log(s2)] : [m, s2];
+    var fn = param === 'log' ? function (x) { return -ell(x[0], Math.exp(x[1])); }
+                             : function (x) { return -ell(x[0], x[1]); };
+    var gr = param === 'log' ? function (x) { var s = Math.exp(x[1]), g = grad(x[0], s); return [-g[0], -g[1] * s]; }
+                             : function (x) { var g = grad(x[0], x[1]); return [-g[0], -g[1]]; };
+    var st = { tipo: 'bfgs', param: param, fn: fn, gr: gr, b: x.slice(), X: x.slice(), c: [0, 0], t: [0, 0],
+               B: [[1, 0], [0, 1]], funcount: 1, gradcount: 1, iter: 1, ilast: 1, hecho: false, razon: '',
+               maxit: 100, camino: [aDatos(param, x)], k: 0 };
+    st.f = fn(x); st.Fmin = st.f; st.g = gr(x);
+    return st;
+  }
+  function bfgsStep(st) {
+    if (st.hecho) return null;
+    var STEPREDN = 0.2, ACCTOL = 1e-4, RELTEST = 10.0, RELTOL = 1.490116119384766e-08;
+    var info = { ensayos: [], aceptado: false }, guard = 0, a, b2, s, count;
+    while (guard++ < 200) {
+      if (st.ilast === st.gradcount) st.B = [[1, 0], [0, 1]];
+      st.X = st.b.slice(); st.c = st.g.slice();
+      var gradproj = 0;
+      for (a = 0; a < 2; a++) { s = 0; for (b2 = 0; b2 < 2; b2++) s -= st.B[a][b2] * st.g[b2]; st.t[a] = s; gradproj += s * st.g[a]; }
+      count = 0;
+      if (gradproj < 0) {
+        var steplength = 1.0, accpoint = false;
+        if (!info.desde) { info.desde = aDatos(st.param, st.X); info.dirUnit = st.t.slice(); info.g = st.g.slice(); info.B = [st.B[0].slice(), st.B[1].slice()]; }
+        do {
+          count = 0;
+          for (a = 0; a < 2; a++) { st.b[a] = st.X[a] + steplength * st.t[a]; if (RELTEST + st.X[a] === RELTEST + st.b[a]) count++; }
+          if (count < 2) {
+            st.f = st.fn(st.b); st.funcount++;
+            accpoint = isFinite(st.f) && (st.f <= st.Fmin + gradproj * steplength * ACCTOL);
+            info.ensayos.push({ t: steplength, x: aDatos(st.param, st.b), f: st.f, ok: accpoint });
+            if (!accpoint) steplength *= STEPREDN;
+          }
+        } while (!(count === 2 || accpoint));
+        var enough = (st.f > -Infinity) && Math.abs(st.f - st.Fmin) > RELTOL * (Math.abs(st.Fmin) + RELTOL);
+        if (!enough) { count = 2; st.Fmin = st.f; }
+        if (count < 2) {
+          st.Fmin = st.f; st.g = st.gr(st.b); st.gradcount++; st.iter++;
+          var D1 = 0;
+          for (a = 0; a < 2; a++) { st.t[a] = steplength * st.t[a]; st.c[a] = st.g[a] - st.c[a]; D1 += st.t[a] * st.c[a]; }
+          if (D1 > 0) {
+            var D2 = 0, Xv = [0, 0];
+            for (a = 0; a < 2; a++) { s = 0; for (b2 = 0; b2 < 2; b2++) s += st.B[a][b2] * st.c[b2]; Xv[a] = s; D2 += s * st.c[a]; }
+            D2 = 1.0 + D2 / D1;
+            for (a = 0; a < 2; a++) for (b2 = 0; b2 < 2; b2++)
+              st.B[a][b2] += (D2 * st.t[a] * st.t[b2] - Xv[a] * st.t[b2] - st.t[a] * Xv[b2]) / D1;
+          } else st.ilast = st.gradcount;
+          info.aceptado = true; info.t = steplength; info.nuevo = aDatos(st.param, st.b); info.Bnueva = [st.B[0].slice(), st.B[1].slice()];
+          if (D1 > 0) st.Bult = info.Bnueva;
+        } else {
+          if (st.ilast < st.gradcount) { count = 0; st.ilast = st.gradcount; }
+        }
+      } else {
+        count = 0;
+        if (st.ilast === st.gradcount) count = 2; else st.ilast = st.gradcount;
+      }
+      if (st.iter >= st.maxit) { st.hecho = true; st.razon = 'maxit'; }
+      else {
+        if (st.gradcount - st.ilast > 2 * 2) st.ilast = st.gradcount;
+        if (!(count !== 2 || st.ilast !== st.gradcount)) { st.hecho = true; st.razon = 'convergencia'; }
+      }
+      if (info.aceptado || st.hecho) break;
+    }
+    if (info.aceptado) { st.k++; st.camino.push(info.nuevo); }
+    if (st.hecho && st.razon === 'convergencia') {
+      var fin = aDatos(st.param, st.b), ult = st.camino[st.camino.length - 1];
+      if (Math.abs(fin[0] - ult[0]) > 0 || Math.abs(fin[1] - ult[1]) > 0) { st.camino.push(fin); info.final = fin; st.k++; }
+    }
+    info.terminado = st.hecho; info.razon = st.razon;
+    return info;
+  }
+
+  // ---- Correr un algoritmo hasta el final y clasificar el punto de llegada ----
+  function correr(alg, m1, m2) {
+    var st = alg === 'bfgs' ? bfgsInit(m1, m2, 'id') : gradInit(m1, m2), guard = 0, p;
+    while (!st.hecho && guard++ < 1000) { if (alg === 'bfgs') bfgsStep(st); else gradStep(st); }
+    p = st.camino[st.camino.length - 1];
+    return { punto: p, camino: st.camino, razon: st.razon, k: st.k };
+  }
+  // ---- Maximos locales: arranques en una rejilla, agrupando destinos ----
+  function maximos(ng) {
+    ng = ng || 9; var out = [], i, j, r, p, l, g, found, k, a, b;
+    for (i = 0; i < ng; i++) for (j = 0; j < ng; j++) {
+      a = VENT.x0 + (VENT.x1 - VENT.x0) * (i + 0.5) / ng; b = VENT.y0 + (VENT.y1 - VENT.y0) * (j + 0.5) / ng;
+      r = correr('bfgs', a, b); p = r.punto;
+      if (p[0] < VENT.x0 || p[0] > VENT.x1 || p[1] < VENT.y0 || p[1] > VENT.y1) continue;
+      if (norm2(grad(p[0], p[1])) > 1e-3 || !esMaximo(p[0], p[1])) continue;
+      found = false;
+      for (k = 0; k < out.length; k++) if (Math.abs(out[k].p[0] - p[0]) < 0.03 && Math.abs(out[k].p[1] - p[1]) < 0.03) { found = true; break; }
+      if (!found) out.push({ p: p, l: ell(p[0], p[1]) });
+    }
+    out.sort(function (u, v) { return v.l - u.l; });
+    return out;
+  }
+  // identifica a cual maximo (indice) llego un punto, o -1
+  function destino(p, maxs) {
+    if (norm2(grad(p[0], p[1])) > 1e-3 || !esMaximo(p[0], p[1])) return -1;
+    for (var k = 0; k < maxs.length; k++) if (Math.abs(maxs[k].p[0] - p[0]) < 0.05 && Math.abs(maxs[k].p[1] - p[1]) < 0.05) return k;
+    return -1;
+  }
+  function segmentosNivel(f, x0, x1, y0, y1, nx, ny, nivel) {
+    var segs = [], vals = [], ix, iy, X = [], Yg = [];
+    for (ix = 0; ix <= nx; ix++) X.push(x0 + (x1 - x0) * ix / nx);
+    for (iy = 0; iy <= ny; iy++) Yg.push(y0 + (y1 - y0) * iy / ny);
+    for (ix = 0; ix <= nx; ix++) { vals.push([]); for (iy = 0; iy <= ny; iy++) vals[ix].push(f(X[ix], Yg[iy]) - nivel); }
+    function cruce(xa, ya, va, xb, yb, vb) { var t = va / (va - vb); return [xa + t * (xb - xa), ya + t * (yb - ya)]; }
+    for (ix = 0; ix < nx; ix++) for (iy = 0; iy < ny; iy++) {
+      var v00 = vals[ix][iy], v10 = vals[ix + 1][iy], v11 = vals[ix + 1][iy + 1], v01 = vals[ix][iy + 1];
+      if (isNaN(v00) || isNaN(v10) || isNaN(v11) || isNaN(v01)) continue;
+      var pts = [];
+      if ((v00 > 0) !== (v10 > 0)) pts.push(cruce(X[ix], Yg[iy], v00, X[ix + 1], Yg[iy], v10));
+      if ((v10 > 0) !== (v11 > 0)) pts.push(cruce(X[ix + 1], Yg[iy], v10, X[ix + 1], Yg[iy + 1], v11));
+      if ((v01 > 0) !== (v11 > 0)) pts.push(cruce(X[ix], Yg[iy + 1], v01, X[ix + 1], Yg[iy + 1], v11));
+      if ((v00 > 0) !== (v01 > 0)) pts.push(cruce(X[ix], Yg[iy], v00, X[ix], Yg[iy + 1], v01));
+      if (pts.length === 2) segs.push([pts[0], pts[1]]);
+      else if (pts.length === 4) { segs.push([pts[0], pts[1]]); segs.push([pts[2], pts[3]]); }
+    }
+    return segs;
+  }
+  function dens(x, m1, m2) { var d1 = (x - m1) / SIG1, d2 = (x - m2) / SIG2; return PI * C1 * Math.exp(-0.5 * d1 * d1) + (1 - PI) * C2 * Math.exp(-0.5 * d2 * d2); }
+
+  return { PI: PI, SIG1: SIG1, SIG2: SIG2, VERD: VERD, VENT: VENT, genMuestra: genMuestra, fijar: fijar, getY: function () { return Y; },
+           ell: ell, grad: grad, hess: hess, esMaximo: esMaximo, eig2: eig2, norm2: norm2, dot: dot, mv: mv, inv2: inv2,
+           gradInit: gradInit, gradStep: gradStep, bfgsInit: bfgsInit, bfgsStep: bfgsStep, correr: correr, maximos: maximos,
+           destino: destino, segmentosNivel: segmentosNivel, dens: dens };
+})();
+
+</script>
+<script>
+(function () {
+  var N = Nucleo, V = N.VENT;
+  var $ = function (id) { return document.getElementById(id); };
+  var dpr = window.devicePixelRatio || 1;
+  var CTX = function (c, w, h) { c.width = Math.round(w * dpr); c.height = Math.round(h * dpr); var g = c.getContext('2d'); g.setTransform(dpr, 0, 0, dpr, 0, 0); g.clearRect(0, 0, w, h); return g; };
+  var f1 = function (x, d) { return x.toFixed(d).replace('-', '−'); };
+
+  // ------------------------------ estado ------------------------------
+  var seed = 3, nMuestra = 100, maxs = [], grilla = null, alg = 'grad', inicio = null, st = null, timer = null;
+  var muchas = [];
+  var GN = 90;                           // celdas por lado de la grilla de la superficie
+  var AZ = [[0, 51, 102], [110, 155, 184], [232, 238, 244]];   // alto -> bajo
+
+  function nuevaMuestra(s, n) {
+    seed = s; nMuestra = n; N.fijar(N.genMuestra(seed, n));
+    maxs = N.maximos(9);
+    var gx = [], gy = [], vals = [], ix, iy, vmax = -Infinity, vmin = Infinity;
+    for (ix = 0; ix <= GN; ix++) { gx.push(V.x0 + (V.x1 - V.x0) * ix / GN); }
+    for (iy = 0; iy <= GN; iy++) { gy.push(V.y0 + (V.y1 - V.y0) * iy / GN); }
+    for (ix = 0; ix <= GN; ix++) { vals.push([]); for (iy = 0; iy <= GN; iy++) { var l = N.ell(gx[ix], gy[iy]); vals[ix].push(l); if (l > vmax) vmax = l; if (l < vmin) vmin = l; } }
+    grilla = { gx: gx, gy: gy, vals: vals, vmax: vmax, vmin: vmin };
+    muchas = []; inicio = null; st = null; parar();
+    $('chipN').textContent = 'n = ' + n;
+    $('chipK').textContent = maxs.length;
+    $('chipL').textContent = f1(maxs[0].l, 2);
+    $('stG').textContent = f1(maxs[0].l, 2);
+    $('nVal').textContent = n; $('sN').value = n;
+    var t = '';
+    if (maxs.length === 1) t = 'Esta muestra tiene una sola cima: ningún algoritmo razonable se equivoca. Prueba otra muestra.';
+    else t = 'Esta muestra tiene <b>' + maxs.length + '</b> cimas, con ℓ = ' + maxs.map(function (m) { return f1(m.l, 1); }).join(', ') + '. Elige un punto de partida.';
+    $('msgMuestra').innerHTML = t;
+    $('msg').innerHTML = 'Elige un punto de partida y sube paso a paso.';
+    $('stK').textContent = '0'; $('stL').textContent = '–'; $('stN').textContent = '–';
+    tablaDestinos(); dibujar();
+  }
+
+  // ------------------------------ algoritmo ------------------------------
+  function reiniciar() {
+    parar();
+    if (!inicio) { st = null; return; }
+    st = alg === 'bfgs' ? N.bfgsInit(inicio[0], inicio[1], 'id') : N.gradInit(inicio[0], inicio[1]);
+    $('msg').innerHTML = 'Partida en (' + f1(inicio[0], 2) + ', ' + f1(inicio[1], 2) + '). Presiona &laquo;Siguiente iteraci&oacute;n&raquo;.';
+    actualizar();
+  }
+  function actual() { return st ? st.camino[st.camino.length - 1] : null; }
+  function paso() {
+    if (!st) { $('msg').innerHTML = 'Primero elige un punto de partida (clic en el mapa o uno de los botones).'; return; }
+    if (st.hecho) { parar(); return; }
+    if (alg === 'bfgs') N.bfgsStep(st); else N.gradStep(st);
+    actualizar();
+    if (st.hecho) parar();
+  }
+  function parar() { if (timer) { clearInterval(timer); timer = null; } $('bPlay').textContent = 'Reproducir'; }
+  function reproducir() {
+    if (!st) { $('msg').innerHTML = 'Primero elige un punto de partida (clic en el mapa o uno de los botones).'; return; }
+    if (timer) { parar(); return; }
+    if (st.hecho) return;
+    $('bPlay').textContent = 'Pausa';
+    timer = setInterval(paso, alg === 'bfgs' ? 450 : 45);
+  }
+  function resumen(p) {
+    var d = N.destino(p, maxs), l = N.ell(p[0], p[1]), gn = N.norm2(N.grad(p[0], p[1]));
+    if (d === 0) return '<span class="ok">Termin&oacute; en el m&aacute;ximo global</span> (ℓ = ' + f1(l, 2) + ').';
+    if (d > 0) {
+      var e = N.eig2(N.hess(p[0], p[1]));
+      return '<span class="mal">Atrapado en un m&aacute;ximo local</span>: ℓ = ' + f1(l, 2) + ', a ' + f1(maxs[0].l - l, 1) +
+        ' unidades de log-verosimilitud del global. Aqu&iacute; ∇ℓ ≈ 0 y los autovalores del Hessiano son ' + f1(e.l1, 1) + ' y ' + f1(e.l2, 1) +
+        ' (ambos negativos): la condici&oacute;n de segundo orden se cumple igual que en el global.';
+    }
+    return '<span class="gris">Se detuvo sin llegar a un m&aacute;ximo</span> (ℓ = ' + f1(l, 2) + ', ‖∇ℓ‖ = ' + gn.toExponential(1).replace('-', '−') + '): meseta, silla o fuera de la ventana.';
+  }
+  function actualizar() {
+    var p = actual();
+    $('stK').textContent = st.k;
+    $('stL').textContent = f1(N.ell(p[0], p[1]), 2);
+    $('stN').textContent = N.norm2(N.grad(p[0], p[1])).toExponential(2).replace('-', '−');
+    if (st.hecho) $('msg').innerHTML = resumen(p) + ' (' + st.k + ' iteraciones).';
+    else $('msg').innerHTML = 'Iteraci&oacute;n ' + st.k + ': ℓ = ' + f1(N.ell(p[0], p[1]), 2) + '.';
+    dibujar();
+  }
+
+  // ------------------------------ muchas partidas ------------------------------
+  function lanzar() {
+    var k, ini, r, d, tot = 60;
+    var rnd = (function (a) { return function () { a |= 0; a = a + 0x6D2B79F5 | 0; var t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; })((Math.random() * 1e9) | 0);
+    muchas = [];
+    for (k = 0; k < tot; k++) {
+      ini = [V.x0 + (V.x1 - V.x0) * rnd(), V.y0 + (V.y1 - V.y0) * rnd()];
+      r = N.correr(alg, ini[0], ini[1]);
+      d = N.destino(r.punto, maxs);
+      muchas.push({ ini: ini, fin: r.punto, d: d });
+    }
+    tablaDestinos(); dibujar();
+  }
+  function tablaDestinos() {
+    var cnt = {}, k, i, tot = muchas.length, h;
+    for (i = 0; i < tot; i++) cnt[muchas[i].d] = (cnt[muchas[i].d] || 0) + 1;
+    h = '<tr><th class="l">Destino</th><th>&ell; (log-verosimilitud)</th><th>Partidas</th><th class="l">Porcentaje</th></tr>';
+    for (k = 0; k < maxs.length; k++) {
+      var c = cnt[k] || 0, pct = tot ? 100 * c / tot : 0;
+      h += '<tr><td class="l">' + (k === 0 ? 'M&aacute;ximo global' : 'M&aacute;ximo local ' + k) + ' (' + f1(maxs[k].p[0], 2) + ', ' + f1(maxs[k].p[1], 2) + ')</td><td>' + f1(maxs[k].l, 2) +
+        '</td><td>' + c + '</td><td class="l"><span class="barra" style="width:' + (pct * 1.2) + 'px;background:' + (k === 0 ? '#00783C' : '#C0432A') + '"></span> ' + f1(pct, 0) + '&nbsp;%</td></tr>';
+    }
+    var c2 = cnt[-1] || 0, p2 = tot ? 100 * c2 / tot : 0;
+    h += '<tr><td class="l">Sin llegar a un m&aacute;ximo</td><td>&ndash;</td><td>' + c2 + '</td><td class="l"><span class="barra" style="width:' + (p2 * 1.2) + 'px;background:#8a8a85"></span> ' + f1(p2, 0) + '&nbsp;%</td></tr>';
+    $('tabDest').innerHTML = h;
+    if (tot) {
+      var g = cnt[0] || 0;
+      $('msgMuchas').innerHTML = (alg === 'bfgs' ? 'BFGS' : 'Ascenso por gradiente') + ': <b>' + g + ' de ' + tot + '</b> partidas (' + f1(100 * g / tot, 0) + '&nbsp;%) llegaron al m&aacute;ximo global; ' +
+        ((tot - g - c2) > 0 ? '<span class="mal">' + (tot - g - c2) + ' se quedaron en un m&aacute;ximo local</span>' : 'ninguna se qued&oacute; en un m&aacute;ximo local') + (c2 ? ' y ' + c2 + ' se detuvieron sin ser m&aacute;ximo' : '') + '.';
+    } else $('msgMuchas').innerHTML = 'Cada punto del mapa es una partida; su color indica a d&oacute;nde termin&oacute; el algoritmo elegido arriba.';
+  }
+
+  // ------------------------------ dibujo ------------------------------
+  function colAzul(t) { t = Math.max(0, Math.min(1, t)); var k = t * 2, i = Math.min(1, Math.floor(k)), u = k - i, a = AZ[i], b = AZ[i + 1];
+    return 'rgb(' + Math.round(a[0] + (b[0] - a[0]) * u) + ',' + Math.round(a[1] + (b[1] - a[1]) * u) + ',' + Math.round(a[2] + (b[2] - a[2]) * u) + ')'; }
+
+  function dibujarMapa() {
+    var c = $('cmap'), W = c.clientWidth, H = c.clientHeight, g = CTX(c, W, H), ml = 40, mr = 10, mt = 8, mb = 30;
+    var pw = W - ml - mr, ph = H - mt - mb;
+    var X = function (x) { return ml + (x - V.x0) / (V.x1 - V.x0) * pw; }, Y = function (y) { return mt + (V.y1 - y) / (V.y1 - V.y0) * ph; };
+    c._inv = function (px, py) { return [V.x0 + (px - ml) / pw * (V.x1 - V.x0), V.y1 - (py - mt) / ph * (V.y1 - V.y0)]; };
+    var ix, iy, G = grilla, D = G.vmax - G.vmin;
+    for (ix = 0; ix < GN; ix++) for (iy = 0; iy < GN; iy++) {
+      var l = (G.vals[ix][iy] + G.vals[ix + 1][iy] + G.vals[ix][iy + 1] + G.vals[ix + 1][iy + 1]) / 4;
+      var t = Math.pow(Math.max(0, (l - G.vmin) / D), 0.55);        // realza las cimas bajas
+      g.fillStyle = colAzul(1 - t);
+      g.fillRect(X(G.gx[ix]), Y(G.gy[iy + 1]), X(G.gx[ix + 1]) - X(G.gx[ix]) + 0.6, Y(G.gy[iy]) - Y(G.gy[iy + 1]) + 0.6);
+    }
+    // curvas de nivel alrededor de cada cima
+    var f = function (x, y) { return N.ell(x, y); };
+    g.lineWidth = 0.9;
+    maxs.forEach(function (m, k) {
+      [2, 8, 20, 40].forEach(function (d, j) {
+        var segs = N.segmentosNivel(function (x, y) { var ix2 = Math.round((x - V.x0) / (V.x1 - V.x0) * GN), iy2 = Math.round((y - V.y0) / (V.y1 - V.y0) * GN); return G.vals[ix2][iy2]; }, V.x0, V.x1, V.y0, V.y1, GN, GN, m.l - d);
+        g.strokeStyle = 'rgba(255,255,255,' + (0.85 - 0.12 * j) + ')'; g.beginPath();
+        segs.forEach(function (s) { g.moveTo(X(s[0][0]), Y(s[0][1])); g.lineTo(X(s[1][0]), Y(s[1][1])); });
+        g.stroke();
+      });
+    });
+    // marco y ejes
+    g.strokeStyle = '#8a8a85'; g.lineWidth = 1; g.strokeRect(ml, mt, pw, ph);
+    g.fillStyle = '#595955'; g.font = '11px sans-serif'; g.textAlign = 'center';
+    var tk = [-3, -2, -1, 0, 1, 2, 3];
+    tk.forEach(function (v) { g.fillText(f1(v, 0), X(v), mt + ph + 14); g.beginPath(); g.moveTo(X(v), mt + ph); g.lineTo(X(v), mt + ph + 3); g.stroke(); });
+    g.textAlign = 'right';
+    tk.forEach(function (v) { g.fillText(f1(v, 0), ml - 5, Y(v) + 4); g.beginPath(); g.moveTo(ml - 3, Y(v)); g.lineTo(ml, Y(v)); g.stroke(); });
+    g.textAlign = 'center'; g.fillText('μ₁ (media del régimen calmo)', ml + pw / 2, H - 4);
+    g.save(); g.translate(11, mt + ph / 2); g.rotate(-Math.PI / 2); g.fillText('μ₂ (media del turbulento)', 0, 0); g.restore();
+    // muchas partidas
+    muchas.forEach(function (m) {
+      var col = m.d === 0 ? '#00783C' : (m.d > 0 ? '#C0432A' : '#8a8a85');
+      g.strokeStyle = col; g.globalAlpha = 0.35; g.lineWidth = 1; g.beginPath(); g.moveTo(X(m.ini[0]), Y(m.ini[1]));
+      g.lineTo(X(Math.max(V.x0, Math.min(V.x1, m.fin[0]))), Y(Math.max(V.y0, Math.min(V.y1, m.fin[1])))); g.stroke(); g.globalAlpha = 1;
+      g.fillStyle = col; g.beginPath(); g.arc(X(m.ini[0]), Y(m.ini[1]), 3, 0, 2 * Math.PI); g.fill();
+    });
+    // cimas
+    maxs.forEach(function (m, k) {
+      var x = X(m.p[0]), y = Y(m.p[1]);
+      g.fillStyle = k === 0 ? '#111' : '#C0432A'; g.strokeStyle = '#fff'; g.lineWidth = 1.5;
+      g.beginPath(); g.moveTo(x, y - 7); g.lineTo(x + 6, y); g.lineTo(x, y + 7); g.lineTo(x - 6, y); g.closePath(); g.fill(); g.stroke();
+      g.fillStyle = '#fff'; g.font = '11px sans-serif'; g.textAlign = 'left';
+      g.fillText((k === 0 ? 'global' : 'local') + '  ℓ=' + f1(m.l, 1), x + 9, y - 6);
+    });
+    // camino
+    if (st) {
+      var cam = st.camino;
+      g.strokeStyle = '#00783C'; g.lineWidth = 2; g.beginPath();
+      cam.forEach(function (p, i) { var px = X(Math.max(V.x0, Math.min(V.x1, p[0]))), py = Y(Math.max(V.y0, Math.min(V.y1, p[1]))); if (i === 0) g.moveTo(px, py); else g.lineTo(px, py); });
+      g.stroke();
+      cam.forEach(function (p, i) { g.fillStyle = i === 0 ? '#1d5fd1' : '#00783C'; g.beginPath(); g.arc(X(Math.max(V.x0, Math.min(V.x1, p[0]))), Y(Math.max(V.y0, Math.min(V.y1, p[1]))), i === 0 ? 5 : 2.6, 0, 2 * Math.PI); g.fill(); });
+      var q = cam[cam.length - 1]; g.strokeStyle = '#fff'; g.lineWidth = 1.5; g.beginPath(); g.arc(X(Math.max(V.x0, Math.min(V.x1, q[0]))), Y(Math.max(V.y0, Math.min(V.y1, q[1]))), 5, 0, 2 * Math.PI); g.stroke();
+    } else if (inicio) { g.fillStyle = '#1d5fd1'; g.beginPath(); g.arc(X(inicio[0]), Y(inicio[1]), 5, 0, 2 * Math.PI); g.fill(); }
+  }
+
+  function dibujarHist() {
+    var c = $('chist'), W = c.clientWidth, H = c.clientHeight, g = CTX(c, W, H), ml = 38, mr = 10, mt = 10, mb = 30;
+    var pw = W - ml - mr, ph = H - mt - mb, x0 = -8, x1 = 6, nb = 28, bw = (x1 - x0) / nb, Y = N.getY(), cnt = [], i, k, mx = 0;
+    for (i = 0; i < nb; i++) cnt.push(0);
+    Y.forEach(function (y) { var b = Math.floor((y - x0) / bw); if (b >= 0 && b < nb) cnt[b]++; });
+    var dens = cnt.map(function (c2) { return c2 / (Y.length * bw); });
+    var curvas = [], p = actual() || (maxs.length ? maxs[0].p : [0, 0]);
+    var ymax = 0; dens.forEach(function (d) { ymax = Math.max(ymax, d); });
+    for (k = 0; k <= 200; k++) { var xx = x0 + (x1 - x0) * k / 200; ymax = Math.max(ymax, N.dens(xx, p[0], p[1]), N.dens(xx, maxs[0].p[0], maxs[0].p[1])); }
+    ymax *= 1.08;
+    var X = function (x) { return ml + (x - x0) / (x1 - x0) * pw; }, Yp = function (y) { return mt + ph - y / ymax * ph; };
+    g.fillStyle = 'rgba(0,51,102,0.28)';
+    dens.forEach(function (d, b) { g.fillRect(X(x0 + b * bw) + 0.5, Yp(d), X(x0 + (b + 1) * bw) - X(x0 + b * bw) - 1, mt + ph - Yp(d)); });
+    function curva(m1, m2, col, ancho, dash) {
+      g.strokeStyle = col; g.lineWidth = ancho; g.setLineDash(dash || []); g.beginPath();
+      for (k = 0; k <= 240; k++) { var x = x0 + (x1 - x0) * k / 240, y = N.dens(x, m1, m2); if (k === 0) g.moveTo(X(x), Yp(y)); else g.lineTo(X(x), Yp(y)); }
+      g.stroke(); g.setLineDash([]);
+    }
+    curva(maxs[0].p[0], maxs[0].p[1], '#111', 1.8, [5, 4]);
+    curva(p[0], p[1], '#00783C', 2.6);
+    g.strokeStyle = '#8a8a85'; g.lineWidth = 1; g.beginPath(); g.moveTo(ml, mt + ph); g.lineTo(ml + pw, mt + ph); g.moveTo(ml, mt); g.lineTo(ml, mt + ph); g.stroke();
+    g.fillStyle = '#595955'; g.font = '11px sans-serif'; g.textAlign = 'center';
+    for (var v = -8; v <= 6; v += 2) { g.fillText(f1(v, 0), X(v), mt + ph + 14); g.beginPath(); g.moveTo(X(v), mt + ph); g.lineTo(X(v), mt + ph + 3); g.stroke(); }
+    g.fillText('rendimiento diario (%)', ml + pw / 2, H - 4);
+    g.textAlign = 'left'; g.fillText('densidad', ml + 6, mt + 10);
+  }
+  function dibujar() { if (!grilla) return; dibujarMapa(); dibujarHist(); }
+
+  // ------------------------------ eventos ------------------------------
+  function fijarInicio(p) { inicio = [Math.max(V.x0, Math.min(V.x1, p[0])), Math.max(V.y0, Math.min(V.y1, p[1]))]; reiniciar(); dibujar(); }
+  $('cmap').addEventListener('click', function (e) { var r = this.getBoundingClientRect(); fijarInicio(this._inv(e.clientX - r.left, e.clientY - r.top)); });
+  $('bSig').addEventListener('click', function () { parar(); paso(); });
+  $('bPlay').addEventListener('click', reproducir);
+  $('bReset').addEventListener('click', function () { reiniciar(); dibujar(); });
+  $('selAlg').addEventListener('change', function () { alg = this.value; reiniciar(); dibujar(); });
+  $('bGlo').addEventListener('click', function () { var m = maxs[0].p; fijarInicio([m[0] + 0.5 + Math.random() * 0.3, m[1] + 0.5 + Math.random() * 0.3]); });
+  $('bLoc').addEventListener('click', function () {
+    if (maxs.length < 2) { $('msg').innerHTML = 'Esta muestra solo tiene una cima. Prueba otra muestra.'; return; }
+    var m = maxs[1 + Math.floor(Math.random() * (maxs.length - 1))].p; fijarInicio([m[0] + (Math.random() - 0.5) * 0.4, m[1] + (Math.random() - 0.5) * 0.4]);
+  });
+  $('bAzar').addEventListener('click', function () { fijarInicio([V.x0 + (V.x1 - V.x0) * Math.random(), V.y0 + (V.y1 - V.y0) * Math.random()]); });
+  $('bMuchas').addEventListener('click', lanzar);
+  $('bLimpia').addEventListener('click', function () { muchas = []; tablaDestinos(); dibujar(); });
+  $('sN').addEventListener('input', function () { $('nVal').textContent = this.value; });
+  $('sN').addEventListener('change', function () { nuevaMuestra(seed, parseInt(this.value, 10)); });
+  $('bMuestra').addEventListener('click', function () { nuevaMuestra(1 + Math.floor(Math.random() * 100000), parseInt($('sN').value, 10)); });
+  window.addEventListener('resize', dibujar);
+
+  nuevaMuestra(3, 100);
+})();
+</script>
+</body>
+</html>
