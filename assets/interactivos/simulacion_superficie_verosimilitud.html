@@ -69,8 +69,8 @@
 <p class="instrucciones">
   Es la superficie de la Figura 4.7: la log-verosimilitud
   &ell;(&mu;,&sigma;&sup2;) de seis rendimientos diarios (%) de un activo, supuestos normales.
-  Primero evalúa la función en puntos al azar y comprueba que ninguno supera al estimador de máxima
-  verosimilitud; después mira cómo un algoritmo numérico sube, paso a paso, hasta la cima.
+  Primero mira cómo un algoritmo numérico sube, paso a paso, hasta la cima; después evalúa la función
+  en puntos al azar y comprueba que ninguno supera al estimador de máxima verosimilitud.
 </p>
 <div class="chips">
   <span class="chip">Muestra: <b>1.2, &minus;0.8, 0.5, 0.1, &minus;0.3, 0.9</b></span>
@@ -98,44 +98,15 @@
     <canvas id="cmap"></canvas>
     <div class="fila">
       <label>Clic en el mapa:</label>
-      <label><input type="radio" name="modoClic" value="evaluar" checked> evaluar ese punto</label>
-      <label><input type="radio" name="modoClic" value="inicio"> fijar punto de partida</label>
+      <label><input type="radio" name="modoClic" value="evaluar"> evaluar ese punto</label>
+      <label><input type="radio" name="modoClic" value="inicio" checked> fijar punto de partida</label>
     </div>
     <p class="nota">Cada curva une puntos con la misma &ell;; la más interna está a 0.5 unidades de log-verosimilitud del máximo y las siguientes a 1.5, 3, 5, 8, 12, 18 y 26. La franja gris es la zona donde el Hessiano deja de ser definido negativo.</p>
   </div>
 </div>
 
 <div class="tarjeta">
-  <h2>1. Evaluar al azar: ¿alguna supera al EMV?</h2>
-  <div class="fila">
-    <button id="bA1" type="button">+1 punto</button>
-    <button id="bA10" type="button">+10</button>
-    <button id="bA100" type="button">+100</button>
-    <button id="bA1000" type="button">+1,000</button>
-    <button id="bAB" type="button" class="claro">Borrar puntos</button>
-  </div>
-  <div class="stats">
-    <div class="stat"><p class="k">Evaluaciones</p><p class="v" id="stN">0</p></div>
-    <div class="stat bien"><p class="k">Superaron al EMV</p><p class="v" id="stSup">0 de 0</p></div>
-    <div class="stat"><p class="k">Mejor &ell; hallada al azar</p><p class="v" id="stMejor">&ndash;</p></div>
-  </div>
-  <p id="msgAzar">Presiona un botón para evaluar la log-verosimilitud en puntos elegidos al azar dentro de la ventana de la figura.</p>
-  <canvas id="cgap"></canvas>
-  <p class="nota">Brecha &ell;(&theta;&#770;) &minus; (mejor &ell; al azar), en escala logarítmica, contra el número de evaluaciones. Se acerca a cero, pero nunca la cruza, y baja lentamente: elegir puntos al azar es una forma muy ineficiente de buscar un máximo.</p>
-  <details>
-    <summary>¿Por qué ninguna evaluación puede superar al EMV?</summary>
-    <p>Con S = &Sigma;(x<sub>i</sub> &minus; x&#772;)&sup2; y n = 6,
-       &ell;(&mu;,&sigma;&sup2;) = &minus;(n/2) log 2&pi; &minus; (n/2) log &sigma;&sup2; &minus; [S + n(x&#772; &minus; &mu;)&sup2;]/(2&sigma;&sup2;).</p>
-    <ul>
-      <li>Para &sigma;&sup2; fijo, el término n(x&#772; &minus; &mu;)&sup2;/(2&sigma;&sup2;) es no negativo, así que &ell;(&mu;,&sigma;&sup2;) &le; &ell;(x&#772;,&sigma;&sup2;).</li>
-      <li>Con &sigma;&#770;&sup2; = S/n y t = &sigma;&#770;&sup2;/&sigma;&sup2;, &ell;(x&#772;,&sigma;&sup2;) &minus; &ell;(x&#772;,&sigma;&#770;&sup2;) = (n/2)[log t &minus; (t &minus; 1)] &le; 0, porque log t &le; t &minus; 1.</li>
-      <li>Por tanto &ell;(&theta;) &le; &ell;(&theta;&#770;) para todo &theta;, con igualdad solo en &theta;&#770;. En términos de razón de verosimilitudes, LR(&theta;&#770;, &theta;) &ge; 1: el EMV le gana a cualquier otro valor (la comparación por pares de la Sección 4.9).</li>
-    </ul>
-  </details>
-</div>
-
-<div class="tarjeta">
-  <h2>2. Subir a la cima, paso a paso</h2>
+  <h2>1. Subir a la cima, paso a paso</h2>
   <div class="fila">
     <label for="selAlg">Algoritmo:</label>
     <select id="selAlg">
@@ -160,7 +131,7 @@
     <label><input type="checkbox" id="chElip" checked> aproximación cuadrática (elipses)</label>
   </div>
   <p class="nota">La partida difícil es (&mu;, &sigma;&sup2;) = (&minus;0.73, 0.23): desde ahí Newton puro falla y BFGS sobre (&mu;, &sigma;&sup2;) se sale de la ventana. Prueba los cuatro algoritmos.</p>
-  <p class="nota">También puedes elegir el punto de partida con un clic en el mapa (activa &laquo;fijar punto de partida&raquo; debajo del mapa).</p>
+  <p class="nota">También puedes elegir el punto de partida con un clic en el mapa (opción &laquo;fijar punto de partida&raquo; debajo del mapa, activa por defecto; cámbiala a &laquo;evaluar ese punto&raquo; para la sección 2).</p>
   <div id="msg"></div>
   <div class="matrices" id="matrices"></div>
   <div class="scroll"><table id="tabla"></table></div>
@@ -177,6 +148,35 @@
       <li><b>BFGS.</b> No calcula H: mantiene una matriz B que aproxima la inversa de &minus;H y la va corrigiendo con la diferencia entre los gradientes de dos iteraciones. Arranca con B = I (círculos), así que el primer paso es un ascenso por gradiente, y poco a poco los círculos se deforman en elipses parecidas a las curvas de nivel. Es una réplica fiel del código de optim(method = &quot;BFGS&quot;) en R: mismo retroceso (factor 0.2), misma condición de aceptación, mismo criterio de parada (cambio relativo en &ell; menor que 1.5e-8) y máximo de 100 iteraciones; sus iterados coinciden con los de optim.</li>
       <li><b>Sobre (&mu;, log &sigma;&sup2;).</b> Optimizar sobre &phi; = log &sigma;&sup2; evita que el paso caiga en &sigma;&sup2; &le; 0. Es legítimo porque, por la invarianza del EMV, el máximo en &phi; corresponde al máximo en &sigma;&sup2;.</li>
       <li><b>Al final.</b> En el máximo, &minus;H(&theta;&#770;)<sup>&minus;1</sup> = diag(&sigma;&#770;&sup2;/n, 2&sigma;&#770;&sup4;/n): las varianzas asintóticas del EMV, o sea la inversa de la información de Fisher.</li>
+    </ul>
+  </details>
+</div>
+
+<div class="tarjeta">
+  <h2>2. Evaluar al azar: ¿alguna supera al EMV?</h2>
+  <div class="fila">
+    <button id="bA1" type="button">+1 punto</button>
+    <button id="bA10" type="button">+10</button>
+    <button id="bA100" type="button">+100</button>
+    <button id="bA1000" type="button">+1,000</button>
+    <button id="bAB" type="button" class="claro">Borrar puntos</button>
+  </div>
+  <div class="stats">
+    <div class="stat"><p class="k">Evaluaciones</p><p class="v" id="stN">0</p></div>
+    <div class="stat bien"><p class="k">Superaron al EMV</p><p class="v" id="stSup">0 de 0</p></div>
+    <div class="stat"><p class="k">Mejor &ell; hallada al azar</p><p class="v" id="stMejor">&ndash;</p></div>
+  </div>
+  <p id="msgAzar">Presiona un botón para evaluar la log-verosimilitud en puntos elegidos al azar dentro de la ventana de la figura.</p>
+  <canvas id="cgap"></canvas>
+  <p class="nota">Brecha &ell;(&theta;&#770;) &minus; (mejor &ell; al azar), en escala logarítmica, contra el número de evaluaciones. Se acerca a cero, pero nunca la cruza, y baja lentamente: elegir puntos al azar es una forma muy ineficiente de buscar un máximo.</p>
+  <details>
+    <summary>¿Por qué ninguna evaluación puede superar al EMV?</summary>
+    <p>Con S = &Sigma;(x<sub>i</sub> &minus; x&#772;)&sup2; y n = 6,
+       &ell;(&mu;,&sigma;&sup2;) = &minus;(n/2) log 2&pi; &minus; (n/2) log &sigma;&sup2; &minus; [S + n(x&#772; &minus; &mu;)&sup2;]/(2&sigma;&sup2;).</p>
+    <ul>
+      <li>Para &sigma;&sup2; fijo, el término n(x&#772; &minus; &mu;)&sup2;/(2&sigma;&sup2;) es no negativo, así que &ell;(&mu;,&sigma;&sup2;) &le; &ell;(x&#772;,&sigma;&sup2;).</li>
+      <li>Con &sigma;&#770;&sup2; = S/n y t = &sigma;&#770;&sup2;/&sigma;&sup2;, &ell;(x&#772;,&sigma;&sup2;) &minus; &ell;(x&#772;,&sigma;&#770;&sup2;) = (n/2)[log t &minus; (t &minus; 1)] &le; 0, porque log t &le; t &minus; 1.</li>
+      <li>Por tanto &ell;(&theta;) &le; &ell;(&theta;&#770;) para todo &theta;, con igualdad solo en &theta;&#770;. En términos de razón de verosimilitudes, LR(&theta;&#770;, &theta;) &ge; 1: el EMV le gana a cualquier otro valor (la comparación por pares de la Sección 4.9).</li>
     </ul>
   </details>
 </div>
@@ -417,7 +417,7 @@ var Nucleo = (function () {
     return 'rgb(' + Math.round(a[0] + (b[0] - a[0]) * u) + ',' + Math.round(a[1] + (b[1] - a[1]) * u) + ',' + Math.round(a[2] + (b[2] - a[2]) * u) + ')'; }
 
   // ------------------------------ estado ------------------------------
-  var az = -40, el = 28, modoClic = 'evaluar', algoritmo = 'newton', inicio = [-0.3, 0.3];
+  var az = -40, el = 28, modoClic = 'inicio', algoritmo = 'newton', inicio = [-0.3, 0.3];
   var puntos = [], mejorDelta = Infinity, superaron = 0, histBrecha = [];
   var st = null, historial = [], preview = null, modeloBFGS = null, timer = null, geom = null;
 
