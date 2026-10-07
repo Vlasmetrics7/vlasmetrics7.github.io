@@ -47,11 +47,14 @@ toc: false
     <h2>Next Participation in Workshops / Conferences / Congresses</h2>
     <ul>
      <li><strong>2026:</strong> Econometric Models of Climate Change Conference, Aalborg, Denmark. August 20-21, 2026</li>
+      <li><strong>2026:</strong> Congreso Multidisciplinario UTCV, Veracruz, Mexico. November 5-7, 2026. </li>
+      <li><strong>2026:</strong> North Carolina Agricultural and Technical State University, North Carolina, USA. November 10, 2026</li>
      <li><strong>2026:</strong> LACSC-TIES-EnviBayes-EnvrASA 2026: International Conference on Statistics, Data Science, and Computing for the Environment and Climate Change, December 7 -11, 2026. Mexico City, Mexico</li> 
     </ul>
 
     <h2 style="margin-top:40px;">News</h2>
     <ul>
+      <li><strong>Oct 2026:</strong> New accepted paper. Econometrics and Statistics.</li>
     <li><strong>Mar 2026:</strong> New accepted paper. Journal of Statistical Software.</li>
     <li><strong>Jan 2026:</strong> New accepted paper. Annals of Applied Statistics.</li>
     <li><strong>Dic 2025:</strong> New accepted paper. International Journal of Forecasting.</li>
