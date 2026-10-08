@@ -2,7 +2,53 @@
    Site-wide custom styles.
    Single source of truth: previously duplicated (with drift)
    across index.md, _pages/research.md and publications.md.
+
+   Design tokens below give Home, Research and Publications one
+   shared palette instead of three independently invented ones
+   (and recolor the theme's own .btn--* classes so CV/Teaching
+   buttons match too). Components reference the tokens; redefine
+   a token once and everything using it updates together.
    ========================================================= */
+
+:root {
+  /* Brand accent - home buttons, accordion, year tiles, .btn--primary */
+  --cv-primary: #3454d1;
+  --cv-primary-dark: #24399b;
+  --cv-primary-tint: #eef2ff;
+  --cv-primary-border: #cdd8ff;
+
+  /* Publications button row - one family, distinct lightness per action */
+  --cv-info: #1f8ecb;
+  --cv-success: #1f9d6b;
+  --cv-warning: #c98a12;
+  --cv-secondary: #5b6472;
+  --cv-dark: #262a33;
+
+  --cv-text: #1c1f26;
+  --cv-text-muted: #666666;
+  --cv-surface: #ffffff;
+  --cv-surface-tint: #f7f8fc;
+  --cv-border: #e3e6ef;
+}
+
+body.dark-mode {
+  --cv-primary: #7c93ff;
+  --cv-primary-dark: #9fb0ff;
+  --cv-primary-tint: #1b2340;
+  --cv-primary-border: #33407a;
+
+  --cv-info: #5fb3e8;
+  --cv-success: #4cc993;
+  --cv-warning: #e0b357;
+  --cv-secondary: #a7afc2;
+  --cv-dark: #c9ccd6;
+
+  --cv-text: #eeeeee;
+  --cv-text-muted: #b7bdca;
+  --cv-surface: #181b22;
+  --cv-surface-tint: #11131a;
+  --cv-border: #2b2f3a;
+}
 
 /* ---------- Dark mode toggle (button injected by _includes/head/custom.html) ---------- */
 #darkToggle {
@@ -34,18 +80,30 @@ body.dark-mode .site-header,
 body.dark-mode .site-footer,
 body.dark-mode .profile-wrapper,
 body.dark-mode .profile-text {
-  background-color: #111 !important;
-  color: #eee !important;
+  background-color: var(--cv-surface-tint) !important;
+  color: var(--cv-text) !important;
 }
 
 body.dark-mode a {
-  color: #9ecbff !important;
+  color: var(--cv-primary) !important;
 }
 
-body.dark-mode .social-buttons a {
-  background: #222 !important;
-  border-color: #444 !important;
-  color: #eee !important;
+body.dark-mode .pub-card,
+body.dark-mode .dropdown-menu,
+body.dark-mode .bib-block,
+body.dark-mode .year-button,
+body.dark-mode .more-sections-box {
+  background-color: var(--cv-surface) !important;
+  color: var(--cv-text) !important;
+}
+
+body.dark-mode .acc-content {
+  background-color: var(--cv-surface) !important;
+  color: var(--cv-text) !important;
+}
+
+body.dark-mode .pub-img {
+  background-color: var(--cv-surface) !important;
 }
 
 /* ---------- Home page profile layout ---------- */
@@ -79,7 +137,7 @@ body.dark-mode .social-buttons a {
 
 .profile-text .subtitle {
   font-size: 20px;
-  color: #666;
+  color: var(--cv-text-muted);
   margin-bottom: 20px;
 }
 
@@ -98,18 +156,24 @@ body.dark-mode .social-buttons a {
 
 .social-buttons a {
   padding: 9px 14px;
-  background: #eef2ff;
+  background: var(--cv-primary-tint);
   border-radius: 8px;
-  border: 1px solid #cdd8ff;
+  border: 1px solid var(--cv-primary-border);
   text-decoration: none;
   font-weight: 600;
-  color: #222;
+  color: var(--cv-primary-dark);
   transition: 0.2s;
 }
 
 .social-buttons a:hover {
   transform: translateY(-2px);
-  background: #dce4ff;
+  background: var(--cv-primary-border);
+}
+
+body.dark-mode .social-buttons a {
+  background: var(--cv-primary-tint) !important;
+  border-color: var(--cv-primary-border) !important;
+  color: var(--cv-primary) !important;
 }
 
 @media (max-width: 991px) {
@@ -152,8 +216,8 @@ body.dark-mode .social-buttons a {
 
 .acc-btn {
   width: 100%;
-  background: #e7ecff;
-  border: 1px solid #c8d0ff;
+  background: var(--cv-primary-tint);
+  border: 1px solid var(--cv-primary-border);
   padding: 12px 18px;
   text-align: left;
   border-radius: 8px;
@@ -162,17 +226,18 @@ body.dark-mode .social-buttons a {
   font-weight: 600;
   margin-bottom: 8px;
   transition: 0.2s;
+  color: var(--cv-text);
 }
 
 .acc-btn:hover {
-  background: #dbe4ff;
+  background: var(--cv-primary-border);
 }
 
 .acc-content {
   display: none;
   padding: 15px 20px;
-  background: #fafbff;
-  border-left: 4px solid #8aa5ff;
+  background: var(--cv-surface-tint);
+  border-left: 4px solid var(--cv-primary);
   border-radius: 6px;
   margin-bottom: 15px;
   font-size: 15px;
@@ -210,7 +275,7 @@ body.dark-mode .social-buttons a {
   gap: 20px;
   padding: 18px;
   margin-bottom: 28px;
-  background: #fff;
+  background: var(--cv-surface);
   border-radius: 10px;
   box-shadow: 0px 8px 22px rgba(0, 0, 0, 0.15);
   transition: transform 0.15s ease, box-shadow 0.15s ease;
@@ -244,11 +309,53 @@ body.dark-mode .social-buttons a {
   margin-top: 12px;
 }
 
+/* One shared shape for every pub-card action button (ABS, Working Papers,
+   Published, Media, BIB, Package/Codes): only the fill color differs. */
+.btn-row .btn {
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  color: #fff;
+  border: none;
+  transition: filter 0.15s ease, transform 0.15s ease;
+}
+
+.btn-row .btn:hover {
+  filter: brightness(0.92);
+  transform: translateY(-1px);
+}
+
+.btn--primary {
+  background: var(--cv-primary);
+}
+
+.btn--info {
+  background: var(--cv-info);
+}
+
+.btn--success {
+  background: var(--cv-success);
+}
+
+.btn--warning {
+  background: var(--cv-warning);
+}
+
+.btn--secondary {
+  background: var(--cv-secondary);
+}
+
+.btn--dark {
+  background: var(--cv-dark);
+}
+
 .dropdown-menu {
   display: none;
   position: absolute;
-  background: rgba(255, 255, 255, 0.96);
-  border: 1px solid #ddd;
+  background: var(--cv-surface);
+  border: 1px solid var(--cv-border);
   padding: 12px;
   border-radius: 6px;
   box-shadow: 0px 8px 22px rgba(0, 0, 0, 0.25);
@@ -303,7 +410,7 @@ body.dark-mode .social-buttons a {
   margin-bottom: 14px;
   padding: 10px 12px;
   max-width: 95%;
-  background: #f8f8f8;
+  background: var(--cv-surface-tint);
   border-radius: 6px;
   box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.08);
 }
@@ -316,8 +423,8 @@ body.dark-mode .social-buttons a {
 
 .year-button {
   width: 100%;
-  background: #f2f2f2;
-  border: 1px solid #ccc;
+  background: var(--cv-surface-tint);
+  border: 1px solid var(--cv-border);
   padding: 12px 18px;
   border-radius: 8px;
   font-size: 20px;
@@ -327,10 +434,11 @@ body.dark-mode .social-buttons a {
   margin-bottom: 10px;
   text-align: left;
   transition: background 0.2s ease;
+  color: var(--cv-text);
 }
 
 .year-button:hover {
-  background: #e6e6e6;
+  background: var(--cv-primary-tint);
 }
 
 .year-grid {
@@ -349,8 +457,8 @@ body.dark-mode .social-buttons a {
   font-weight: 600;
   cursor: pointer;
   text-align: center;
-  color: #222;
-  background: #e4ecff;
+  color: var(--cv-primary-dark);
+  background: var(--cv-primary-tint);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
 }
@@ -358,6 +466,11 @@ body.dark-mode .social-buttons a {
 .year-tile:hover {
   transform: translateY(-2px);
   box-shadow: 0 7px 16px rgba(0, 0, 0, 0.18);
+}
+
+body.dark-mode .year-tile {
+  background: var(--cv-primary-tint) !important;
+  color: var(--cv-primary) !important;
 }
 
 .year-block {
@@ -369,21 +482,23 @@ body.dark-mode .social-buttons a {
   padding: 10px 18px;
   font-size: 16px;
   font-weight: 600;
-  background: #dce4ff;
-  border: 1px solid #b0c2ff;
+  background: var(--cv-primary-border);
+  border: 1px solid var(--cv-primary);
   border-radius: 8px;
   cursor: pointer;
   margin-bottom: 20px;
   transition: background 0.2s ease, transform 0.15s ease;
+  color: var(--cv-primary-dark);
 }
 
 .toggle-all-button:hover {
-  background: #c8d6ff;
+  background: var(--cv-primary);
+  color: #fff;
   transform: translateY(-2px);
 }
 
 .more-sections-box {
-  background: #fafbff;
+  background: var(--cv-surface-tint);
   padding: 15px 20px;
   border-radius: 10px;
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.05);
@@ -391,17 +506,4 @@ body.dark-mode .social-buttons a {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-}
-
-.btn--dark {
-  background: #555;
-  color: white;
-  border-radius: 6px;
-  padding: 2px 8px;
-  font-size: 0.75rem;
-  opacity: 0.85;
-}
-
-.btn--dark:hover {
-  opacity: 1;
 }
