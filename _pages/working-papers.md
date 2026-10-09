@@ -5,7 +5,7 @@ permalink: /working-papers/
 ---
 
 <p style="font-size: 20px; color:#444; margin-top:10px;">
-Working papers and other research output that doesn't fit the main <a href="/publications/">Publications</a> list: pop-science writing, technical notes, book chapters, the textbook, and dissertations.
+Working papers and other research output that doesn't fit the main <a href="/publications/">Publications</a> list.
 </p>
 
   <!-- ============================== -->
