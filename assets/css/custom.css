@@ -507,3 +507,17 @@ body.dark-mode .year-tile {
   flex-wrap: wrap;
   gap: 10px;
 }
+
+/* Brief highlight when a /research/ "Related papers" link deep-links here */
+.paper-highlight {
+  animation: paper-highlight-flash 2.2s ease;
+}
+
+@keyframes paper-highlight-flash {
+  0% {
+    box-shadow: 0 0 0 3px var(--cv-primary), 0px 8px 22px rgba(0, 0, 0, 0.15);
+  }
+  100% {
+    box-shadow: 0px 8px 22px rgba(0, 0, 0, 0.15);
+  }
+}

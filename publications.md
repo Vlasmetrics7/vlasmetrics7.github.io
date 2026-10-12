@@ -561,7 +561,7 @@ author = {Ignacio Garrón and Vladimir Rodríguez-Caballero and Esther Ruiz},
 <!-- ================ PAPER (Econometrics & Statistics) === -->
 <!-- ===================================================== -->
 
-<div class="pub-card">
+<div class="pub-card" id="paper-sls2026">
 
   <img src="/assets/images/ECOSTAT26.png" class="pub-img">
 
@@ -616,7 +616,7 @@ business cycles.</em>
 <!-- ==================== PAPER (FARS / JSS) ============== -->
 <!-- ===================================================== -->
 
-<div class="pub-card">
+<div class="pub-card" id="paper-fars2026">
 
   <img src="/assets/images/FARS_logo.png" class="pub-img">
 
@@ -764,7 +764,7 @@ regional components remain relevant, particularly at the log-range.</em>
 <!-- ==================== PAPER 1 (IJF) ================== -->
 <!-- ===================================================== -->
 
-<div class="pub-card">
+<div class="pub-card" id="paper-infl2026">
 
   <img src="/assets/images/IJF26.png" class="pub-img">
 
@@ -905,7 +905,7 @@ author = {Aránzazu de Juan and Pilar Poncela and C. Vladimir Rodríguez-Caballe
 <!-- ==================== PAPER 2 (JAE) ================== -->
 <!-- ===================================================== -->
 
-<div class="pub-card">
+<div class="pub-card" id="paper-gis2024">
 
   <img src="/assets/images/JAE24.png" class="pub-img">
 
@@ -974,7 +974,7 @@ author = {Aránzazu de Juan and Pilar Poncela and C. Vladimir Rodríguez-Caballe
 <!-- ==================== PAPER 3 (Empirical Economics) === -->
 <!-- ===================================================== -->
 
-<div class="pub-card">
+<div class="pub-card" id="paper-fx2024">
 
   <img src="/assets/images/EE24.png" class="pub-img">
 
@@ -1033,7 +1033,7 @@ author = {Aránzazu de Juan and Pilar Poncela and C. Vladimir Rodríguez-Caballe
 <!-- ==================== PAPER  IJF ================== -->
 <!-- ===================================================== -->
 
-<div class="pub-card">
+<div class="pub-card" id="paper-mldfm2023">
 
   <img src="/assets/images/IJF23.png" class="pub-img">
   <div class="pub-info">
@@ -1151,7 +1151,7 @@ author = {Aránzazu de Juan and Pilar Poncela and C. Vladimir Rodríguez-Caballe
 <!-- ==================== PAPER: Empirical economics === -->
 <!-- ===================================================== -->
 
-<div class="pub-card">
+<div class="pub-card" id="paper-crypto2022">
   <img src="/assets/images/EE22.png" class="pub-img">
   <div class="pub-info">
 
@@ -1207,7 +1207,7 @@ the maximum price. Nine days after, the bitcoin price fell 45% from its peaks.</
 <!-- ==================== PAPER: Explorations in Economic History === -->
 <!-- ===================================================== -->
 
-<div class="pub-card">
+<div class="pub-card" id="paper-warpandemics2022">
   <img src="/assets/images/EH23.png" class="pub-img">
   <div class="pub-info">
 
@@ -1429,7 +1429,7 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
   <!-- ==================== PAPER: WAVELETS ================ -->
   <!-- ===================================================== -->
 
-  <div class="pub-card">
+  <div class="pub-card" id="paper-wavelet2021">
     <img src="/assets/images/WAV21.png" class="pub-img">
     <div class="pub-info">
 
@@ -1490,7 +1490,7 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
   <!-- ==================== PAPER: ECOSTAT ================= -->
   <!-- ===================================================== -->
 
-  <div class="pub-card">
+  <div class="pub-card" id="paper-energygdp2021">
     <img src="/assets/images/ECOSTAT21.png" class="pub-img">
     <div class="pub-info">
 
@@ -1564,7 +1564,7 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
 <!-- ==================== PAPER: ECONOMETRICS === -->
 <!-- ===================================================== -->
 
-<div class="pub-card">
+<div class="pub-card" id="paper-pandemics2020">
   <img src="/assets/images/ECN20.png" class="pub-img">
   <div class="pub-info">
 
@@ -1636,7 +1636,7 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
 <!-- ==================== PAPER: Journal of International Financial Markets, Institutions and Money. === -->
 <!-- ===================================================== -->
 
-<div class="pub-card">
+<div class="pub-card" id="paper-cds2019">
   <img src="/assets/images/paper_default.png" class="pub-img">
   <div class="pub-info">
 
@@ -1707,7 +1707,7 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
 <!-- ==================== PAPER: Energy Economics === -->
 <!-- ===================================================== -->
 
-<div class="pub-card">
+<div class="pub-card" id="paper-energygrowth2017">
   <img src="/assets/images/ENECO19.png" class="pub-img">
   <div class="pub-info">
 
@@ -1748,7 +1748,7 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
 <!-- ==================== PAPER: Energy Economics === -->
 <!-- ===================================================== -->
 
-<div class="pub-card">
+<div class="pub-card" id="paper-nordpool2016">
   <img src="/assets/images/ENECO16.png" class="pub-img">
   <div class="pub-info">
 
@@ -1966,3 +1966,40 @@ not experience a decrease in air pollution during COVID-19 induced lockdowns.</e
 </div>
 </div>
 
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var paperYears = {
+    'paper-fars2026': 'year2026',
+    'paper-infl2026': 'year2026',
+    'paper-sls2026': 'year2026',
+    'paper-gis2024': 'year2024',
+    'paper-fx2024': 'year2024',
+    'paper-mldfm2023': 'year2023',
+    'paper-wavelet2021': 'year2021',
+    'paper-energygdp2021': 'year2021',
+    'paper-cds2019': 'year2019',
+    'paper-nordpool2016': 'year2018',
+    'paper-crypto2022': 'year2022',
+    'paper-warpandemics2022': 'year2022',
+    'paper-pandemics2020': 'year2020',
+    'paper-energygrowth2017': 'year2018'
+  };
+  var hash = window.location.hash.replace('#', '');
+  var yearId = paperYears[hash];
+  if (!yearId) return;
+
+  hideSelected();
+  hideAllYears();
+  var yearBlock = document.getElementById(yearId);
+  if (yearBlock) yearBlock.style.display = 'block';
+  updateToggleAllLabel();
+
+  var card = document.getElementById(hash);
+  if (card) {
+    card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    card.classList.add('paper-highlight');
+    setTimeout(function () { card.classList.remove('paper-highlight'); }, 2200);
+  }
+});
+</script>
