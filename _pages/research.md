@@ -7,7 +7,7 @@ permalink: /research/
 My research program develops a coherent econometric framework that links multilevel factor structures, fractional integration, long-memory dynamics, and stress-scenario propagation across macroeconomic, financial, energy, and climate-related systems. 
 <br>
 <br>
-Across applications (from growth-in-stress densities to electricity markets, exchange-rate volatility, long economic histories, labour participation, pollution, and credit dynamics), most of my research papers uncover persistent common components, heterogeneous cross-sectional structures, and non-negligible tail risks that shape macroeconomic adjustment and policy design.
+Across applications (from growth-in-stress densities to electricity markets, exchange-rate volatility, and long economic histories), most of my research papers uncover persistent common components, heterogeneous cross-sectional structures, and non-negligible tail risks that shape macroeconomic adjustment and policy design.
 <br><br>
 You can find related publications in the [Publications](/publications/) and [Working Papers](/working-papers/) sections.
 <br><br>
@@ -52,12 +52,10 @@ Click each section to explore.
     <button class="acc-btn">II. High-Dimensional Time Series</button>
     <div class="acc-content">
 
-      <h4>FI-ML-DFM for High-Frequency Volatility</h4>
+      <h4>ML-DFM for Financial Econometrics (High-Frequency Volatility and Credit Default Swaps)</h4>
       <ul>
-        <li>Defines global-in-time factors + intermittent hourly factors</li>
-        <li>COVID-19 induces permanent shifts in the global factor</li>
-        <li>Intermittent factors show 1-year mean reversion</li>
-        <li>CDS comovement driven by global + local + semi-pervasive factors</li>
+        <li><strong>High-frequency exchange-rate volatility:</strong> global-in-time plus intermittent hourly factors, with COVID-19 inducing a permanent shift in the global factor and intermittent factors reverting to their mean within about a year</li>
+        <li><strong>Credit Default Swaps:</strong> CDS comovement driven by global, local, and semi-pervasive factors</li>
       </ul>
       
       <h4>Dynamic Multi-Level Factor Models with Stochastic Trends</h4>
