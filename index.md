@@ -21,9 +21,9 @@ toc: false
 
       <p><strong>Research fields:</strong></p>
       <ul>
-        <li>Time-series econometrics and long memory</li>
-        <li>High-dimensional factor models</li>
-        <li>Macroeconometrics & empirical forecasting</li>
+        <li>Scenario-based predictive densities and stress testing</li>
+        <li>High-dimensional time series and factor models</li>
+        <li>Shocks, structural breaks, and long-run growth</li>
       </ul>
 
       <div class="social-buttons">
