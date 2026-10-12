@@ -7,7 +7,7 @@
 # ==============================================================
 
 # --------------------------------------------------------------
-# 1. Muestra representativa vs. muestra sesgada (ver Ejemplo del
+# 1. Muestra representativa vs. muestra por conveniencia (ver Ejemplo del
 #    capitulo). Poblacion de 1000 empresas: 200 grandes (140
 #    exportadoras) y 800 pequenas (120 exportadoras), con la
 #    proporcion poblacional verdadera P = (140+120)/1000 = 0.26.
@@ -36,15 +36,15 @@ cat("Proporcion muestral de exportadoras:",
     round(mean(muestra_aleatoria$exporta), 4),
     " (verdadera: ", round(P_verdadera, 4), ")\n", sep = "")
 
-# --- Muestra sesgada: se toma unicamente de un directorio de
+# --- Muestra por conveniencia: se toma unicamente de un directorio de
 #     empresas grandes (ej. camara de comercio exterior) ---
 idx_grandes     <- which(poblacion_empresas$tipo == "grande")
-muestra_sesgada <- poblacion_empresas[sample(idx_grandes, n_muestra), ]
-cat("\n--- Muestra sesgada: solo empresas grandes (n =", n_muestra, ") ---\n")
+muestra_conveniencia <- poblacion_empresas[sample(idx_grandes, n_muestra), ]
+cat("\n--- Muestra por conveniencia: solo empresas grandes (n =", n_muestra, ") ---\n")
 cat("Proporcion muestral de exportadoras:",
-    round(mean(muestra_sesgada$exporta), 4),
+    round(mean(muestra_conveniencia$exporta), 4),
     " (verdadera: ", round(P_verdadera, 4), ")\n", sep = "")
-cat("La muestra sesgada sobreestima fuertemente la proporcion real,",
+cat("La muestra por conveniencia sobreestima fuertemente la proporcion real,",
     "\naunque tiene el mismo tamano que la muestra aleatoria simple.\n")
 
 # --------------------------------------------------------------

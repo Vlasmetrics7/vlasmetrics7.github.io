@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Simulación: muestreo aleatorio vs. muestreo sesgado</title>
+<title>Simulación: muestreo aleatorio vs. muestreo por conveniencia</title>
 <style>
   :root {
     --azul-itam: #003366;
@@ -52,12 +52,12 @@
 </head>
 <body>
 
-<h1>Muestreo aleatorio vs. muestreo sesgado</h1>
+<h1>Muestreo aleatorio vs. muestreo por conveniencia</h1>
 <p class="instrucciones">
   Cada punto es una localidad con un salario mensual: más oscuro = salario
   más alto. Por diseño, los salarios son más altos en el norte y más bajos
   en el sur. Compara qué pasa con la media muestral si encuestas con
-  muestreo aleatorio (todo el país) contra un muestreo sesgado (solo el
+  muestreo aleatorio (todo el país) contra un muestreo por conveniencia (solo el
   norte, arriba de la línea punteada).
 </p>
 
@@ -77,7 +77,7 @@
 <div class="modo-fila">
   <span>Tipo de muestreo:</span>
   <button id="btnAleatorio">Aleatorio (todo el país)</button>
-  <button id="btnSesgado">Sesgado (solo norte)</button>
+  <button id="btnSesgado">Por conveniencia (solo norte)</button>
 </div>
 
 <div class="acciones">
@@ -93,7 +93,7 @@
     <polygon points="85,35 70,40 50,55 38,80 30,110 28,140 32,170 42,192 55,202 65,185 72,155 78,120 82,85 85,60"
              fill="var(--surface-1)" stroke="var(--border)" stroke-width="1.5"/>
     <line x1="20" y1="95" x2="465" y2="95" stroke="var(--text-secondary)" stroke-width="1" stroke-dasharray="4,3" opacity="0.6"/>
-    <text x="330" y="90" font-size="9" fill="var(--text-secondary)">límite del muestreo sesgado</text>
+    <text x="330" y="90" font-size="9" fill="var(--text-secondary)">límite del muestreo por conveniencia</text>
     <g id="points"></g>
   </svg>
 </div>
