@@ -1,0 +1,664 @@
+<title>Desfile de Intervalos de Confianza</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+
+<style>
+/*
+  Layout: panel izquierdo de controles + panel derecho de animación
+  Paleta ITAM: azul profundo, naranja cálido, verde para "atrapa", rojo coral para "falla"
+*/
+:root {
+  --bg:       #f7f6f3;
+  --bg-panel: #ffffff;
+  --fg:       #1a1a2e;
+  --fg-muted: #6b6b7a;
+  --border:   #dddde0;
+
+  --azul:     #003366;
+  --naranja:  #c07030;
+  --verde:    #1a7a4a;
+  --rojo:     #c0432a;
+  --verde-bg: #e8f5ee;
+  --rojo-bg:  #faeae7;
+
+  --track-w:  620px;
+  --ic-h:     2px;
+
+  --mono: "IBM Plex Mono", "Courier New", monospace;
+  --sans: "IBM Plex Sans", system-ui, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:       #0e0e1a;
+    --bg-panel: #16162a;
+    --fg:       #e8e8f0;
+    --fg-muted: #8888a0;
+    --border:   #2a2a42;
+    --azul:     #4d88cc;
+    --naranja:  #d4884a;
+    --verde:    #3db870;
+    --rojo:     #e05a42;
+    --verde-bg: #0e2818;
+    --rojo-bg:  #2a100a;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg:       #0e0e1a;
+  --bg-panel: #16162a;
+  --fg:       #e8e8f0;
+  --fg-muted: #8888a0;
+  --border:   #2a2a42;
+  --azul:     #4d88cc;
+  --naranja:  #d4884a;
+  --verde:    #3db870;
+  --rojo:     #e05a42;
+  --verde-bg: #0e2818;
+  --rojo-bg:  #2a100a;
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--sans);
+  font-size: 14px;
+  line-height: 1.5;
+  min-height: 100%;
+  padding: 0 16px;
+}
+
+header {
+  padding: 20px 0 14px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 18px;
+}
+header h1 {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--azul);
+  letter-spacing: -0.01em;
+}
+header p {
+  font-size: 12.5px;
+  color: var(--fg-muted);
+  margin-top: 2px;
+}
+
+.layout {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+/* ── Panel de controles ── */
+.controls {
+  flex: 0 0 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.ctrl-group label {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: var(--fg-muted);
+  margin-bottom: 6px;
+}
+
+.ctrl-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.ctrl-row input[type=range] {
+  flex: 1;
+  accent-color: var(--azul);
+  cursor: pointer;
+}
+.ctrl-val {
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--azul);
+  min-width: 40px;
+  text-align: right;
+}
+
+.btn-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+button {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 500;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 14px;
+  cursor: pointer;
+  transition: opacity .15s;
+}
+button:active { opacity: .75; }
+
+.btn-primary {
+  background: var(--azul);
+  color: #fff;
+}
+.btn-secondary {
+  background: var(--border);
+  color: var(--fg);
+}
+.btn-reset {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--fg-muted);
+  font-size: 12px;
+}
+
+/* ── Estadísticas ── */
+.stats {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.stat-card {
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+.stat-card .s-label {
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  color: var(--fg-muted);
+  margin-bottom: 3px;
+}
+.stat-card .s-val {
+  font-family: var(--mono);
+  font-size: 18px;
+  font-weight: 600;
+}
+.s-val.good  { color: var(--verde); }
+.s-val.bad   { color: var(--rojo); }
+.s-val.total { color: var(--azul); }
+
+.pct-bar-wrap {
+  height: 5px;
+  background: var(--border);
+  border-radius: 3px;
+  margin-top: 6px;
+  overflow: hidden;
+}
+.pct-bar {
+  height: 100%;
+  background: var(--verde);
+  border-radius: 3px;
+  transition: width .4s;
+  width: 0%;
+}
+
+.legend {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding-top: 4px;
+}
+.leg-item {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 11.5px;
+  color: var(--fg-muted);
+}
+.leg-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.leg-dot.g { background: var(--verde); }
+.leg-dot.r { background: var(--rojo); }
+.leg-dot.mu { background: var(--naranja); width: 3px; height: 14px; border-radius: 2px; }
+
+/* ── Canvas principal ── */
+.canvas-wrap {
+  flex: 1 1 0;
+  min-width: 0;
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+}
+
+canvas {
+  display: block;
+  width: 100%;
+}
+
+.mu-label {
+  position: absolute;
+  top: 8px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--naranja);
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+/* ── Velocidad ── */
+.speed-group {
+  display: flex;
+  gap: 5px;
+}
+.speed-btn {
+  flex: 1;
+  padding: 5px 0;
+  font-size: 11.5px;
+  border-radius: 5px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--fg-muted);
+}
+.speed-btn.active {
+  background: var(--azul);
+  color: #fff;
+  border-color: var(--azul);
+}
+
+/* ── Footer ── */
+footer {
+  padding: 12px 0 16px;
+  font-size: 11px;
+  color: var(--fg-muted);
+  border-top: 1px solid var(--border);
+  margin-top: 18px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 620px) {
+  .layout { flex-direction: column; }
+  .controls { flex: none; width: 100%; flex-direction: row; flex-wrap: wrap; gap: 12px; }
+  .ctrl-group { flex: 1 1 140px; }
+  .btn-group { flex-direction: row; }
+  .stats { flex-direction: row; flex-wrap: wrap; }
+  .stat-card { flex: 1 1 100px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pct-bar { transition: none; }
+}
+</style>
+
+<header>
+  <h1>Desfile de Intervalos de Confianza</h1>
+  <p>μ es fijo. Los IC son aleatorios. ¿Cuántos atrapan al parámetro verdadero?</p>
+</header>
+
+<div class="layout">
+
+  <!-- Controles izquierda -->
+  <aside class="controls">
+
+    <div class="ctrl-group">
+      <label>Tamaño de muestra <em>n</em></label>
+      <div class="ctrl-row">
+        <input type="range" id="sl-n" min="5" max="200" value="30" step="1">
+        <span class="ctrl-val" id="val-n">30</span>
+      </div>
+    </div>
+
+    <div class="ctrl-group">
+      <label>Nivel de confianza 1−α</label>
+      <div class="ctrl-row">
+        <input type="range" id="sl-alpha" min="50" max="99" value="95" step="1">
+        <span class="ctrl-val" id="val-alpha">95%</span>
+      </div>
+    </div>
+
+    <div class="ctrl-group">
+      <label>Velocidad</label>
+      <div class="speed-group">
+        <button class="speed-btn" data-ms="1200">Lenta</button>
+        <button class="speed-btn active" data-ms="700">Normal</button>
+        <button class="speed-btn" data-ms="250">Rápida</button>
+      </div>
+    </div>
+
+    <div class="btn-group">
+      <button class="btn-primary" id="btn-play">⏸ Pausar</button>
+      <button class="btn-reset" id="btn-reset">↺ Reiniciar</button>
+    </div>
+
+    <!-- Estadísticas -->
+    <div class="stats">
+      <div class="stat-card">
+        <div class="s-label">Total de IC</div>
+        <div class="s-val total" id="st-total">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="s-label">Contienen μ</div>
+        <div class="s-val good" id="st-hits">0</div>
+        <div class="pct-bar-wrap"><div class="pct-bar" id="pct-bar"></div></div>
+      </div>
+      <div class="stat-card">
+        <div class="s-label">No contienen μ</div>
+        <div class="s-val bad" id="st-miss">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="s-label">Cobertura empírica</div>
+        <div class="s-val total" id="st-pct">—</div>
+      </div>
+    </div>
+
+    <!-- Leyenda -->
+    <div class="legend">
+      <div class="leg-item"><span class="leg-dot mu"></span> μ = 100 (parámetro fijo)</div>
+      <div class="leg-item"><span class="leg-dot g"></span> IC contiene μ</div>
+      <div class="leg-item"><span class="leg-dot r"></span> IC no contiene μ</div>
+    </div>
+
+  </aside>
+
+  <!-- Canvas principal -->
+  <div class="canvas-wrap" id="wrap">
+    <canvas id="cvs"></canvas>
+    <div class="mu-label" id="mu-lbl">μ = 100</div>
+  </div>
+
+</div>
+
+<footer>
+  Elaborado por C. Vladimir Rodríguez-Caballero (Depto. Estadística, ITAM) &nbsp;·&nbsp;
+  Población: Normal(μ=100, σ=20). IC construido con σ conocida (pivote Z).
+</footer>
+
+<script>
+// ── Parámetros del modelo ──────────────────────────────────────────────────
+const MU    = 100;
+const SIGMA = 20;
+const MAX_VISIBLE = 38;   // IC visibles en pantalla al mismo tiempo
+
+// ── Estado global ──────────────────────────────────────────────────────────
+let n       = 30;
+let alpha   = 0.05;
+let running = true;
+let delay   = 700;        // ms entre IC
+
+let total = 0, hits = 0;
+let intervals = [];       // {lo, hi, hits, age, x̄}  (age en frames)
+let timerId   = null;
+
+// ── Utilidades estadísticas ────────────────────────────────────────────────
+function randn() {
+  // Box-Muller
+  let u, v;
+  do { u = Math.random(); } while (u === 0);
+  do { v = Math.random(); } while (v === 0);
+  return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v);
+}
+
+function zCrit(a) {
+  // Cuantil z_{a/2} por aproximación racional (Abramowitz & Stegun 26.2.17)
+  const p = 1 - a / 2;
+  const t = Math.sqrt(-2 * Math.log(1 - p));
+  const c = [2.515517, 0.802853, 0.010328];
+  const d = [1.432788, 0.189269, 0.001308];
+  return t - (c[0] + c[1]*t + c[2]*t*t) / (1 + d[0]*t + d[1]*t*t + d[2]*t*t*t);
+}
+
+function generateIC() {
+  const xbar = MU + (SIGMA / Math.sqrt(n)) * randn();
+  const z    = zCrit(alpha);
+  const half = z * SIGMA / Math.sqrt(n);
+  const lo   = xbar - half;
+  const hi   = xbar + half;
+  const catches = (lo <= MU && MU <= hi);
+  return { lo, hi, catches, xbar };
+}
+
+// ── Canvas y geometría ─────────────────────────────────────────────────────
+const cvs  = document.getElementById('cvs');
+const ctx  = cvs.getContext('2d');
+const wrap = document.getElementById('wrap');
+const muLbl = document.getElementById('mu-lbl');
+
+let W, H, muX;
+const MARGIN_L = 60;
+const MARGIN_R = 20;
+const ROW_H    = 18;       // px por fila
+const DOT_R    = 4;
+
+function resize() {
+  const rect = wrap.getBoundingClientRect();
+  W = rect.width;
+  H = (MAX_VISIBLE + 1) * ROW_H + ROW_H;
+  cvs.width  = W * devicePixelRatio;
+  cvs.height = H * devicePixelRatio;
+  cvs.style.height = H + 'px';
+  ctx.scale(devicePixelRatio, devicePixelRatio);
+
+  // rango de display: [MU - 4σ/√5, MU + 4σ/√5] — cubre bien para n≥5
+  const half = 4 * SIGMA / Math.sqrt(5);
+  const xMin = MU - half;
+  const xMax = MU + half;
+  muX = MARGIN_L + (MU - xMin) / (xMax - xMin) * (W - MARGIN_L - MARGIN_R);
+
+  // posición del label μ
+  muLbl.style.left = (muX - 18) + 'px';
+}
+
+function dataToX(v) {
+  const half = 4 * SIGMA / Math.sqrt(5);
+  const xMin = MU - half;
+  const xMax = MU + half;
+  return MARGIN_L + (v - xMin) / (xMax - xMin) * (W - MARGIN_L - MARGIN_R);
+}
+
+// ── Colores desde CSS tokens ───────────────────────────────────────────────
+function cssVar(name) {
+  return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+}
+
+function draw() {
+  ctx.clearRect(0, 0, W, H);
+
+  const verde  = cssVar('--verde');
+  const rojo   = cssVar('--rojo');
+  const orange = cssVar('--naranja');
+  const border = cssVar('--border');
+  const fgMut  = cssVar('--fg-muted');
+  const fg     = cssVar('--fg');
+
+  // Línea de μ (vertical, todo el alto)
+  ctx.save();
+  ctx.strokeStyle = orange;
+  ctx.lineWidth   = 2;
+  ctx.setLineDash([4, 4]);
+  ctx.beginPath();
+  ctx.moveTo(muX, 0);
+  ctx.lineTo(muX, H);
+  ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.restore();
+
+  // Eje horizontal de referencia (fondo)
+  ctx.save();
+  ctx.strokeStyle = border;
+  ctx.lineWidth   = 1;
+  ctx.beginPath();
+  ctx.moveTo(MARGIN_L, H - ROW_H);
+  ctx.lineTo(W - MARGIN_R, H - ROW_H);
+  ctx.stroke();
+
+  // Etiquetas del eje
+  ctx.font      = `11px ${cssVar('--mono') || 'monospace'}`;
+  ctx.fillStyle = fgMut;
+  ctx.textAlign = 'center';
+  const half = 4 * SIGMA / Math.sqrt(5);
+  [-3, -2, -1, 0, 1, 2, 3].forEach(k => {
+    const v = MU + k * SIGMA / Math.sqrt(n > 5 ? n : 5) * 1.2;
+    const x = dataToX(v);
+    if (x < MARGIN_L || x > W - MARGIN_R) return;
+    ctx.fillText(v.toFixed(0), x, H - 4);
+    // tick
+    ctx.fillStyle = border;
+    ctx.fillRect(x - 0.5, H - ROW_H - 4, 1, 4);
+    ctx.fillStyle = fgMut;
+  });
+  ctx.restore();
+
+  // Número de IC al margen izquierdo
+  ctx.font      = `10px ${cssVar('--mono') || 'monospace'}`;
+  ctx.textAlign = 'right';
+  ctx.fillStyle = fgMut;
+
+  // Dibujar cada IC (más reciente abajo, más antiguo arriba)
+  const nIC = intervals.length;
+  intervals.forEach((ic, i) => {
+    const row   = nIC - 1 - i;   // 0 = abajo, MAX_VISIBLE-1 = arriba
+    const y     = H - ROW_H - (row + 1) * ROW_H;
+    const alpha_ = Math.max(0.15, 1 - row / MAX_VISIBLE);
+    const color  = ic.catches ? verde : rojo;
+
+    const xLo = Math.max(MARGIN_L, dataToX(ic.lo));
+    const xHi = Math.min(W - MARGIN_R, dataToX(ic.hi));
+    const xBr = dataToX(ic.xbar);
+
+    ctx.globalAlpha = alpha_;
+
+    // Línea del IC
+    ctx.save();
+    ctx.strokeStyle = color;
+    ctx.lineWidth   = row === 0 ? 2.5 : 1.5;
+    ctx.beginPath();
+    ctx.moveTo(xLo, y + ROW_H / 2);
+    ctx.lineTo(xHi, y + ROW_H / 2);
+    ctx.stroke();
+
+    // Topes (|)
+    ctx.lineWidth = row === 0 ? 2 : 1.5;
+    [xLo, xHi].forEach(x => {
+      ctx.beginPath();
+      ctx.moveTo(x, y + ROW_H / 2 - 4);
+      ctx.lineTo(x, y + ROW_H / 2 + 4);
+      ctx.stroke();
+    });
+
+    // Punto central (x̄)
+    ctx.fillStyle = color;
+    ctx.beginPath();
+    ctx.arc(xBr, y + ROW_H / 2, row === 0 ? DOT_R : DOT_R - 1, 0, 2 * Math.PI);
+    ctx.fill();
+    ctx.restore();
+
+    // Número de secuencia al margen
+    if (row < 6) {
+      ctx.globalAlpha = alpha_ * 0.6;
+      ctx.fillStyle = fgMut;
+      ctx.fillText(total - i, MARGIN_L - 6, y + ROW_H / 2 + 4);
+    }
+
+    ctx.globalAlpha = 1;
+  });
+
+  // Indicador "IC más reciente"
+  if (intervals.length > 0) {
+    const ic  = intervals[intervals.length - 1];
+    const y   = H - ROW_H * 2;
+    const txt = `x̄ = ${ic.xbar.toFixed(1)}  IC = [${ic.lo.toFixed(1)}, ${ic.hi.toFixed(1)}]`;
+    ctx.font      = `11px ${cssVar('--mono') || 'monospace'}`;
+    ctx.textAlign = 'center';
+    ctx.fillStyle = ic.catches ? verde : rojo;
+    ctx.globalAlpha = 0.9;
+    ctx.fillText(txt, W / 2, 16);
+    ctx.globalAlpha = 1;
+  }
+}
+
+// ── Actualización de estadísticas DOM ─────────────────────────────────────
+function updateStats() {
+  document.getElementById('st-total').textContent = total;
+  document.getElementById('st-hits').textContent  = hits;
+  document.getElementById('st-miss').textContent  = total - hits;
+  const pct = total > 0 ? (hits / total * 100) : 0;
+  document.getElementById('st-pct').textContent   = total > 0 ? pct.toFixed(1) + '%' : '—';
+  document.getElementById('pct-bar').style.width  = pct + '%';
+}
+
+// ── Tick principal ─────────────────────────────────────────────────────────
+function tick() {
+  if (!running) return;
+
+  const ic = generateIC();
+  total++;
+  if (ic.catches) hits++;
+
+  intervals.push(ic);
+  if (intervals.length > MAX_VISIBLE) intervals.shift();
+
+  draw();
+  updateStats();
+
+  timerId = setTimeout(tick, delay);
+}
+
+function startLoop() {
+  clearTimeout(timerId);
+  if (running) tick();
+}
+
+// ── Controles ─────────────────────────────────────────────────────────────
+document.getElementById('sl-n').addEventListener('input', function() {
+  n = +this.value;
+  document.getElementById('val-n').textContent = n;
+  reset();
+});
+
+document.getElementById('sl-alpha').addEventListener('input', function() {
+  alpha = (100 - +this.value) / 100;
+  document.getElementById('val-alpha').textContent = this.value + '%';
+  reset();
+});
+
+document.getElementById('btn-play').addEventListener('click', function() {
+  running = !running;
+  this.textContent = running ? '⏸ Pausar' : '▶ Reanudar';
+  this.className = running ? 'btn-primary' : 'btn-secondary';
+  if (running) startLoop();
+});
+
+document.getElementById('btn-reset').addEventListener('click', reset);
+
+document.querySelectorAll('.speed-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.speed-btn').forEach(b => b.classList.remove('active'));
+    this.classList.add('active');
+    delay = +this.dataset.ms;
+    if (running) { clearTimeout(timerId); tick(); }
+  });
+});
+
+function reset() {
+  clearTimeout(timerId);
+  intervals = [];
+  total = 0; hits = 0;
+  resize();
+  draw();
+  updateStats();
+  if (running) tick();
+}
+
+// ── Init ──────────────────────────────────────────────────────────────────
+window.addEventListener('resize', () => { resize(); draw(); });
+resize();
+tick();
+</script>

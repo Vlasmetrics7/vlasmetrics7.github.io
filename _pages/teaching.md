@@ -57,6 +57,10 @@ Simulaciones interactivas de máxima verosimilitud, usadas en clase:
 - [Simulación: la superficie de verosimilitud y cómo se encuentra su máximo](/assets/interactivos/simulacion_superficie_verosimilitud.html){: .btn .btn--sm }
 - [Simulación: máximos locales en la verosimilitud de una mezcla de normales](/assets/interactivos/simulacion_maximos_locales.html){: .btn .btn--sm }
 
+Simulaciones interactivas de intervalos de confianza, usadas en clase:
+
+- [Simulación: el desfile de intervalos de confianza](/assets/interactivos/simulacion_desfile_ic.html){: .btn .btn--sm }
+
 Código en R, un script por capítulo:
 
 - [Capítulo 1](/assets/codigo-R/capitulo1.R){: .btn .btn--sm }
