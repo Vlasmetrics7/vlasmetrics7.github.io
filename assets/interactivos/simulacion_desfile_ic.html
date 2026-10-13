@@ -570,16 +570,22 @@ function draw() {
     ctx.globalAlpha = 1;
   });
 
-  // Indicador "IC más reciente"
+  // Indicador "IC más reciente" — extremo izquierdo, fuente grande
   if (intervals.length > 0) {
-    const ic  = intervals[intervals.length - 1];
-    const y   = H - ROW_H * 2;
-    const txt = `x̄ = ${ic.xbar.toFixed(1)}  IC = [${ic.lo.toFixed(1)}, ${ic.hi.toFixed(1)}]`;
-    ctx.font      = `11px ${cssVar('--mono') || 'monospace'}`;
-    ctx.textAlign = 'center';
+    const ic   = intervals[intervals.length - 1];
+    const mono = cssVar('--mono') || 'monospace';
+    ctx.globalAlpha = 0.95;
+    ctx.textAlign   = 'left';
+
+    // Línea 1: x̄
+    ctx.font      = `bold 15px ${mono}`;
     ctx.fillStyle = ic.catches ? verde : rojo;
-    ctx.globalAlpha = 0.9;
-    ctx.fillText(txt, W / 2, 16);
+    ctx.fillText(`x̅ = ${ic.xbar.toFixed(2)}`, MARGIN_L + 4, 20);
+
+    // Línea 2: IC = [lo, hi]
+    ctx.font      = `bold 15px ${mono}`;
+    ctx.fillText(`IC = [${ic.lo.toFixed(2)}, ${ic.hi.toFixed(2)}]`, MARGIN_L + 4, 38);
+
     ctx.globalAlpha = 1;
   }
 }
