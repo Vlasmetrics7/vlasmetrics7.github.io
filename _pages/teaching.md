@@ -68,11 +68,7 @@ Código en R, un script por capítulo:
 - [Capítulo 3](/assets/codigo-R/capitulo3.R){: .btn .btn--sm }
 - [Capítulo 4](/assets/codigo-R/capitulo4.R){: .btn .btn--sm }
 
-<!--
 - [Capítulo 5](/assets/codigo-R/capitulo5.R){: .btn .btn--sm }
-- [Capítulo 6](/assets/codigo-R/capitulo6.R){: .btn .btn--sm }
-- [Capítulo 7](/assets/codigo-R/capitulo7.R){: .btn .btn--sm }
--->
 
 Presentaciones (Beamer):
 
