@@ -194,7 +194,8 @@ sigma_pob  <- 1 / lambda_pob    # desv. estándar poblacional (exp: sigma = mu)
 B <- 10000                      # número de muestras simuladas
 tamanos_n <- c(2, 10, 30, 100)  # tamaños de muestra a comparar
 
-par(mfrow = c(2, 2), mar = c(4, 4, 3, 1))
+png("cap4_tcl_exponencial.png", width = 2200, height = 2000, res = 220, type = "cairo")
+par(mfrow = c(2, 2), mar = c(4, 4, 3, 1), oma = c(0, 0, 2.5, 0))
 for (n in tamanos_n) {
   # Para cada tamaño de muestra, simulamos B medias muestrales
   medias <- replicate(B, mean(rexp(n, rate = lambda_pob)))
@@ -209,7 +210,9 @@ for (n in tamanos_n) {
   curve(dnorm(x), col = "red", lwd = 2, add = TRUE)
 }
 mtext("Convergencia a N(0,1) del TCL (población exponencial)",
-      side = 3, line = -1.5, outer = TRUE, cex = 1.1)
+      side = 3, line = 0.5, outer = TRUE, cex = 1.15, font = 2)
+dev.off()
+cat("Figura exportada: cap4_tcl_exponencial.png\n")
 
 cat("Nótese cómo, aunque la población exponencial es muy asimétrica,\n",
     "la distribución de Z se acerca a la normal estándar conforme\n",
@@ -261,14 +264,19 @@ resultados_s2 <- lapply(tamanos_n2, function(n) {
 })
 names(resultados_s2) <- paste0("n=", tamanos_n2)
 
-par(mfrow = c(1, 1), mar = c(4, 4, 3, 1))
+png("cap4_consistencia_s2.png", width = 2200, height = 1500, res = 220, type = "cairo")
+par(mar = c(4.2, 4.5, 2.5, 1))
 boxplot(resultados_s2,
-        col = "lightgreen",
-        main = expression(paste("Distribución de ", S^2, " para distintos ", n)),
-        xlab = "Tamaño de muestra", ylab = expression(S^2))
-abline(h = sigma_r^2, col = "red", lwd = 2, lty = 2)
-legend("topright", legend = expression(sigma^2 ~ "verdadera"),
-       col = "red", lty = 2, lwd = 2, bty = "n")
+        col = "#6E9BB8", border = AZUL_ITAM,
+        main = expression(paste("Distribución de ", S^2, " para distintos ", n,
+                                " (", B2, " réplicas c/u)")),
+        xlab = "Tamaño de muestra", ylab = expression(S^2),
+        cex.lab = 1.1, cex.axis = 1.0)
+abline(h = sigma_r^2, col = NARANJA, lwd = 2.2, lty = 2)
+legend("topright", legend = expression(sigma^2 ~ "verdadera = 0.0016"),
+       col = NARANJA, lty = 2, lwd = 2.2, bty = "n", cex = 1.0)
+dev.off()
+cat("Figura exportada: cap4_consistencia_s2.png\n")
 
 # Verificación numérica: la varianza de S^2 across simulaciones decrece
 tabla_consistencia <- data.frame(
@@ -396,14 +404,17 @@ B3 <- 8000
 p_hats <- replicate(B3, mean(rbinom(n_grande, size = 1, prob = p0)))
 z_emv  <- sqrt(n_grande) * (p_hats - p0) / sqrt(p0 * (1 - p0))
 
-par(mfrow = c(1, 1), mar = c(4, 4, 3, 1))
-hist(z_emv, breaks = 50, freq = FALSE, col = "lightblue", border = "white",
-     main = "Normalidad asintótica del EMV (modelo Bernoulli)",
-     xlab = expression(sqrt(n)*(hat(p)-p[0])/sqrt(p[0]*(1-p[0]))),
-     ylab = "Densidad")
-curve(dnorm(x), col = "red", lwd = 2, add = TRUE)
-legend("topright", legend = c("Simulación (EMV)", "N(0,1) teórica"),
-       col = c("lightblue", "red"), lwd = c(NA, 2), pch = c(15, NA), bty = "n")
+png("cap4_normalidad_emv.png", width = 2200, height = 1500, res = 220, type = "cairo")
+par(mar = c(4.5, 4.5, 2.5, 1))
+hist(z_emv, breaks = 50, freq = FALSE, col = "#6E9BB8", border = "white",
+     main = bquote("Normalidad asintótica del EMV: Bernoulli(p = " * .(p0) * "),  n = " * .(n_grande)),
+     xlab = expression(sqrt(n) * (hat(p) - p[0]) / sqrt(p[0] * (1 - p[0]))),
+     ylab = "Densidad", cex.lab = 1.1)
+curve(dnorm(x), col = NARANJA, lwd = 2.8, add = TRUE)
+legend("topright", legend = c(paste0("Simulación (", B3, " réplicas)"), "N(0,1) teórica"),
+       col = c("#6E9BB8", NARANJA), lwd = c(8, 2.8), bty = "n", cex = 1.0)
+dev.off()
+cat("Figura exportada: cap4_normalidad_emv.png\n")
 
 cat("\nMedia de Z simulada:", round(mean(z_emv), 4), "(teórica: 0)\n")
 cat("Varianza de Z simulada:", round(var(z_emv), 4), "(teórica: 1)\n")

@@ -152,7 +152,99 @@ cat("(", round(sqrt(ic_varianza[1]), 4), ",", round(sqrt(ic_varianza[2]), 4), ")
 
 
 # --------------------------------------------------------------
-# 5. El intervalo se angosta conforme crece n
+# 5. IC para diferencia de proporciones (Sección 5.2.3)
+# --------------------------------------------------------------
+
+# Ejemplo 5.2.4: tasas de incumplimiento por sector
+n1 <- 51902L; p1_hat <- 0.02587   # sector eléctrico-electrónico
+n2 <-  8302L; p2_hat <- 0.02854   # sector automotriz
+
+# Verificación de condiciones de validez
+cat("Condiciones de validez (todas deben ser > 5):\n")
+cat("  n1*p1_hat =", n1 * p1_hat, "\n")
+cat("  n1*(1-p1_hat) =", n1 * (1 - p1_hat), "\n")
+cat("  n2*p2_hat =", n2 * p2_hat, "\n")
+cat("  n2*(1-p2_hat) =", n2 * (1 - p2_hat), "\n\n")
+
+alpha  <- 0.05
+z_c    <- qnorm(1 - alpha / 2)
+ee_dif_prop <- sqrt(p1_hat * (1 - p1_hat) / n1 + p2_hat * (1 - p2_hat) / n2)
+ic_dif_prop <- (p1_hat - p2_hat) + c(-1, 1) * z_c * ee_dif_prop
+cat("IC 95% para p1 - p2 (electrónico - automotriz):\n")
+cat("(", round(ic_dif_prop[1], 5), ",", round(ic_dif_prop[2], 5), ")\n\n")
+
+# --------------------------------------------------------------
+# 6. IC para diferencia de medias, dos muestras (Sección 5.4.4-5.4.5)
+# --------------------------------------------------------------
+
+# Ejemplo 5.4.4: diferencia salarial Tijuana vs Ciudad Juárez
+n_tj <- 40L; xbar_tj <- 5.35; s_tj <- 1.52
+n_cj <- 40L; xbar_cj <- 4.31; s_cj <- 1.10
+alpha <- 0.05
+
+# Varianza agrupada (pooled)
+sp2 <- ((n_tj - 1) * s_tj^2 + (n_cj - 1) * s_cj^2) / (n_tj + n_cj - 2)
+sp  <- sqrt(sp2)
+gl  <- n_tj + n_cj - 2
+t_c <- qt(1 - alpha / 2, df = gl)
+
+margen_dif <- t_c * sp * sqrt(1 / n_tj + 1 / n_cj)
+ic_dif_med <- (xbar_tj - xbar_cj) + c(-1, 1) * margen_dif
+
+cat("Varianza agrupada s_p^2 =", round(sp2, 4), ", s_p =", round(sp, 4), "\n")
+cat("Grados de libertad:", gl, " | Cuantil t:", round(t_c, 3), "\n")
+cat("IC 95% para mu_Tijuana - mu_CiudadJuarez:\n")
+cat("(", round(ic_dif_med[1], 3), ",", round(ic_dif_med[2], 3), ") pesos/hora\n\n")
+
+# Verificación con t.test()
+# (simulamos los datos a partir de los resúmenes para que t.test() corra)
+set.seed(303)
+x_tj <- rnorm(n_tj, mean = xbar_tj, sd = s_tj)
+x_cj <- rnorm(n_cj, mean = xbar_cj, sd = s_cj)
+cat("Verificación aproximada con t.test() (datos simulados, var.equal=TRUE):\n")
+print(t.test(x_tj, x_cj, var.equal = TRUE, conf.level = 0.95)$conf.int)
+cat("(Los extremos diferirán levemente por la simulación aleatoria)\n\n")
+
+# --------------------------------------------------------------
+# 7. IC para el cociente de varianzas (Sección 5.4.6)
+# --------------------------------------------------------------
+
+# Ejemplo 5.4.6: cociente de volatilidades de dos tipos de cambio
+n_A <- 20L; s2_A <- 0.000324
+n_B <- 20L; s2_B <- 0.000900
+alpha <- 0.10
+
+# Cuantiles de la distribución F
+gl1 <- n_A - 1   # grados de libertad numerador
+gl2 <- n_B - 1   # grados de libertad denominador
+F_sup <- qf(1 - alpha / 2, df1 = gl1, df2 = gl2)   # cuantil superior alpha/2
+F_inf <- qf(    alpha / 2, df1 = gl1, df2 = gl2)   # cuantil inferior alpha/2
+
+ic_cociente <- c((s2_A / s2_B) * F_inf,
+                 (s2_A / s2_B) * F_sup)
+
+cat("IC 90% para sigma_A^2 / sigma_B^2:\n")
+cat("  F_{19,19,0.05} =", round(F_sup, 3), "\n")
+cat("  F_{19,19,0.95} =", round(F_inf, 3), "\n")
+cat("  Cociente s_A^2 / s_B^2 =", round(s2_A / s2_B, 4), "\n")
+cat("  Intervalo: (", round(ic_cociente[1], 4), ",",
+    round(ic_cociente[2], 4), ")\n\n")
+
+# IC para el cociente de desviaciones estándar
+cat("IC 90% para sigma_A / sigma_B (raíz cuadrada de los extremos):\n")
+cat("  (", round(sqrt(ic_cociente[1]), 4), ",",
+    round(sqrt(ic_cociente[2]), 4), ")\n\n")
+
+# Verificación con var.test()
+set.seed(404)
+y_A <- rnorm(n_A, mean = 0, sd = sqrt(s2_A))
+y_B <- rnorm(n_B, mean = 0, sd = sqrt(s2_B))
+cat("Verificación aproximada con var.test() (datos simulados):\n")
+print(var.test(y_A, y_B, conf.level = 0.90)$conf.int)
+cat("(Los extremos diferirán levemente por la simulación aleatoria)\n\n")
+
+# --------------------------------------------------------------
+# 8. El intervalo se angosta conforme crece n
 #    (ilustración gráfica de sqrt(n) en el denominador)
 # --------------------------------------------------------------
 tamanos_n <- seq(5, 200, by = 5)
