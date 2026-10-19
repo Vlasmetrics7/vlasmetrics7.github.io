@@ -627,10 +627,37 @@ function chi2CDF(x, df) {
   return igamma(df/2, x/2);
 }
 function igamma(a, x) {
+  // Gamma incompleta regularizada P(a,x) = γ(a,x)/Γ(a)
+  // Serie para x < a+1 (convergencia rápida); FC de Lentz para x ≥ a+1
   if (x <= 0) return 0;
-  let sum=1, term=1, n=1;
-  while (term/sum > 1e-10 && n < 300) { term *= x/(a+n); sum += term; n++; }
-  return Math.exp(-x + a*Math.log(x) - logGamma(a)) * sum;
+  const lnpre = -x + a*Math.log(x) - logGamma(a);
+  if (x < a + 1) {
+    // Expansión en serie: P(a,x) = e^{-x}x^a/Γ(a) · Σ x^n/((a+1)(a+2)…(a+n))
+    let sum = 1, term = 1;
+    for (let n = 1; n < 400; n++) {
+      term *= x / (a + n);
+      sum  += term;
+      if (term < 1e-13 * sum) break;
+    }
+    return Math.exp(lnpre) * sum / a;
+  } else {
+    // Fracción continua para Γ(a,x)/Γ(a) = 1 − P(a,x); algoritmo de Lentz
+    // CF: Γ(a,x) = e^{-x}x^a · 1/(x+1-a- 1(1-a)/(x+3-a- …))
+    let f = 1e-300, C = f, D = 0;
+    D = 1 / (x + 1 - a); C = 1 / 1e-300;
+    f = D;
+    for (let i = 1; i <= 200; i++) {
+      const an = -i * (i - a);
+      const bn = x + 2*i + 1 - a;
+      D = bn + an * D; if (Math.abs(D) < 1e-300) D = 1e-300; D = 1/D;
+      C = bn + an / C; if (Math.abs(C) < 1e-300) C = 1e-300;
+      const delta = C * D;
+      f *= delta;
+      if (Math.abs(delta - 1) < 1e-12) break;
+    }
+    const upper = Math.exp(lnpre) * f; // Γ(a,x)/Γ(a) = Q(a,x)
+    return Math.max(0, Math.min(1, 1 - upper));
+  }
 }
 function fQuantile(p, d1, d2) {
   if (p <= 0) return 0;
