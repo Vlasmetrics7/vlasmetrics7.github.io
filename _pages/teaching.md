@@ -60,6 +60,7 @@ Simulaciones interactivas de máxima verosimilitud, usadas en clase:
 Simulaciones interactivas de intervalos de confianza, usadas en clase:
 
 - [Simulación: el desfile de intervalos de confianza](/assets/interactivos/simulacion_desfile_ic.html){: .btn .btn--sm }
+- [Simulación: IC para Normal, t, χ² y F (con puntos muestreados y animación)](/assets/interactivos/simulacion_ic_distribuciones.html){: .btn .btn--sm }
 
 Código en R, un script por capítulo:
 
