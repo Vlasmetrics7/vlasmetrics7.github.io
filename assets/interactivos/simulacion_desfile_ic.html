@@ -1,670 +1,1173 @@
-<title>Desfile de Intervalos de Confianza</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<title>Simulador de IC</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap">
 
 <style>
-/*
-  Layout: panel izquierdo de controles + panel derecho de animación
-  Paleta ITAM: azul profundo, naranja cálido, verde para "atrapa", rojo coral para "falla"
-*/
+/* ── TOKENS ── */
 :root {
-  --bg:       #f7f6f3;
-  --bg-panel: #ffffff;
-  --fg:       #1a1a2e;
-  --fg-muted: #6b6b7a;
-  --border:   #dddde0;
-
-  --azul:     #003366;
-  --naranja:  #c07030;
-  --verde:    #1a7a4a;
-  --rojo:     #c0432a;
-  --verde-bg: #e8f5ee;
-  --rojo-bg:  #faeae7;
-
-  --track-w:  620px;
-  --ic-h:     2px;
-
-  --mono: "IBM Plex Mono", "Courier New", monospace;
-  --sans: "IBM Plex Sans", system-ui, sans-serif;
+  --bg:        #f7f8fc;
+  --bg2:       #ffffff;
+  --bg3:       #eef0f8;
+  --border:    #d8dbe8;
+  --fg:        #1a1d2e;
+  --fg2:       #4a4f6a;
+  --fg3:       #8890aa;
+  --accent:    #2b5cdb;
+  --accent2:   #e84855;
+  --accent-bg: #e8edfb;
+  --cover:     #c9f6c3;
+  --miss:      #ffd6d8;
+  --serif:     'Source Serif 4', Georgia, serif;
+  --sans:      'Inter', system-ui, sans-serif;
+  --mono:      'JetBrains Mono', 'Fira Code', monospace;
+  color-scheme: light;
 }
-
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg:       #0e0e1a;
-    --bg-panel: #16162a;
-    --fg:       #e8e8f0;
-    --fg-muted: #8888a0;
-    --border:   #2a2a42;
-    --azul:     #4d88cc;
-    --naranja:  #d4884a;
-    --verde:    #3db870;
-    --rojo:     #e05a42;
-    --verde-bg: #0e2818;
-    --rojo-bg:  #2a100a;
+    --bg:        #111420;
+    --bg2:       #1a1e30;
+    --bg3:       #212540;
+    --border:    #323660;
+    --fg:        #e8eaf5;
+    --fg2:       #a0a8c8;
+    --fg3:       #5a6080;
+    --accent:    #5b83f0;
+    --accent2:   #f06070;
+    --accent-bg: #1e2848;
+    --cover:     #1e4020;
+    --miss:      #401820;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --bg:       #0e0e1a;
-  --bg-panel: #16162a;
-  --fg:       #e8e8f0;
-  --fg-muted: #8888a0;
-  --border:   #2a2a42;
-  --azul:     #4d88cc;
-  --naranja:  #d4884a;
-  --verde:    #3db870;
-  --rojo:     #e05a42;
-  --verde-bg: #0e2818;
-  --rojo-bg:  #2a100a;
+  --bg:        #111420;
+  --bg2:       #1a1e30;
+  --bg3:       #212540;
+  --border:    #323660;
+  --fg:        #e8eaf5;
+  --fg2:       #a0a8c8;
+  --fg3:       #5a6080;
+  --accent:    #5b83f0;
+  --accent2:   #f06070;
+  --accent-bg: #1e2848;
+  --cover:     #1e4020;
+  --miss:      #401820;
   color-scheme: dark;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
+html, body { height: 100%; }
 body {
   background: var(--bg);
   color: var(--fg);
   font-family: var(--sans);
   font-size: 14px;
   line-height: 1.5;
-  min-height: 100%;
-  padding: 0 16px;
-}
-
-header {
-  padding: 20px 0 14px;
-  border-bottom: 1px solid var(--border);
-  margin-bottom: 18px;
-}
-header h1 {
-  font-size: 17px;
-  font-weight: 600;
-  color: var(--azul);
-  letter-spacing: -0.01em;
-}
-header p {
-  font-size: 12.5px;
-  color: var(--fg-muted);
-  margin-top: 2px;
-}
-
-.layout {
-  display: flex;
-  gap: 20px;
-  align-items: flex-start;
-}
-
-/* ── Panel de controles ── */
-.controls {
-  flex: 0 0 200px;
+  padding-left:  max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  min-height: 100%;
 }
 
-.ctrl-group label {
-  display: block;
-  font-size: 11px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: .06em;
-  color: var(--fg-muted);
-  margin-bottom: 6px;
+/* ── HEADER ── */
+header {
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 0;
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  z-index: 100;
 }
-
-.ctrl-row {
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0 0 auto;
+  height: env(safe-area-inset-top, 0px);
+  z-index: 101;
+  background: var(--bg2);
+}
+.header-inner {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 16px;
+  flex-wrap: wrap;
 }
-.ctrl-row input[type=range] {
-  flex: 1;
-  accent-color: var(--azul);
-  cursor: pointer;
-}
-.ctrl-val {
-  font-family: var(--mono);
-  font-size: 13px;
+header h1 {
+  font-family: var(--serif);
+  font-size: 1.15rem;
   font-weight: 600;
-  color: var(--azul);
-  min-width: 40px;
-  text-align: right;
+  color: var(--fg);
+  line-height: 1.2;
+}
+header h1 span { color: var(--accent); }
+header .subtitle {
+  font-size: 0.78rem;
+  color: var(--fg3);
+  font-variant-numeric: tabular-nums;
+}
+.header-right {
+  margin-left: auto;
+  display: flex;
+  gap: 8px;
+  align-items: center;
 }
 
-.btn-group {
+/* ── LAYOUT ── */
+.main-grid {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 0;
+  flex: 1;
+}
+@media (max-width: 720px) {
+  .main-grid { grid-template-columns: 1fr; }
+}
+
+/* ── SIDEBAR ── */
+.sidebar {
+  background: var(--bg2);
+  border-right: 1px solid var(--border);
+  padding: 20px 16px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 20px;
+  overflow-y: auto;
 }
-
-button {
-  font-family: var(--sans);
-  font-size: 13px;
-  font-weight: 500;
-  border: none;
-  border-radius: 6px;
-  padding: 8px 14px;
-  cursor: pointer;
-  transition: opacity .15s;
-}
-button:active { opacity: .75; }
-
-.btn-primary {
-  background: var(--azul);
-  color: #fff;
-}
-.btn-secondary {
-  background: var(--border);
-  color: var(--fg);
-}
-.btn-reset {
-  background: transparent;
-  border: 1px solid var(--border);
-  color: var(--fg-muted);
-  font-size: 12px;
-}
-
-/* ── Estadísticas ── */
-.stats {
+.ctrl-group {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
-.stat-card {
-  background: var(--bg-panel);
+.ctrl-group-title {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--fg3);
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--border);
+}
+label.ctrl-label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.ctrl-label .lbl {
+  font-size: 0.78rem;
+  color: var(--fg2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.ctrl-label .lbl strong {
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  color: var(--accent);
+  font-weight: 500;
+}
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  background: var(--border);
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: var(--accent);
+  cursor: pointer;
+}
+input[type="range"]::-moz-range-thumb {
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: none;
+  cursor: pointer;
+}
+select {
+  width: 100%;
+  padding: 7px 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg3);
+  color: var(--fg);
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  cursor: pointer;
+  outline: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%238890aa' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  padding-right: 28px;
+}
+select:focus { border-color: var(--accent); }
+
+/* Speed selector — 3 radio-style buttons */
+.speed-row {
+  display: flex;
+  gap: 6px;
+}
+.speed-btn {
+  flex: 1;
+  padding: 6px 4px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--fg2);
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: center;
+  transition: background 0.12s, border-color 0.12s;
+  user-select: none;
+}
+.speed-btn:hover { background: var(--accent-bg); border-color: var(--accent); color: var(--accent); }
+.speed-btn.active {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+.btn-row { display: flex; gap: 8px; }
+button.btn {
+  flex: 1;
+  padding: 8px 12px;
+  border-radius: 7px;
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--fg);
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+button.btn:hover { background: var(--accent-bg); border-color: var(--accent); color: var(--accent); }
+button.btn.primary {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+button.btn.primary:hover { opacity: 0.88; }
+button.btn:disabled { opacity: 0.45; cursor: not-allowed; }
+
+/* stats strip */
+.stats-strip {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.stat-tile {
+  background: var(--bg3);
   border: 1px solid var(--border);
   border-radius: 8px;
   padding: 10px 12px;
 }
-.stat-card .s-label {
-  font-size: 10.5px;
+.stat-tile .s-label {
+  font-size: 0.68rem;
+  color: var(--fg3);
   text-transform: uppercase;
-  letter-spacing: .05em;
-  color: var(--fg-muted);
-  margin-bottom: 3px;
+  letter-spacing: .06em;
 }
-.stat-card .s-val {
+.stat-tile .s-val {
   font-family: var(--mono);
-  font-size: 18px;
-  font-weight: 600;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--fg);
+  font-variant-numeric: tabular-nums;
 }
-.s-val.good  { color: var(--verde); }
-.s-val.bad   { color: var(--rojo); }
-.s-val.total { color: var(--azul); }
+.stat-tile.cover .s-val { color: #22aa44; }
+.stat-tile.miss  .s-val { color: var(--accent2); }
 
-.pct-bar-wrap {
-  height: 5px;
-  background: var(--border);
-  border-radius: 3px;
-  margin-top: 6px;
-  overflow: hidden;
+/* formula box */
+.formula-box {
+  background: var(--accent-bg);
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 0.78rem;
+  color: var(--fg2);
+  line-height: 1.6;
 }
-.pct-bar {
-  height: 100%;
-  background: var(--verde);
-  border-radius: 3px;
-  transition: width .4s;
-  width: 0%;
+.formula-box .fml {
+  font-family: var(--mono);
+  font-size: 0.76rem;
+  color: var(--accent);
+  white-space: pre-wrap;
+  word-break: break-word;
 }
 
-.legend {
+/* ── CANVAS AREA ── */
+.canvas-area {
   display: flex;
   flex-direction: column;
-  gap: 5px;
-  padding-top: 4px;
+  overflow: hidden;
 }
-.leg-item {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  font-size: 11.5px;
-  color: var(--fg-muted);
-}
-.leg-dot {
-  width: 10px; height: 10px;
-  border-radius: 50%;
+.dist-panel {
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: 16px;
   flex-shrink: 0;
 }
-.leg-dot.g { background: var(--verde); }
-.leg-dot.r { background: var(--rojo); }
-.leg-dot.mu { background: var(--naranja); width: 3px; height: 14px; border-radius: 2px; }
-
-/* ── Canvas principal ── */
-.canvas-wrap {
-  flex: 1 1 0;
-  min-width: 0;
-  background: var(--bg-panel);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  overflow: hidden;
-  position: relative;
+.dist-panel-title {
+  font-family: var(--serif);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--fg2);
+  margin-bottom: 10px;
 }
+#dist-canvas { width: 100%; height: 180px; display: block; }
 
-canvas {
-  display: block;
-  width: 100%;
-}
-
-.mu-label {
-  position: absolute;
-  top: 8px;
-  font-family: var(--mono);
-  font-size: 11px;
-  color: var(--naranja);
-  pointer-events: none;
-  white-space: nowrap;
-}
-
-/* ── Velocidad ── */
-.speed-group {
-  display: flex;
-  gap: 5px;
-}
-.speed-btn {
+.sim-panel {
   flex: 1;
-  padding: 5px 0;
-  font-size: 11.5px;
-  border-radius: 5px;
+  padding: 16px;
+  overflow-y: auto;
+}
+.sim-panel-title {
+  font-family: var(--serif);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--fg2);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+#ic-canvas { width: 100%; display: block; }
+
+.theme-toggle {
+  padding: 5px 10px;
+  border-radius: 6px;
   border: 1px solid var(--border);
-  background: transparent;
-  color: var(--fg-muted);
+  background: var(--bg3);
+  color: var(--fg2);
+  font-size: 0.75rem;
+  cursor: pointer;
+  font-family: var(--sans);
 }
-.speed-btn.active {
-  background: var(--azul);
-  color: #fff;
-  border-color: var(--azul);
-}
+.theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
 
-/* ── Footer ── */
-footer {
-  padding: 12px 0 16px;
-  font-size: 11px;
-  color: var(--fg-muted);
-  border-top: 1px solid var(--border);
-  margin-top: 18px;
+/* legend row */
+.legend-row {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  font-size: 0.72rem;
+  color: var(--fg3);
+  margin-bottom: 8px;
+  flex-wrap: wrap;
 }
-
-/* ── Responsive ── */
-@media (max-width: 620px) {
-  .layout { flex-direction: column; }
-  .controls { flex: none; width: 100%; flex-direction: row; flex-wrap: wrap; gap: 12px; }
-  .ctrl-group { flex: 1 1 140px; }
-  .btn-group { flex-direction: row; }
-  .stats { flex-direction: row; flex-wrap: wrap; }
-  .stat-card { flex: 1 1 100px; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .pct-bar { transition: none; }
+.legend-dot {
+  display: inline-block;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  margin-right: 4px;
 }
 </style>
 
 <header>
-  <h1>Desfile de Intervalos de Confianza</h1>
-  <p>μ es fijo. Los IC son aleatorios. ¿Cuántos atrapan al parámetro verdadero?</p>
+  <div class="header-inner">
+    <div>
+      <h1>Simulador de <span>Intervalos de Confianza</span></h1>
+      <div class="subtitle">Capítulo 5 · Inferencia Estadística · ITAM</div>
+    </div>
+    <div class="header-right">
+      <button class="theme-toggle" onclick="toggleTheme()">☀ / ☾</button>
+    </div>
+  </div>
 </header>
 
-<div class="layout">
-
-  <!-- Controles izquierda -->
-  <aside class="controls">
-
-    <div class="ctrl-group">
-      <label>Tamaño de muestra <em>n</em></label>
-      <div class="ctrl-row">
-        <input type="range" id="sl-n" min="5" max="200" value="30" step="1">
-        <span class="ctrl-val" id="val-n">30</span>
-      </div>
-    </div>
+<div class="main-grid">
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
 
     <div class="ctrl-group">
-      <label>Nivel de confianza 1−α</label>
-      <div class="ctrl-row">
-        <input type="range" id="sl-alpha" min="50" max="99" value="95" step="1">
-        <span class="ctrl-val" id="val-alpha">95%</span>
-      </div>
+      <div class="ctrl-group-title">Distribución pivotal</div>
+      <select id="dist-select" onchange="onDistChange()">
+        <option value="normal">Normal estándar — μ, σ² conocida o n grande</option>
+        <option value="t">t de Student — μ, σ² desconocida (exacto)</option>
+        <option value="chi2">χ² — varianza σ² (exacto)</option>
+        <option value="F">F de Snedecor — razón de varianzas</option>
+      </select>
     </div>
 
     <div class="ctrl-group">
-      <label>Velocidad</label>
-      <div class="speed-group">
-        <button class="speed-btn" data-ms="1200">Lenta</button>
-        <button class="speed-btn active" data-ms="700">Normal</button>
-        <button class="speed-btn" data-ms="250">Rápida</button>
+      <div class="ctrl-group-title">Tipo de intervalo</div>
+      <select id="tail-select" onchange="onTailChange()">
+        <option value="bilateral">Bilateral — α/2 en cada cola</option>
+        <option value="lower">Unilateral inferior — toda α en cola derecha</option>
+        <option value="upper">Unilateral superior — toda α en cola izquierda</option>
+      </select>
+    </div>
+
+    <div class="ctrl-group">
+      <div class="ctrl-group-title">Parámetros</div>
+      <label class="ctrl-label">
+        <span class="lbl">Nivel de confianza (1−α) <strong id="conf-val">95%</strong></span>
+        <input type="range" id="conf-slider" min="50" max="99" value="95" oninput="onConfChange(this.value)">
+      </label>
+      <label class="ctrl-label">
+        <span class="lbl">Tamaño de muestra n <strong id="n-val">25</strong></span>
+        <input type="range" id="n-slider" min="5" max="200" value="25" oninput="onNChange(this.value)">
+      </label>
+      <label class="ctrl-label" id="n2-row" style="display:none">
+        <span class="lbl">Segundo grupo m <strong id="m-val">25</strong></span>
+        <input type="range" id="m-slider" min="5" max="200" value="25" oninput="onMChange(this.value)">
+      </label>
+      <label class="ctrl-label">
+        <span class="lbl">Repeticiones B <strong id="B-val">100</strong></span>
+        <input type="range" id="B-slider" min="20" max="300" value="100" oninput="onBChange(this.value)">
+      </label>
+    </div>
+
+    <div class="ctrl-group">
+      <div class="ctrl-group-title">Velocidad de animación</div>
+      <div class="speed-row">
+        <div class="speed-btn" data-ms="700"  onclick="setSpeed(this)">Lento</div>
+        <div class="speed-btn active" data-ms="180" onclick="setSpeed(this)">Medio</div>
+        <div class="speed-btn" data-ms="30"   onclick="setSpeed(this)">Rápido</div>
       </div>
     </div>
 
-    <div class="btn-group">
-      <button class="btn-primary" id="btn-play">⏸ Pausar</button>
-      <button class="btn-reset" id="btn-reset">↺ Reiniciar</button>
-    </div>
-
-    <!-- Estadísticas -->
-    <div class="stats">
-      <div class="stat-card">
-        <div class="s-label">Total de IC</div>
-        <div class="s-val total" id="st-total">0</div>
-      </div>
-      <div class="stat-card">
-        <div class="s-label">Contienen μ</div>
-        <div class="s-val good" id="st-hits">0</div>
-        <div class="pct-bar-wrap"><div class="pct-bar" id="pct-bar"></div></div>
-      </div>
-      <div class="stat-card">
-        <div class="s-label">No contienen μ</div>
-        <div class="s-val bad" id="st-miss">0</div>
-      </div>
-      <div class="stat-card">
-        <div class="s-label">Cobertura empírica</div>
-        <div class="s-val total" id="st-pct">—</div>
+    <div class="ctrl-group">
+      <div class="ctrl-group-title">Simulación</div>
+      <div class="btn-row">
+        <button class="btn primary" id="btn-sim" onclick="toggleSim()">▶ Simular</button>
+        <button class="btn" id="btn-reset" onclick="resetSim()">↺ Limpiar</button>
       </div>
     </div>
 
-    <!-- Leyenda -->
-    <div class="legend">
-      <div class="leg-item"><span class="leg-dot mu"></span> μ = 100 (parámetro fijo)</div>
-      <div class="leg-item"><span class="leg-dot g"></span> IC contiene μ</div>
-      <div class="leg-item"><span class="leg-dot r"></span> IC no contiene μ</div>
+    <div class="ctrl-group">
+      <div class="ctrl-group-title">Estadísticas</div>
+      <div class="stats-strip">
+        <div class="stat-tile cover">
+          <div class="s-label">Cubren θ</div>
+          <div class="s-val" id="stat-cover">—</div>
+        </div>
+        <div class="stat-tile miss">
+          <div class="s-label">No cubren</div>
+          <div class="s-val" id="stat-miss">—</div>
+        </div>
+        <div class="stat-tile">
+          <div class="s-label">% empírico</div>
+          <div class="s-val" id="stat-pct">—</div>
+        </div>
+        <div class="stat-tile">
+          <div class="s-label">Nominal</div>
+          <div class="s-val" id="stat-nom">95%</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ctrl-group">
+      <div class="ctrl-group-title">Fórmula del IC</div>
+      <div class="formula-box" id="formula-box">
+        <div class="fml" id="formula-text"></div>
+      </div>
     </div>
 
   </aside>
 
-  <!-- Canvas principal -->
-  <div class="canvas-wrap" id="wrap">
-    <canvas id="cvs"></canvas>
-    <div class="mu-label" id="mu-lbl">μ = 100</div>
+  <!-- CANVAS AREA -->
+  <div class="canvas-area">
+    <div class="dist-panel">
+      <div class="dist-panel-title" id="dist-panel-title">Distribución pivotal — N(0,1)</div>
+      <canvas id="dist-canvas"></canvas>
+    </div>
+    <div class="sim-panel">
+      <div class="sim-panel-title">
+        <span>Simulación de intervalos (cada línea = un IC)</span>
+        <span id="sim-counter" style="font-family:var(--mono);font-size:0.8rem;color:var(--fg3)"></span>
+      </div>
+      <div class="legend-row">
+        <span><span class="legend-dot" style="background:#22aa44"></span>Cubre θ</span>
+        <span><span class="legend-dot" style="background:#e84855"></span>No cubre θ</span>
+        <span>· datos muestreados</span>
+        <span>★ estimador puntual</span>
+        <span style="border-left:2px dashed var(--fg);padding-left:8px;margin-left:2px">&nbsp;θ verdadero</span>
+      </div>
+      <canvas id="ic-canvas"></canvas>
+    </div>
   </div>
-
 </div>
 
-<footer>
-  Elaborado por C. Vladimir Rodríguez-Caballero (Depto. Estadística, ITAM) &nbsp;·&nbsp;
-  Población: Normal(μ=100, σ=20). IC construido con σ conocida (pivote Z).
-</footer>
-
 <script>
-// ── Parámetros del modelo ──────────────────────────────────────────────────
-const MU    = 100;
-const SIGMA = 20;
-const MAX_VISIBLE = 38;   // IC visibles en pantalla al mismo tiempo
+// ── STATE ──
+const S = {
+  dist: 'normal',
+  tail: 'bilateral',
+  conf: 95,
+  n: 25,
+  m: 25,
+  B: 100,
+  speedMs: 180,        // ms per interval during animation
+  intervals: [],       // [{lo, hi, covers, pts, est}]
+  theta: 0,
+  animTimer: null,     // current setTimeout handle
+  animIdx: 0,          // next interval to draw
+  animShowing: [],     // intervals revealed so far
+};
 
-// ── Estado global ──────────────────────────────────────────────────────────
-let n       = 30;
-let alpha   = 0.05;
-let running = true;
-let delay   = 700;        // ms entre IC
-
-let total = 0, hits = 0;
-let intervals = [];       // {lo, hi, hits, age, x̄}  (age en frames)
-let timerId   = null;
-
-// ── Utilidades estadísticas ────────────────────────────────────────────────
-function randn() {
-  // Box-Muller
-  let u, v;
-  do { u = Math.random(); } while (u === 0);
-  do { v = Math.random(); } while (v === 0);
-  return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v);
+// ── SPEED SELECTOR ──
+function setSpeed(el) {
+  document.querySelectorAll('.speed-btn').forEach(b=>b.classList.remove('active'));
+  el.classList.add('active');
+  S.speedMs = +el.dataset.ms;
 }
 
-function zCrit(a) {
-  // Cuantil z_{a/2} por aproximación racional (Abramowitz & Stegun 26.2.17)
-  const p = 1 - a / 2;
-  const t = Math.sqrt(-2 * Math.log(1 - p));
-  const c = [2.515517, 0.802853, 0.010328];
-  const d = [1.432788, 0.189269, 0.001308];
-  return t - (c[0] + c[1]*t + c[2]*t*t) / (1 + d[0]*t + d[1]*t*t + d[2]*t*t*t);
+// ── MATH UTILITIES ──
+function normInv(p) {
+  if (p <= 0) return -Infinity;
+  if (p >= 1) return Infinity;
+  const a = [2.50662823884,-18.61500062529,41.39119773534,-25.44106049637];
+  const b = [-8.47351093090,23.08336743743,-21.06224101826,3.13082909833];
+  const c = [0.3374754822726147,0.9761690190917186,0.1607979714918209,
+             0.0276438810333863,0.0038405729373609,0.0003951896511349,
+             0.0000321767881768,0.0000002888167364,0.0000003960315187];
+  let r, q = p - 0.5;
+  if (Math.abs(q) <= 0.42) {
+    r = q * q;
+    return q * (((a[3]*r+a[2])*r+a[1])*r+a[0]) / ((((b[3]*r+b[2])*r+b[1])*r+b[0])*r+1);
+  }
+  r = q < 0 ? p : 1 - p;
+  r = Math.log(-Math.log(r));
+  r = c[0]+r*(c[1]+r*(c[2]+r*(c[3]+r*(c[4]+r*(c[5]+r*(c[6]+r*(c[7]+r*c[8])))))));
+  return q < 0 ? -r : r;
+}
+function normPDF(x) { return Math.exp(-0.5*x*x)/Math.sqrt(2*Math.PI); }
+function normCDF(x) {
+  const t = 1/(1+0.2316419*Math.abs(x));
+  const d = 0.3989422820*Math.exp(-x*x/2);
+  let p = d*t*(0.3193815+t*(-0.3565638+t*(1.7814779+t*(-1.8212560+t*1.3302744))));
+  return x >= 0 ? 1-p : p;
+}
+function randNorm() {
+  let u, v, s;
+  do { u = 2*Math.random()-1; v = 2*Math.random()-1; s = u*u+v*v; }
+  while (s >= 1 || s === 0);
+  return u * Math.sqrt(-2*Math.log(s)/s);
+}
+function randChi2(k) {
+  let s = 0;
+  for (let i=0; i<k; i++) { const z=randNorm(); s+=z*z; }
+  return s;
+}
+function randF(d1, d2) { return (randChi2(d1)/d1) / (randChi2(d2)/d2); }
+
+function tQuantile(p, df) {
+  if (Math.abs(p - 0.5) < 1e-10) return 0;
+  let x = normInv(p);
+  for (let i=0; i<5; i++) {
+    const c = tCDF(x, df), f = tPDF(x, df);
+    if (f < 1e-14) break;
+    x = x - (c - p)/f;
+  }
+  return x;
+}
+function tPDF(x, df) {
+  return Math.exp(logGamma((df+1)/2) - logGamma(df/2)) /
+         (Math.sqrt(df*Math.PI)) * Math.pow(1+x*x/df, -(df+1)/2);
+}
+function tCDF(x, df) {
+  const t2 = x*x, ib = ibeta(df/(df+t2), df/2, 0.5);
+  return x >= 0 ? 1 - 0.5*ib : 0.5*ib;
+}
+function logGamma(z) {
+  const c = [76.18009172947146,-86.50532032941677,24.01409824083091,
+             -1.231739572450155,0.1208650973866179e-2,-0.5395239384953e-5];
+  let y = z, x = z, tmp = x+5.5;
+  tmp -= (x+0.5)*Math.log(tmp);
+  let ser = 1.000000000190015;
+  for (let j=0;j<6;j++) ser += c[j]/(++y);
+  return -tmp + Math.log(2.5066282746310005*ser/x);
+}
+function ibeta(x, a, b) {
+  if (x < 0 || x > 1) return NaN;
+  if (x === 0) return 0;
+  if (x === 1) return 1;
+  const lbeta = logGamma(a)+logGamma(b)-logGamma(a+b);
+  const front = Math.exp(Math.log(x)*a+Math.log(1-x)*b-lbeta)/a;
+  if (x > (a+1)/(a+b+2)) return 1 - ibeta(1-x, b, a);
+  let f=1,C=1,D=1-(a+b)*x/(a+1);
+  if (Math.abs(D)<1e-30) D=1e-30; D=1/D; f=D;
+  for (let m=1;m<=100;m++) {
+    let d = m*(b-m)*x/((a+2*m-1)*(a+2*m));
+    D=1+d*D; if(Math.abs(D)<1e-30)D=1e-30; D=1/D;
+    C=1+d/C; if(Math.abs(C)<1e-30)C=1e-30; f*=C*D;
+    d=-(a+m)*(a+b+m)*x/((a+2*m)*(a+2*m+1));
+    D=1+d*D; if(Math.abs(D)<1e-30)D=1e-30; D=1/D;
+    C=1+d/C; if(Math.abs(C)<1e-30)C=1e-30; f*=C*D;
+    if(Math.abs(C*D-1)<1e-10) break;
+  }
+  return front*f;
+}
+function chi2Quantile(p, df) {
+  if (p <= 0) return 0;
+  if (p >= 1) return Infinity;
+  let lo=0, hi=df*4+200, mid;
+  for (let i=0;i<60;i++) { mid=(lo+hi)/2; chi2CDF(mid,df)<p?lo=mid:hi=mid; }
+  return mid;
+}
+function chi2PDF(x, df) {
+  if (x <= 0) return 0;
+  return Math.exp((df/2-1)*Math.log(x) - x/2 - (df/2)*Math.log(2) - logGamma(df/2));
+}
+function chi2CDF(x, df) {
+  if (x <= 0) return 0;
+  return igamma(df/2, x/2);
+}
+function igamma(a, x) {
+  if (x <= 0) return 0;
+  let sum=1, term=1, n=1;
+  while (term/sum > 1e-10 && n < 300) { term *= x/(a+n); sum += term; n++; }
+  return Math.exp(-x + a*Math.log(x) - logGamma(a)) * sum;
+}
+function fQuantile(p, d1, d2) {
+  if (p <= 0) return 0;
+  if (p >= 1) return Infinity;
+  let lo=0, hi=20+d2*2, mid;
+  for (let i=0;i<60;i++) { mid=(lo+hi)/2; fCDF(mid,d1,d2)<p?lo=mid:hi=mid; }
+  return mid;
+}
+function fPDF(x, d1, d2) {
+  if (x <= 0) return 0;
+  const r = d1/d2;
+  return Math.exp(
+    (d1/2)*Math.log(r) + (d1/2-1)*Math.log(x)
+    - ((d1+d2)/2)*Math.log(1+r*x)
+    - logGamma(d1/2) - logGamma(d2/2) + logGamma((d1+d2)/2)
+  );
+}
+function fCDF(x, d1, d2) {
+  if (x <= 0) return 0;
+  return ibeta(d1*x/(d1*x+d2), d1/2, d2/2);
 }
 
-function generateIC() {
-  const xbar = MU + (SIGMA / Math.sqrt(n)) * randn();
-  const z    = zCrit(alpha);
-  const half = z * SIGMA / Math.sqrt(n);
-  const lo   = xbar - half;
-  const hi   = xbar + half;
-  const catches = (lo <= MU && MU <= hi);
-  return { lo, hi, catches, xbar };
-}
+// ── SIMULATION — genera todos los ICs con pts y estimador ──
+function buildAllIntervals() {
+  const alpha = 1 - S.conf/100;
+  const n = S.n, m = S.m, B = S.B;
+  const ivs = [];
 
-// ── Canvas y geometría ─────────────────────────────────────────────────────
-const cvs  = document.getElementById('cvs');
-const ctx  = cvs.getContext('2d');
-const wrap = document.getElementById('wrap');
-const muLbl = document.getElementById('mu-lbl');
+  for (let b=0; b<B; b++) {
+    let lo, hi, est, pts;
 
-let W, H, muX;
-const MARGIN_L = 60;
-const MARGIN_R = 20;
-const ROW_H    = 18;       // px por fila
-const DOT_R    = 4;
-
-function resize() {
-  const rect = wrap.getBoundingClientRect();
-  W = rect.width;
-  H = (MAX_VISIBLE + 1) * ROW_H + ROW_H;
-  cvs.width  = W * devicePixelRatio;
-  cvs.height = H * devicePixelRatio;
-  cvs.style.height = H + 'px';
-  ctx.scale(devicePixelRatio, devicePixelRatio);
-
-  // rango de display: [MU - 4σ/√5, MU + 4σ/√5] — cubre bien para n≥5
-  const half = 4 * SIGMA / Math.sqrt(5);
-  const xMin = MU - half;
-  const xMax = MU + half;
-  muX = MARGIN_L + (MU - xMin) / (xMax - xMin) * (W - MARGIN_L - MARGIN_R);
-
-  // posición del label μ
-  muLbl.style.left = (muX - 18) + 'px';
-}
-
-function dataToX(v) {
-  const half = 4 * SIGMA / Math.sqrt(5);
-  const xMin = MU - half;
-  const xMax = MU + half;
-  return MARGIN_L + (v - xMin) / (xMax - xMin) * (W - MARGIN_L - MARGIN_R);
-}
-
-// ── Colores desde CSS tokens ───────────────────────────────────────────────
-function cssVar(name) {
-  return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
-}
-
-function draw() {
-  ctx.clearRect(0, 0, W, H);
-
-  const verde  = cssVar('--verde');
-  const rojo   = cssVar('--rojo');
-  const orange = cssVar('--naranja');
-  const border = cssVar('--border');
-  const fgMut  = cssVar('--fg-muted');
-  const fg     = cssVar('--fg');
-
-  // Línea de μ (vertical, todo el alto)
-  ctx.save();
-  ctx.strokeStyle = orange;
-  ctx.lineWidth   = 2;
-  ctx.setLineDash([4, 4]);
-  ctx.beginPath();
-  ctx.moveTo(muX, 0);
-  ctx.lineTo(muX, H);
-  ctx.stroke();
-  ctx.setLineDash([]);
-  ctx.restore();
-
-  // Eje horizontal de referencia (fondo)
-  ctx.save();
-  ctx.strokeStyle = border;
-  ctx.lineWidth   = 1;
-  ctx.beginPath();
-  ctx.moveTo(MARGIN_L, H - ROW_H);
-  ctx.lineTo(W - MARGIN_R, H - ROW_H);
-  ctx.stroke();
-
-  // Etiquetas del eje
-  ctx.font      = `11px ${cssVar('--mono') || 'monospace'}`;
-  ctx.fillStyle = fgMut;
-  ctx.textAlign = 'center';
-  const half = 4 * SIGMA / Math.sqrt(5);
-  [-3, -2, -1, 0, 1, 2, 3].forEach(k => {
-    const v = MU + k * SIGMA / Math.sqrt(n > 5 ? n : 5) * 1.2;
-    const x = dataToX(v);
-    if (x < MARGIN_L || x > W - MARGIN_R) return;
-    ctx.fillText(v.toFixed(0), x, H - 4);
-    // tick
-    ctx.fillStyle = border;
-    ctx.fillRect(x - 0.5, H - ROW_H - 4, 1, 4);
-    ctx.fillStyle = fgMut;
-  });
-  ctx.restore();
-
-  // Número de IC al margen izquierdo
-  ctx.font      = `10px ${cssVar('--mono') || 'monospace'}`;
-  ctx.textAlign = 'right';
-  ctx.fillStyle = fgMut;
-
-  // Dibujar cada IC (más reciente abajo, más antiguo arriba)
-  const nIC = intervals.length;
-  intervals.forEach((ic, i) => {
-    const row   = nIC - 1 - i;   // 0 = abajo, MAX_VISIBLE-1 = arriba
-    const y     = H - ROW_H - (row + 1) * ROW_H;
-    const alpha_ = Math.max(0.15, 1 - row / MAX_VISIBLE);
-    const color  = ic.catches ? verde : rojo;
-
-    const xLo = Math.max(MARGIN_L, dataToX(ic.lo));
-    const xHi = Math.min(W - MARGIN_R, dataToX(ic.hi));
-    const xBr = dataToX(ic.xbar);
-
-    ctx.globalAlpha = alpha_;
-
-    // Línea del IC
-    ctx.save();
-    ctx.strokeStyle = color;
-    ctx.lineWidth   = row === 0 ? 2.5 : 1.5;
-    ctx.beginPath();
-    ctx.moveTo(xLo, y + ROW_H / 2);
-    ctx.lineTo(xHi, y + ROW_H / 2);
-    ctx.stroke();
-
-    // Topes (|)
-    ctx.lineWidth = row === 0 ? 2 : 1.5;
-    [xLo, xHi].forEach(x => {
-      ctx.beginPath();
-      ctx.moveTo(x, y + ROW_H / 2 - 4);
-      ctx.lineTo(x, y + ROW_H / 2 + 4);
-      ctx.stroke();
-    });
-
-    // Punto central (x̄)
-    ctx.fillStyle = color;
-    ctx.beginPath();
-    ctx.arc(xBr, y + ROW_H / 2, row === 0 ? DOT_R : DOT_R - 1, 0, 2 * Math.PI);
-    ctx.fill();
-    ctx.restore();
-
-    // Número de secuencia al margen
-    if (row < 6) {
-      ctx.globalAlpha = alpha_ * 0.6;
-      ctx.fillStyle = fgMut;
-      ctx.fillText(total - i, MARGIN_L - 6, y + ROW_H / 2 + 4);
+    if (S.dist === 'normal') {
+      // Simula muestra completa para mostrar puntos
+      const samp = Array.from({length:n}, ()=>randNorm());
+      const xbar = samp.reduce((a,x)=>a+x,0)/n;
+      const zq = S.tail==='bilateral' ? normInv(1-alpha/2) : normInv(1-alpha);
+      lo = S.tail==='lower'  ? -Infinity : xbar - zq/Math.sqrt(n);
+      hi = S.tail==='upper'  ?  Infinity : xbar + zq/Math.sqrt(n);
+      est = xbar;
+      pts = samp;
+    }
+    else if (S.dist === 't') {
+      const samp = Array.from({length:n}, ()=>randNorm());
+      let xbar=0, s2=0;
+      samp.forEach(x=>{xbar+=x; s2+=x*x;});
+      xbar/=n; s2=(s2-n*xbar*xbar)/(n-1);
+      const se = Math.sqrt(s2/n), df=n-1;
+      const tL = S.tail==='upper' ? tQuantile(alpha,df)   : tQuantile(alpha/2,df);
+      const tU = S.tail==='lower' ? tQuantile(1-alpha,df) : tQuantile(1-alpha/2,df);
+      lo = S.tail==='lower' ? -Infinity : xbar + tL*se;
+      hi = S.tail==='upper' ?  Infinity : xbar + tU*se;
+      est = xbar;
+      pts = samp;
+    }
+    else if (S.dist === 'chi2') {
+      const samp = Array.from({length:n}, ()=>randNorm());
+      let xbar=0, s2=0;
+      samp.forEach(x=>{xbar+=x; s2+=x*x;});
+      xbar/=n; s2=(s2-n*xbar*xbar)/(n-1);
+      const df=n-1;
+      const q2=chi2Quantile(1-alpha/2,df), q1=chi2Quantile(alpha/2,df);
+      if (S.tail==='bilateral') { lo=df*s2/q2; hi=df*s2/q1; }
+      else if (S.tail==='lower'){ lo=0; hi=df*s2/chi2Quantile(alpha,df); }
+      else                       { lo=df*s2/chi2Quantile(1-alpha,df); hi=Infinity; }
+      est = s2;
+      // Para chi2, los "puntos" son los X_i² − se muestra s2 como estimador
+      pts = samp.map(x=>x*x);
+    }
+    else if (S.dist === 'F') {
+      const d1=n-1, d2=m-1;
+      const samp1 = Array.from({length:n}, ()=>randNorm());
+      const samp2 = Array.from({length:m}, ()=>randNorm());
+      let x1=0,s12=0, x2=0,s22=0;
+      samp1.forEach(x=>{x1+=x; s12+=x*x;}); x1/=n; s12=(s12-n*x1*x1)/(n-1);
+      samp2.forEach(x=>{x2+=x; s22+=x*x;}); x2/=m; s22=(s22-m*x2*x2)/(m-1);
+      const Fobs = s12/s22;
+      if (S.tail==='bilateral'){ lo=Fobs/fQuantile(1-alpha/2,d1,d2); hi=Fobs/fQuantile(alpha/2,d1,d2); }
+      else if(S.tail==='lower'){ lo=0; hi=Fobs/fQuantile(alpha,d1,d2); }
+      else                      { lo=Fobs/fQuantile(1-alpha,d1,d2); hi=Infinity; }
+      est = Fobs;
+      // Muestra razones s12/x² como nube de puntos en escala del IC
+      pts = samp1.map(x=>x*x/( (s22>0?s22:1) ));
     }
 
-    ctx.globalAlpha = 1;
-  });
+    const covers = lo <= S.theta && S.theta <= hi;
+    ivs.push({ lo, hi, covers, est, pts });
+  }
+  return ivs;
+}
 
-  // Indicador "IC más reciente" — extremo izquierdo, fuente grande
-  if (intervals.length > 0) {
-    const ic   = intervals[intervals.length - 1];
-    const mono = cssVar('--mono') || 'monospace';
-    ctx.globalAlpha = 0.95;
-    ctx.textAlign   = 'left';
+// ── ANIMACIÓN ──
+function stopAnim() {
+  if (S.animTimer) { clearTimeout(S.animTimer); S.animTimer=null; }
+}
 
-    // Línea 1: x̄
-    ctx.font      = `bold 15px ${mono}`;
-    ctx.fillStyle = ic.catches ? verde : rojo;
-    ctx.fillText(`x̅ = ${ic.xbar.toFixed(2)}`, MARGIN_L + 4, 20);
+// Estados: 'idle' | 'running' | 'paused' | 'done'
+S.simState = 'idle';
 
-    // Línea 2: IC = [lo, hi]
-    ctx.font      = `bold 15px ${mono}`;
-    ctx.fillText(`IC = [${ic.lo.toFixed(2)}, ${ic.hi.toFixed(2)}]`, MARGIN_L + 4, 38);
+function setSimState(state) {
+  S.simState = state;
+  const btn = document.getElementById('btn-sim');
+  if (state === 'idle')     { btn.textContent = '▶ Simular';   btn.disabled = false; }
+  if (state === 'running')  { btn.textContent = '⏸ Pausar';    btn.disabled = false; }
+  if (state === 'paused')   { btn.textContent = '▶ Continuar'; btn.disabled = false; }
+  if (state === 'done')     { btn.textContent = '▶ Simular';   btn.disabled = false; }
+}
 
-    ctx.globalAlpha = 1;
+function toggleSim() {
+  if (S.simState === 'idle' || S.simState === 'done') {
+    // Nueva simulación
+    stopAnim();
+    S.intervals = buildAllIntervals();
+    S.animShowing = [];
+    S.animIdx = 0;
+    setSimState('running');
+    scheduleNext();
+  } else if (S.simState === 'running') {
+    // Pausar
+    stopAnim();
+    setSimState('paused');
+  } else if (S.simState === 'paused') {
+    // Reanudar
+    setSimState('running');
+    scheduleNext();
   }
 }
 
-// ── Actualización de estadísticas DOM ─────────────────────────────────────
-function updateStats() {
-  document.getElementById('st-total').textContent = total;
-  document.getElementById('st-hits').textContent  = hits;
-  document.getElementById('st-miss').textContent  = total - hits;
-  const pct = total > 0 ? (hits / total * 100) : 0;
-  document.getElementById('st-pct').textContent   = total > 0 ? pct.toFixed(1) + '%' : '—';
-  document.getElementById('pct-bar').style.width  = pct + '%';
+// Alias para compatibilidad con llamadas directas
+function runSim() { toggleSim(); }
+
+function scheduleNext() {
+  if (S.animIdx >= S.intervals.length) {
+    setSimState('done');
+    return;
+  }
+  if (S.simState !== 'running') return;
+  S.animTimer = setTimeout(()=>{
+    S.animShowing.push(S.intervals[S.animIdx++]);
+    drawIC(S.animShowing);
+    updateStats(S.animShowing);
+    scheduleNext();
+  }, S.speedMs);
 }
 
-// ── Tick principal ─────────────────────────────────────────────────────────
-function tick() {
-  if (!running) return;
-
-  const ic = generateIC();
-  total++;
-  if (ic.catches) hits++;
-
-  intervals.push(ic);
-  if (intervals.length > MAX_VISIBLE) intervals.shift();
-
-  draw();
-  updateStats();
-
-  timerId = setTimeout(tick, delay);
+function resetSim() {
+  stopAnim();
+  S.intervals = [];
+  S.animShowing = [];
+  S.animIdx = 0;
+  setSimState('idle');
+  drawIC([]);
+  updateStats([]);
 }
 
-function startLoop() {
-  clearTimeout(timerId);
-  if (running) tick();
+// ── STATS ──
+function updateStats(ivs) {
+  const total = ivs.length;
+  if (total === 0) {
+    ['stat-cover','stat-miss','stat-pct'].forEach(id=>document.getElementById(id).textContent='—');
+    document.getElementById('sim-counter').textContent = '';
+    return;
+  }
+  const covering = ivs.filter(d=>d.covers).length;
+  document.getElementById('stat-cover').textContent = covering;
+  document.getElementById('stat-miss').textContent = total - covering;
+  document.getElementById('stat-pct').textContent = (100*covering/total).toFixed(1)+'%';
+  document.getElementById('sim-counter').textContent = `${total} / ${S.B}`;
 }
 
-// ── Controles ─────────────────────────────────────────────────────────────
-document.getElementById('sl-n').addEventListener('input', function() {
-  n = +this.value;
-  document.getElementById('val-n').textContent = n;
-  reset();
-});
+// ── DISTRIBUTION CANVAS ──
+function drawDist() {
+  const canvas = document.getElementById('dist-canvas');
+  const W = canvas.parentElement.clientWidth - 32;
+  const H = 180;
+  canvas.width = W * devicePixelRatio;
+  canvas.height = H * devicePixelRatio;
+  canvas.style.width = W + 'px';
+  canvas.style.height = H + 'px';
+  const ctx = canvas.getContext('2d');
+  ctx.scale(devicePixelRatio, devicePixelRatio);
+  ctx.clearRect(0, 0, W, H);
 
-document.getElementById('sl-alpha').addEventListener('input', function() {
-  alpha = (100 - +this.value) / 100;
-  document.getElementById('val-alpha').textContent = this.value + '%';
-  reset();
-});
+  const fg3 = getCSSVar('--fg3');
+  const acc  = getCSSVar('--accent');
+  const acc2 = getCSSVar('--accent2');
 
-document.getElementById('btn-play').addEventListener('click', function() {
-  running = !running;
-  this.textContent = running ? '⏸ Pausar' : '▶ Reanudar';
-  this.className = running ? 'btn-primary' : 'btn-secondary';
-  if (running) startLoop();
-});
+  const pad = { l:40, r:20, t:16, b:36 };
+  const dW = W - pad.l - pad.r;
+  const dH = H - pad.t - pad.b;
 
-document.getElementById('btn-reset').addEventListener('click', reset);
+  const alpha = 1 - S.conf/100;
+  const n = S.n, m = S.m;
+  let xmin, xmax, pdfFn, qL, qU, label;
 
-document.querySelectorAll('.speed-btn').forEach(btn => {
-  btn.addEventListener('click', function() {
-    document.querySelectorAll('.speed-btn').forEach(b => b.classList.remove('active'));
-    this.classList.add('active');
-    delay = +this.dataset.ms;
-    if (running) { clearTimeout(timerId); tick(); }
+  if (S.dist === 'normal') {
+    xmin=-4; xmax=4; pdfFn=normPDF; label='Z ~ N(0,1)';
+    if (S.tail==='bilateral') { qL=normInv(alpha/2); qU=normInv(1-alpha/2); }
+    else if (S.tail==='lower')  { qL=-Infinity; qU=normInv(1-alpha); }
+    else                         { qL=normInv(alpha); qU=Infinity; }
+  } else if (S.dist === 't') {
+    const df=n-1;
+    xmin=-5; xmax=5; pdfFn=x=>tPDF(x,df); label=`T ~ t(${df})`;
+    if (S.tail==='bilateral') { qL=tQuantile(alpha/2,df); qU=tQuantile(1-alpha/2,df); }
+    else if (S.tail==='lower')  { qL=-Infinity; qU=tQuantile(1-alpha,df); }
+    else                         { qL=tQuantile(alpha,df); qU=Infinity; }
+  } else if (S.dist === 'chi2') {
+    const df=n-1;
+    xmin=0; xmax=Math.max(df*3,20); pdfFn=x=>chi2PDF(x,df); label=`W ~ χ²(${df})`;
+    if (S.tail==='bilateral') { qL=chi2Quantile(alpha/2,df); qU=chi2Quantile(1-alpha/2,df); }
+    else if (S.tail==='lower')  { qL=0; qU=chi2Quantile(1-alpha,df); }
+    else                         { qL=chi2Quantile(alpha,df); qU=chi2Quantile(0.9999,df)*1.1; }
+  } else if (S.dist === 'F') {
+    const d1=n-1, d2=m-1;
+    xmin=0; xmax=fQuantile(0.999,d1,d2)*1.2; pdfFn=x=>fPDF(x,d1,d2); label=`F ~ F(${d1},${d2})`;
+    if (S.tail==='bilateral') { qL=fQuantile(alpha/2,d1,d2); qU=fQuantile(1-alpha/2,d1,d2); }
+    else if (S.tail==='lower')  { qL=0; qU=fQuantile(1-alpha,d1,d2); }
+    else                         { qL=fQuantile(alpha,d1,d2); qU=fQuantile(0.9999,d1,d2)*1.1; }
+  }
+
+  document.getElementById('dist-panel-title').textContent = `Distribución pivotal — ${label}`;
+
+  const toX = v => pad.l + (v-xmin)/(xmax-xmin)*dW;
+  const STEPS = 300;
+  const xs = Array.from({length:STEPS+1}, (_,i)=>xmin+i*(xmax-xmin)/STEPS);
+  const ys = xs.map(x=>pdfFn(x));
+  const ymax = Math.max(...ys)*1.05;
+  const toY = v => pad.t + dH - v/ymax*dH;
+
+  // Shaded region
+  const shadeLo = Math.max(xmin, isFinite(qL)?qL:xmin);
+  const shadeHi = Math.min(xmax, isFinite(qU)?qU:xmax);
+  ctx.beginPath();
+  let first=true;
+  for (let i=0;i<=STEPS;i++) {
+    const x=xs[i];
+    if (x<shadeLo||x>shadeHi) continue;
+    const px=toX(x), py=toY(ys[i]);
+    first?ctx.moveTo(px,py):ctx.lineTo(px,py); first=false;
+  }
+  if (!first) {
+    ctx.lineTo(toX(shadeHi),toY(0)); ctx.lineTo(toX(shadeLo),toY(0));
+    ctx.closePath(); ctx.fillStyle=acc+'33'; ctx.fill();
+  }
+
+  // PDF curve
+  ctx.beginPath();
+  for (let i=0;i<=STEPS;i++) {
+    const px=toX(xs[i]), py=toY(ys[i]);
+    i===0?ctx.moveTo(px,py):ctx.lineTo(px,py);
+  }
+  ctx.strokeStyle=acc; ctx.lineWidth=2; ctx.stroke();
+
+  // Quantile lines
+  ctx.setLineDash([4,3]); ctx.strokeStyle=acc2; ctx.lineWidth=1.5;
+  [['lo',qL],['hi',qU]].forEach(([side,q])=>{
+    if (!isFinite(q)) return;
+    if (side==='lo' && q<=xmin) return;
+    if (side==='hi' && q>=xmax) return;
+    const px=toX(q);
+    ctx.beginPath(); ctx.moveTo(px,pad.t); ctx.lineTo(px,pad.t+dH); ctx.stroke();
+    ctx.font=`10px ${getCSSVar('--mono').replace(/'/g,'')}`;
+    ctx.fillStyle=acc2; ctx.textAlign='center';
+    ctx.fillText(q.toFixed(3), px, pad.t-4);
   });
-});
+  ctx.setLineDash([]);
 
-function reset() {
-  clearTimeout(timerId);
-  intervals = [];
-  total = 0; hits = 0;
-  resize();
-  draw();
-  updateStats();
-  if (running) tick();
+  // X axis
+  ctx.strokeStyle=fg3; ctx.lineWidth=1;
+  ctx.beginPath(); ctx.moveTo(pad.l,pad.t+dH); ctx.lineTo(pad.l+dW,pad.t+dH); ctx.stroke();
+
+  ctx.fillStyle=fg3; ctx.textAlign='center'; ctx.font=`10px var(--sans)`;
+  makeTicks(xmin,xmax,6).forEach(t=>{
+    const px=toX(t);
+    ctx.beginPath(); ctx.moveTo(px,pad.t+dH); ctx.lineTo(px,pad.t+dH+4); ctx.stroke();
+    ctx.fillText(t%1===0?t:t.toFixed(1), px, pad.t+dH+14);
+  });
+
+  // Coverage label
+  ctx.fillStyle=acc; ctx.textAlign='center'; ctx.font=`bold 11px var(--sans)`;
+  const midX=(Math.min(xmax,isFinite(qU)?qU:xmax)+Math.max(xmin,isFinite(qL)?qL:xmin))/2;
+  ctx.fillText(`1−α = ${(S.conf/100).toFixed(2)}`, toX(midX), toY(pdfFn(midX)*0.55));
 }
 
-// ── Init ──────────────────────────────────────────────────────────────────
-window.addEventListener('resize', () => { resize(); draw(); });
-resize();
-tick();
+function makeTicks(lo, hi, n) {
+  const range=hi-lo;
+  const step=Math.pow(10,Math.floor(Math.log10(range/n)));
+  const candidates=[step,step*2,step*5,step*10];
+  const best=candidates.find(s=>range/s<=n+2)||candidates[candidates.length-1];
+  const start=Math.ceil(lo/best)*best;
+  const ticks=[];
+  for (let t=start;t<=hi+1e-9;t+=best) ticks.push(+t.toFixed(10));
+  return ticks;
+}
+
+// ── IC CANVAS — recibe la lista de ICs a dibujar (animShowing) ──
+function drawIC(ivs) {
+  if (!ivs) ivs = S.animShowing;
+  const canvas = document.getElementById('ic-canvas');
+  const W = canvas.parentElement.clientWidth - 32;
+  const B = ivs.length;
+
+  if (B === 0) {
+    const H = 120;
+    canvas.width = W*devicePixelRatio; canvas.height = H*devicePixelRatio;
+    canvas.style.width=W+'px'; canvas.style.height=H+'px';
+    const ctx=canvas.getContext('2d'); ctx.scale(devicePixelRatio,devicePixelRatio);
+    ctx.clearRect(0,0,W,H);
+    ctx.fillStyle=getCSSVar('--fg3'); ctx.textAlign='center'; ctx.font=`13px var(--sans)`;
+    ctx.fillText('Presiona ▶ Simular para generar los intervalos', W/2, H/2);
+    return;
+  }
+
+  // Altura de fila: suficiente para ver puntos muestreados
+  const ROW = Math.max(8, Math.min(18, Math.floor(600/Math.max(B,1))));
+  const H = B*ROW + 60;
+  canvas.width = W*devicePixelRatio; canvas.height = H*devicePixelRatio;
+  canvas.style.width=W+'px'; canvas.style.height=H+'px';
+  const ctx=canvas.getContext('2d'); ctx.scale(devicePixelRatio,devicePixelRatio);
+  ctx.clearRect(0,0,W,H);
+
+  const pad={l:50,r:20,t:20,b:32};
+  const dW=W-pad.l-pad.r;
+  const dH=H-pad.t-pad.b;
+
+  // Rango de eje X — incluir puntos muestreados para que quepan en la escala
+  const finLo = ivs.map(d=>d.lo).filter(isFinite);
+  const finHi = ivs.map(d=>d.hi).filter(isFinite);
+  const finPts= ivs.flatMap(d=>(d.pts||[]).filter(isFinite));
+  const allX  = [...finLo, ...finHi, S.theta, ...finPts];
+  if (allX.length===0) return;
+  let xmin=Math.min(...allX), xmax=Math.max(...allX);
+  const margin=(xmax-xmin)*0.12 || 0.5;
+  xmin-=margin; xmax+=margin;
+
+  const toX = v => {
+    if (!isFinite(v)) return v<0 ? pad.l : pad.l+dW;
+    return pad.l + (v-xmin)/(xmax-xmin)*dW;
+  };
+  const rowCy = i => pad.t + (i+0.5)*dH/B;   // centro y de la fila i
+
+  // Eje X
+  ctx.strokeStyle=getCSSVar('--border'); ctx.lineWidth=1;
+  ctx.beginPath(); ctx.moveTo(pad.l,pad.t+dH); ctx.lineTo(pad.l+dW,pad.t+dH); ctx.stroke();
+
+  ctx.fillStyle=getCSSVar('--fg3'); ctx.textAlign='center'; ctx.font=`10px var(--sans)`;
+  makeTicks(xmin,xmax,6).forEach(t=>{
+    const px=toX(t);
+    ctx.beginPath(); ctx.moveTo(px,pad.t+dH); ctx.lineTo(px,pad.t+dH+4); ctx.stroke();
+    ctx.fillText(t.toFixed(2), px, pad.t+dH+14);
+  });
+
+  // ── Dibujar cada IC ──
+  const jitter = new Array(ivs.length).fill(null).map(()=>[]); // jitter seeds pre-generados
+  ivs.forEach((d, i)=>{
+    const cy = rowCy(i);
+    const lx = toX(d.lo), rx = toX(d.hi);
+    const col = d.covers ? '#22aa44' : getCSSVar('--accent2');
+    const colAlpha = d.covers ? '#22aa4444' : (getCSSVar('--accent2')+'44');
+
+    // 1. Puntos muestreados (círculos pequeños, jitter vertical ±ROW*0.28)
+    const halfJitter = ROW * 0.28;
+    const dotR = Math.max(1, ROW*0.13);
+    if (d.pts && d.pts.length > 0) {
+      ctx.save();
+      // clip a la banda del IC
+      ctx.beginPath(); ctx.rect(pad.l, cy-halfJitter-dotR, dW, 2*(halfJitter+dotR)); ctx.clip();
+      d.pts.forEach((pt,pi)=>{
+        if (!isFinite(pt)) return;
+        const px = toX(pt);
+        // jitter determinista por punto
+        const jy = cy + ((pi * 6271 + i*1009) % 1000 / 1000 - 0.5) * 2 * halfJitter;
+        ctx.beginPath(); ctx.arc(px, jy, dotR, 0, 2*Math.PI);
+        ctx.fillStyle = col + '66';
+        ctx.fill();
+      });
+      ctx.restore();
+    }
+
+    // 2. Línea del IC
+    ctx.strokeStyle = col;
+    ctx.lineWidth = Math.max(1, ROW*0.1);
+    ctx.beginPath(); ctx.moveTo(lx, cy); ctx.lineTo(rx, cy); ctx.stroke();
+
+    // Extremos (caps o flechas)
+    const capH = ROW * 0.4;
+    ctx.lineWidth = Math.max(1, ROW*0.12);
+    if (isFinite(d.lo)) {
+      ctx.beginPath(); ctx.moveTo(lx,cy-capH); ctx.lineTo(lx,cy+capH); ctx.stroke();
+    } else {
+      ctx.beginPath(); ctx.moveTo(lx+7,cy-3.5); ctx.lineTo(lx,cy); ctx.lineTo(lx+7,cy+3.5); ctx.stroke();
+    }
+    if (isFinite(d.hi)) {
+      ctx.beginPath(); ctx.moveTo(rx,cy-capH); ctx.lineTo(rx,cy+capH); ctx.stroke();
+    } else {
+      ctx.beginPath(); ctx.moveTo(rx-7,cy-3.5); ctx.lineTo(rx,cy); ctx.lineTo(rx-7,cy+3.5); ctx.stroke();
+    }
+
+    // 3. Estrella ★ en el estimador puntual
+    if (isFinite(d.est)) {
+      const ex = toX(d.est);
+      const sr = Math.max(3.5, ROW*0.38);
+      drawStar(ctx, ex, cy, sr, col);
+    }
+  });
+
+  // Línea θ verdadero
+  const tx = toX(S.theta);
+  ctx.setLineDash([4,3]);
+  ctx.strokeStyle=getCSSVar('--fg'); ctx.lineWidth=1.5;
+  ctx.beginPath(); ctx.moveTo(tx,pad.t); ctx.lineTo(tx,pad.t+dH); ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle=getCSSVar('--fg'); ctx.textAlign='center'; ctx.font=`bold 10px var(--sans)`;
+  ctx.fillText(`θ=${S.theta}`, tx, pad.t-5);
+}
+
+// Dibuja una estrella de 5 puntas centrada en (cx,cy) con radio r
+function drawStar(ctx, cx, cy, r, color) {
+  const n=5, inner=r*0.42;
+  ctx.beginPath();
+  for (let k=0; k<2*n; k++) {
+    const ang = Math.PI/n*k - Math.PI/2;
+    const rd  = k%2===0 ? r : inner;
+    const x = cx + rd*Math.cos(ang);
+    const y = cy + rd*Math.sin(ang);
+    k===0 ? ctx.moveTo(x,y) : ctx.lineTo(x,y);
+  }
+  ctx.closePath();
+  ctx.fillStyle   = color;
+  ctx.strokeStyle = getCSSVar('--bg2');
+  ctx.lineWidth   = 0.8;
+  ctx.fill();
+  ctx.stroke();
+}
+
+// ── FORMULA UPDATE ──
+function updateFormula() {
+  const n=S.n, m=S.m;
+  let text='';
+  const alpha=1-S.conf/100;
+  if (S.dist==='normal') {
+    if (S.tail==='bilateral')
+      text = `X̄ ± z_{α/2} · σ/√n\n= X̄ ± ${normInv(1-alpha/2).toFixed(3)} · σ/√n`;
+    else if (S.tail==='lower')
+      text = `IC = (−∞,  X̄ + z_{α} · σ/√n)\n= (−∞,  X̄ + ${normInv(1-alpha).toFixed(3)} · σ/√n)`;
+    else
+      text = `IC = (X̄ − z_{α} · σ/√n,  +∞)\n= (X̄ − ${normInv(1-alpha).toFixed(3)} · σ/√n,  +∞)`;
+  } else if (S.dist==='t') {
+    const df=n-1;
+    if (S.tail==='bilateral')
+      text = `X̄ ± t_{n-1, α/2} · S/√n\n= X̄ ± ${tQuantile(1-alpha/2,df).toFixed(3)} · S/√n  (df=${df})`;
+    else if (S.tail==='lower')
+      text = `IC = (−∞,  X̄ + t_{n-1, α} · S/√n)\n= (−∞,  X̄ + ${tQuantile(1-alpha,df).toFixed(3)} · S/√n)`;
+    else
+      text = `IC = (X̄ − t_{n-1, α} · S/√n,  +∞)\n= (X̄ − ${tQuantile(1-alpha,df).toFixed(3)} · S/√n,  +∞)`;
+  } else if (S.dist==='chi2') {
+    const df=n-1;
+    const q1=chi2Quantile(alpha/2,df).toFixed(3), q2=chi2Quantile(1-alpha/2,df).toFixed(3);
+    const qL=chi2Quantile(alpha,df).toFixed(3), qU=chi2Quantile(1-alpha,df).toFixed(3);
+    if (S.tail==='bilateral')
+      text = `((n−1)S²/χ²_{n-1,α/2},  (n−1)S²/χ²_{n-1,1-α/2})\n= (S²·${df}/${q2},  S²·${df}/${q1})   df=${df}`;
+    else if (S.tail==='lower')
+      text = `IC = (0,  (n−1)S²/χ²_{n-1,α})\n= (0,  S²·${df}/${qL})`;
+    else
+      text = `IC = ((n−1)S²/χ²_{n-1,1-α},  +∞)\n= (S²·${df}/${qU},  +∞)`;
+  } else if (S.dist==='F') {
+    const d1=n-1, d2=m-1;
+    const qFL=fQuantile(alpha/2,d1,d2).toFixed(3), qFU=fQuantile(1-alpha/2,d1,d2).toFixed(3);
+    const qFA=fQuantile(alpha,d1,d2).toFixed(3), qF1A=fQuantile(1-alpha,d1,d2).toFixed(3);
+    if (S.tail==='bilateral')
+      text = `(S₁²/S₂²/F_{α/2},  S₁²/S₂²/F_{1-α/2})\n=(S₁²/S₂²/${qFU},  S₁²/S₂²/${qFL})   (${d1},${d2})`;
+    else if (S.tail==='lower')
+      text = `IC = (0,  S₁²/S₂² / F_{α,${d1},${d2}})\n= (0,  S₁²/S₂² / ${qFA})`;
+    else
+      text = `IC = (S₁²/S₂² / F_{1-α,${d1},${d2}},  +∞)\n= (S₁²/S₂² / ${qF1A},  +∞)`;
+  }
+  document.getElementById('formula-text').textContent = text;
+}
+
+// ── HELPERS ──
+function getCSSVar(v) {
+  return getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+}
+
+function onDistChange() {
+  stopAnim();
+  S.dist = document.getElementById('dist-select').value;
+  document.getElementById('n2-row').style.display = S.dist==='F' ? '' : 'none';
+  updateTrueParam();
+  drawDist(); updateFormula(); resetSim();
+}
+function onTailChange() {
+  S.tail = document.getElementById('tail-select').value;
+  drawDist(); updateFormula();
+}
+function onConfChange(v) {
+  S.conf = +v;
+  document.getElementById('conf-val').textContent = v+'%';
+  document.getElementById('stat-nom').textContent = v+'%';
+  drawDist(); updateFormula();
+}
+function onNChange(v) {
+  S.n = +v;
+  document.getElementById('n-val').textContent = v;
+  drawDist(); updateFormula();
+}
+function onMChange(v) {
+  S.m = +v;
+  document.getElementById('m-val').textContent = v;
+  drawDist(); updateFormula();
+}
+function onBChange(v) {
+  S.B = +v;
+  document.getElementById('B-val').textContent = v;
+}
+function updateTrueParam() {
+  S.theta = (S.dist==='chi2'||S.dist==='F') ? 1 : 0;
+}
+function toggleTheme() {
+  const root = document.documentElement;
+  const cur = root.getAttribute('data-theme');
+  if (!cur||cur==='light') root.setAttribute('data-theme','dark');
+  else root.setAttribute('data-theme','light');
+  setTimeout(()=>{ drawDist(); drawIC(S.animShowing); }, 50);
+}
+
+// ── INIT ──
+function init() {
+  updateTrueParam();
+  drawDist();
+  drawIC([]);
+  updateFormula();
+}
+
+window.addEventListener('resize', ()=>{ drawDist(); drawIC(S.animShowing); });
+window.addEventListener('load', init);
 </script>
+
+<footer style="text-align:center;padding:10px 0 calc(10px + env(safe-area-inset-bottom,0px));font-size:0.72rem;color:var(--fg3);border-top:1px solid var(--border);background:var(--bg2);margin-top:auto;">
+  Elaborado por C. Vladimir Rodríguez-Caballero (Depto. Estadística, ITAM)
+</footer>
