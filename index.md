@@ -56,8 +56,8 @@ toc: false
     <ul>
       <li><strong>Oct 2026:</strong> New published paper. <a href="https://doi.org/10.1016/j.ecosta.2026.10.001" target="_blank">Econometrics and Statistics</a>.</li>
     <li><strong>Mar 2026:</strong> New accepted paper. Journal of Statistical Software.</li>
-    <li><strong>Jan 2026:</strong> New accepted paper. Annals of Applied Statistics.</li>
-    <li><strong>Dic 2025:</strong> New accepted paper. International Journal of Forecasting.</li>
+    <li><strong>Jan 2026:</strong> New published paper. <a href="https://projecteuclid.org/journals/annals-of-applied-statistics/volume-20/issue-1/Temperature-in-the-Iberian-Peninsula-Common-trends-and-heterogeneity/10.1214/26-AOAS2137.full" target="_blank">Annals of Applied Statistics</a>.</li>
+    <li><strong>Dic 2025:</strong> New published paper. <a href="https://doi.org/10.1016/j.ijforecast.2025.12.003" target="_blank">International Journal of Forecasting</a>.</li>
     <!-- ===  <li><strong>Oct 2025:</strong> New working paper on high-dimensional factor models uploaded</li> === -->
     </ul>
   </div>
