@@ -569,7 +569,7 @@ author = {Ignacio Garrón and Vladimir Rodríguez-Caballero and Esther Ruiz},
 
     <strong>The empirical distribution of sequential LS factors in Multi-level Dynamic Factor Models</strong><br>
     Bellocca, G.P., Garrón, I., <u>Rodríguez-Caballero, C.V.</u>, & Ruiz, E.<br>
-    <em>Econometrics and Statistics</em>, forthcoming, 2026.
+    <em>Econometrics and Statistics</em>, 2026.
 
     <div class="btn-row">
 
@@ -582,6 +582,9 @@ author = {Ignacio Garrón and Vladimir Rodríguez-Caballero and Esther Ruiz},
             <a href="https://arxiv.org/pdf/2602.14813" target="_blank">Arxiv WP</a>
         </div>
       </div>
+
+      <a href="https://doi.org/10.1016/j.ecosta.2026.10.001"
+         target="_blank" class="btn btn--success btn--sm">Published</a>
 
       <a href="javascript:toggleDiv('bib-SLS2026')" class="btn btn--warning btn--sm">BIB</a>
     </div>
@@ -605,7 +608,7 @@ business cycles.</em>
   author={Gian Pietro Bellocca and Ignacio Garrón and C. Vladimir Rodríguez-Caballero and Esther Ruiz},
   journal={Econometrics and Statistics},
   year={2026},
-  note={Forthcoming}
+  doi={10.1016/j.ecosta.2026.10.001}
 }
 </code></pre>
     </div>

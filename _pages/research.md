@@ -84,7 +84,7 @@ Click each section to explore.
 
       <p><strong>Related papers:</strong></p>
       <ul>
-        <li><a href="/publications/#paper-sls2026">The empirical distribution of sequential LS factors in Multi-level Dynamic Factor Models</a> — <em>Econometrics and Statistics</em>, forthcoming 2026</li>
+        <li><a href="/publications/#paper-sls2026">The empirical distribution of sequential LS factors in Multi-level Dynamic Factor Models</a> — <em>Econometrics and Statistics</em>, 2026</li>
         <li><a href="/publications/#paper-fx2024">The Factor Structure of Exchange Rates Volatility: Global and Intermittent Factors</a> — <em>Empirical Economics</em>, 2024</li>
         <li><a href="/publications/#paper-mldfm2023">Estimation of a dynamic multi-level factor model with possible long-range dependence</a> — <em>International Journal of Forecasting</em>, 2023</li>
         <li><a href="/publications/#paper-wavelet2021">Wavelet Estimation for Factor Models with Time-Varying Loadings</a> — <em>International Journal of Wavelets, Multiresolution and Information Processing</em>, 2021</li>
