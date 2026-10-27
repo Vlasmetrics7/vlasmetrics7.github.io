@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Simulación: errores tipo I y tipo II, y potencia</title>
+<style>
+  :root {
+    --azul-itam: #003366;
+    --verde-itam: #00783C;
+    --naranja: #B5651D;
+    --surface-1: #f2f2f0;
+    --surface-2: #ffffff;
+    --border: #dcdcd8;
+    --text-primary: #1a1a1a;
+    --text-secondary: #595955;
+    --radius: 8px;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+    color: var(--text-primary);
+    background: var(--surface-2);
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 3rem;
+    line-height: 1.6;
+  }
+  h1 { font-size: 24px; font-weight: 600; margin: 0 0 0.5rem; color: var(--azul-itam); }
+  h2 { font-size: 18px; font-weight: 600; margin: 2rem 0 0.5rem; color: var(--azul-itam); }
+  p.instrucciones { color: var(--text-secondary); margin: 0 0 1rem; }
+  ul.observar { color: var(--text-secondary); margin: 0 0 1.5rem; padding-left: 1.2rem; font-size: 14px; }
+  ul.observar li { margin-bottom: 2px; }
+  label { font-size: 13px; color: var(--text-secondary); display: block; margin-bottom: 4px; }
+  input[type="range"] { width: 100%; accent-color: var(--azul-itam); }
+  button {
+    font-size: 14px; padding: 8px 16px; border-radius: var(--radius);
+    border: 1px solid var(--border); background: var(--surface-2); cursor: pointer;
+  }
+  button:hover { background: var(--surface-1); }
+  button.activo { background: var(--azul-itam); color: #fff; border-color: var(--azul-itam); }
+  .controles-fila { display: flex; flex-wrap: wrap; gap: 20px; margin-bottom: 1.25rem; }
+  .controles-fila > div { flex: 1; min-width: 180px; }
+  .valor { font-size: 14px; font-weight: 600; display: inline-block; min-width: 30px; }
+  .radios { display: flex; gap: 8px; flex-wrap: wrap; }
+  .radios button { padding: 6px 12px; font-size: 13px; }
+  .acciones { display: flex; gap: 10px; margin-bottom: 1rem; flex-wrap: wrap; align-items: center; }
+  .acciones .etiqueta { font-size: 13px; color: var(--text-secondary); }
+  .leyenda-fila { display: flex; align-items: center; gap: 18px; margin-bottom: 0.5rem; flex-wrap: wrap; }
+  .leyenda-item { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--text-secondary); }
+  .leyenda-caja { width: 12px; height: 12px; border-radius: 2px; display: inline-block; }
+  .leyenda-fila label { display: inline-flex; align-items: center; gap: 6px; margin: 0; cursor: pointer; }
+  canvas { width: 100%; display: block; background: var(--surface-1); border-radius: var(--radius); }
+  #lienzoDens { height: 360px; margin-bottom: 1rem; }
+  #lienzoPot, #lienzoP { height: 260px; }
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 1.5rem; }
+  .stat-card { background: var(--surface-1); border-radius: var(--radius); padding: 0.9rem 1rem; }
+  .stat-card p:first-child { font-size: 13px; color: var(--text-secondary); margin: 0 0 4px; }
+  .stat-card p:last-child { font-size: 22px; font-weight: 600; margin: 0; }
+  .dos-columnas { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 0.5rem; }
+  .dos-columnas h3 { font-size: 14px; font-weight: 600; margin: 0 0 6px; color: var(--text-secondary); }
+  .mc-resumen { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 1rem 0 0.5rem; }
+  #notaMC { font-size: 13px; color: var(--text-secondary); min-height: 2.8em; }
+  .pie { margin-top: 2.5rem; font-size: 12px; color: var(--text-secondary); border-top: 1px solid var(--border); padding-top: 0.75rem; }
+  @media (max-width: 720px) {
+    .stats, .mc-resumen { grid-template-columns: repeat(2, 1fr); }
+    .dos-columnas { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<h1>Simulación: errores tipo I y tipo II, y potencia</h1>
+<p class="instrucciones">
+  Prueba <b>Z</b> para la media de una población normal con σ conocida:
+  <b>H₀: μ = μ₀ = 0</b> contra <b>H₁: μ &gt; 0</b> (una cola) o
+  <b>H₁: μ ≠ 0</b> (dos colas). El estadístico es
+  <b>Z = √n (X̄ − μ₀)/σ</b>. Se rechaza H₀ cuando Z cae más allá del
+  <b>umbral</b> (valor crítico). Las curvas muestran cómo se distribuye Z si
+  H₀ es cierta (azul) y si lo es la media <b>μ₁</b> (naranja), para el
+  tamaño de muestra elegido.
+</p>
+<ul class="observar">
+  <li><b>Mueve el umbral:</b> al hacerlo más estricto, α baja pero β sube
+      (Observación 6.2.3 del capítulo).</li>
+  <li><b>Aumenta n:</b> las dos curvas se separan y bajan α y β a la vez.</li>
+  <li><b>Acerca μ₁ a 0:</b> con el mismo α, β crece (Figura 6.2).</li>
+  <li><b>Simula muestras</b> (abajo): con H₀ cierta, la fracción de rechazos
+      ronda α; con H₁ cierta, ronda la potencia.</li>
+</ul>
+
+<div class="controles-fila">
+  <div>
+    <label>Tipo de prueba</label>
+    <div class="radios">
+      <button id="btnUno" class="activo">Una cola (H₁: μ &gt; μ₀)</button>
+      <button id="btnDos">Dos colas (H₁: μ ≠ μ₀)</button>
+    </div>
+  </div>
+  <div>
+    <label for="nSlider">Tamaño de muestra (n)</label>
+    <input type="range" id="nSlider" min="2" max="300" value="36" step="1">
+    <span class="valor" id="nOut">36</span>
+  </div>
+  <div>
+    <label for="sigSlider">Desviación estándar σ (conocida)</label>
+    <input type="range" id="sigSlider" min="0.5" max="10" value="4" step="0.5">
+    <span class="valor" id="sigOut">4</span>
+  </div>
+  <div>
+    <label for="muSlider">Media verdadera bajo H₁ (μ₁)</label>
+    <input type="range" id="muSlider" min="0" max="6" value="1" step="0.1">
+    <span class="valor" id="muOut">1.0</span>
+  </div>
+</div>
+
+<div class="controles-fila">
+  <div style="flex: 2; min-width: 260px;">
+    <label for="cSlider">Umbral (valor crítico c: se rechaza H₀ si Z &gt; c, o |Z| &gt; c en dos colas)</label>
+    <input type="range" id="cSlider" min="0" max="5" value="1.645" step="0.01">
+    <span class="valor" id="cOut">1.645</span>
+  </div>
+  <div>
+    <label>Fijar el umbral por el nivel α</label>
+    <div class="radios">
+      <button id="btnA10">α = 0.10</button>
+      <button id="btnA05">α = 0.05</button>
+      <button id="btnA01">α = 0.01</button>
+    </div>
+  </div>
+</div>
+
+<div class="leyenda-fila">
+  <span class="leyenda-item"><span class="leyenda-caja" style="background:var(--azul-itam)"></span>α: rechazar H₀ siendo cierta</span>
+  <span class="leyenda-item"><span class="leyenda-caja" style="background:var(--naranja)"></span>β: no rechazar H₀ siendo falsa</span>
+  <label class="leyenda-item"><input type="checkbox" id="chkPot"><span class="leyenda-caja" style="background:var(--verde-itam)"></span>sombrear la potencia (1 − β)</label>
+</div>
+
+<canvas id="lienzoDens"></canvas>
+
+<div class="stats" aria-live="polite">
+  <div class="stat-card"><p>α (tamaño de la prueba)</p><p id="stA">—</p></div>
+  <div class="stat-card"><p>β(μ₁)</p><p id="stB">—</p></div>
+  <div class="stat-card"><p>Potencia 1 − β(μ₁)</p><p id="stP">—</p></div>
+  <div class="stat-card"><p>δ = √n (μ₁ − μ₀)/σ</p><p id="stD">—</p></div>
+  <div class="stat-card"><p>n necesario para potencia 0.80</p><p id="stN80">—</p></div>
+  <div class="stat-card"><p>n necesario para potencia 0.90</p><p id="stN90">—</p></div>
+</div>
+
+<div class="dos-columnas">
+  <div>
+    <h3>Función de potencia Potencia(μ) con el umbral actual</h3>
+    <canvas id="lienzoPot"></canvas>
+  </div>
+  <div>
+    <h3>Valores-p de las muestras simuladas</h3>
+    <canvas id="lienzoP"></canvas>
+  </div>
+</div>
+
+<h2>Simular muestras</h2>
+<p class="instrucciones">
+  Cada réplica genera una muestra nueva de tamaño n de una población
+  N(μ, σ²), calcula Z y decide con el umbral actual. Las barras grises
+  sobre la gráfica principal son el histograma de los valores de Z
+  simulados.
+</p>
+<div class="acciones">
+  <span class="etiqueta">¿Qué es cierto?</span>
+  <button id="btnH0" class="activo">H₀ (μ = 0)</button>
+  <button id="btnH1">H₁ (μ = μ₁)</button>
+  <button id="btnSim">▶▶ Simular 1,000 muestras</button>
+  <button id="btnReset">↻ Reiniciar</button>
+</div>
+<div class="mc-resumen" aria-live="polite">
+  <div class="stat-card"><p>Muestras simuladas</p><p id="mcN">0</p></div>
+  <div class="stat-card"><p>Rechazos de H₀</p><p id="mcRej">—</p></div>
+  <div class="stat-card"><p id="mcEtiq">α teórico</p><p id="mcTeo">—</p></div>
+</div>
+<p id="notaMC"></p>
+
+<p class="pie">Elaborado por C. Vladimir Rodríguez-Caballero (Depto. Estadística, ITAM)</p>
+
+<script>
+const AZUL = '#003366', VERDE = '#00783C', NARANJA = '#B5651D', GRIS = '#9a9a94';
+
+/* ---------- Funciones normales ---------- */
+const SQRT2 = Math.SQRT2, SQRT2PI = Math.sqrt(2 * Math.PI);
+function phi(x){ return Math.exp(-0.5 * x * x) / SQRT2PI; }
+function erf(x){                       // serie de Taylor, |x| < 3
+  let term = x, sum = x;
+  for(let k = 1; k < 80; k++){
+    term *= -x * x / k;
+    sum += term / (2 * k + 1);
+  }
+  return 2 / Math.sqrt(Math.PI) * sum;
+}
+function erfc(x){
+  if(x < 0) return 2 - erfc(-x);
+  if(x < 3) return 1 - erf(x);
+  // fracción continua para la cola, x >= 3
+  let f = x;
+  for(let k = 60; k >= 1; k--) f = x + (k / 2) / f;
+  return Math.exp(-x * x) / Math.sqrt(Math.PI) / f;
+}
+function Phi(x){ return 0.5 * erfc(-x / SQRT2); }
+function zq(p){                        // cuantil: Phi(z) = p
+  let lo = -12, hi = 12;
+  for(let i = 0; i < 90; i++){
+    const mid = 0.5 * (lo + hi);
+    if(Phi(mid) < p) lo = mid; else hi = mid;
+  }
+  return 0.5 * (lo + hi);
+}
+function randNormal(){
+  let u = 0, v = 0;
+  while(u === 0) u = Math.random();
+  while(v === 0) v = Math.random();
+  return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v);
+}
+
+/* ---------- Estado ---------- */
+const S = { tipo: 'uno', n: 36, sigma: 4, mu1: 1, c: zq(0.95), pot: false, verdad: 'H0', zs: [] };
+const MAX_ZS = 50000;
+
+function alphaDe(c){ return S.tipo === 'uno' ? 1 - Phi(c) : 2 * (1 - Phi(c)); }
+function cDeAlpha(a){ return S.tipo === 'uno' ? zq(1 - a) : zq(1 - a / 2); }
+function potenciaDe(mu){
+  const d = Math.sqrt(S.n) * mu / S.sigma;
+  return S.tipo === 'uno' ? 1 - Phi(S.c - d) : 1 - Phi(S.c - d) + Phi(-S.c - d);
+}
+function nNecesario(objetivo){
+  if(Math.abs(S.mu1) < 1e-9) return '—';
+  const zb = zq(objetivo);
+  const n = Math.pow((S.c + zb) * S.sigma / Math.abs(S.mu1), 2);
+  return Math.max(2, Math.ceil(n - 1e-9)).toString();
+}
+function fmt(x, d = 4){ return x.toFixed(d); }
+
+/* ---------- Lienzos ---------- */
+function prepararLienzo(id){
+  const cv = document.getElementById(id);
+  const dpr = window.devicePixelRatio || 1;
+  const w = cv.clientWidth, h = cv.clientHeight;
+  cv.width = Math.round(w * dpr);
+  cv.height = Math.round(h * dpr);
+  const ctx = cv.getContext('2d');
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  ctx.clearRect(0, 0, w, h);
+  return { ctx, w, h };
+}
+const FUENTE = '-apple-system, "Segoe UI", Helvetica, Arial, sans-serif';
+
+function dibujarDensidades(){
+  const { ctx, w, h } = prepararLienzo('lienzoDens');
+  const L = 48, R = 16, T = 34, B = 40;
+  const pw = w - L - R, ph = h - T - B;
+  const delta = Math.sqrt(S.n) * S.mu1 / S.sigma;
+  const xmin = Math.min(-4.5, delta - 4.5), xmax = Math.max(4.5, delta + 4.5);
+
+  // histograma de Z simulados (densidad)
+  const BW = 0.25;
+  const nb = Math.ceil((xmax - xmin) / BW);
+  const bins = new Array(nb).fill(0);
+  let maxDens = 0.42;
+  if(S.zs.length){
+    for(const z of S.zs){
+      let i = Math.floor((z - xmin) / BW);
+      if(i >= 0 && i < nb) bins[i]++;
+    }
+    for(let i = 0; i < nb; i++) maxDens = Math.max(maxDens, bins[i] / (S.zs.length * BW));
+  }
+  const ymax = maxDens * 1.28;
+  const X = x => L + (x - xmin) / (xmax - xmin) * pw;
+  const Y = y => T + ph - y / ymax * ph;
+
+  // rejilla y ejes
+  ctx.strokeStyle = '#dcdcd8'; ctx.lineWidth = 1;
+  ctx.fillStyle = '#595955'; ctx.font = '11px ' + FUENTE; ctx.textAlign = 'center';
+  for(let t = Math.ceil(xmin); t <= xmax; t++){
+    ctx.beginPath(); ctx.moveTo(X(t), T); ctx.lineTo(X(t), T + ph); ctx.stroke();
+    ctx.fillText(String(t), X(t), T + ph + 14);
+  }
+  ctx.fillText('valor del estadístico Z', L + pw / 2, h - 6);
+  ctx.strokeStyle = '#9a9a94';
+  ctx.beginPath(); ctx.moveTo(L, T + ph); ctx.lineTo(L + pw, T + ph); ctx.stroke();
+
+  // histograma simulado
+  if(S.zs.length){
+    for(let i = 0; i < nb; i++){
+      const x0 = xmin + i * BW, xc = x0 + BW / 2;
+      const dens = bins[i] / (S.zs.length * BW);
+      const rech = S.tipo === 'uno' ? xc > S.c : Math.abs(xc) > S.c;
+      ctx.fillStyle = rech ? 'rgba(80,80,76,0.55)' : 'rgba(154,154,148,0.40)';
+      ctx.fillRect(X(x0), Y(dens), X(x0 + BW) - X(x0) - 1, T + ph - Y(dens));
+    }
+  }
+
+  function region(f, a, b, color){
+    if(b <= a) return;
+    ctx.beginPath(); ctx.moveTo(X(a), Y(0));
+    const pasos = 120;
+    for(let i = 0; i <= pasos; i++){
+      const x = a + (b - a) * i / pasos;
+      ctx.lineTo(X(x), Y(f(x)));
+    }
+    ctx.lineTo(X(b), Y(0)); ctx.closePath();
+    ctx.fillStyle = color; ctx.fill();
+  }
+  const f0 = x => phi(x), f1 = x => phi(x - delta);
+  const c = Math.min(S.c, xmax), cn = -c;
+  // beta (naranja) y potencia (verde opcional)
+  if(S.tipo === 'uno'){
+    region(f1, xmin, c, 'rgba(181,101,29,0.45)');
+    if(S.pot) region(f1, c, xmax, 'rgba(0,120,60,0.28)');
+    region(f0, c, xmax, 'rgba(0,51,102,0.60)');
+  } else {
+    region(f1, cn, c, 'rgba(181,101,29,0.45)');
+    if(S.pot){
+      region(f1, xmin, cn, 'rgba(0,120,60,0.28)');
+      region(f1, c, xmax, 'rgba(0,120,60,0.28)');
+    }
+    region(f0, c, xmax, 'rgba(0,51,102,0.60)');
+    region(f0, xmin, cn, 'rgba(0,51,102,0.60)');
+  }
+
+  // curvas
+  function curva(f, color){
+    ctx.beginPath(); ctx.lineWidth = 3; ctx.strokeStyle = color;
+    for(let i = 0; i <= 300; i++){
+      const x = xmin + (xmax - xmin) * i / 300;
+      if(i === 0) ctx.moveTo(X(x), Y(f(x))); else ctx.lineTo(X(x), Y(f(x)));
+    }
+    ctx.stroke();
+  }
+  curva(f0, AZUL);
+  if(Math.abs(delta) > 1e-9) curva(f1, NARANJA);
+  else { ctx.setLineDash([6, 4]); curva(f1, NARANJA); ctx.setLineDash([]); }
+
+  // umbrales
+  ctx.setLineDash([6, 4]); ctx.lineWidth = 2; ctx.strokeStyle = '#4a4a46';
+  const umbrales = S.tipo === 'uno' ? [S.c] : [S.c, -S.c];
+  for(const u of umbrales){
+    if(u < xmin || u > xmax) continue;
+    ctx.beginPath(); ctx.moveTo(X(u), T - 4); ctx.lineTo(X(u), T + ph); ctx.stroke();
+  }
+  ctx.setLineDash([]);
+
+  // rótulos de decisión
+  ctx.font = '12px ' + FUENTE; ctx.fillStyle = '#1a1a1a';
+  const yr = T - 14;
+  if(S.tipo === 'uno'){
+    ctx.textAlign = 'right'; ctx.fillText('No rechazar H₀', X(Math.min(S.c, xmax)) - 8, yr);
+    ctx.textAlign = 'left';  if(S.c < xmax - 0.6) ctx.fillText('Rechazar H₀', X(S.c) + 8, yr);
+  } else {
+    ctx.textAlign = 'center'; ctx.fillText('No rechazar H₀', X(0), yr);
+    if(S.c < xmax - 0.6){ ctx.textAlign = 'left'; ctx.fillText('Rechazar H₀', X(S.c) + 8, yr); }
+    if(-S.c > xmin + 0.6){ ctx.textAlign = 'right'; ctx.fillText('Rechazar H₀', X(-S.c) - 8, yr); }
+  }
+  // etiquetas de las curvas
+  ctx.font = '600 12px ' + FUENTE; ctx.textAlign = 'center';
+  ctx.lineJoin = 'round'; ctx.lineWidth = 4; ctx.strokeStyle = '#f2f2f0';
+  const rotulo = (t, x, y, col) => { ctx.strokeText(t, x, y); ctx.fillStyle = col; ctx.fillText(t, x, y); };
+  rotulo('Bajo H₀', X(0), Y(0.4) - 8, AZUL);
+  if(Math.abs(delta) > 0.5) rotulo('Bajo μ₁', X(delta), Y(0.4) - 8, NARANJA);
+  else if(Math.abs(delta) > 1e-9) rotulo('Bajo μ₁', X(delta) + (delta >= 0 ? 38 : -38), Y(0.4) - 8, NARANJA);
+}
+
+function dibujarPotencia(){
+  const { ctx, w, h } = prepararLienzo('lienzoPot');
+  const L = 44, R = 14, T = 16, B = 38;
+  const pw = w - L - R, ph = h - T - B;
+  const xmin = S.tipo === 'uno' ? -2 : -6, xmax = 6;
+  const X = x => L + (x - xmin) / (xmax - xmin) * pw;
+  const Y = y => T + ph - y * ph;
+  ctx.font = '11px ' + FUENTE; ctx.fillStyle = '#595955'; ctx.strokeStyle = '#dcdcd8'; ctx.lineWidth = 1;
+  ctx.textAlign = 'center';
+  for(let t = Math.ceil(xmin); t <= xmax; t += 2){
+    ctx.beginPath(); ctx.moveTo(X(t), T); ctx.lineTo(X(t), T + ph); ctx.stroke();
+    ctx.fillText(String(t), X(t), T + ph + 14);
+  }
+  ctx.textAlign = 'right';
+  for(let y = 0; y <= 1.0001; y += 0.25){
+    ctx.beginPath(); ctx.moveTo(L, Y(y)); ctx.lineTo(L + pw, Y(y)); ctx.stroke();
+    ctx.fillText(y.toFixed(2), L - 6, Y(y) + 4);
+  }
+  ctx.textAlign = 'center';
+  ctx.fillText('μ (valor verdadero de la media)', L + pw / 2, h - 6);
+  // alpha
+  const a = alphaDe(S.c);
+  ctx.setLineDash([3, 4]); ctx.strokeStyle = GRIS; ctx.lineWidth = 1.5;
+  ctx.beginPath(); ctx.moveTo(L, Y(a)); ctx.lineTo(L + pw, Y(a)); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(X(0), T); ctx.lineTo(X(0), T + ph); ctx.stroke();
+  ctx.setLineDash([]);
+  // curva
+  ctx.beginPath(); ctx.lineWidth = 3; ctx.strokeStyle = AZUL;
+  for(let i = 0; i <= 300; i++){
+    const mu = xmin + (xmax - xmin) * i / 300;
+    const p = potenciaDe(mu);
+    if(i === 0) ctx.moveTo(X(mu), Y(p)); else ctx.lineTo(X(mu), Y(p));
+  }
+  ctx.stroke();
+  // marcador en μ1
+  const p1 = potenciaDe(S.mu1);
+  ctx.fillStyle = NARANJA;
+  ctx.beginPath(); ctx.arc(X(S.mu1), Y(p1), 5, 0, 2 * Math.PI); ctx.fill();
+  ctx.font = '600 12px ' + FUENTE; ctx.textAlign = S.mu1 > 3.5 ? 'right' : 'left';
+  const dx = S.mu1 > 3.5 ? -10 : 10;
+  ctx.fillText('1 − β = ' + fmt(p1, 3), X(S.mu1) + dx, Y(p1) + (p1 > 0.85 ? 18 : -8));
+  ctx.fillStyle = GRIS; ctx.font = '11px ' + FUENTE; ctx.textAlign = 'left';
+  ctx.fillText('α', L + 4, Y(a) - 4);
+}
+
+function pValores(){
+  return S.zs.map(z => S.tipo === 'uno' ? 1 - Phi(z) : 2 * (1 - Phi(Math.abs(z))));
+}
+function dibujarP(){
+  const { ctx, w, h } = prepararLienzo('lienzoP');
+  const L = 44, R = 14, T = 16, B = 38;
+  const pw = w - L - R, ph = h - T - B;
+  const NB = 10;
+  const ps = pValores();
+  const bins = new Array(NB).fill(0);
+  for(const p of ps){ let i = Math.min(NB - 1, Math.floor(p * NB)); bins[i]++; }
+  const props = bins.map(b => ps.length ? b / ps.length : 0);
+  const ymax = Math.max(0.2, ...props) * 1.15;
+  const X = x => L + x * pw;
+  const Y = y => T + ph - y / ymax * ph;
+  ctx.font = '11px ' + FUENTE; ctx.fillStyle = '#595955'; ctx.strokeStyle = '#dcdcd8'; ctx.lineWidth = 1;
+  ctx.textAlign = 'center';
+  for(let t = 0; t <= 1.0001; t += 0.2){
+    ctx.fillText(t.toFixed(1), X(t), T + ph + 14);
+  }
+  ctx.fillText('valor-p', L + pw / 2, h - 6);
+  ctx.textAlign = 'right';
+  const paso = ymax > 0.5 ? 0.25 : 0.1;
+  for(let y = 0; y <= ymax; y += paso){
+    ctx.beginPath(); ctx.moveTo(L, Y(y)); ctx.lineTo(L + pw, Y(y)); ctx.stroke();
+    ctx.fillText(y.toFixed(2), L - 6, Y(y) + 4);
+  }
+  ctx.strokeStyle = '#9a9a94';
+  ctx.beginPath(); ctx.moveTo(L, T + ph); ctx.lineTo(L + pw, T + ph); ctx.stroke();
+  if(!ps.length){
+    ctx.fillStyle = '#595955'; ctx.textAlign = 'center'; ctx.font = '13px ' + FUENTE;
+    ctx.fillText('Simula muestras para ver el histograma', L + pw / 2, T + ph / 2);
+    return;
+  }
+  for(let i = 0; i < NB; i++){
+    ctx.fillStyle = 'rgba(0,51,102,0.55)';
+    ctx.fillRect(X(i / NB) + 1, Y(props[i]), pw / NB - 2, T + ph - Y(props[i]));
+  }
+  // uniforme (referencia)
+  ctx.setLineDash([5, 4]); ctx.lineWidth = 1.5; ctx.strokeStyle = NARANJA;
+  ctx.beginPath(); ctx.moveTo(L, Y(1 / NB)); ctx.lineTo(L + pw, Y(1 / NB)); ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle = NARANJA; ctx.font = '11px ' + FUENTE; ctx.textAlign = 'right';
+  ctx.fillText('uniforme: 0.10 por barra', L + pw - 4, Y(1 / NB) - 5);
+  // marca de alpha
+  const a = alphaDe(S.c);
+  ctx.strokeStyle = '#4a4a46'; ctx.lineWidth = 2; ctx.setLineDash([6, 4]);
+  ctx.beginPath(); ctx.moveTo(X(a), T); ctx.lineTo(X(a), T + ph); ctx.stroke(); ctx.setLineDash([]);
+  ctx.fillStyle = '#1a1a1a'; ctx.textAlign = 'left'; ctx.font = '600 11px ' + FUENTE;
+  ctx.fillText('α = ' + fmt(a, 3), X(a) + 5, T + 10);
+}
+
+/* ---------- Actualización ---------- */
+function actualizar(){
+  document.getElementById('nOut').textContent = S.n;
+  document.getElementById('sigOut').textContent = S.sigma;
+  document.getElementById('muOut').textContent = S.mu1.toFixed(1);
+  document.getElementById('cOut').textContent = S.c.toFixed(3);
+  const a = alphaDe(S.c), pot = potenciaDe(S.mu1), delta = Math.sqrt(S.n) * S.mu1 / S.sigma;
+  document.getElementById('stA').textContent = fmt(a);
+  document.getElementById('stB').textContent = fmt(1 - pot);
+  document.getElementById('stP').textContent = fmt(pot);
+  document.getElementById('stD').textContent = fmt(delta, 3);
+  const aprox = S.tipo === 'dos' ? ' (aprox.)' : '';
+  document.getElementById('stN80').textContent = nNecesario(0.80) + (nNecesario(0.80) === '—' ? '' : aprox);
+  document.getElementById('stN90').textContent = nNecesario(0.90) + (nNecesario(0.90) === '—' ? '' : aprox);
+
+  // Monte Carlo
+  const N = S.zs.length;
+  document.getElementById('mcN').textContent = N.toLocaleString('es-MX');
+  const teorico = S.verdad === 'H0' ? a : pot;
+  document.getElementById('mcEtiq').textContent = S.verdad === 'H0' ? 'α teórico (H₀ cierta)' : 'Potencia teórica (H₁ cierta)';
+  document.getElementById('mcTeo').textContent = fmt(teorico);
+  if(N === 0){
+    document.getElementById('mcRej').textContent = '—';
+    document.getElementById('notaMC').textContent = '';
+  } else {
+    let k = 0;
+    for(const z of S.zs) if(S.tipo === 'uno' ? z > S.c : Math.abs(z) > S.c) k++;
+    const fr = k / N, ee = Math.sqrt(teorico * (1 - teorico) / N);
+    document.getElementById('mcRej').textContent = k.toLocaleString('es-MX') + ' (' + fmt(fr) + ')';
+    document.getElementById('notaMC').textContent =
+      'Frecuencia empírica de rechazo: ' + fmt(fr) + ' frente a ' + fmt(teorico) +
+      ' teórico (error estándar de simulación ≈ ' + fmt(ee) + '). ' +
+      (S.verdad === 'H0'
+        ? 'Con H₀ cierta, cada rechazo es un error tipo I: ocurren con frecuencia cercana a α.'
+        : 'Con H₁ cierta, cada no rechazo es un error tipo II: su frecuencia ronda β = ' + fmt(1 - pot) + '.');
+  }
+  dibujarDensidades(); dibujarPotencia(); dibujarP();
+}
+
+function reiniciarSim(){ S.zs = []; }
+function simular(){
+  const mu = S.verdad === 'H0' ? 0 : S.mu1;
+  const raiz = Math.sqrt(S.n);
+  const lote = 1000;
+  if(S.zs.length + lote > MAX_ZS) S.zs = S.zs.slice(S.zs.length + lote - MAX_ZS);
+  for(let r = 0; r < lote; r++){
+    let suma = 0;
+    for(let i = 0; i < S.n; i++) suma += mu + S.sigma * randNormal();
+    S.zs.push(raiz * (suma / S.n) / S.sigma);
+  }
+  actualizar();
+}
+
+/* ---------- Controles ---------- */
+function fijarTipo(t){
+  const a = alphaDe(S.c);
+  S.tipo = t;
+  S.c = cDeAlpha(Math.min(Math.max(a, 1e-6), t === 'uno' ? 0.5 : 0.999));
+  const mu = document.getElementById('muSlider');
+  mu.min = t === 'uno' ? 0 : -6;
+  if(t === 'uno' && S.mu1 < 0) S.mu1 = -S.mu1;
+  mu.value = S.mu1;
+  document.getElementById('btnUno').classList.toggle('activo', t === 'uno');
+  document.getElementById('btnDos').classList.toggle('activo', t === 'dos');
+  document.getElementById('cSlider').value = Math.min(5, S.c);
+  reiniciarSim(); actualizar();
+}
+function fijarVerdad(v){
+  S.verdad = v;
+  document.getElementById('btnH0').classList.toggle('activo', v === 'H0');
+  document.getElementById('btnH1').classList.toggle('activo', v === 'H1');
+  reiniciarSim(); actualizar();
+}
+function fijarAlpha(a){
+  S.c = cDeAlpha(a);
+  document.getElementById('cSlider').value = S.c;
+  actualizar();
+}
+document.getElementById('btnUno').onclick = () => fijarTipo('uno');
+document.getElementById('btnDos').onclick = () => fijarTipo('dos');
+document.getElementById('nSlider').oninput = e => { S.n = +e.target.value; reiniciarSim(); actualizar(); };
+document.getElementById('sigSlider').oninput = e => { S.sigma = +e.target.value; reiniciarSim(); actualizar(); };
+document.getElementById('muSlider').oninput = e => { S.mu1 = +e.target.value; reiniciarSim(); actualizar(); };
+document.getElementById('cSlider').oninput = e => { S.c = +e.target.value; actualizar(); };
+document.getElementById('btnA10').onclick = () => fijarAlpha(0.10);
+document.getElementById('btnA05').onclick = () => fijarAlpha(0.05);
+document.getElementById('btnA01').onclick = () => fijarAlpha(0.01);
+document.getElementById('chkPot').onchange = e => { S.pot = e.target.checked; actualizar(); };
+document.getElementById('btnH0').onclick = () => fijarVerdad('H0');
+document.getElementById('btnH1').onclick = () => fijarVerdad('H1');
+document.getElementById('btnSim').onclick = simular;
+document.getElementById('btnReset').onclick = () => { reiniciarSim(); actualizar(); };
+window.addEventListener('resize', actualizar);
+document.getElementById('cSlider').value = S.c;
+actualizar();
+</script>
+</body>
+</html>
