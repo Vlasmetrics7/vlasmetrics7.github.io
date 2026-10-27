@@ -368,7 +368,7 @@ cat("(a) z =", z_a, " valor-p dos colas =", round(2 * (1 - pnorm(z_a)), 4),
 cat("(b) z =", round(z_b, 3), " valor-p dos colas =", round(2 * (1 - pnorm(z_b)), 4), "\n")
 
 # --------------------------------------------------------------
-# 9. Distribucion del valor-p bajo H0 (Proposicion 6.4.4)
+# 9. Distribucion del valor-p bajo H0 (Observacion 6.4.3)
 # --------------------------------------------------------------
 set.seed(306)
 B_p <- 100000
