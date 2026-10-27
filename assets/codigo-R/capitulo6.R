@@ -206,7 +206,7 @@ CORAL      <- "#C0432A"
 # --------------------------------------------------------------
 
 # --- 7a. Errores tipo I y II de la prueba Z de una cola
-#     (Figura 6.2; Ejemplo 6.4.2: n = 36, sigma = 4, alpha = 0.05, mu_a = 1)
+#     (Figura 6.3; Ejemplo 6.4.2: n = 36, sigma = 4, alpha = 0.05, mu_a = 1)
 alpha7 <- 0.05
 delta7 <- sqrt(36) * 1 / 4                 # delta = 1.5
 crit7  <- qnorm(1 - alpha7)                # 1.645
@@ -241,7 +241,7 @@ text(-2.2, 0.2, expression(paste("No rechazar ", H[0])), cex = 0.95)
 text(4.4, 0.2, expression(paste("Rechazar ", H[0])), cex = 0.95)
 dev.off()
 
-# --- 7b. Funcion de potencia de la prueba Z (Figura 6.3)
+# --- 7b. Funcion de potencia de la prueba Z (Figura 6.4)
 pot_una_cola <- function(mu, n, alpha, sigma = 4, mu0 = 0)
   1 - pnorm(qnorm(1 - alpha) - sqrt(n) * (mu - mu0) / sigma)
 pot_dos_colas <- function(mu, n, alpha, sigma = 4, mu0 = 0) {
@@ -275,7 +275,7 @@ legend("top", legend = c("una cola, α = 0.05", "dos colas, α = 0.05", "una col
        cex = 0.9)
 dev.off()
 
-# --- 7c. Valor-p de una y de dos colas (Figura 6.4; Ejemplo 6.4.4; z_obs = 1.8)
+# --- 7c. Valor-p de una y de dos colas (Figura 6.5; Ejemplo 6.4.4; z_obs = 1.8)
 zobs <- 1.8
 png("cap6_valor_p.png", width = 2400, height = 1100, res = 220)
 par(mfrow = c(1, 2), mar = c(4.2, 4.4, 2.2, 1.0))
@@ -309,7 +309,7 @@ legend("topleft", legend = c("valores críticos ±1.96", "valores observados ±1
        box.lty = 0, cex = 0.85)
 dev.off()
 
-# --- 7d. Region de rechazo con estadistico discreto (Figura 6.1)
+# --- 7d. Region de rechazo con estadistico discreto (Figura 6.2)
 #     Ejemplo 6.4.1: B ~ Bin(20, p), region {B >= 15}
 png("cap6_binomial_rechazo.png", width = 2200, height = 1300, res = 220)
 par(mar = c(4.2, 4.2, 1.2, 1.2))
@@ -416,3 +416,30 @@ cat("\n--- Ej. 6.4.9: n = 250000, sigma = 10, xbar = 0.05\n")
 z9 <- sqrt(250000) * 0.05 / 10
 cat("z =", z9, " valor-p =", round(2 * (1 - pnorm(z9)), 4),
     " IC95 =", 0.05 + c(-1, 1) * 1.96 * 10 / sqrt(250000), "\n")
+
+# --------------------------------------------------------------
+# 11. Figura del Ejemplo 6.1.1: distribucion de X bajo p = 0.05,
+#     n = 400, con X = 22 y X = 40 marcados y una "zona gris" sin umbral
+#     (Figura 6.1). Ejecutar desde Figuras/.
+# --------------------------------------------------------------
+png("cap6_cartera_zona_gris.png", width = 2200, height = 1200, res = 220)
+par(mar = c(4.2, 4.4, 1.2, 1.2))
+xs <- 8:44
+pr <- dbinom(xs, 400, 0.05)
+# color continuo de azul (esperable) a naranja (evidencia en contra), sin umbral
+pal <- colorRampPalette(c(AZUL_ITAM, "gray70", NARANJA))(length(xs))
+t_col <- pmin(pmax((xs - 20) / 20, 0), 1)
+cols <- pal[1 + round(t_col * (length(xs) - 1))]
+plot(NA, xlim = c(7, 49), ylim = c(0, 0.115), xlab = "X (número de incumplimientos en n = 400 créditos)",
+     ylab = "Probabilidad bajo p = 0.05", cex.lab = 1.05)
+rect(xs - 0.45, 0, xs + 0.45, pr, col = cols, border = "white")
+# zona gris: banda sin trazo de umbral
+rect(27.5, -0.002, 36.5, 0.108, col = adjustcolor("gray50", 0.10), border = NA)
+text(32, 0.100, "zona gris:\n¿dónde empieza lo\ndemasiado alto?", cex = 0.95, col = "gray25")
+abline(v = 22, lty = 2, lwd = 2, col = "gray30")
+text(22.3, 0.090, "X = 22\nno sorprende", pos = 4, cex = 0.9)
+abline(v = 40, lty = 2, lwd = 2, col = "gray30")
+text(40.3, 0.075, "X = 40\nextraordinario", pos = 4, cex = 0.9)
+text(14.5, 0.108, "lo esperable si\nla cartera cumple", cex = 0.95, col = AZUL_ITAM)
+text(44.5, 0.108, "evidencia\nen contra", cex = 0.95, col = NARANJA)
+dev.off()
