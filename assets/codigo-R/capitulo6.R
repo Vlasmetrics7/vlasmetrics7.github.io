@@ -206,7 +206,7 @@ CORAL      <- "#C0432A"
 # --------------------------------------------------------------
 
 # --- 7a. Errores tipo I y II de la prueba Z de una cola
-#     (Figura 6.4; Ejemplo 6.4.2: n = 36, sigma = 4, alpha = 0.05, mu_a = 1)
+#     (Figura 6.5; Ejemplo 6.4.2: n = 36, sigma = 4, alpha = 0.05, mu_a = 1)
 alpha7 <- 0.05
 delta7 <- sqrt(36) * 1 / 4                 # delta = 1.5
 crit7  <- qnorm(1 - alpha7)                # 1.645
@@ -241,7 +241,7 @@ text(-2.2, 0.2, expression(paste("No rechazar ", H[0])), cex = 0.95)
 text(4.4, 0.2, expression(paste("Rechazar ", H[0])), cex = 0.95)
 dev.off()
 
-# --- 7b. Funcion de potencia de la prueba Z (Figura 6.5)
+# --- 7b. Funcion de potencia de la prueba Z (Figura 6.6)
 pot_una_cola <- function(mu, n, alpha, sigma = 4, mu0 = 0)
   1 - pnorm(qnorm(1 - alpha) - sqrt(n) * (mu - mu0) / sigma)
 pot_dos_colas <- function(mu, n, alpha, sigma = 4, mu0 = 0) {
@@ -275,7 +275,7 @@ legend("top", legend = c("una cola, α = 0.05", "dos colas, α = 0.05", "una col
        cex = 0.9)
 dev.off()
 
-# --- 7c. Valor-p de una y de dos colas (Figura 6.6; Ejemplo 6.4.4; z_obs = 1.8)
+# --- 7c. Valor-p de una y de dos colas (Figura 6.7; Ejemplo 6.4.4; z_obs = 1.8)
 zobs <- 1.8
 png("cap6_valor_p.png", width = 2400, height = 1100, res = 220)
 par(mfrow = c(1, 2), mar = c(4.2, 4.4, 2.2, 1.0))
@@ -309,7 +309,7 @@ legend("topleft", legend = c("valores críticos ±1.96", "valores observados ±1
        box.lty = 0, cex = 0.85)
 dev.off()
 
-# --- 7d. Region de rechazo con estadistico discreto (Figura 6.3)
+# --- 7d. Region de rechazo con estadistico discreto (Figura 6.4)
 #     Ejemplo 6.4.1: B ~ Bin(20, p), region {B >= 15}
 png("cap6_binomial_rechazo.png", width = 2200, height = 1300, res = 220)
 par(mar = c(4.2, 4.2, 1.2, 1.2))
@@ -484,4 +484,75 @@ arrows(1.5, 0.185, 1.3, 0.012, length = 0.08, col = NARANJA, lwd = 1.5)
 text(1.5, 0.21, expression(beta), col = NARANJA, cex = 1.3)
 panel_ab(1.8, expression(paste("(B) ", theta[1], " cerca de ", theta[0])))
 text(1.0, 0.09, expression(beta), col = NARANJA, cex = 1.3)
+dev.off()
+
+# --------------------------------------------------------------
+# 13. Figura de la Tabla 6.3: regiones de rechazo de la prueba Z
+#     en los tres tipos de alternativa (alpha = 0.05).
+#     Misma distribucion nula N(0,1) en los tres paneles; solo cambia
+#     donde se coloca la probabilidad alpha. (Figura 6.3).
+#     Ejecutar desde Figuras/.
+# --------------------------------------------------------------
+png("cap6_regiones_rechazo.png", width = 2100, height = 860, res = 180)
+par(mfrow = c(1, 3), mar = c(4.6, 0.8, 4.4, 0.8), oma = c(0, 0, 0, 0))
+al13 <- 0.05
+z1   <- qnorm(1 - al13)        # z_alpha     = 1.645
+z2   <- qnorm(1 - al13 / 2)    # z_(alpha/2) = 1.960
+xg13 <- seq(-4, 4, length.out = 800)
+
+# Sombrea la densidad N(0,1) entre a y b
+sombra13 <- function(a, b, col) {
+  x <- xg13[xg13 >= a & xg13 <= b]
+  polygon(c(x, rev(x)), c(dnorm(x), rep(0, length(x))), col = col, border = NA)
+}
+# Lienzo comun: curva, ejes y titulo de dos renglones
+lienzo13 <- function(titulo, subtitulo) {
+  plot(NA, xlim = c(-4, 4), ylim = c(0, 0.50), xaxt = "n", yaxt = "n",
+       xlab = "valor del estadístico Z", ylab = "", main = "")
+  axis(1, at = -3:3)
+  mtext(titulo,    side = 3, line = 2.6, cex = 0.95, font = 2)
+  mtext(subtitulo, side = 3, line = 1.5, cex = 0.85, col = "gray30")
+}
+gris13 <- adjustcolor("gray60", 0.25)
+azul13 <- adjustcolor(AZUL_ITAM, 0.60)
+
+# (A) H1: theta > theta_0  (una cola, derecha)
+lienzo13(expression(paste("(A) ", H[1], ": ", theta > theta[0])), "una cola, derecha")
+sombra13(-4, z1, gris13); sombra13(z1, 4, azul13)
+lines(xg13, dnorm(xg13), lwd = 3, col = AZUL_ITAM)
+abline(v = z1, lty = 2, lwd = 2, col = "gray30")
+text(z1 - 0.15, 0.47, expression(paste("No rechazar ", H[0])), pos = 2, cex = 0.8)
+text(z1 + 0.15, 0.47, expression(paste("Rechazar ", H[0])),    pos = 4, cex = 0.8)
+text(z1 + 0.12, 0.415, expression(z[0.05] == "1.645"), pos = 4, cex = 0.85, col = "gray20")
+text(-0.1, 0.17, expression(paste(1 - alpha == 0.95)), cex = 1.0, col = "gray30")
+arrows(z1 + 1.35, 0.11, z1 + 0.45, 0.012, length = 0.08, col = AZUL_ITAM, lwd = 1.5)
+text(z1 + 1.35, 0.135, expression(alpha == 0.05), col = AZUL_ITAM, cex = 0.95)
+
+# (B) H1: theta < theta_0  (una cola, izquierda)
+lienzo13(expression(paste("(B) ", H[1], ": ", theta < theta[0])), "una cola, izquierda")
+sombra13(-z1, 4, gris13); sombra13(-4, -z1, azul13)
+lines(xg13, dnorm(xg13), lwd = 3, col = AZUL_ITAM)
+abline(v = -z1, lty = 2, lwd = 2, col = "gray30")
+text(-z1 - 0.15, 0.47, expression(paste("Rechazar ", H[0])),    pos = 2, cex = 0.8)
+text(-z1 + 0.15, 0.47, expression(paste("No rechazar ", H[0])), pos = 4, cex = 0.8)
+text(-z1 - 0.12, 0.415, expression(paste("−", z[0.05], " = −1.645")), pos = 2, cex = 0.85, col = "gray20")
+text(0.1, 0.17, expression(paste(1 - alpha == 0.95)), cex = 1.0, col = "gray30")
+arrows(-z1 - 1.35, 0.11, -z1 - 0.45, 0.012, length = 0.08, col = AZUL_ITAM, lwd = 1.5)
+text(-z1 - 1.35, 0.135, expression(alpha == 0.05), col = AZUL_ITAM, cex = 0.95)
+
+# (C) H1: theta != theta_0  (dos colas)
+lienzo13(expression(paste("(C) ", H[1], ": ", theta != theta[0])), "dos colas")
+sombra13(-z2, z2, gris13); sombra13(-4, -z2, azul13); sombra13(z2, 4, azul13)
+lines(xg13, dnorm(xg13), lwd = 3, col = AZUL_ITAM)
+abline(v = c(-z2, z2), lty = 2, lwd = 2, col = "gray30")
+text(-z2 - 0.1, 0.47, expression(paste("Rechazar ", H[0])), pos = 2, cex = 0.8)
+text(z2 + 0.1,  0.47, expression(paste("Rechazar ", H[0])), pos = 4, cex = 0.8)
+text(0, 0.47, expression(paste("No rechazar ", H[0])), cex = 0.8)
+text(-z2 - 0.12, 0.415, expression(paste("−", z[0.025], " = −1.960")), pos = 2, cex = 0.85, col = "gray20")
+text( z2 + 0.12, 0.415, expression(z[0.025] == "1.960"), pos = 4, cex = 0.85, col = "gray20")
+text(0, 0.17, expression(paste(1 - alpha == 0.95)), cex = 1.0, col = "gray30")
+arrows(z2 + 1.1, 0.11, z2 + 0.4, 0.008, length = 0.08, col = AZUL_ITAM, lwd = 1.5)
+text(z2 + 1.1, 0.135, expression(alpha / 2 == 0.025), col = AZUL_ITAM, cex = 0.9)
+arrows(-z2 - 1.1, 0.11, -z2 - 0.4, 0.008, length = 0.08, col = AZUL_ITAM, lwd = 1.5)
+text(-z2 - 1.1, 0.135, expression(alpha / 2 == 0.025), col = AZUL_ITAM, cex = 0.9)
 dev.off()
