@@ -206,7 +206,7 @@ CORAL      <- "#C0432A"
 # --------------------------------------------------------------
 
 # --- 7a. Errores tipo I y II de la prueba Z de una cola
-#     (Figura 6.3; Ejemplo 6.4.2: n = 36, sigma = 4, alpha = 0.05, mu_a = 1)
+#     (Figura 6.4; Ejemplo 6.4.2: n = 36, sigma = 4, alpha = 0.05, mu_a = 1)
 alpha7 <- 0.05
 delta7 <- sqrt(36) * 1 / 4                 # delta = 1.5
 crit7  <- qnorm(1 - alpha7)                # 1.645
@@ -241,7 +241,7 @@ text(-2.2, 0.2, expression(paste("No rechazar ", H[0])), cex = 0.95)
 text(4.4, 0.2, expression(paste("Rechazar ", H[0])), cex = 0.95)
 dev.off()
 
-# --- 7b. Funcion de potencia de la prueba Z (Figura 6.4)
+# --- 7b. Funcion de potencia de la prueba Z (Figura 6.5)
 pot_una_cola <- function(mu, n, alpha, sigma = 4, mu0 = 0)
   1 - pnorm(qnorm(1 - alpha) - sqrt(n) * (mu - mu0) / sigma)
 pot_dos_colas <- function(mu, n, alpha, sigma = 4, mu0 = 0) {
@@ -275,7 +275,7 @@ legend("top", legend = c("una cola, α = 0.05", "dos colas, α = 0.05", "una col
        cex = 0.9)
 dev.off()
 
-# --- 7c. Valor-p de una y de dos colas (Figura 6.5; Ejemplo 6.4.4; z_obs = 1.8)
+# --- 7c. Valor-p de una y de dos colas (Figura 6.6; Ejemplo 6.4.4; z_obs = 1.8)
 zobs <- 1.8
 png("cap6_valor_p.png", width = 2400, height = 1100, res = 220)
 par(mfrow = c(1, 2), mar = c(4.2, 4.4, 2.2, 1.0))
@@ -309,7 +309,7 @@ legend("topleft", legend = c("valores críticos ±1.96", "valores observados ±1
        box.lty = 0, cex = 0.85)
 dev.off()
 
-# --- 7d. Region de rechazo con estadistico discreto (Figura 6.2)
+# --- 7d. Region de rechazo con estadistico discreto (Figura 6.3)
 #     Ejemplo 6.4.1: B ~ Bin(20, p), region {B >= 15}
 png("cap6_binomial_rechazo.png", width = 2200, height = 1300, res = 220)
 par(mar = c(4.2, 4.2, 1.2, 1.2))
@@ -442,4 +442,46 @@ abline(v = 40, lty = 2, lwd = 2, col = "gray30")
 text(40.3, 0.075, "X = 40\nextraordinario", pos = 4, cex = 0.9)
 text(14.5, 0.108, "lo esperable si\nla cartera cumple", cex = 0.95, col = AZUL_ITAM)
 text(44.5, 0.108, "evidencia\nen contra", cex = 0.95, col = NARANJA)
+dev.off()
+
+# --------------------------------------------------------------
+# 12. Figura de la Definicion 6.2.4: alpha y beta(theta_1) sin cifras.
+#     Misma H0 y mismo umbral en ambos paneles; solo cambia theta_1
+#     (alternativa lejana vs. cercana). Prueba de una cola, H1: theta > theta_0.
+#     (Figura 6.2). Ejecutar desde Figuras/.
+# --------------------------------------------------------------
+png("cap6_alpha_beta_conceptual.png", width = 2400, height = 1100, res = 220)
+par(mfrow = c(1, 2), mar = c(4.4, 1.6, 2.4, 1.0))
+xg  <- seq(-3.5, 7, length.out = 800)
+cr  <- qnorm(0.95)                                # umbral (no se rotula con cifras)
+panel_ab <- function(th1, titulo) {
+  plot(NA, xlim = c(-3.5, 7), ylim = c(0, 0.62), xaxt = "n", yaxt = "n",
+       xlab = "valor que resume la muestra", ylab = "", main = titulo, cex.main = 1.05)
+  # beta: area de la curva bajo H1 a la izquierda del umbral
+  xb <- xg[xg <= cr]
+  polygon(c(xb, rev(xb)), c(dnorm(xb, th1), rep(0, length(xb))),
+          col = adjustcolor(NARANJA, 0.45), border = NA)
+  # alpha: area de la curva bajo H0 a la derecha del umbral
+  xa <- xg[xg >= cr]
+  polygon(c(xa, rev(xa)), c(dnorm(xa, 0), rep(0, length(xa))),
+          col = adjustcolor(AZUL_ITAM, 0.55), border = NA)
+  lines(xg, dnorm(xg, 0),   lwd = 3, col = AZUL_ITAM)
+  lines(xg, dnorm(xg, th1), lwd = 3, col = NARANJA)
+  abline(v = cr, lty = 2, lwd = 2, col = "gray30")
+  axis(1, at = c(0, th1), labels = expression(theta[0], theta[1]), tick = TRUE)
+  text(cr - 0.15, 0.58, expression(paste("No rechazar ", H[0])), pos = 2, cex = 0.95)
+  text(cr + 0.15, 0.58, expression(paste("Rechazar ", H[0])),    pos = 4, cex = 0.95)
+  text(min(0, -0.6), 0.45, expression(paste("Bajo ", H[0], ": ", theta == theta[0])),
+       col = AZUL_ITAM, cex = 0.95)
+  text(max(th1, 4.4), 0.45, expression(paste("Bajo ", H[1], ": ", theta == theta[1])),
+       col = NARANJA, cex = 0.95)
+  # etiquetas de las areas
+  arrows(cr + 1.3, 0.07, cr + 0.45, 0.012, length = 0.08, col = AZUL_ITAM, lwd = 1.5)
+  text(cr + 1.45, 0.085, expression(alpha), col = AZUL_ITAM, cex = 1.3)
+}
+panel_ab(3.6, expression(paste("(A) ", theta[1], " lejos de ", theta[0])))
+arrows(1.5, 0.185, 1.3, 0.012, length = 0.08, col = NARANJA, lwd = 1.5)
+text(1.5, 0.21, expression(beta), col = NARANJA, cex = 1.3)
+panel_ab(1.8, expression(paste("(B) ", theta[1], " cerca de ", theta[0])))
+text(1.0, 0.09, expression(beta), col = NARANJA, cex = 1.3)
 dev.off()
