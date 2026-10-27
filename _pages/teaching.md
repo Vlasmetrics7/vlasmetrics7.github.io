@@ -62,6 +62,10 @@ Simulaciones interactivas de intervalos de confianza, usadas en clase:
 - [Simulación: el desfile de intervalos de confianza](/assets/interactivos/simulacion_desfile_ic.html){: .btn .btn--sm }
 - [Simulaciones de IC para distribuciones conocidas](/assets/interactivos/simulacion_ic_distribuciones.html){: .btn .btn--sm }
 
+Simulaciones interactivas de pruebas de hipótesis, usadas en clase:
+
+- [Simulación: errores tipo I y II, y potencia](/assets/interactivos/simulacion_errores_potencia.html){: .btn .btn--sm }
+
 Código en R, un script por capítulo:
 
 - [Capítulo 1](/assets/codigo-R/capitulo1.R){: .btn .btn--sm }
